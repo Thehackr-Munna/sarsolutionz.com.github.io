@@ -1,1584 +1,968 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- JAI SHREE RAM -->
-
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63C9LJY78H"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-63C9LJY78H');
-
-
-        <script>
-            (function() {
-                fetch('https://ipinfo.io/json?token=2559dd27e7b66b')
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Storing visitor data in localStorage');
-                        localStorage.setItem('visitorData', JSON.stringify(data));
-                    })
-                    .catch(error => console.error('Error fetching IP data:', error));
-    })();
-    </script>
-
-
-
-    </script>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Welcome to Rahul's Portfolio</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="Explore the captivating portfolio.">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Elevate the experience with CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/vendor/aos.css">
-    <link rel="stylesheet" href="assets/css/plugins/feature.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Personalized Style Touch -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Pentest Specialist | Advanced Security Assessments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Security Theme */
+        :root {
+            --primary: #0a192f;
+            --secondary: #64ffda;
+            --accent: #1e90ff;
+            --light: #ccd6f6;
+            --dark: #020c1b;
+            --navy: #112240;
+            --light-navy: #233554;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Calibre', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(10, 25, 47, 0.9);
+            color: white;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: left;
+        }
+        
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--light);
+        }
+        
+        .hero h1 span {
+            color: var(--secondary);
+            display: block;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 0 40px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+        }
+        
+        /* API Pentest Specialization */
+        .specialization {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--light);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--secondary);
+        }
+        
+        .section-title p {
+            color: var(--light);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .expertise-card {
+            background-color: var(--navy);
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-left: 2px solid var(--secondary);
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .expertise-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .expertise-card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .expertise-card ul li {
+            margin-bottom: 10px;
+            color: var(--light);
+            opacity: 0.8;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .expertise-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-navy);
+            padding: 30px;
+            border-radius: 5px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .feature-card p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Methodology */
+        .methodology {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .methodology-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            background-color: var(--navy);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            background-color: transparent;
+            color: var(--secondary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 30px;
+            flex-shrink: 0;
+            border: 2px solid var(--secondary);
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .step-content p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        /* Testing Types */
+        .testing-types {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .type-card {
+            background-color: var(--light-navy);
+            padding: 30px;
+            border-radius: 5px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .type-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .type-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .type-card ul li {
+            margin-bottom: 10px;
+            color: var(--light);
+            opacity: 0.8;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .type-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Tools */
+        .tools {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .tool-card {
+            background-color: var(--navy);
+            padding: 30px 20px;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .tool-card h3 {
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+        
+        /* Techniques */
+        .techniques {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .technique-card {
+            background-color: var(--light-navy);
+            padding: 30px;
+            border-radius: 5px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .technique-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .technique-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .technique-card p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100,255,218,0.1) 0%, rgba(30,144,255,0.1) 100%);
+            z-index: 0;
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -8px;
+            left: 0;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--light);
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            background-color: var(--light-navy);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(100,255,218,0.1);
+            color: var(--light);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 0;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+            
+            .hero .container {
+                align-items: center;
+            }
+            
+            .hero p {
+                text-align: center;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+    </style>
 </head>
-<!-- हरे कृष्णा हरे कृष्णा कृष्णा कृष्णा हरे हरे,हरे राम हरे राम राम राम हरे हरे. -->
-
-<body class="template-color-1 spybody" data-spy="scroll" data-target=".navbar-example2" data-offset="70">
-
-    <!-- Start Header -->
-    <header class="rn-header haeder-default black-logo-version header--fixed header--sticky">
-        <div class="header-wrapper rn-popup-mobile-menu m--0 row align-items-center">
-            <!-- Start Header Left -->
-            <div class="col-lg-2 col-6">
-                <div class="header-left">
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="assets/images/icons/logoo.png" alt="Sarsolutionz" class="img-fluid me-3"
-                            style="max-height: 40px;">
-                        <span id="matrix-logo" class="text-danger fw-bold fs-5"
-                            style="font-family: 'Courier New', monospace; letter-spacing: 1px;">SAR<span
-                                class="text-white">SOLUTIONZ</span></span>
-                    </div>
-                </div>
-            </div>
-            <!-- End Header Left -->
-            <!-- Start Header Center -->
-            <div class="col-lg-10 col-6">
-                <div class="header-center">
-                    <nav id="sideNav" class="mainmenu-nav navbar-example2 d-none d-xl-block">
-                        <!-- Start Mainmanu Nav -->
-                        <ul class="primary-menu nav nav-pills">
-                            <li class="nav-item"><a class="nav-link smoth-animation active" href="#home">Home</a></li>
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#features">Services</a></li>
-                            <!-- <li class="nav-item"><a class="nav-link smoth-animation" href="#portfolio">Portfolio</a></li> -->
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#resume">Experience</a></li>
-
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#blog">blog</a></li>
-                            <li class="nav-item"><a class="nav-link smoth-animation" href="#contacts">Contact</a></li>
-                        </ul>
-                        <!-- End Mainmanu Nav -->
-                    </nav>
-                    <!-- Start Header Right  -->
-                    <div class="header-right">
-                        <a class="rn-btn" target="_blank" href="https://tryhackme.com/p/Thehackr"><span>TryHackMe
-                                Profile</span></a>
-                        <a class="rn-btn" target="_blank"
-                            href="https://drive.google.com/file/d/1tD19sN0_iW15zmiuJCURZbRv36bQ-Bmo/view?usp=drivesdk"><span>Resume</span></a>
-                        <!--                         Resume Password [Hacked] -->
-                        <div class="hamberger-menu d-block d-xl-none">
-                            <i id="menuBtn" class="feather-menu humberger-menu"></i>
-                        </div>
-                        <div class="close-menu d-block">
-                            <span class="closeTrigger">
-                                <i data-feather="x"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- End Header Right  -->
-
-                </div>
-            </div>
-            <!-- End Header Center -->
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">APIPentest<span>Pro</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#testing-types">Testing Types</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-    <!-- End Header Area -->
-    <!-- Start Popup Mobile Menu  -->
-    <div class="popup-mobile-menu">
-        <div class="inner">
-            <div class="menu-top">
-                <div class="menu-header">
-                    <a class="logo" href="index.html">
-                        <img src="assets/images/icons/BG.gif" alt="Personal Portfolio">
-                    </a>
-                    <div class="close-button">
-                        <button class="close-menu-activation close"><i data-feather="x"></i></button>
-                    </div>
-                </div>
-                <p class="discription" style="color: #FF7722;">जय श्री राम</p>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Advanced API <span>Penetration Testing</span></h1>
+            <p class="fade-in delay-1">We don't just scan APIs - we think and operate like sophisticated attackers to uncover critical vulnerabilities that automated tools miss.</p>
+            <a href="#contact" class="btn fade-in delay-2">Request Assessment</a>
+        </div>
+    </section>
+    
+    <section id="expertise" class="specialization">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our API Pentest Expertise</h2>
+                <p>We focus on identifying exploitable vulnerabilities that pose real business risk to your API infrastructure</p>
             </div>
-            <div class="content">
-                <ul class="primary-menu nav nav-pills">
-                    <li class="nav-item"><a class="nav-link smoth-animation active" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#features">Service</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#resume">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#blog">blog</a></li>
-                    <li class="nav-item"><a class="nav-link smoth-animation" href="#contacts">Contact</a></li>
-                    <div class="header-right">
-                        <a target="_blank" href="https://tryhackme.com/p/Thehackr"><span>Tryhackme Profile</span></a>
-
-                        <!-- <div class="hamberger-menu d-block d-xl-none">
-                            <i id="menuBtn" class="feather-menu humberger-menu"></i>
-                        </div> -->
-
-                    </div><br>
-                    <a class="rn-btn" target="_blank"
-                        href="https://drive.google.com/file/d/1tD19sN0_iW15zmiuJCURZbRv36bQ-Bmo/view?usp=drivesdk"><span>Resume</span></a>
-                    <!--                         Resume Password [Hacked] -->
-                </ul>
-                <!-- social sharea area -->
-                <div class="social-share-style-1 mt--40">
-
-                    <!-- <span class="title">जय श्री राम</span> -->
-                    <span class="title" style="color: orange;" alt="Hello">🕉️🚩जय श्री कृष्णा 🚩🕉️</span>
-
-
+            
+            <div class="expertise-grid">
+                <div class="expertise-card fade-in">
+                    <h3>Beyond Automated Scans</h3>
+                    <p>While we use tools for initial discovery, our real value comes from:</p>
+                    <ul>
+                        <li>Manual API endpoint discovery</li>
+                        <li>Business logic vulnerability testing</li>
+                        <li>Authentication/authorization bypass</li>
+                        <li>Custom payload creation</li>
+                        <li>Chained attack scenarios</li>
+                    </ul>
                 </div>
-                <!-- end -->
+                
+                <div class="expertise-card fade-in delay-1">
+                    <h3>Comprehensive API Testing</h3>
+                    <p>We assess all aspects of your API security:</p>
+                    <ul>
+                        <li>REST API security testing</li>
+                        <li>GraphQL API vulnerabilities</li>
+                        <li>SOAP API security flaws</li>
+                        <li>WebSocket security issues</li>
+                        <li>gRPC API testing</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card fade-in delay-2">
+                    <h3>Real-World Attack Simulation</h3>
+                    <p>We demonstrate actual risk, not just theoretical vulnerabilities:</p>
+                    <ul>
+                        <li>Data exposure scenarios</li>
+                        <li>Account takeover techniques</li>
+                        <li>Privilege escalation paths</li>
+                        <li>Mass assignment vulnerabilities</li>
+                        <li>Server-side request forgery</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- End Popup Mobile Menu  -->
-
-    <!-- JAI SHREE KRISHNA -->
-
-
-    <main class="main-page-wrapper">
-
-        <!-- Start Slider Area -->
-        <div id="home" class="rn-slider-area">
-            <div class="slide slider-style-1">
-                <div class="container">
-                    <div class="row row--30 align-items-center">
-                        <div class="order-2 order-lg-1 col-lg-7 mt_md--50 mt_sm--50 mt_lg--30">
-                            <div class="content">
-                                <div class="inner">
-                                    <span class="subtitle" style="font-family: 'Fira Code', monospace; color: #00ffcc;">
-                                        <span style="color:#00ffaa;">┌─[</span><span
-                                            style="color:#fff;">रahul@localhost</span><span
-                                            style="color:#00ffaa;">]</span>
-                                        <br>
-                                        <span style="color:#00ffaa;">└──╼ $</span> whoami <span
-                                            class="fa-solid fa-om om-blink" style="color:#ff6600;"></span>
-                                    </span>
-
-
-
-                                    <!--                                     <span class="subtitle">$whoami <span class="cursor">|</span></span> -->
-                                    <!--                                     <h1 class="title"  style="color: orange;"alt="Hello">जय श्री राम , I'm <span>राहुल ठाकुर</span><br> -->
-                                    <h1 class="title" alt="Hello"> <span style="color: #FF7722;">Hello</span>, I'm <span
-                                            style="color: #FF9933;">राहुल ठाकुर</span><br>
-                                        <span class="header-caption" id="page-top">
-                                            <!-- Unleash the power of dynamic headlines -->
-                                            <span class="cd-headline clip is-full-width">
-                                                <span>On a mission to secure the digital world.</span>
-                                                <!-- Captivating ROTATING TEXT -->
-                                                <span class="cd-words-wrapper">
-                                                    <b class="is-visible">Penetration Tester</b>
-                                                    <b class="is-hidden">Red Team Practitioner</b>
-                                                    <b class="is-hidden">Mobile App Security</b>
-                                                    <b class="is-hidden">API Security </b>
-                                                    <b class="is-hidden">Bug Hunter</b>
-                                                    <b class="is-hidden">CTF Player</b>
-                                                    <b class="is-hidden">Tool Developer</b>
-                                                    <b class="is-hidden">Learner...</b>
-                                                </span>
-                                            </span>
-                                            <!-- Elevate your experience -->
-                                        </span>
-                                    </h1>
-
-
-                                    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
-                                        rel="stylesheet">
-
-                                    <style>
-                                        .matrix-container {
-                                            background: #145deg;
-                                            padding: 20px;
-                                            border-radius: 10px;
-                                            font-family: 'VT323', monospace;
-                                            color: rgba(125, 225, 125, 0.75);
-                                            font-size: 20px;
-                                            text-shadow: 0 0 5px rgba(125, 225, 125, 0.5), 0 0 15px rgba(125, 250, 125, 1);
-                                            animation: ScreenEffect 0.05s ease infinite;
-                                        }
-
-                                        .matrix-container .Pulse {
-                                            animation: Pulse 1.5s ease infinite;
-                                        }
-
-                                        @keyframes ScreenEffect {
-                                            0% {
-                                                opacity: 1
-                                            }
-
-                                            50% {
-                                                opacity: 0.7
-                                            }
-
-                                            100% {
-                                                opacity: 1
-                                            }
-                                        }
-
-                                        @keyframes Pulse {
-
-                                            0%,
-                                            100% {
-                                                opacity: 0;
-                                            }
-
-                                            50% {
-                                                opacity: 1;
-                                            }
-                                        }
-                                    </style>
-
-                                    <div class="matrix-container">
-                                        <p class="description">
-                                            4+ years in <span class="Pulse">Cyber security</span>—breaking Web
-                                            Applications(Black Box/ White Box/ Gray Box), Mobile
-                                            Applications(Android/iOS), API Security,
-                                            Network Infra PT, Wifi Network Security, POS Application Security, Thick
-                                            Client applications <span class="Pulse">70+ Security Activity</span> with
-                                            PCI DSS & ISO 27001.
-                                            eCPPT & MCRTA certified, now <span class="Pulse">leveling up</span> with
-                                            CRTA.
-                                            <span class="Pulse">Burp Suite</span>—my daily grind!
-                                        </p>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-12">
-                                        <div class="social-share-inner-left">
-                                            <span class="title">Connect with Me</span>
-                                            <ul class="social-share d-flex liststyle">
-                                                <li class="github">
-                                                    <a href="https://github.com/Rahul-Thakur7" target="_blank">
-                                                        <i data-feather="github"></i>
-                                                    </a>
-                                                </li>
-                                                <!-- <li class="instagram">
-                                                    <a href="https://www.instagram.com/coder_rahult/" target="_blank">
-                                                        <i data-feather="instagram"></i>
-                                                    </a>
-                                                </li> -->
-                                                <li class="linkedin">
-                                                    <a href="https://in.linkedin.com/in/rahul-thakur7" target="_blank">
-                                                        <i data-feather="linkedin"></i>
-                                                    </a>
-                                                </li>
-                                                <!--                                                 <li class="youtube">
-                                                    <a href="https://www.youtube.com/@thehackr./" target="_blank">
-                                                        <i data-feather="youtube"></i>
-                                                    </a>
-                                                </li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-12 mt_mobile--30">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="order-1 order-lg-2 col-lg-5">
-                            <div class="thumbnail">
-                                <div class="inner">
-                                    <img src="assets/images/icons/19362653.gif" alt="Personal Portfolio Images">
-                                    <!-- credit Cyberpunk Futuristic - 3D Animation https://in.pinterest.com/kaleocortez/hacking-gif-1/ -->
-
-                                </div>
-                            </div>
-                        </div>
+    </section>
+    
+    <section id="why-us" class="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our API Pentest Services</h2>
+                <p>We deliver more value than automated scanners or checklist testers</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>API-Specific Focus</h3>
+                    <p>We specialize in API security, understanding the unique challenges and attack vectors that APIs present compared to traditional web applications.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>Business Logic Testing</h3>
+                    <p>We focus on finding flaws in your API's business logic that automated tools can't detect, which often lead to the most severe vulnerabilities.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>No Noise, Just Risk</h3>
+                    <p>We filter out false positives and low-risk findings to focus your remediation efforts on what actually matters to your business.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Actionable Reporting</h3>
+                    <p>Our reports include detailed attack paths, business impact analysis, and clear remediation guidance for your development team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="methodology" class="methodology">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our API Pentest Methodology</h2>
+                <p>A strategic approach designed to uncover your most critical API vulnerabilities</p>
+            </div>
+            
+            <div class="methodology-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>API Discovery & Documentation Review</h3>
+                        <p>We identify all API endpoints (documented and undocumented) and analyze API documentation to understand intended functionality.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Authentication & Authorization Testing</h3>
+                        <p>We test API authentication mechanisms, token handling, and authorization controls to identify privilege escalation opportunities.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Input Validation & Injection Testing</h3>
+                        <p>We test for all forms of injection (SQLi, NoSQLi, command injection, etc.) and input validation flaws that could lead to API compromise.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-3">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Business Logic Testing</h3>
+                        <p>We analyze API workflows to identify logic flaws that could allow bypassing of security controls or unauthorized access to data.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-4">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Reporting & Remediation</h3>
+                        <p>Detailed reporting with risk-prioritized findings, clear remediation steps, and follow-up verification testing.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Slider Area -->
-        <!-- हरे कृष्णा हरे कृष्णा कृष्णा कृष्णा हरे हरे,हरे राम हरे राम राम राम हरे हरे. -->
-        <!-- Start Service Area -->
-        <div class="rn-service-area rn-section-gap section-separator" id="features">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-left" data-aos="fade-up" data-aos-duration="500"
-                            data-aos-delay="100" data-aos-once="true">
-                            <span class="subtitle">Services</span>
-                            <h3 class="title">Turning Visions into Reality with Our Expert Team!</h3>
-                        </div>
-                    </div>
+    </section>
+    
+    <section id="testing-types" class="testing-types">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our API Testing Services</h2>
+                <p>Comprehensive assessments tailored to your API security needs</p>
+            </div>
+            
+            <div class="types-grid">
+                <div class="type-card fade-in">
+                    <h3>REST API Pentest</h3>
+                    <p>Comprehensive security assessment of RESTful APIs:</p>
+                    <ul>
+                        <li>Authentication/authorization testing</li>
+                        <li>Input validation testing</li>
+                        <li>HTTP verb tampering</li>
+                        <li>Mass assignment testing</li>
+                        <li>Rate limiting testing</li>
+                    </ul>
                 </div>
-                <div class="row row--25 mt_md--10 mt_sm--10">
-
-                    <!-- Start Single Service -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="100" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-service">
-                            <div class="inner">
-                                <div class="icon">
-                                    <i data-feather="menu"></i>
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="https://thehackr.netlify.app/#contacts">Penetration
-                                            Testing</a></h4>
-                                    <p class="description">Our penetration testing services leverage advanced
-                                        Vulnerability Assessment and Penetration Testing (VAPT) methodologies to
-                                        identify and eliminate vulnerabilities. We specialize in ethical hacking,
-                                        utilizing extensive hands-on experience to safeguard your digital assets from
-                                        modern security threats.</p>
-
-                                    <a class="read-more-button" href="https://thehackr.netlify.app/#contacts"><i
-                                            class="feather-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <a class="over-link" href="https://thehackr.netlify.app/#contacts"></a>
-                        </div>
-                    </div>
-                    <!-- End SIngle Service -->
-                    <!-- Start Single Service -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-service">
-                            <div class="inner">
-                                <div class="icon">
-                                    <i data-feather="book-open"></i>
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">Web Design & Development</a></h4>
-                                    <p class="description">We design and develop highly responsive, user-centric web
-                                        applications. Our team integrates cutting-edge technologies to deliver seamless
-                                        user experiences and optimized performance, ensuring your digital presence
-                                        stands out in today’s competitive market.</p>
-
-                                    <a class="read-more-button" href="https://thehackr.netlify.app/#contacts"><i
-                                            class="feather-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <a class="over-link" href="https://thehackr.netlify.app/#contacts"></a>
-                        </div>
-                    </div>
-                    <!-- End SIngle Service -->
-
-
-                    <!-- Start Single Service -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="500" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-service">
-                            <div class="inner">
-                                <div class="icon">
-                                    <i data-feather="slack"></i>
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="https://thehackr.netlify.app/#contacts">UI/Graphic
-                                            Design</a></h4>
-                                    <p class="description">Enhance your brand identity with our innovative UI/Graphic
-                                        Design solutions. Our experienced designers deliver visually stunning,
-                                        functional, and user-friendly designs tailored to your project needs—efficiently
-                                        and affordably.</p>
-
-                                    <a class="read-more-button" href="https://thehackr.netlify.app/#contacts"><i
-                                            class="feather-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <a class="over-link" href="https://thehackr.netlify.app/#contacts"></a>
-                        </div>
-                    </div>
-                    <!-- End SIngle Service -->
-
+                
+                <div class="type-card fade-in delay-1">
+                    <h3>GraphQL API Pentest</h3>
+                    <p>Specialized testing for GraphQL APIs:</p>
+                    <ul>
+                        <li>Introspection query analysis</li>
+                        <li>Query complexity attacks</li>
+                        <li>Field duplication attacks</li>
+                        <li>Directive abuse testing</li>
+                        <li>Batch query attacks</li>
+                    </ul>
+                </div>
+                
+                <div class="type-card fade-in delay-2">
+                    <h3>SOAP API Pentest</h3>
+                    <p>Security assessment for SOAP-based APIs:</p>
+                    <ul>
+                        <li>XML injection testing</li>
+                        <li>XXE vulnerability testing</li>
+                        <li>WS-Security testing</li>
+                        <li>SOAP action tampering</li>
+                        <li>WSDL analysis</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <!-- End Service Area  -->
-
-        <!-- Start Portfolio Area -->
-        <div class="rn-portfolio-area rn-section-gap section-separator" id="portfolio">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle">Visit my portfolio</span>
-                            <h2 class="title">Certifications</h2>
-                        </div>
+    </section>
+    
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our API Pentest Toolkit</h2>
+                <p>Tools are just the starting point - our expertise is in manual analysis and exploitation</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">
+                        <i class="fas fa-terminal"></i>
                     </div>
+                    <h3>Burp Suite</h3>
                 </div>
-
-                <div class="row row--25 mt--10 mt_md--10 mt_sm--10">
-                    <!-- Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="100" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <!-- <img src="/Certs/06.png" alt="Personal Portfolio Images"> -->
-                                        <img src="assets/images/Dribbble/cppt.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">eCPPTv2</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                7777</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://certs.ine.com/b2ff275d-5c66-4e61-9eeb-3a4ab9223bb1"> Certified
-                                            Professional Penetration Tester (eCPPT)<i
-                                                class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
+                
+                <div class="tool-card fade-in delay-1">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <!-- End Single Portfolio -->
-
-                    <!-- Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/MCRTA.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">MCRTA</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                750</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://labs.cyberwarfare.live/badge/image/66730bb73a770bd94d7ccc07">Multi-Cloud
-                                            Red Teaming Analyst certification<i class="feather-arrow-up-right"></i></a>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
+                    <h3>Postman</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-2">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
                     </div>
-                    <!-- End Single Portfolio
-
-                    Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="500" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/THMJPT.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">Jr. Penetration Tester</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                7777</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-PCT5H48D09.png">Jr.
-                                            Penetration Tester
-                                            <i class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
+                    <h3>GraphQLmap</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-3">
+                    <div class="tool-icon">
+                        <i class="fas fa-bug"></i>
                     </div>
-                    <!-- End Single Portfolio
-
-                    Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="100" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/OBBH.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">Offensive Bug Bounty - Hunter 2.0</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                7777</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://www.udemy.com/certificate/UC-f9a52987-6522-44ad-9e1a-c10ef1036a62/">Offensive
-                                            Bug Bounty - Hunter 2.0<i class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
+                    <h3>OWASP ZAP</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-4">
+                    <div class="tool-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <!-- End Single Portfolio
-
-                    Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/APIPT.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">API Penetration Tester</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                7777</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://www.credly.com/badges/4e40c8ae-3224-41cf-b899-8b2e6eefb40b/public_url">API
-                                            Penetration Tester<i class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
+                    <h3>SoapUI</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-5">
+                    <div class="tool-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
-                    <!-- End Single Portfolio
-
-                    Start Single Portfolio -->
-                    <div data-aos="fade-up" data-aos-delay="500" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
-                        <div class="rn-portfolio" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/MCEH.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a href="javascript:void(0)">MCEH</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><a href="javascript:void(0)"><i class="feather-heart"></i></a>
-                                                777 </span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://drive.google.com/file/d/1psDOvzfyr5ikg6BCl99Qm2whZy6TneJ1/view?usp=drivesdk">Metaxone
-                                            Certified Ethical Hacker<i class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Portfolio -->
+                    <h3>Custom Scripts</h3>
                 </div>
             </div>
         </div>
-        <!-- End portfolio Area -->
-        <!-- WHAT YOU ARE SEARCHING HERE ???????? -->
-        <!-- Start Resume Area -->
-        <div class="rn-resume-area rn-section-gap section-separator" id="resume">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle">More Then 3 Years Of Experience</span>
-                            <h2 class="title">My Education and Experience</h2>
-                        </div>
-                    </div>
+    </section>
+    
+    <section class="techniques">
+        <div class="container">
+            <div class="section-title">
+                <h2>Advanced API Testing Techniques</h2>
+                <p>We employ sophisticated techniques to uncover deep API vulnerabilities</p>
+            </div>
+            
+            <div class="techniques-grid">
+                <div class="technique-card fade-in">
+                    <h3>JWT Attacks</h3>
+                    <p>Testing for JWT implementation flaws including algorithm confusion, weak secrets, and missing validation.</p>
                 </div>
-                <div class="row mt--45">
-                    <div class="col-lg-12">
-                        <ul class="rn-nav-list nav nav-tabs" id="myTabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="education-tab" data-toggle="tab" href="#education"
-                                    role="tab" aria-controls="education" aria-selected="true">education</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="professional-tab" data-toggle="tab" href="#professional"
-                                    role="tab" aria-controls="professional" aria-selected="false">professional
-                                    Skills</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="experience-tab" data-toggle="tab" href="#experience" role="tab"
-                                    aria-controls="experience" aria-selected="false">experience</a>
-                            </li>
-
-                        </ul>
-                        <!-- Start Tab Content Wrapper  -->
-                        <div class="rn-nav-content tab-content" id="myTabContents">
-                            <!-- Start Single Tab  -->
-                            <div class="tab-pane show active fade single-tab-area" id="education" role="tabpanel"
-                                aria-labelledby="education-tab">
-                                <div class="personal-experience-inner mt--40">
-                                    <div class="row">
-                                        <!-- Start Skill List Area  -->
-                                        <div class="col-lg-6 col-md-12 col-12">
-                                            <div class="content">
-                                                <span class="subtitle">2018 - 2021</span>
-                                                <h4 class="maintitle">Education</h4>
-                                                <div class="experience-list">
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Bsc Computer Science</h4>
-                                                                    <span>University of Mumbai(2018 - 2021)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <span>7/10</span>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single List  -->
-
-
-                                                    <!-- End Single List  -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Skill List Area  -->
-
-                                        <!-- Start Skill List Area 2nd  -->
-                                        <div class="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
-                                            <div class="content">
-                                                <span class="subtitle"></span>
-                                                <h4 class="maintitle"></h4>
-                                                <div class="experience-list">
-
-                                                    <!-- Start Single List  -->
-
-                                                    <!-- End Single List  -->
-
-
-                                                    <!-- End Single List  -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Skill List Area  -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Tab  -->
-
-                            <!-- Start Single Tab  -->
-                            <div class="tab-pane fade " id="professional" role="tabpanel"
-                                aria-labelledby="professional-tab">
-                                <div class="personal-experience-inner mt--40">
-                                    <div class="row row--40">
-
-                                        <!-- Start Single Progressbar  -->
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="progress-wrapper">
-                                                <div class="content">
-                                                    <span class="subtitle">Features</span>
-                                                    <h4 class="maintitle">VAPT Skill</h4>
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Web PT</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 90%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="90"><span
-                                                                    class="percent-label">90%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Android PT</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 70%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="70"><span
-                                                                    class="percent-label">70%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">API PT</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 85%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="85"><span
-                                                                    class="percent-label">85%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Network PT(Internal Network)</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 85%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="90"><span
-                                                                    class="percent-label">85%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Network PT(External Network)</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 90%" aria-valuenow="90"
-                                                                aria-valuemin="0" aria-valuemax="90"><span
-                                                                    class="percent-label">90%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-                                                    <!-- End Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Cloud PT</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 90%" aria-valuenow="90"
-                                                                aria-valuemin="0" aria-valuemax="90"><span
-                                                                    class="percent-label">Loading...</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- End Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Red Team</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 90%" aria-valuenow="90"
-                                                                aria-valuemin="0" aria-valuemax="90"><span
-                                                                    class="percent-label">Loading...</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-
-
-
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Burpsuit</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.6s" data-wow-delay=".4s"
-                                                                role="progressbar" style="width: 95%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="85"><span
-                                                                    class="percent-label">95%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Open source tools</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.6s" data-wow-delay=".4s"
-                                                                role="progressbar" style="width: 75%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">75%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Recon</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.7s" data-wow-delay=".5s"
-                                                                role="progressbar" style="width: 100%"
-                                                                aria-valuenow="85" aria-valuemin="0"
-                                                                aria-valuemax="100"><span
-                                                                    class="percent-label">100%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Report Writing</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.8s" data-wow-delay=".6s"
-                                                                role="progressbar" style="width: 98%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">98%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Scripting (Python, Bash basic)
-                                                            for Automation</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.9s" data-wow-delay=".7s"
-                                                                role="progressbar" style="width: 75%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">75%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Progressbar  -->
-
-                                        <!-- Start Single Progressbar  -->
-                                        <div class="col-lg-6 col-md-6 col-12 mt_sm--60">
-                                            <div class="progress-wrapper">
-                                                <div class="content">
-                                                    <span class="subtitle">Features</span>
-                                                    <h4 class="maintitle"></h4>
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Web Dev</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.5s" data-wow-delay=".3s"
-                                                                role="progressbar" style="width: 85%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">85%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Database : sql ,mongodb</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.6s" data-wow-delay=".4s"
-                                                                role="progressbar" style="width: 80%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">80%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6"></h6> Git, Herkoru, Netlify,
-                                                        Docker
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.7s" data-wow-delay=".5s"
-                                                                role="progressbar" style="width: 90%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">90%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Networking, OSI MODEL fundamental
-                                                            TCPIP PORTS PROTOCOLS</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.8s" data-wow-delay=".6s"
-                                                                role="progressbar" style="width: 75%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">75%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                    <!-- Start Single Progress Charts -->
-                                                    <div class="progress-charts">
-                                                        <h6 class="heading heading-h6">Viratual box, VMware for hacking
-                                                            lab setup</h6>
-                                                        <div class="progress">
-                                                            <div class="progress-bar wow fadeInLeft"
-                                                                data-wow-duration="0.9s" data-wow-delay=".7s"
-                                                                role="progressbar" style="width: 70%" aria-valuenow="85"
-                                                                aria-valuemin="0" aria-valuemax="100"><span
-                                                                    class="percent-label">70%</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single Progress Charts -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Progressbar  -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Tab  -->
-
-                            <!-- Start Single Tab  -->
-                            <div class="tab-pane fade" id="experience" role="tabpanel" aria-labelledby="experience-tab">
-                                <div class="personal-experience-inner mt--40">
-                                    <div class="row">
-                                        <!-- Start Skill List Area  -->
-                                        <div class="col-lg-6 col-md-12 col-12">
-                                            <div class="content">
-                                                <span class="subtitle"></span>
-                                                <h4 class="maintitle">Training Experience</h4>
-                                                <div class="experience-list">
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>MCEH Training</h4>
-                                                                    <span>Metaxone Solution Pvt. Ltd. (Feb 2022 - Mar
-                                                                        2022)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">Received training in Ethical Hacking,
-                                                                Web Application Penetration Testing (WAPT), and
-                                                                Vulnerability Assessment and Penetration Testing (VAPT).
-                                                            </p>
-                                                        </div>
-
-                                                    </div>
-                                                    <!-- End Single List  -->
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>WAPT VAPT Trained</h4>
-                                                                    <span></span>
-                                                                </div>
-
-                                                            </div>
-                                                            <p class="description">Cover OWASP Top 10 Web Based
-                                                                Vulnerability and have hands on experience</p>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single List  -->
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>AWS</h4>
-                                                                    <span>LinuxWorld Informatics Pvt Ltd</span>
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">
-                                                                Completed a 16-hour session on industry-relevant AWS
-                                                                training by Vimal Daga sir. Acquired knowledge about AWS
-                                                                services such as AWS Lambda, EC2, FAAS, DynamoDB, and
-                                                                many more.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- End Single List  -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Skill List Area  -->
-
-                                        <!-- Start Skill List Area 2nd  -->
-                                        <div class="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
-                                            <div class="content">
-                                                <span class="subtitle"></span>
-                                                <h4 class="maintitle">Work | Internship Experience</h4>
-                                                <div class="experience-list">
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Security Analyst</h4><br>
-                                                                    <h4>QRC Assurance And Solutions Pvt. Ltd.</h4>
-                                                                    <span> (Nov2022 - Present)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <span></span>
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">VAPT</p>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Single List  -->
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Penetration Tester Intern at Cybertix.in</h4>
-                                                                    <span>(Jul 2022 - Sept 2022)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <!-- Consider adding date or time information here -->
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">Conducted web application penetration
-                                                                testing based on the OWASP Top 10 guide and provided
-                                                                daily updates to the team lead.</p>
-                                                        </div>
-
-                                                    </div>
-                                                    <!-- End Single List  -->
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Cyber Security Engineer Intern</h4>
-                                                                    <h4>VTF Virtually Testing Foundation</h4>
-                                                                    <span>(May 2022 - June 2022)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <!-- Consider adding date or time information here -->
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">Successfully completed 7 out of 10
-                                                                weeks of internship, where I worked on weekly assigned
-                                                                tasks related to various security concepts.</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- End Single List  -->
-
-                                                    <!-- Start Single List  -->
-                                                    <div class="resume-single-list">
-                                                        <div class="inner">
-                                                            <div class="heading">
-                                                                <div class="title">
-                                                                    <h4>Cyber Security Internship</h4>
-                                                                    <h4>(CSI Cyber Secured India)</h4>
-                                                                    <span>Feather's Group (Jan 2022 - Apr 2022)</span>
-                                                                </div>
-                                                                <div class="date-of-time">
-                                                                    <!-- Consider adding date or time information here -->
-                                                                </div>
-                                                            </div>
-                                                            <p class="description">
-                                                                Proficient in Web fundamentals, Networking, TCP/IP, OSI
-                                                                MODEL, Ports, and Protocols.
-                                                                Familiar with OWASP Top 10, Burp Suite, Open-source
-                                                                tools, Recon techniques, Windows, Linux privilege,
-                                                                Android pentesting, and static and dynamic analysis
-                                                                tools.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- End Single List  -->
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Skill List Area  -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Tab  -->
-
-
-                        </div>
-                    </div>
+                
+                <div class="technique-card fade-in delay-1">
+                    <h3>Mass Assignment</h3>
+                    <p>Identifying endpoints vulnerable to mass assignment attacks that could allow property overwrites.</p>
+                </div>
+                
+                <div class="technique-card fade-in delay-2">
+                    <h3>BOLA Testing</h3>
+                    <p>Comprehensive testing for Broken Object Level Authorization vulnerabilities.</p>
+                </div>
+                
+                <div class="technique-card fade-in delay-3">
+                    <h3>BFLA Testing</h3>
+                    <p>Testing for Broken Function Level Authorization vulnerabilities in API endpoints.</p>
+                </div>
+                
+                <div class="technique-card fade-in delay-4">
+                    <h3>IDOR Testing</h3>
+                    <p>Identifying Insecure Direct Object References that could lead to data exposure.</p>
+                </div>
+                
+                <div class="technique-card fade-in delay-5">
+                    <h3>Rate Limit Bypass</h3>
+                    <p>Testing for methods to bypass API rate limiting controls.</p>
                 </div>
             </div>
         </div>
-        <!-- End Resume Area -->
-        <!-- Start Testimonia Area  -->
-        <div class="rn-testimonial-area rn-section-gap section-separator" id="testimonial">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle"></span>
-                            <h2 class="title">Team</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="testimonial-activation testimonial-pb mb--30">
-                            <!-- Start Single testiminail -->
-                            <div class="testimonial mt--50 mt_md--40 mt_sm--40">
-                                <div class="inner">
-                                    <div class="card-info">
-                                        <div class="card-thumbnail">
-                                            <img src="assets/images/3d/undraw_male_avatar_323b.png"
-                                                alt="Testimonial-image">
-                                        </div>
-                                        <div class="card-content">
-                                            <!-- <span class="subtitle mt--10">Demo</span> -->
-                                            <h3 class="title">Satya Prakash</h3>
-
-                                            <span class="designation">Full-stack Developer</span>
-
-                                            <li class="linkedin"><a
-                                                    href="https://www.linkedin.com/in/satyaprakash-yadav/"><i
-                                                        data-feather="linkedin"></i></a>
-                                            </li>
-                                        </div>
-                                    </div>
-                                    <div class="card-description">
-                                        <div class="title-area">
-                                            <div class="title-info">
-                                                <h4 class="title">I'm a Full Stack Django Developer with 1 year of
-                                                    experience in Python and Django. I specialize in designing and
-                                                    deploying scalable web applications, using Django's powerful
-                                                    features like DRF, ORM, templating, and authentication. I'm also
-                                                    proficient in front-end Dev. with React.js and backend integration.
-                                                </h4>
-                                                <span class="date"></span>
-                                            </div>
-
-                                        </div>
-                                        <div class="seperator"></div>
-                                        <!-- <p class="discription">
-                                            
-                                        </p> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!--End Single testiminail -->
-                            <!-- Start Single testiminail -->
-                            <div class="testimonial mt--50 mt_md--40 mt_sm--40">
-                                <div class="inner">
-                                    <div class="card-info">
-                                        <div class="card-thumbnail">
-                                            <img src="assets/images/3d/undraw_profile_pic_ic5t.png"
-                                                alt="Testimonial-image">
-                                        </div>
-                                        <div class="card-content">
-                                            <!-- <span class="subtitle mt--10">demo</span> -->
-                                            <h3 class="title">Ashish Soni</h3>
-
-                                            <span class="designation">Full-stack Developer,Graphic designer</span>
-
-                                            <li class="linkedin"><a href="https://www.linkedin.com/in/ashish102/"><i
-                                                        data-feather="linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="card-description">
-                                        <div class="title-area">
-                                            <div class="title-info">
-                                                <h4 class="title">I'm Ashish Soni, with 2+ years in Python, including 12
-                                                    months focused on Django. I've built CRUD apps in Python, advanced
-                                                    projects in Django, and have experience with Django Rest Framework,
-                                                    middleware, SQL databases, and JavaScript</h4>
-                                                <span class="date"></span>
-                                            </div>
-
-                                        </div>
-                                        <div class="seperator"></div>
-                                        <!-- <p class="discription">
-                                           
-                                        </p> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Ready for an API Pentest That Actually Improves Your Security?</h2>
+            <p class="fade-in delay-1">We focus on finding the vulnerabilities that matter, with clear guidance on how to fix them.</p>
+            <a href="#contact" class="btn fade-in delay-2">Get Started</a>
         </div>
-        <!-- End Testimonia Area  -->
-
-        <!-- End client section -->
-        <!-- HELLOOOOOOOOOOOO  -->
-
-        <!-- Start News Area -->
-        <div class="rn-blog-area rn-section-gap section-separator" id="blog">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="500" data-aos-once="true"
-                            class="section-title text-center">
-                            <span class="subtitle">Visit my blog and keep your feedback</span>
-                            <h2 class="title">My Blog</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row--25 mt--30 mt_md--10 mt_sm--10">
-
-                    <!-- Start Single blog -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="400" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 mt--30 col-md-6 col-sm-12 col-12 mt--30">
-                        <div class="rn-blog" data-toggle="modal" data-target="#exampleModalCenters">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/Blog1.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a
-                                                href="https://sarsolutionz.blogspot.com/2024/07/why-cybersecurity-matters-in-modern-era.html">Securing
-                                                the Future of Technology</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><i class="feather-clock"></i> 2 min read</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://sarsolutionz.blogspot.com/2024/07/why-cybersecurity-matters-in-modern-era.html">Why
-                                            Cybersecurity Matters in the Modern Era: Securing the Future of Technology
-                                            <i class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single blog -->
-
-                    <!-- Start Single blog -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="600" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 mt--30 col-md-6 col-sm-12 col-12 mt--30">
-                        <div class="rn-blog" data-toggle="modal" data-target="#exampleModalCenters">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/Blog.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a
-                                                href="https://sarsolutionz.blogspot.com/2024/05/discovering-hidden-treasures-reporting.html">Reporting
-                                                New Google Dorks to GHDB</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><i class="feather-clock"></i> 2 hour read</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://sarsolutionz.blogspot.com/2024/05/discovering-hidden-treasures-reporting.html">Discovering
-                                            Hidden Treasures: Reporting New Google Dorks to GHDB<i
-                                                class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single blog -->
-
-                    <!-- Start Single blog -->
-                    <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="800" data-aos-once="true"
-                        class="col-lg-6 col-xl-4 mt--30 col-md-6 col-sm-12 col-12 mt--30">
-                        <div class="rn-blog" data-toggle="modal" data-target="#exampleModalCenters">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="javascript:void(0)">
-                                        <img src="assets/images/Dribbble/Blog2.png" alt="Personal Portfolio Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <div class="category-info">
-                                        <div class="category-list">
-                                            <a
-                                                href="https://sarsolutionz.blogspot.com/2024/01/embarking-on-beginners-journey-into.html">Beginner's
-                                                Journey into the World of Cybersecurity</a>
-                                        </div>
-                                        <div class="meta">
-                                            <span><i class="feather-clock"></i> 5 min read</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="title"><a
-                                            href="https://sarsolutionz.blogspot.com/2024/01/embarking-on-beginners-journey-into.html">Embarking
-                                            on a Beginner's Journey into the World of Cybersecurity<i
-                                                class="feather-arrow-up-right"></i></a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single blog -->
-
-                </div>
-            </div>
-        </div>
-        <!-- ENd Mews Area -->
-
-
-        <!-- secret: aHR0cHM6Ly93d3cuZnJlZWNvZGVjYW1wLm9yZy9uZXdzL2hvdy10by1jZW50ZXItYW55dGhpbmctd2l0aC1jc3MtYWxpZ24tYS1kaXYtdGV4dC1hbmQtbW9yZS8= -->
-        <!-- Start Contact section -->
-
-        <div class="rn-contact-area rn-section-gap section-separator" id="contacts">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle">Contact</span>
-                            <h2 class="title">Let’s Build or Break Things (Securely)</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm">
-                    <div class="col-lg-5">
-                        <div class="contact-about-area">
-                            <div class="thumbnail">
-                                <img src="assets/images/3d/5124556-removebg-preview.png" alt="contact-img">
-                            </div>
-                            <div class="title-area">
-                                <h4 class="title">Let's Connect</h4>
-                                <span></span>
-                            </div>
-                            <div class="description">
-                                <p>Whether you're a startup looking to launch fast or a company that needs its security
-                                    game leveled up — I offer top-tier development and penetration testing services.</p>
-
-
-                                <span class="mail">Explore for More<a
-                                        href="https://sarsolutionz.blogspot.com/">Sarsolutionz</a></span>
-                            </div>
-                            <div class="social-area">
-                                <div class="name">FIND WITH ME</div>
-                                <div class="social-icone">
-                                    <a href="https://github.com/Rahul-Thakur7"><i data-feather="github"></i></a>
-                                    <a href="https://in.linkedin.com/in/rahul-thakur7"><i
-                                            data-feather="linkedin"></i></a>
-                                    <!-- <a href="https://www.instagram.com/coder_rahult/"><i data-feather="instagram"></i></a> -->
-                                    <!--                                     <a href="https://www.youtube.com/@thehackr./"><i data-feather="youtube"></i></a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos-delay="600" class="col-lg-7 contact-input">
-                        <div class="contact-form-wrapper">
-                            <div class="introduce">
-
-                                <form class="rnt-contact-form rwt-dynamic-form row" id="contact-form"
-                                    action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="contact-name">Your Name</label>
-                                            <input class="form-control form-control-lg" name="name" id="contact-name"
-                                                type="text" placeholder="Who’s this awesome person?" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="contact-phone">Phone Number</label>
-                                            <input class="form-control" name="phone" id="contact-phone" type="text"
-                                                placeholder="Can we get your #? 👉👈 🥺" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="contact-email">Email</label>
-                                            <input class="form-control form-control-sm" id="contact-email" name="email"
-                                                type="email" placeholder="Where can I reach you?" required>
-                                        </div>
-                                    </div>
-
-                                    <!--                                     <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="subject">Subject</label>
-                                            <input class="form-control form-control-sm" id="subject" name="subject" type="text" placeholder="" required>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="subject"
-                                                style="font-weight: bold; color: #0d6efd; margin-bottom: 8px; display: block;">
-                                                What can we help you with?
-                                            </label>
-                                            <select class="form-control" id="subject" name="subject" required style="
-                    padding: 3px 12px;
-                    font-size: 1.1rem;
-                    border-radius: 8px;
-                    border: 2px solid #ced4da;
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                    transition: all 0.3s;
-                    cursor: pointer;
-                    appearance: none;
-                    background-color: white;
-                    color: #212529 !important;  /* 💡 Ensures selected text is visible */
-                    font-weight: normal;
-                    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' fill=\'%230d6efd\' viewBox=\'0 0 16 16\'%3E%3Cpath d=\'M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z\'/%3E%3C/svg%3E');
-                    background-repeat: no-repeat;
-                    background-position: right 1rem center;
-                    background-size: 16px 12px;
-                ">
-
-                                                <option value="" disabled selected
-                                                    style="color: #6c757d; font-style: italic; background-color: white;">
-                                                    🔍 Select a service...
-                                                </option>
-
-                                                <!-- Development Services -->
-                                                <optgroup label="💻 Development Services"
-                                                    style="font-weight: bold; background-color: #e7f2ff;">
-                                                    <option value="web-dev"
-                                                        style="color: #212529; background-color: white;">🌐 Web
-                                                        Development</option>
-                                                    <option value="mobile-dev"
-                                                        style="color: #212529; background-color: white;">📱 Mobile App
-                                                        Development</option>
-                                                    <option value="fullstack-dev"
-                                                        style="color: #212529; background-color: white;">🔄 Full-Stack
-                                                        Development</option>
-                                                    <option value="uiux-design"
-                                                        style="color: #212529; background-color: white;">🎨 UI/UX Design
-                                                    </option>
-                                                </optgroup>
-
-                                                <!-- Security Services -->
-                                                <optgroup label="🛡️ Security Services"
-                                                    style="font-weight: bold; background-color: #ffebee;">
-                                                    <option value="web-pentesting"
-                                                        style="color: #212529; background-color: white;">🕸️ Web App
-                                                        Pentesting</option>
-                                                    <option value="mobile-pentesting"
-                                                        style="color: #212529; background-color: white;">📲 Mobile
-                                                        Pentesting</option>
-                                                    <option value="api-security"
-                                                        style="color: #212529; background-color: white;">🔗 API Security
-                                                        Testing</option>
-                                                    <option value="internal-network-pt"
-                                                        style="color: #212529; background-color: white;">🏢 Internal
-                                                        Network Pentesting</option>
-                                                    <option value="external-network-pt"
-                                                        style="color: #212529; background-color: white;">🌐 External
-                                                        Network Pentesting</option>
-                                                    <option value="phishing-simulation"
-                                                        style="color: #212529; background-color: white;">🎣 Phishing
-                                                        Simulation</option>
-                                                    <option value="source-review"
-                                                        style="color: #212529; background-color: white;">✍️ Secure Code
-                                                        Review</option>
-                                                    <option value="vapt"
-                                                        style="color: #212529; background-color: white;">🚨 VAPT
-                                                    </option>
-                                                    <option value="consultation"
-                                                        style="color: #212529; background-color: white;">💬 Security
-                                                        Consultation</option>
-                                                </optgroup>
-
-                                                <!-- Other -->
-                                                <option value="other" style="color: #212529; background-color: white;">❓
-                                                    Something Else (Tell us more)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="contact-message">Your Message</label>
-                                            <textarea name="message" id="contact-message" cols="30" rows="10"
-                                                placeholder="Tell me about your idea, bug, or app you'd like tested."
-                                                required></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <button name="submit" type="submit" id="submit" class="rn-btn">
-                                            <span>SEND MESSAGE</span>
-                                            <i data-feather="arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <!-- End Contuct section -->
-        <!-- हरे कृष्णा हरे कृष्णा कृष्णा कृष्णा हरे हरे,हरे राम हरे राम राम राम हरे हरे. -->
-
-        <!-- Back to  top Start -->
-        <div class="backto-top">
-            <div>
-                <i data-feather="arrow-up"></i>
-            </div>
-        </div>
-        <!-- Back to top end -->
-
-
-    </main>
-
-
-
-    <!-- <div class="row mt-5">
-                <div class="col-12">
-                    <div class="text-center pt-4 border-top border-dark">
-                        <p class="text-secondary small mb-1">© <script>document.write(new Date().getFullYear())</script> Sarsolutionz - <span class="text-danger">Ethical Hacking Services</span></p>
-                        <p class="text-white-50 small mb-0">
-                            <a href="#" class="text-secondary hover-danger me-3">Disclosure Policy</a>
-                            <a href="#" class="text-secondary hover-danger me-3">Bug Bounty</a>
-                            <a href="#" class="text-secondary hover-danger">Legal</a>
-                        </p>
-                    </div>
-                </div>
-            </div> -->
-    </div>
-    </div>
-    <!-- End Footer Area -->
-
-    <!-- JS ============================================ -->
-    <script src="assets/js/vendor/jquery.js"></script>
-    <script src="assets/js/vendor/modernizer.min.js"></script>
-    <script src="assets/js/vendor/feather.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.js"></script>
-    <script src="assets/js/vendor/text-type.js"></script>
-    <script src="assets/js/vendor/wow.js"></script>
-    <script src="assets/js/vendor/aos.js"></script>
-    <script src="assets/js/vendor/particles.js"></script>
-    <!-- main JS -->
-    <script src="assets/js/main.js"></script>
-
-    <!-- Footer with Advanced Pentest Chatbot -->
-    <footer class="security-footer">
+    </section>
+    
+   <footer class="security-footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <!-- Company Info -->
@@ -1597,15 +981,15 @@
                 <div class="footer-section">
                     <h3 class="footer-heading">Services</h3>
                     <ul class="footer-links">
-                        <li><a href="/assets/Services/VAPT.html">Penetration Testing</a></li>
-                        <li><a href="/assets/Services/WebPentest.html">Web Penetration Testing</a></li>
-                        <li><a href="/assets/Services/MobilePentest.html">Mobile Penetration Testing</a></li>
-                        <li><a href="/assets/Services/NetworkPentest.html">Network Penetration Testing</a></li>
-                        <li><a href="/assets/Services/APIPentest.html">API Security Testing</a></li>
-                        <li><a href="/assets/Services/CloudPentest.html">Cloud Penetration Testing</a></li>
-                        <li><a href="/assets/Services/Redteam.html">Red Teaming</a></li>
-                        <li><a href="/assets/Services/DarkWeb&OSINT.html">OSINT and Dark Web Research</a></li>
-                        <li><a href="/assets/Services/Phishing.html">Social Engineering</a></li>
+                          <li><a href="/VAPT.html">Penetration Testing</a></li>
+                        <li><a href="//WebPentest.html">Web Penetration Testing</a></li>
+                        <li><a href="/MobilePentest.html">Mobile Penetration Testing</a></li>
+                        <li><a href="/NetworkPentest.html">Network Penetration Testing</a></li>
+                        <li><a href="/APIPentest.html">API Security Testing</a></li>
+                        <li><a href="/CloudPentest.html">Cloud Penetration Testing</a></li>
+                        <li><a href="/Redteam.html">Red Teaming</a></li>
+                        <li><a href="/DarkWeb&OSINT.html">OSINT and Dark Web Research</a></li>
+                        <li><a href="/Phishing.html">Social Engineering</a></li>
                     </ul>
                 </div>
 
@@ -2886,9 +2270,5 @@
             // Add any initialization code if needed
         });
             </script>
-    
-       
-
 </body>
-
 </html>
