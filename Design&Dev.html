@@ -1,0 +1,2703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design & Development Services | SARSolutionz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Security Theme */
+        :root {
+            --primary: #0a192f;
+            --secondary: #64ffda;
+            --accent: #ff2a6d;
+            --light: #ccd6f6;
+            --dark: #020c1b;
+            --navy: #112240;
+            --light-navy: #233554;
+            --terminal: #0aff0a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Calibre', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(10, 25, 47, 0.9);
+            color: white;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--primary);
+            padding: 100px 30px 30px;
+            transition: right 0.3s ease;
+            z-index: 100;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+        }
+        
+        .mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+        
+        .mobile-menu ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .mobile-menu ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 24px;
+            color: var(--light);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--light);
+        }
+        
+        .hero h1 span {
+            color: var(--secondary);
+            display: block;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 0 40px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--navy));
+            clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        /* About Services */
+        .about-services {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--light);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--secondary);
+        }
+        
+        .section-title p {
+            color: var(--light);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .about-image {
+            position: relative;
+            height: 400px;
+            background: var(--navy);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;
+            opacity: 0.7;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: var(--light-navy);
+            border-radius: 5px;
+            padding: 30px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-left: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+            border-left-color: var(--secondary);
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .service-card p {
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .service-features li {
+            margin-bottom: 10px;
+            color: var(--light);
+            opacity: 0.8;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .service-features li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Design Process Section */
+        .design-process {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--secondary), transparent);
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .step-number {
+            background-color: var(--navy);
+            color: var(--secondary);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            border: 3px solid var(--secondary);
+        }
+        
+        .step-content {
+            background-color: var(--navy);
+            padding: 30px;
+            border-radius: 5px;
+            flex: 1;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .step-content p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .portfolio-card {
+            background-color: var(--light-navy);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .portfolio-content {
+            padding: 30px;
+        }
+        
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .portfolio-content p {
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .portfolio-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: rgba(100, 255, 218, 0.1);
+            color: var(--secondary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--navy));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--light);
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background-color: var(--light);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        .security-footer {
+            background: #0a0e17;
+            color: #e0e0e0;
+            padding: 60px 0 0;
+            position: relative;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            border-top: 1px solid #1e2a3a;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            color: #a0a8b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: #d1d5db;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #dc3545;
+        }
+
+        .footer-heading {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #dc3545;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a8b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #dc3545;
+            transform: translateX(5px);
+        }
+
+        .footer-contact {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: #dc3545;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e2a3a;
+            padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #a0a8b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-legal a:hover {
+            color: #dc3545;
+        }
+
+        .footer-copyright {
+            color: #a0a8b8;
+            font-size: 14px;
+        }
+
+        /* Matrix Logo Styles */
+        .matrix-logo {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .logo-part-red {
+            color: #ff3366;
+            text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+        }
+
+        .logo-part-white {
+            color: #e0e0e0;
+            text-shadow: 0 0 8px rgba(224, 224, 224, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 0;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+            
+            .hero .container {
+                align-items: center;
+            }
+            
+            .hero p {
+                text-align: center;
+            }
+            
+            .process-steps::before {
+                left: 25px;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        .delay-5 {
+            animation-delay: 1s;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <span class="matrix-logo">
+                    <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
+                </span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#design">Design Services</a></li>
+                    <li><a href="#development">Development</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#design">Design Services</a></li>
+            <li><a href="#development">Development</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Transformative <span>Design & Development</span></h1>
+            <p class="fade-in delay-1">We craft digital experiences that combine stunning aesthetics with flawless functionality, driving engagement and business growth.</p>
+            <a href="#contact" class="btn fade-in delay-2">Start Your Project</a>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card fade-in delay-1">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Client Satisfaction Rate</div>
+                </div>
+                <div class="stat-card fade-in delay-2">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">Increase in Conversion</div>
+                </div>
+                <div class="stat-card fade-in delay-3">
+                    <div class="stat-number">7x</div>
+                    <div class="stat-label">Faster Development</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="design" class="about-services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Design Services</h2>
+                <p>Creating visually stunning and highly functional digital experiences</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="fade-in">User-Centered Design</h3>
+                    <p class="fade-in delay-1">Our design philosophy puts users at the center of every decision. We combine aesthetics with usability to create interfaces that are not only beautiful but intuitive and engaging.</p>
+                    
+                    <h3 class="fade-in delay-2">Comprehensive Solutions</h3>
+                    <p class="fade-in delay-3">From initial concept to final pixel-perfect designs, we provide end-to-end design services that align with your brand identity and business objectives.</p>
+                    
+                    <h3 class="fade-in delay-4">Cutting-Edge Tools</h3>
+                    <p class="fade-in delay-5">We leverage industry-standard tools like Figma, Adobe Creative Suite, and Sketch to create responsive, accessible designs that work across all devices.</p>
+                </div>
+                
+                <div class="about-image fade-in"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="design-services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Design Services</h2>
+                <p>Comprehensive design solutions tailored to your brand and audience</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Create intuitive, engaging interfaces with user experience at the core, resulting in higher engagement and conversion rates.</p>
+                    <ul class="service-features">
+                        <li>User research and persona development</li>
+                        <li>Wireframing and prototyping</li>
+                        <li>Interaction design and micro-interactions</li>
+                        <li>Usability testing and iteration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Graphic Design</h3>
+                    <p>Visual storytelling through compelling graphics that communicate your brand message effectively.</p>
+                    <ul class="service-features">
+                        <li>Brand identity and logo design</li>
+                        <li>Marketing collateral</li>
+                        <li>Infographics and data visualization</li>
+                        <li>Print and digital media design</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App Design</h3>
+                    <p>Specialized design for mobile platforms focusing on thumb-friendly navigation and platform-specific patterns.</p>
+                    <ul class="service-features">
+                        <li>iOS and Android UI design</li>
+                        <li>Mobile-first responsive design</li>
+                        <li>Gesture-based interaction design</li>
+                        <li>App store graphics and assets</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce Design</h3>
+                    <p>Optimized shopping experiences designed to reduce friction and increase conversions.</p>
+                    <ul class="service-features">
+                        <li>Product page optimization</li>
+                        <li>Checkout flow design</li>
+                        <li>Merchandising and promotions</li>
+                        <li>Mobile commerce optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-4">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Dashboard Design</h3>
+                    <p>Complex data presented clearly through thoughtful information architecture and visualization.</p>
+                    <ul class="service-features">
+                        <li>Data visualization best practices</li>
+                        <li>Custom chart and graph design</li>
+                        <li>Responsive dashboard layouts</li>
+                        <li>User permissions and roles</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-5">
+                    <div class="service-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>AR/VR Design</h3>
+                    <p>Immersive experiences designed for next-generation interfaces and platforms.</p>
+                    <ul class="service-features">
+                        <li>3D environment design</li>
+                        <li>Spatial interface design</li>
+                        <li>Interaction patterns for XR</li>
+                        <li>Prototyping for immersive tech</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="development" class="about-services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Development Services</h2>
+                <p>Building robust, scalable digital solutions with cutting-edge technologies</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                
+                <div class="about-text">
+                    <h3 class="fade-in">Full-Stack Expertise</h3>
+                    <p class="fade-in delay-1">Our development team brings expertise across the entire stack, from frontend interfaces to backend systems and everything in between.</p>
+                    
+                    <h3 class="fade-in delay-2">Modern Technologies</h3>
+                    <p class="fade-in delay-3">We work with the latest frameworks and technologies to build fast, secure, and scalable applications that stand the test of time.</p>
+                    
+                    <h3 class="fade-in delay-4">Agile Methodology</h3>
+                    <p class="fade-in delay-5">Our agile development process ensures transparency, flexibility, and continuous delivery of value throughout the project lifecycle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="development-services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Development Services</h2>
+                <p>Custom development solutions tailored to your business needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom web applications built with modern frameworks for performance, scalability, and security.</p>
+                    <ul class="service-features">
+                        <li>React, Angular, Vue                        <li>React, Angular, Vue development</li>
+                        <li>Node.js, Python, PHP backends</li>
+                        <li>Headless CMS integration</li>
+                        <li>Progressive Web Apps</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                    <h3>Mobile App Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android platforms.</p>
+                    <ul class="service-features">
+                        <li>React Native development</li>
+                        <li>Flutter applications</li>
+                        <li>Native iOS (Swift) and Android (Kotlin)</li>
+                        <li>App store deployment</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce Development</h3>
+                    <p>Custom online stores with seamless shopping experiences and secure payment processing.</p>
+                    <ul class="service-features">
+                        <li>Shopify, WooCommerce, Magento</li>
+                        <li>Custom e-commerce solutions</li>
+                        <li>Payment gateway integration</li>
+                        <li>Inventory management systems</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>API Development</h3>
+                    <p>RESTful and GraphQL APIs to power your applications and enable integrations.</p>
+                    <ul class="service-features">
+                        <li>Custom API development</li>
+                        <li>Microservices architecture</li>
+                        <li>Third-party API integration</li>
+                        <li>Webhook implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-4">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and serverless applications for optimal performance.</p>
+                    <ul class="service-features">
+                        <li>AWS, Azure, Google Cloud</li>
+                        <li>Serverless architecture</li>
+                        <li>Containerization with Docker</li>
+                        <li>CI/CD pipeline setup</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-5">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Maintenance & Support</h3>
+                    <p>Ongoing support and maintenance to keep your applications running smoothly.</p>
+                    <ul class="service-features">
+                        <li>Performance optimization</li>
+                        <li>Security updates</li>
+                        <li>Bug fixes and troubleshooting</li>
+                        <li>Feature enhancements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="process" class="design-process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Design & Development Process</h2>
+                <p>A structured approach to delivering exceptional digital products</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Discovery & Research</h3>
+                        <p>We begin by understanding your business goals, target audience, and technical requirements through in-depth discovery sessions and market research.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Planning & Strategy</h3>
+                        <p>Our team creates a comprehensive project plan with milestones, deliverables, and technology stack recommendations tailored to your needs.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Design & Prototyping</h3>
+                        <p>We transform concepts into interactive prototypes with user flows, wireframes, and high-fidelity designs for stakeholder feedback.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-3">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Development</h3>
+                        <p>Our developers build your solution using agile methodologies with regular demos and iterations based on your feedback.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-4">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Testing & Quality Assurance</h3>
+                        <p>We conduct rigorous testing across devices and browsers to ensure functionality, performance, and security meet our high standards.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-5">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Launch & Optimization</h3>
+                        <p>After deployment, we monitor performance, gather user feedback, and make data-driven optimizations to enhance your digital product.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Portfolio</h2>
+                <p>Showcasing our expertise through successful projects</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">E-Commerce</span>
+                        <h3>Luxury Fashion Platform</h3>
+                        <p>A high-end fashion e-commerce platform with AR try-on features and personalized recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card fade-in delay-1">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Mobile App</span>
+                        <h3>Fitness Tracking Application</h3>
+                        <p>AI-powered fitness app with real-time coaching and progress tracking for iOS and Android.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card fade-in delay-2">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80');"></div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Web Application</span>
+                        <h3>Enterprise SaaS Platform</h3>
+                        <p>Custom CRM solution with advanced analytics and automation features for a global client.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2 class="fade-in">Ready to Build Something Amazing?</h2>
+            <p class="fade-in delay-1">Contact us today to discuss your design and development needs with our experts.</p>
+            <a href="/Contact.html" class="btn fade-in delay-2">Get Started</a>
+        </div>
+    </section>
+    
+     
+   <footer class="security-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="matrix-logo">
+                            <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
+                        </span>
+                    </div>
+                    <p class="footer-about">Breaking your systems before attackers break your business.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
+                        <a href="mainto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                         <li><a href="/Design&Dev.html">Design and Development</a></li>
+                        <li><a href="/VAPT.html">Penetration Testing</a></li>
+                        <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                        <li><a href="/MobilePentest.html">Mobile Penetration Testing</a></li>
+                        <li><a href="/NetworkPentest.html">Network Penetration Testing</a></li>
+                        <li><a href="/APIPentest.html">API Security Testing</a></li>
+                        <li><a href="/CloudPentest.html">Cloud Penetration Testing</a></li>
+                        <li><a href="/Redteam.html">Red Teaming</a></li>
+                        <li><a href="/DarkWeb&OSINT.html">OSINT and Dark Web Research</a></li>
+                        <li><a href="/Phishing.html">Social Engineering</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sarsolutionz.blogspot.com/">Security Blog</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                        <li><a href="#">Security Tools</a></li>
+                        <li><a href="/Samplereports.html">Sample Reports</a></li>
+                        <li><a href="#">Testing Methodology</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</li>
+                        <!-- <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li> -->
+                        <li><i class="fas fa-envelope"></i>sarsolutionz7@gmail.com</li>
+                        <!-- <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM EST</li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="/privacy">Privacy Policy</a> |
+                    <a href="/terms">Terms of Service</a> |
+                   <a href="/disclaimer">Disclaimer</a>  |
+                    <a href="/Contact.html">Contact</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2023 SARSolutionz. All rights reserved.
+                </div>
+            </div>
+        </div>
+
+
+        <style>
+            /* Footer Styles */
+            .security-footer {
+                background: #0a0e17;
+                color: #e0e0e0;
+                padding: 60px 0 0;
+                position: relative;
+                font-family: 'Segoe UI', 'Roboto', sans-serif;
+                border-top: 1px solid #1e2a3a;
+            }
+
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+
+            .footer-section {
+                margin-bottom: 30px;
+            }
+
+            .footer-logo {
+                width: 180px;
+                margin-bottom: 20px;
+            }
+
+            .footer-about {
+                color: #a0a8b8;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .footer-social {
+                display: flex;
+                gap: 15px;
+            }
+
+            .footer-social a {
+                color: #d1d5db;
+                font-size: 18px;
+                transition: color 0.3s;
+            }
+
+            .footer-social a:hover {
+                color: #dc3545;
+            }
+
+            .footer-heading {
+                color: #ffffff;
+                font-size: 18px;
+                margin-bottom: 20px;
+                position: relative;
+                padding-bottom: 10px;
+            }
+
+            .footer-heading::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 40px;
+                height: 2px;
+                background: #dc3545;
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-links li {
+                margin-bottom: 12px;
+            }
+
+            .footer-links a {
+                color: #a0a8b8;
+                text-decoration: none;
+                transition: color 0.3s;
+                display: inline-block;
+            }
+
+            .footer-links a:hover {
+                color: #dc3545;
+                transform: translateX(5px);
+            }
+
+            .footer-contact {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-contact li {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+            }
+
+            .footer-contact i {
+                margin-right: 10px;
+                color: #dc3545;
+                width: 20px;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                border-top: 1px solid #1e2a3a;
+                padding: 20px 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .footer-legal {
+                display: flex;
+                gap: 15px;
+            }
+
+            .footer-legal a {
+                color: #a0a8b8;
+                text-decoration: none;
+                transition: color 0.3s;
+                font-size: 14px;
+            }
+
+            .footer-legal a:hover {
+                color: #dc3545;
+            }
+
+            .footer-copyright {
+                color: #a0a8b8;
+                font-size: 14px;
+            }
+
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(5px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Responsive Adjustments */
+            @media (max-width: 768px) {
+                .footer-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .pentest-chatbot-container {
+                    width: 90%;
+                    right: 5%;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .footer-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .footer-bottom {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .pentest-chatbot-container {
+                    height: 70vh;
+                }
+            }
+        </style>
+        </script>
+       
+            <title>⚡ Sarsolutionz Pentest Assistant</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <style>
+                :root {
+                    --bg: #0a0a12;
+                    --card: #1a1a2e;
+                    --accent: #ff2a6d;
+                    --accent-dark: #d1005b;
+                    --text: #e0e0ff;
+                    --muted: #8a8a9a;
+                    --success: #05d9a5;
+                    --warning: #ff9a56;
+                    --terminal: #0aff0a;
+                }
+
+                @font-face {
+                    font-family: 'Hack';
+                    src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.003/web/fonts/hack-regular.woff2') format('woff2');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+
+                * {
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                body {
+                    font-family: 'Hack', 'Courier New', monospace;
+                    background-color: #000;
+                }
+
+                #chatbot-launcher {
+                    position: fixed;
+                    bottom: 120px;
+                    right: 30px;
+                    width: 50px;
+                    height: 50px;
+                    background: var(--accent);
+                    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    box-shadow: 0 5px 25px rgba(255, 42, 109, 0.5);
+                    z-index: 999;
+                    transition: all 0.3s ease;
+                    border: 2px solid rgba(255, 255, 255, 0.1);
+                    animation: pulse 2s infinite;
+                }
+
+                #chatbot-launcher:hover {
+                    transform: scale(1.1);
+                    box-shadow: 0 8px 30px rgba(255, 42, 109, 0.7);
+                }
+
+                #chatbot-launcher i {
+                    font-size: 28px;
+                    color: white;
+                }
+
+                #chatbot-container {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 0px;
+                    width: 380px;
+                    max-height: 80vh;
+                    background: var(--bg);
+                    border-radius: 12px;
+                    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+                    font-family: 'Hack', 'Courier New', monospace;
+                    z-index: 1000;
+                    display: none;
+                    flex-direction: column;
+                    border: 1px solid rgba(255, 255, 255, 0.05);
+                    overflow: hidden;
+                    transform: translateY(10px);
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                }
+
+                #chatbot-container.active {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+
+                #chatbot-header {
+                    padding: 15px 20px;
+                    background: rgba(0, 0, 0, 0.3);
+                    color: var(--accent);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                }
+
+                #chatbot-header h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 16px;
+                    text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+                }
+
+                #chatbot-header h3 i {
+                    font-size: 18px;
+                }
+
+                #chatbot-body {
+                    flex: 1;
+                    padding: 20px;
+                    overflow-y: auto;
+                    background: var(--bg);
+                    background-image:
+                        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+                    background-size: 20px 20px;
+                }
+
+                .message {
+                    max-width: 85%;
+                    margin-bottom: 15px;
+                    padding: 12px 16px;
+                    border-radius: 8px;
+                    line-height: 1.5;
+                    font-size: 14px;
+                    animation: fadeIn 0.3s ease;
+                    transform-origin: bottom;
+                    position: relative;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
+
+                .bot-message {
+                    background: var(--card);
+                    color: var(--text);
+                    border-radius: 8px 8px 8px 2px;
+                    margin-right: auto;
+                    border-left: 3px solid var(--accent);
+                }
+
+                .user-message {
+                    background: rgba(255, 42, 109, 0.15);
+                    color: var(--text);
+                    border-radius: 8px 8px 2px 8px;
+                    margin-left: auto;
+                    border-right: 3px solid var(--accent);
+                }
+
+                .system-message {
+                    background: rgba(5, 217, 165, 0.1);
+                    color: var(--success);
+                    border-radius: 8px;
+                    margin: 15px auto;
+                    text-align: center;
+                    font-size: 13px;
+                    padding: 10px;
+                    border: 1px dashed var(--success);
+                    max-width: 90%;
+                }
+
+                #chatbot-footer {
+                    padding: 15px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.05);
+                    background: rgba(0, 0, 0, 0.3);
+                }
+
+                #chatbot-input {
+                    width: 100%;
+                    padding: 12px 15px;
+                    border-radius: 8px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    background: rgba(0, 0, 0, 0.5);
+                    color: var(--terminal);
+                    font-family: 'Hack', 'Courier New', monospace;
+                    font-size: 14px;
+                    outline: none;
+                    transition: all 0.3s ease;
+                }
+
+                #chatbot-input:focus {
+                    border-color: var(--accent);
+                    box-shadow: 0 0 0 2px rgba(255, 42, 109, 0.3);
+                }
+
+                #chatbot-input::placeholder {
+                    color: var(--muted);
+                }
+
+                .typing {
+                    display: inline-flex;
+                    gap: 6px;
+                    padding: 12px 16px;
+                    background: var(--card);
+                    border-radius: 8px 8px 8px 2px;
+                    border-left: 3px solid var(--accent);
+                }
+
+                .typing-dot {
+                    width: 8px;
+                    height: 8px;
+                    background: var(--muted);
+                    border-radius: 50%;
+                    animation: bounce 1s infinite;
+                }
+
+                .typing-dot:nth-child(2) {
+                    animation-delay: 0.2s;
+                }
+
+                .typing-dot:nth-child(3) {
+                    animation-delay: 0.4s;
+                }
+
+                .quick-reply {
+                    display: inline-block;
+                    margin: 5px;
+                    padding: 8px 12px;
+                    background: rgba(255, 255, 255, 0.05);
+                    color: var(--text);
+                    border-radius: 20px;
+                    font-size: 13px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                .quick-reply:hover {
+                    background: rgba(255, 42, 109, 0.2);
+                    border-color: var(--accent);
+                    transform: translateY(-2px);
+                }
+
+                .service-option {
+                    display: block;
+                    width: 100%;
+                    padding: 12px;
+                    margin: 8px 0;
+                    background: rgba(255, 255, 255, 0.05);
+                    color: var(--text);
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    border-left: 3px solid transparent;
+                    text-align: left;
+                    font-family: 'Hack', 'Courier New', monospace;
+                }
+
+                .service-option:hover {
+                    background: rgba(255, 42, 109, 0.1);
+                    border-left-color: var(--accent);
+                }
+
+                .service-option i {
+                    margin-right: 10px;
+                    color: var(--accent);
+                }
+
+                .form-group {
+                    margin-bottom: 15px;
+                }
+
+                .form-group label {
+                    display: block;
+                    margin-bottom: 5px;
+                    color: var(--muted);
+                    font-size: 13px;
+                }
+
+                .form-group input,
+                .form-group select,
+                .form-group textarea {
+                    width: 100%;
+                    padding: 10px;
+                    background: rgba(0, 0, 0, 0.5);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 6px;
+                    color: var(--text);
+                    font-family: 'Hack', 'Courier New', monospace;
+                    font-size: 14px;
+                }
+
+                .form-group textarea {
+                    min-height: 80px;
+                    resize: vertical;
+                }
+
+                .file-upload {
+                    position: relative;
+                    overflow: hidden;
+                    margin: 10px 0;
+                }
+
+                .file-upload input {
+                    position: absolute;
+                    font-size: 50px;
+                    opacity: 0;
+                    right: 0;
+                    top: 0;
+                    cursor: pointer;
+                }
+
+                .upload-btn {
+                    display: inline-block;
+                    padding: 10px 15px;
+                    background: rgba(255, 42, 109, 0.2);
+                    color: var(--accent);
+                    border-radius: 6px;
+                    cursor: pointer;
+                    border: 1px dashed var(--accent);
+                    font-size: 13px;
+                    transition: all 0.2s ease;
+                }
+
+                .upload-btn:hover {
+                    background: rgba(255, 42, 109, 0.3);
+                }
+
+                .file-name {
+                    font-size: 12px;
+                    color: var(--muted);
+                    margin-top: 5px;
+                    display: none;
+                }
+
+                .btn {
+                    padding: 10px 20px;
+                    background: var(--accent);
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-family: 'Hack', 'Courier New', monospace;
+                    font-weight: bold;
+                    transition: all 0.2s ease;
+                    display: inline-block;
+                    text-align: center;
+                }
+
+                .btn:hover {
+                    background: var(--accent-dark);
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(255, 42, 109, 0.4);
+                }
+
+                .btn-block {
+                    display: block;
+                    width: 100%;
+                }
+
+                .btn-secondary {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: var(--text);
+                }
+
+                .btn-secondary:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                }
+
+                .hidden {
+                    display: none !important;
+                }
+
+                .service-icon {
+                    font-size: 20px;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                }
+
+                .timeline-selector {
+                    display: flex;
+                    gap: 5px;
+                    margin: 10px 0;
+                }
+
+                .timeline-option {
+                    flex: 1;
+                    padding: 8px;
+                    text-align: center;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    transition: all 0.2s ease;
+                }
+
+                .timeline-option:hover,
+                .timeline-option.selected {
+                    background: var(--accent);
+                    color: white;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(5px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes bounce {
+
+                    0%,
+                    100% {
+                        transform: translateY(0);
+                    }
+
+                    50% {
+                        transform: translateY(-4px);
+                    }
+                }
+
+                @keyframes pulse {
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7);
+                    }
+
+                    70% {
+                        box-shadow: 0 0 0 15px rgba(255, 42, 109, 0);
+                    }
+
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(255, 42, 109, 0);
+                    }
+                }
+
+                /* Terminal-like effects */
+                .terminal-text {
+                    position: relative;
+                }
+
+                .terminal-text::after {
+                    content: "|";
+                    animation: blink 1s infinite;
+                    position: absolute;
+                    right: -5px;
+                }
+
+                @keyframes blink {
+
+                    0%,
+                    100% {
+                        opacity: 1;
+                    }
+
+                    50% {
+                        opacity: 0;
+                    }
+                }
+                
+        /* Matrix Logo Styles */
+        .matrix-logo {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+            </style>
+        </head>
+
+        <body>
+            <div id="chatbot-launcher">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+
+            <div id="chatbot-container">
+                <div id="chatbot-header">
+                    <h3><i class="fas fa-terminal"></i> Sarsolutionz Pentest</h3>
+                    <button id="close-chat"
+                        style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;"><i
+                            class="fas fa-times"></i></button>
+                </div>
+                <div id="chatbot-body"></div>
+                <div id="chatbot-footer">
+                    <input type="text" id="chatbot-input" placeholder="Type your message...">
+                </div>
+            </div>
+
+            <script>
+            // DOM Elements
+            const launcher = document.getElementById('chatbot-launcher');
+            const container = document.getElementById('chatbot-container');
+            const body = document.getElementById('chatbot-body');
+            const input = document.getElementById('chatbot-input');
+            const closeBtn = document.getElementById('close-chat');
+
+            // State management
+            let currentState = 'welcome';
+            let selectedService = null;
+            let formData = {
+                name: '',
+            email: '',
+            company: '',
+            serviceType: '',
+            testType: '',
+            timeline: '',
+            scope: '',
+            demoCall: '',
+            file: null
+          };
+
+           document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.getElementById('footer-matrix-logo');
+            const chars = "01!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            
+            logo.addEventListener('mouseenter', startMatrixEffect);
+            logo.addEventListener('touchstart', startMatrixEffect, { passive: true });
+            
+            function startMatrixEffect() {
+                const originalText = logo.dataset.value;
+                let iteration = 0;
+                const frameRate = 30;
+                const duration = 1000;
+                const totalFrames = (duration / 1000) * frameRate;
+                
+                const interval = setInterval(() => {
+                    logo.innerHTML = originalText.split("")
+                        .map((letter, index) => {
+                            if (index < iteration) {
+                                return index < 3 ? 
+                                    `<span class="logo-part-red">${letter}</span>` : 
+                                    `<span class="logo-part-white">${letter}</span>`;
+                            }
+                            const char = chars[Math.floor(Math.random() * chars.length)];
+                            return `<span style="opacity:${0.3 + Math.random() * 0.7}">${char}</span>`;
+                        })
+                        .join("");
+                    
+                    iteration += originalText.length / totalFrames;
+                    
+                    if (iteration >= originalText.length) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            logo.innerHTML = `
+                                <span class="logo-part-red">SAR</span>
+                                <span class="logo-part-white">SOLUTIONZ</span>
+                            `;
+                        }, 200);
+                    }
+                }, 1000/frameRate);
+            }
+        });
+
+          // Toggle Chat
+          launcher.addEventListener('click', () => {
+                container.style.display = 'flex';
+              setTimeout(() => container.classList.add('active'), 10);
+            launcher.style.display = 'none';
+            if(body.children.length === 0) showWelcome();
+          });
+          
+          closeBtn.addEventListener('click', () => {
+                container.classList.remove('active');
+              setTimeout(() => {
+                container.style.display = 'none';
+            launcher.style.display = 'flex';
+              }, 300);
+          });
+
+            // Messages
+            function addMessage(text, isUser = false, isSystem = false) {
+              const msg = document.createElement('div');
+            if (isSystem) {
+                msg.className = 'system-message';
+              } else {
+                msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+              }
+
+            if (typeof text === 'string') {
+                msg.textContent = text;
+              } else {
+                msg.appendChild(text);
+              }
+
+            body.appendChild(msg);
+            body.scrollTop = body.scrollHeight;
+            return msg;
+          }
+
+            function showTyping() {
+              const typing = document.createElement('div');
+            typing.className = 'message bot-message typing';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            body.appendChild(typing);
+            body.scrollTop = body.scrollHeight;
+            return typing;
+          }
+
+            // Welcome Message
+            function showWelcome() {
+                currentState = 'welcome';
+            addMessage("Initializing Hacker Bot", false);
+              
+              setTimeout(() => {
+                addMessage("Secure connection established 🔒", false);
+                  
+                  setTimeout(() => {
+                      const welcomeMsg = document.createElement('div');
+            welcomeMsg.innerHTML = `
+            <div style="margin-bottom:10px;">Welcome to <span style="color:var(--accent);font-weight:bold;"></span> Pentest Assistant</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:15px;">How can we assist with your security needs today?</div>
+            `;
+            addMessage(welcomeMsg, false);
+                      
+                      setTimeout(() => {
+                showQuickReplies([
+                    "Explore services",
+                    "Request pentest",
+                    "FAQ",
+                    "Contact expert"
+                ]);
+                      }, 300);
+                  }, 800);
+              }, 1000);
+          }
+
+            // Quick Reply Buttons
+            function showQuickReplies(replies) {
+              const container = document.createElement('div');
+            container.style.marginTop = '10px';
+              
+              replies.forEach(reply => {
+                  const btn = document.createElement('span');
+            btn.className = 'quick-reply';
+            btn.textContent = reply;
+                  btn.addEventListener('click', () => {
+                container.querySelectorAll('.quick-reply').forEach(b => b.style.display = 'none');
+            addMessage(reply, true);
+            handleResponse(reply.toLowerCase());
+                  });
+            container.appendChild(btn);
+              });
+
+            addMessage(container, false);
+          }
+
+            // Service Selection
+            function showServices() {
+                currentState = 'services';
+            const services = document.createElement('div');
+            services.innerHTML = `
+            <div style="margin-bottom:15px;color:var(--text);">Select a pentest service:</div>
+            <button class="service-option" data-service="web"><i class="fas fa-globe"></i> Web Application Pentest</button>
+            <button class="service-option" data-service="api"><i class="fas fa-code"></i> API Security Testing</button>
+            <button class="service-option" data-service="mobile"><i class="fas fa-mobile-alt"></i> Mobile App Pentest</button>
+            <button class="service-option" data-service="network"><i class="fas fa-network-wired"></i> Network Pentest</button>
+            <button class="service-option" data-service="cloud"><i class="fas fa-cloud"></i> Cloud Security Assessment</button>
+            <button class="service-option" data-service="redteam"><i class="fas fa-user-secret"></i> Red Team Exercise</button>
+            <button class="service-option" data-service="osint"><i class="fas fa-search"></i> OSINT Investigation</button>
+            <button class="service-option" data-service="social"><i class="fas fa-mask"></i> Social Engineering</button>
+            <button class="service-option" data-service="darkweb"><i class="fas fa-eye"></i> Dark Web Analysis</button>
+            `;
+
+            addMessage(services, false);
+
+              // Add event listeners to service options
+              setTimeout(() => {
+                document.querySelectorAll('.service-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        selectedService = option.getAttribute('data-service');
+                        option.parentNode.querySelectorAll('.service-option').forEach(opt => {
+                            opt.style.background = 'rgba(255,255,255,0.05)';
+                            opt.style.borderLeftColor = 'transparent';
+                        });
+                        option.style.background = 'rgba(255,42,109,0.1)';
+                        option.style.borderLeftColor = 'var(--accent)';
+
+                        setTimeout(() => {
+                            showServiceDetails(selectedService);
+                        }, 500);
+                    });
+                });
+              }, 100);
+          }
+
+            // Service Details
+            function showServiceDetails(service) {
+                currentState = 'service_details';
+            const serviceInfo = {
+                web: {
+                title: "Web Application Pentest",
+            desc: "Comprehensive security assessment of your web applications including OWASP Top 10 vulnerabilities, business logic flaws, and authentication bypass testing.",
+            icon: "fa-globe"
+                  },
+            api: {
+                title: "API Security Testing",
+            desc: "In-depth analysis of your API endpoints for security vulnerabilities including improper auth, injection flaws, and data exposure risks.",
+            icon: "fa-code"
+                  },
+            mobile: {
+                title: "Mobile App Pentest",
+            desc: "Security assessment for iOS and Android applications including reverse engineering, insecure storage, and communication testing.",
+            icon: "fa-mobile-alt"
+                  },
+            network: {
+                title: "Network Pentest",
+            desc: "Internal and external network penetration testing including firewall bypass, VLAN hopping, and privilege escalation.",
+            icon: "fa-network-wired"
+                  },
+            cloud: {
+                title: "Cloud Security Assessment",
+            desc: "Comprehensive review of your cloud infrastructure (AWS/Azure/GCP) for misconfigurations and security weaknesses.",
+            icon: "fa-cloud"
+                  },
+            redteam: {
+                title: "Red Team Exercise",
+            desc: "Simulated real-world attack scenarios to test your organization's detection and response capabilities.",
+            icon: "fa-user-secret"
+                  },
+            osint: {
+                title: "OSINT Investigation",
+            desc: "Open-source intelligence gathering to identify exposed sensitive information and potential attack vectors.",
+            icon: "fa-search"
+                  },
+            social: {
+                title: "Social Engineering",
+            desc: "Phishing, vishing, and physical security tests to evaluate employee security awareness.",
+            icon: "fa-mask"
+                  },
+            darkweb: {
+                title: "Dark Web Analysis",
+            desc: "Monitoring dark web channels for leaked credentials, company data, and threat intelligence.",
+            icon: "fa-eye"
+                  }
+              };
+
+            const details = document.createElement('div');
+            details.innerHTML = `
+            <div style="margin-bottom:15px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <i class="fas ${serviceInfo[service].icon} service-icon" style="color:var(--accent);"></i>
+                    <span style="font-weight:bold;color:var(--accent);">${serviceInfo[service].title}</span>
+                </div>
+                <div style="font-size:13px;color:var(--muted);">${serviceInfo[service].desc}</div>
+            </div>
+           
+            `;
+
+            addMessage(details, false);
+              
+              setTimeout(() => {
+                  const options = document.createElement('div');
+            options.innerHTML = `
+            <button class="btn btn-block" style="margin-bottom:10px;" id="request-service">Request This Service</button>
+            <button class="btn btn-secondary btn-block" id="back-to-services">Back to Services</button>
+            `;
+
+            const msg = addMessage(options, false);
+                  
+                  setTimeout(() => {
+                document.getElementById('request-service').addEventListener('click', () => {
+                    formData.serviceType = serviceInfo[service].title;
+                    showRequestForm();
+                });
+                      
+                      document.getElementById('back-to-services').addEventListener('click', () => {
+                showServices();
+                      });
+                  }, 100);
+              }, 500);
+          }
+
+            // Request Form
+            function showRequestForm() {
+                currentState = 'request_form';
+
+            const formContainer = document.createElement('div');
+            formContainer.innerHTML = `
+            <div style="margin-bottom:15px;color:var(--text);font-size:14px;">
+                Please provide details for your <span style="color:var(--accent);">${formData.serviceType}</span> request:
+            </div>
+
+            <form id="pentest-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="New Pentest Request - ${formData.serviceType}">
+                    <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="#">
+
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="company">Company</label>
+                                    <input type="text" id="company" name="company" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="testType">Type of Test</label>
+                                    <select id="testType" name="testType" required>
+                                        <option value="">Select...</option>
+                                        <option value="Black Box">Black Box</option>
+                                        <option value="White Box">White Box</option>
+                                        <option value="Gray Box">Gray Box</option>
+                                    </select>
+                                </div>
+
+                                ${selectedService === 'mobile' ? `
+                      <div class="form-group">
+                          <label>Upload Application File</label>
+                          <div class="file-upload">
+                              <label class="upload-btn">
+                                  <i class="fas fa-upload"></i> Choose APK/IPA File
+                                  <input type="file" id="appFile" name="appFile" accept=".apk,.ipa">
+                              </label>
+                              <div class="file-name" id="fileName">No file selected</div>
+                          </div>
+                      </div>
+                      ` : ''}
+
+                                <div class="form-group">
+                                    <label>Preferred Timeline</label>
+                                    <div class="timeline-selector">
+                                        <div class="timeline-option" data-days="7">1 Week</div>
+                                        <div class="timeline-option" data-days="14">2 Weeks</div>
+                                        <div class="timeline-option" data-days="30">1 Month</div>
+                                    </div>
+                                    <input type="hidden" id="timeline" name="timeline" value="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="scope">Scope Details</label>
+                                    <textarea id="scope" name="scope" placeholder="Describe what needs to be tested..." required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="demoCall">Schedule Demo Call</label>
+                                    <select id="demoCall" name="demoCall" required>
+                                        <option value="">Select...</option>
+                                        <option value="ASAP">ASAP</option>
+                                        <option value="Within 3 days">Within 3 days</option>
+                                        <option value="Next week">Next week</option>
+                                        <option value="No demo needed">No demo needed</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-block" style="margin-top:20px;">Submit Request</button>
+                            </form>
+                            `;
+
+                            addMessage(formContainer, false);
+
+              // Set up form interactions
+              setTimeout(() => {
+                  // File upload display
+                  if (selectedService === 'mobile') {
+                      const fileInput = document.getElementById('appFile');
+                            const fileNameDisplay = document.getElementById('fileName');
+                      
+                      fileInput.addEventListener('change', (e) => {
+                          if (fileInput.files.length > 0) {
+                                fileNameDisplay.textContent = fileInput.files[0].name;
+                            fileNameDisplay.style.display = 'block';
+                            formData.file = fileInput.files[0];
+                          }
+                      });
+                  }
+
+                  // Timeline selection
+                  document.querySelectorAll('.timeline-option').forEach(option => {
+                                option.addEventListener('click', () => {
+                                    document.querySelectorAll('.timeline-option').forEach(opt => {
+                                        opt.classList.remove('selected');
+                                    });
+                                    option.classList.add('selected');
+                                    document.getElementById('timeline').value = option.textContent;
+                                });
+                  });
+
+                  // Form submission
+                  document.getElementById('pentest-form').addEventListener('submit', (e) => {
+                                e.preventDefault();
+
+                            // Validate form
+                            const form = e.target;
+                            const requiredFields = form.querySelectorAll('[required]');
+                            let isValid = true;
+                      
+                      requiredFields.forEach(field => {
+                          if (!field.value) {
+                                field.style.borderColor = 'var(--accent)';
+                            isValid = false;
+                          }
+                      });
+
+                            if (!isValid) {
+                                addMessage("Please fill all required fields.", false, true);
+                            return;
+                      }
+
+                            // Collect form data
+                            formData = {
+                                name: form.name.value,
+                            email: form.email.value,
+                            company: form.company.value,
+                            serviceType: formData.serviceType,
+                            testType: form.testType.value,
+                            timeline: form.timeline.value,
+                            scope: form.scope.value,
+                            demoCall: form.demoCall.value,
+                            file: formData.file
+                      };
+
+                            // Show confirmation
+                            showConfirmation();
+
+                            // Submit form data
+                            const formDataObj = new FormData(form);
+                            fetch(form.action, {
+                                method: 'POST',
+                            body: formDataObj
+                      }).then(response => {
+                          if (!response.ok) {
+                                console.error('Form submission failed');
+                          }
+                      }).catch(error => {
+                                console.error('Error:', error);
+                      });
+                  });
+              }, 100);
+          }
+
+                            // Confirmation
+                            function showConfirmation() {
+                                currentState = 'confirmation';
+
+                            const confirmation = document.createElement('div');
+                            confirmation.innerHTML = `
+                            <div style="text-align:center;margin-bottom:20px;">
+                                <i class="fas fa-check-circle" style="font-size:40px;color:var(--success);margin-bottom:15px;"></i>
+                                <div style="font-weight:bold;margin-bottom:10px;">Request Submitted!</div>
+                                <div style="font-size:13px;color:var(--muted);">
+                                    Our security team will contact you within 24 hours to discuss your ${formData.serviceType}.
+                                </div>
+                            </div>
+
+                            <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:15px;margin-bottom:20px;">
+                                <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">REQUEST SUMMARY</div>
+                                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                                    <span style="color:var(--muted);">Service:</span>
+                                    <span>${formData.serviceType}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                                    <span style="color:var(--muted);">Test Type:</span>
+                                    <span>${formData.testType}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                                    <span style="color:var(--muted);">Timeline:</span>
+                                    <span>${formData.timeline}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;font-size:13px;">
+                                    <span style="color:var(--muted);">Demo Call:</span>
+                                    <span>${formData.demoCall}</span>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-secondary btn-block" id="new-request">Start New Request</button>
+                            `;
+
+                            addMessage(confirmation, false);
+              
+              setTimeout(() => {
+                                document.getElementById('new-request').addEventListener('click', () => {
+                                    formData = {
+                                        name: '',
+                                        email: '',
+                                        company: '',
+                                        serviceType: '',
+                                        testType: '',
+                                        timeline: '',
+                                        scope: '',
+                                        demoCall: '',
+                                        file: null
+                                    };
+                                    showWelcome();
+                                });
+              }, 100);
+          }
+
+                            // FAQ
+                            function showFAQ() {
+                                currentState = 'faq';
+
+                            const faqContainer = document.createElement('div');
+                            faqContainer.innerHTML = `
+                            <div style="margin-bottom:15px;color:var(--text);">Frequently Asked Questions:</div>
+
+                            <div style="margin-bottom:20px;">
+                                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">What's included in a pentest report?</div>
+                                <div style="font-size:13px;color:var(--muted);">
+                                    Our reports include executive summary, technical details, risk ratings, proof of concept, and remediation guidance.
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:20px;">
+                                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">How long does testing take?</div>
+                                <div style="font-size:13px;color:var(--muted);">
+                                    Most engagements take 1-3 weeks depending on scope. Red team exercises typically take 2-4 weeks.
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:20px;">
+                                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Do you retest after fixes?</div>
+                                <div style="font-size:13px;color:var(--muted);">
+                                    Yes, we offer free retesting for critical vulnerabilities within 30 days of the initial report.
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:20px;">
+                                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Are your tests intrusive?</div>
+                                <div style="font-size:13px;color:var(--muted);">
+                                    We follow a non-destructive approach unless explicitly authorized for destructive testing.
+                                </div>
+                            </div>
+
+                            <button class="btn btn-secondary btn-block" style="margin-top:20px;" id="back-from-faq">Back to Main Menu</button>
+              `;
+
+              addMessage(faqContainer, false);
+
+              setTimeout(() => {
+                  document.getElementById('back-from-faq').addEventListener('click', () => {
+                      showWelcome();
+                  });
+              }, 100);
+          }
+
+          // Handle Input
+          input.addEventListener('keypress', (e) => {
+              if(e.key === 'Enter' && input.value.trim()) {
+                  const userText = input.value;
+                  addMessage(userText, true);
+                  input.value = '';
+
+                  const typing = showTyping();
+                  setTimeout(() => {
+                      typing.remove();
+                      handleResponse(userText.toLowerCase());
+                  }, 1000 + (Math.random() * 1000));
+              }
+          });
+
+          // Bot Responses
+          function handleResponse(msg) {
+              if(msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+                  showWelcome();
+              }
+              else if(msg.includes('service') || msg.includes('offer') || msg.includes('explore')) {
+                  showServices();
+              }
+              else if(msg.includes('request') || msg.includes('need') || msg.includes('assess') || msg.includes('pentest')) {
+                  showServices();
+              }
+              else if(msg.includes('price') || msg.includes('cost')) {
+                addMessage("Our pricing depends on scope and complexity:\n\n• Basic pentests start at $5,000\n• Comprehensive assessments: $10,000-$20,000\n• Red team exercises: $15,000-$50,000\n\nWould you like me to help you request a specific service?", false);
+                showQuickReplies(["Yes, request service", "No, thanks"]);
+            }
+            else if(msg.includes('faq') || msg.includes('question') || msg.includes('help')) {
+                showFAQ();
+            }
+            else if(msg.includes('contact') || msg.includes('expert') || msg.includes('talk')) {
+                addMessage("You can reach our security team directly at:\n\n• Email: sarsolutionz7@gmail.com\n \n\nWould you like to schedule a call now?", false);
+                showQuickReplies(["Schedule call", "Not now"]);
+            }
+            else if(msg.includes('yes') || msg.includes('schedule') || msg.includes('call')) {
+                addMessage("Great! Please provide your availability and we'll contact you to confirm.", false);
+                currentState = 'contact_request';
+            }
+            else if(msg.includes('no') || msg.includes('not now') || msg.includes('later')) {
+                addMessage("No problem. Feel free to reach out anytime. How else can I assist you today?", false);
+                showQuickReplies(["Explore services", "Request pentest", "FAQ"]);
+            }
+            else if(currentState === 'contact_request') {
+                addMessage("Thank you. We've noted your contact request and will reach out soon.", false, true);
+                setTimeout(() => {
+                    showWelcome();
+                }, 1500);
+            }
+            else {
+                const responses = [
+                    "I'm not sure I understand. Could you rephrase that?",
+                    "My expertise is in security testing. Could you ask me about pentesting services?",
+                    "I can help with pentest requests, service info, or general security questions.",
+                    "Let me connect you with a human expert if this is beyond my capabilities."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, false);
+                showQuickReplies(["Explore services", "Request pentest", "FAQ", "Contact expert"]);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add any initialization code if needed
+        });
+            </script>
+
+            <script>
+                 // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+               
+
+                // Scroll to Top Button Functionality
+                const scrollTopBtn = document.querySelector('.scroll-top');
+
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        scrollTopBtn.classList.add('active');
+                    } else {
+                        scrollTopBtn.classList.remove('active');
+                    }
+                });
+
+                scrollTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            </script>
+</body>
+</html>

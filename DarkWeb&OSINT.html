@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT & Dark Web Research | Advanced Threat Intelligence Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+         /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--secondary);
+        }
+
+        .scroll-top:hover i {
+            color: var(--primary);
+        }
+
+        .scroll-top i {
+            color: var(--secondary);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        /* Modern Security Theme */
+        :root {
+            --primary: #0a192f;
+            --secondary: #64ffda;
+            --accent: #64ffda;
+            --light: #ccd6f6;
+            --dark: #020c1b;
+            --navy: #112240;
+            --light-navy: #233554;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Calibre', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(10, 25, 47, 0.9);
+            color: white;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-bottom: 1px solid rgba(100,255,218,0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: left;
+            background-image: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--light);
+        }
+        
+        .hero h1 span {
+            color: var(--secondary);
+            display: block;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 0 40px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+        }
+        
+        /* OSINT Services */
+        .services {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--light);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--secondary);
+        }
+        
+        .section-title p {
+            color: var(--light);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: var(--navy);
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-left: 2px solid var(--secondary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .service-card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .service-card ul li {
+            margin-bottom: 10px;
+            color: var(--light);
+            opacity: 0.8;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .service-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Dark Web Section */
+        .dark-web {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .dark-web-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .dark-web-card {
+            background-color: var(--light-navy);
+            padding: 30px;
+            border-radius: 5px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .dark-web-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .dark-web-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .dark-web-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .dark-web-card ul li {
+            margin-bottom: 10px;
+            color: var(--light);
+            opacity: 0.8;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .dark-web-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Methodology */
+        .methodology {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .methodology-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            background-color: var(--navy);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            background-color: transparent;
+            color: var(--secondary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 30px;
+            flex-shrink: 0;
+            border: 2px solid var(--secondary);
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .step-content p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        /* Tools */
+        .tools {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .tool-card {
+            background-color: var(--light-navy);
+            padding: 30px 20px;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .tool-card h3 {
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: var(--navy);
+            padding: 30px;
+            border-radius: 5px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .feature-card p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100,255,218,0.1) 0%, rgba(100,255,218,0.1) 100%);
+            z-index: 0;
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -8px;
+            left: 0;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--light);
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            background-color: var(--light-navy);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(100,255,218,0.1);
+            color: var(--light);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 0;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+            
+            .hero .container {
+                align-items: center;
+            }
+            
+            .hero p {
+                text-align: center;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <span class="matrix-logo">
+                    <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
+                </span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#osint">OSINT Services</a></li>
+                    <li><a href="#darkweb">Dark Web</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Advanced <span>OSINT & Dark Web</span> Intelligence</h1>
+            <p class="fade-in delay-1">We uncover hidden digital footprints, monitor dark web threats, and provide actionable intelligence to protect your organization.</p>
+            <a href="/Contact.html" class="btn fade-in delay-2">Request Intelligence Report</a>
+        </div>
+    </section>
+    
+    <section id="osint" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>OSINT Intelligence Services</h2>
+                <p>Comprehensive open-source intelligence gathering and analysis</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <h3>Digital Footprint Analysis</h3>
+                    <p>Mapping your organization's exposed digital assets:</p>
+                    <ul>
+                        <li>Domain and subdomain discovery</li>
+                        <li>Exposed credentials monitoring</li>
+                        <li>Cloud storage and code repository scanning</li>
+                        <li>Employee social media profiling</li>
+                        <li>Technology stack fingerprinting</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-1">
+                    <h3>Threat Actor Monitoring</h3>
+                    <p>Tracking adversaries targeting your industry:</p>
+                    <ul>
+                        <li>APT group activity tracking</li>
+                        <li>Cybercriminal forum monitoring</li>
+                        <li>Emerging TTP analysis</li>
+                        <li>Malware campaign tracking</li>
+                        <li>Underground community infiltration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card fade-in delay-2">
+                    <h3>Executive Protection</h3>
+                    <p>Safeguarding high-profile individuals:</p>
+                    <ul>
+                        <li>Personal information exposure assessment</li>
+                        <li>Family member digital footprint analysis</li>
+                        <li>Doxing prevention strategies</li>
+                        <li>Travel security monitoring</li>
+                        <li>Disinformation campaign detection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="darkweb" class="dark-web">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dark Web Intelligence Services</h2>
+                <p>Monitoring underground markets, forums, and criminal ecosystems</p>
+            </div>
+            
+            <div class="dark-web-grid">
+                <div class="dark-web-card fade-in">
+                    <h3>Dark Web Monitoring</h3>
+                    <p>Continuous surveillance of underground platforms:</p>
+                    <ul>
+                        <li>Tor network marketplaces</li>
+                        <li>Private cybercrime forums</li>
+                        <li>Carding and fraud communities</li>
+                        <li>Ransomware-as-a-service monitoring</li>
+                        <li>Initial access broker tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="dark-web-card fade-in delay-1">
+                    <h3>Data Leak Monitoring</h3>
+                    <p>Identifying compromised organizational data:</p>
+                    <ul>
+                        <li>Credential leak detection</li>
+                        <li>Database breach monitoring</li>
+                        <li>Pastebin and dump site scanning</li>
+                        <li>Source code leak detection</li>
+                        <li>Sensitive document monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="dark-web-card fade-in delay-2">
+                    <h3>Brand Protection</h3>
+                    <p>Detecting threats to your organization's reputation:</p>
+                    <ul>
+                        <li>Counterfeit product monitoring</li>
+                        <li>Phishing kit detection</li>
+                        <li>Brand impersonation tracking</li>
+                        <li>Fraudulent domain detection</li>
+                        <li>Reputation attack early warning</li>
+                    </ul>
+                </div>
+                
+                <div class="dark-web-card fade-in delay-3">
+                    <h3>Threat Intelligence Feeds</h3>
+                    <p>Actionable intelligence for your security team:</p>
+                    <ul>
+                        <li>Custom IOCs (Indicators of Compromise)</li>
+                        <li>Threat actor profiling</li>
+                        <li>Emerging campaign alerts</li>
+                        <li>Vulnerability exploit monitoring</li>
+                        <li>Integration with SIEM/SOAR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="methodology" class="methodology">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Intelligence Methodology</h2>
+                <p>A structured approach to gathering and analyzing threat intelligence</p>
+            </div>
+            
+            <div class="methodology-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Requirements Definition</h3>
+                        <p>We work with you to define intelligence requirements (IRs) based on your specific security concerns, industry threats, and organizational risk profile. This ensures our research is focused and actionable.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Collection</h3>
+                        <p>Using both automated and manual techniques, we gather data from thousands of sources including surface web, deep web, dark web, technical sources, human intelligence, and proprietary datasets.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Processing</h3>
+                        <p>Raw data is normalized, enriched with context, and analyzed for relevance. We use natural language processing, machine learning, and human analysis to filter noise and identify valuable intelligence.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-3">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Analysis</h3>
+                        <p>Our analysts apply structured analytical techniques to identify patterns, assess credibility, determine implications, and predict future developments. We correlate findings with your specific context.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-4">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Dissemination</h3>
+                        <p>Intelligence is delivered in formats tailored to different stakeholders - from technical IOC feeds for SOC teams to executive briefings for leadership. We provide clear, actionable recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-in delay-5">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Feedback & Iteration</h3>
+                        <p>We continuously refine our collection and analysis based on your feedback, changing threat landscapes, and the effectiveness of our intelligence in supporting your security operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Intelligence Toolset</h2>
+                <p>Advanced tools and proprietary systems for comprehensive threat intelligence</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card fade-in">
+                    <div class="tool-icon"><i class="fas fa-search"></i></div>
+                    <h3>Maltego</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-1">
+                    <div class="tool-icon"><i class="fas fa-spider"></i></div>
+                    <h3>SpiderFoot</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-2">
+                    <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Custom Bots</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-3">
+                    <div class="tool-icon"><i class="fas fa-database"></i></div>
+                    <h3>Elastic Stack</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-4">
+                    <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Analysis</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-5">
+                    <div class="tool-icon"><i class="fas fa-torii-gate"></i></div>
+                    <h3>Tor Crawlers</h3>
+                </div>
+                
+                <div class="tool-card fade-in">
+                    <div class="tool-icon"><i class="fas fa-language"></i></div>
+                    <h3>NLP Systems</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-1">
+                    <div class="tool-icon"><i class="fas fa-archive"></i></div>
+                    <h3>Archive Systems</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-2">
+                    <div class="tool-icon"><i class="fas fa-code-branch"></i></div>
+                    <h3>Link Analysis</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-3">
+                    <div class="tool-icon"><i class="fas fa-user-secret"></i></div>
+                    <h3>Undercover Ops</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-4">
+                    <div class="tool-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud Scrapers</h3>
+                </div>
+                
+                <div class="tool-card fade-in delay-5">
+                    <div class="tool-icon"><i class="fas fa-fingerprint"></i></div>
+                    <h3>Footprint AI</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="why-us" class="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Intelligence Services</h2>
+                <p>What sets our OSINT and Dark Web research capabilities apart</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Coverage</h3>
+                    <p>We monitor sources in over 30 languages across surface, deep, and dark web with regional specialists for each major geographic area.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Former Intelligence Officers</h3>
+                    <p>Our team includes former government intelligence analysts with deep experience in HUMINT, SIGINT, and cyber intelligence operations.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Deep Network Access</h3>
+                    <p>Years of underground presence gives us access to closed criminal forums and private channels not visible to typical researchers.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon"><i class="fas fa-chess"></i></div>
+                    <h3>Adversary Perspective</h3>
+                    <p>We think like attackers to anticipate threats before they emerge, identifying vulnerabilities they would exploit.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-4">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Operational Security</h3>
+                    <p>All research is conducted with strict OPSEC protocols to prevent tipping off threat actors about your defenses.</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-5">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Actionable Intelligence</h3>
+                    <p>We deliver findings with clear recommendations tailored to your specific security controls and risk tolerance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2 class="fade-in">Need Advanced Threat Intelligence?</h2>
+            <p class="fade-in delay-1">Contact us to discuss how our OSINT and Dark Web research services can enhance your security posture.</p>
+            <a href="/Contact.html" class="btn fade-in delay-2">Request Consultation</a>
+        </div>
+    </section>
+    
+
+
+      <!-- Footer with Advanced Pentest Chatbot -->
+       <style>
+        /* Footer Styles */
+        .security-footer {
+            background: #0a0e17;
+            color: #e0e0e0;
+            padding: 60px 0 0;
+            position: relative;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            border-top: 1px solid #1e2a3a;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            color: #a0a8b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: #d1d5db;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #dc3545;
+        }
+
+        .footer-heading {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #dc3545;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a8b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #dc3545;
+            transform: translateX(5px);
+        }
+
+        .footer-contact {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: #dc3545;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e2a3a;
+            padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #a0a8b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-legal a:hover {
+            color: #dc3545;
+        }
+
+        .footer-copyright {
+            color: #a0a8b8;
+            font-size: 14px;
+        }
+
+        /* Matrix Logo Styles */
+        .matrix-logo {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .logo-part-red {
+            color: #ff3366;
+            text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+        }
+
+        .logo-part-white {
+            color: #e0e0e0;
+            text-shadow: 0 0 8px rgba(224, 224, 224, 0.4);
+        }
+
+        /* Chatbot Styles */
+        :root {
+            --bg: #0a0a12;
+            --card: #1a1a2e;
+            --accent: #ff2a6d;
+            --accent-dark: #d1005b;
+            --text: #e0e0ff;
+            --muted: #8a8a9a;
+            --success: #05d9a5;
+            --warning: #ff9a56;
+            --terminal: #0aff0a;
+        }
+
+        @font-face {
+            font-family: 'Hack';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.003/web/fonts/hack-regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #chatbot-launcher {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(255, 42, 109, 0.5);
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 42, 109, 0.7);
+        }
+
+        #chatbot-launcher i {
+            font-size: 28px;
+            color: white;
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 0px;
+            width: 380px;
+            max-height: 80vh;
+            background: var(--bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+            font-family: 'Hack', 'Courier New', monospace;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #chatbot-header {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+        }
+
+        #chatbot-header h3 i {
+            font-size: 18px;
+        }
+
+        #chatbot-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--bg);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .message {
+            max-width: 85%;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease;
+            transform-origin: bottom;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .bot-message {
+            background: var(--card);
+            color: var(--text);
+            border-radius: 8px 8px 8px 2px;
+            margin-right: auto;
+            border-left: 3px solid var(--accent);
+        }
+
+        .user-message {
+            background: rgba(255, 42, 109, 0.15);
+            color: var(--text);
+            border-radius: 8px 8px 2px 8px;
+            margin-left: auto;
+            border-right: 3px solid var(--accent);
+        }
+
+        .system-message {
+            background: rgba(5, 217, 165, 0.1);
+            color: var(--success);
+            border-radius: 8px;
+            margin: 15px auto;
+            text-align: center;
+            font-size: 13px;
+            padding: 10px;
+            border: 1px dashed var(--success);
+            max-width: 90%;
+        }
+
+        #chatbot-footer {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--terminal);
+            font-family: 'Hack', 'Courier New', monospace;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 42, 109, 0.3);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--muted);
+        }
+
+        .typing {
+            display: inline-flex;
+            gap: 6px;
+            padding: 12px 16px;
+            background: var(--card);
+            border-radius: 8px 8px 8px 2px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--muted);
+            border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .quick-reply {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-reply:hover {
+            background: rgba(255, 42, 109, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .service-option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            text-align: left;
+            font-family: 'Hack', 'Courier New', monospace;
+        }
+
+        .service-option:hover {
+            background: rgba(255, 42, 109, 0.1);
+            border-left-color: var(--accent);
+        }
+
+        .service-option i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: 'Hack', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .file-upload input {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--accent);
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px dashed var(--accent);
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .upload-btn:hover {
+            background: rgba(255, 42, 109, 0.3);
+        }
+
+        .file-name {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 5px;
+            display: none;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Hack', 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.4);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .service-icon {
+            font-size: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .timeline-selector {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .timeline-option {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-option:hover,
+        .timeline-option.selected {
+            background: var(--accent);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 42, 109, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 42, 109, 0);
+            }
+        }
+
+        /* Terminal-like effects */
+        .terminal-text {
+            position: relative;
+        }
+
+        .terminal-text::after {
+            content: "|";
+            animation: blink 1s infinite;
+            position: absolute;
+            right: -5px;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #chatbot-container {
+                height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Footer with Advanced Pentest Chatbot -->
+    <footer class="security-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span id="footer-matrix-logo" class="matrix-logo" data-value="SARSOLUTIONZ">
+                            <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
+                        </span>
+                    </div>
+                    <p class="footer-about">Breaking your systems before attackers break your business.</p>
+                    <div class="footer-social">
+                         <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
+                        <a href="mainto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                         <li><a href="/Design&Dev.html">Design and Development</a></li>
+                        <li><a href="/VAPT.html">Penetration Testing</a></li>
+                        <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                        <li><a href="/MobilePentest.html">Mobile Penetration Testing</a></li>
+                        <li><a href="/NetworkPentest.html">Network Penetration Testing</a></li>
+                        <li><a href="/APIPentest.html">API Security Testing</a></li>
+                        <li><a href="/CloudPentest.html">Cloud Penetration Testing</a></li>
+                        <li><a href="/Redteam.html">Red Teaming</a></li>
+                        <li><a href="/DarkWeb&OSINT.html">OSINT and Dark Web Research</a></li>
+                        <li><a href="/Phishing.html">Social Engineering</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="footer-links">
+                       <li><a href="https://sarsolutionz.blogspot.com/">Security Blog</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                        <li><a href="#">Security Tools</a></li>
+                        <li><a href="/Samplereports.html">Sample Reports</a></li>
+                        <li><a href="#">Testing Methodology</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</li>
+                        <li><i class="fas fa-envelope"></i>sarsolutionz7@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="/privacy">Privacy Policy</a> |
+                    <a href="/terms">Terms of Service</a> |
+                    <a href="/disclaimer">Disclaimer</a>  |
+                    <a href="/Contact.html">Contact</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2023 SARSolutionz. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Pentest Chatbot -->
+    <div id="chatbot-launcher">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> Sarsolutionz Pentest</h3>
+            <button id="close-chat" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbot-body"></div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Type your message...">
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const body = document.getElementById('chatbot-body');
+        const input = document.getElementById('chatbot-input');
+        const closeBtn = document.getElementById('close-chat');
+
+        // State management
+        let currentState = 'welcome';
+        let selectedService = null;
+        let formData = {
+            name: '',
+            email: '',
+            company: '',
+            serviceType: '',
+            testType: '',
+            timeline: '',
+            scope: '',
+            demoCall: '',
+            file: null
+        };
+
+        // Matrix Effect for Footer Logo
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.getElementById('footer-matrix-logo');
+            const chars = "01!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            
+            logo.addEventListener('mouseenter', startMatrixEffect);
+            logo.addEventListener('touchstart', startMatrixEffect, { passive: true });
+            
+            function startMatrixEffect() {
+                const originalText = logo.dataset.value;
+                let iteration = 0;
+                const frameRate = 30;
+                const duration = 1000;
+                const totalFrames = (duration / 1000) * frameRate;
+                
+                const interval = setInterval(() => {
+                    logo.innerHTML = originalText.split("")
+                        .map((letter, index) => {
+                            if (index < iteration) {
+                                return index < 3 ? 
+                                    `<span class="logo-part-red">${letter}</span>` : 
+                                    `<span class="logo-part-white">${letter}</span>`;
+                            }
+                            const char = chars[Math.floor(Math.random() * chars.length)];
+                            return `<span style="opacity:${0.3 + Math.random() * 0.7}">${char}</span>`;
+                        })
+                        .join("");
+                    
+                    iteration += originalText.length / totalFrames;
+                    
+                    if (iteration >= originalText.length) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            logo.innerHTML = `
+                                <span class="logo-part-red">SAR</span>
+                                <span class="logo-part-white">SOLUTIONZ</span>
+                            `;
+                        }, 200);
+                    }
+                }, 1000/frameRate);
+            }
+        });
+
+        // Chatbot Functions
+        function addMessage(text, isUser = false, isSystem = false) {
+            const msg = document.createElement('div');
+            if (isSystem) {
+                msg.className = 'system-message';
+            } else {
+                msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            }
+
+            if (typeof text === 'string') {
+                msg.textContent = text;
+            } else {
+                msg.appendChild(text);
+            }
+
+            body.appendChild(msg);
+            body.scrollTop = body.scrollHeight;
+            return msg;
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'message bot-message typing';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            body.appendChild(typing);
+            body.scrollTop = body.scrollHeight;
+            return typing;
+        }
+
+        function showWelcome() {
+            currentState = 'welcome';
+            addMessage("Initializing Hacker Bot", false);
+            
+            setTimeout(() => {
+                addMessage("Secure connection established 🔒", false);
+                
+                setTimeout(() => {
+                    const welcomeMsg = document.createElement('div');
+                    welcomeMsg.innerHTML = `
+                        <div style="margin-bottom:10px;">Welcome to <span style="color:var(--accent);font-weight:bold;">SARSolutionz</span> Pentest Assistant</div>
+                        <div style="font-size:13px;color:var(--muted);margin-bottom:15px;">How can we assist with your security needs today?</div>
+                    `;
+                    addMessage(welcomeMsg, false);
+                    
+                    setTimeout(() => {
+                        showQuickReplies([
+                            "Explore services",
+                            "Request pentest",
+                            "FAQ",
+                            "Contact expert"
+                        ]);
+                    }, 300);
+                }, 800);
+            }, 1000);
+        }
+
+        function showQuickReplies(replies) {
+            const container = document.createElement('div');
+            container.style.marginTop = '10px';
+            
+            replies.forEach(reply => {
+                const btn = document.createElement('span');
+                btn.className = 'quick-reply';
+                btn.textContent = reply;
+                btn.addEventListener('click', () => {
+                    container.querySelectorAll('.quick-reply').forEach(b => b.style.display = 'none');
+                    addMessage(reply, true);
+                    handleResponse(reply.toLowerCase());
+                });
+                container.appendChild(btn);
+            });
+
+            addMessage(container, false);
+        }
+
+        function showServices() {
+            currentState = 'services';
+            const services = document.createElement('div');
+            services.innerHTML = `
+                <div style="margin-bottom:15px;color:var(--text);">Select a pentest service:</div>
+                <button class="service-option" data-service="web"><i class="fas fa-globe"></i> Web Application Pentest</button>
+                <button class="service-option" data-service="api"><i class="fas fa-code"></i> API Security Testing</button>
+                <button class="service-option" data-service="mobile"><i class="fas fa-mobile-alt"></i> Mobile App Pentest</button>
+                <button class="service-option" data-service="network"><i class="fas fa-network-wired"></i> Network Pentest</button>
+                <button class="service-option" data-service="cloud"><i class="fas fa-cloud"></i> Cloud Security Assessment</button>
+                <button class="service-option" data-service="redteam"><i class="fas fa-user-secret"></i> Red Team Exercise</button>
+                <button class="service-option" data-service="osint"><i class="fas fa-search"></i> OSINT Investigation</button>
+                <button class="service-option" data-service="social"><i class="fas fa-mask"></i> Social Engineering</button>
+                <button class="service-option" data-service="darkweb"><i class="fas fa-eye"></i> Dark Web Analysis</button>
+            `;
+
+            addMessage(services, false);
+
+            setTimeout(() => {
+                document.querySelectorAll('.service-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        selectedService = option.getAttribute('data-service');
+                        option.parentNode.querySelectorAll('.service-option').forEach(opt => {
+                            opt.style.background = 'rgba(255,255,255,0.05)';
+                            opt.style.borderLeftColor = 'transparent';
+                        });
+                        option.style.background = 'rgba(255,42,109,0.1)';
+                        option.style.borderLeftColor = 'var(--accent)';
+
+                        setTimeout(() => {
+                            showServiceDetails(selectedService);
+                        }, 500);
+                    });
+                });
+            }, 100);
+        }
+
+        function showServices() {
+    currentState = 'services';
+    const services = document.createElement('div');
+    services.innerHTML = `
+        <div style="margin-bottom:15px;color:var(--text);">Select a pentest service:</div>
+        <button class="service-option" data-service="web"><i class="fas fa-globe"></i> Web Application Pentest</button>
+        <button class="service-option" data-service="api"><i class="fas fa-code"></i> API Security Testing</button>
+        <button class="service-option" data-service="mobile"><i class="fas fa-mobile-alt"></i> Mobile App Pentest</button>
+        <button class="service-option" data-service="network"><i class="fas fa-network-wired"></i> Network Pentest</button>
+        <button class="service-option" data-service="cloud"><i class="fas fa-cloud"></i> Cloud Security Assessment</button>
+        <button class="service-option" data-service="redteam"><i class="fas fa-user-secret"></i> Red Team Exercise</button>
+        <button class="service-option" data-service="osint"><i class="fas fa-search"></i> OSINT Investigation</button>
+        <button class="service-option" data-service="social"><i class="fas fa-mask"></i> Social Engineering</button>
+        <button class="service-option" data-service="darkweb"><i class="fas fa-eye"></i> Dark Web Analysis</button>
+    `;
+
+    // Clear previous messages and add new services list
+    body.innerHTML = '';
+    addMessage(services, false);
+
+    // Add event listeners to service options
+    setTimeout(() => {
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', function() {
+                selectedService = this.getAttribute('data-service');
+                document.querySelectorAll('.service-option').forEach(opt => {
+                    opt.style.background = 'rgba(255,255,255,0.05)';
+                    opt.style.borderLeftColor = 'transparent';
+                });
+                this.style.background = 'rgba(255,42,109,0.1)';
+                this.style.borderLeftColor = 'var(--accent)';
+                showServiceDetails(selectedService);
+            });
+        });
+    }, 100);
+}
+
+function showServiceDetails(service) {
+    currentState = 'service_details';
+    const serviceInfo = {
+        web: {
+            title: "Web Application Pentest",
+            desc: "Comprehensive security assessment of your web applications including OWASP Top 10 vulnerabilities, business logic flaws, and authentication bypass testing.",
+            icon: "fa-globe"
+        },
+        api: {
+            title: "API Security Testing",
+            desc: "In-depth analysis of your API endpoints for security vulnerabilities including improper auth, injection flaws, and data exposure risks.",
+            icon: "fa-code"
+        },
+        mobile: {
+            title: "Mobile App Pentest",
+            desc: "Security assessment for iOS and Android applications including reverse engineering, insecure storage, and communication testing.",
+            icon: "fa-mobile-alt"
+        },
+        network: {
+            title: "Network Pentest",
+            desc: "Internal and external network penetration testing including firewall bypass, VLAN hopping, and privilege escalation.",
+            icon: "fa-network-wired"
+        },
+        cloud: {
+            title: "Cloud Security Assessment",
+            desc: "Comprehensive review of your cloud infrastructure (AWS/Azure/GCP) for misconfigurations and security weaknesses.",
+            icon: "fa-cloud"
+        },
+        redteam: {
+            title: "Red Team Exercise",
+            desc: "Simulated real-world attack scenarios to test your organization's detection and response capabilities.",
+            icon: "fa-user-secret"
+        },
+        osint: {
+            title: "OSINT Investigation",
+            desc: "Open-source intelligence gathering to identify exposed sensitive information and potential attack vectors.",
+            icon: "fa-search"
+        },
+        social: {
+            title: "Social Engineering",
+            desc: "Phishing, vishing, and physical security tests to evaluate employee security awareness.",
+            icon: "fa-mask"
+        },
+        darkweb: {
+            title: "Dark Web Analysis",
+            desc: "Monitoring dark web channels for leaked credentials, company data, and threat intelligence.",
+            icon: "fa-eye"
+        }
+    };
+
+    // Create new container for service details
+    const detailsContainer = document.createElement('div');
+    detailsContainer.innerHTML = `
+        <div style="margin-bottom:15px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <i class="fas ${serviceInfo[service].icon} service-icon" style="color:var(--accent);"></i>
+                <span style="font-weight:bold;color:var(--accent);">${serviceInfo[service].title}</span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);">${serviceInfo[service].desc}</div>
+        </div>
+    `;
+
+    // Clear previous messages and add service details
+    body.innerHTML = '';
+    addMessage(detailsContainer, false);
+    
+    // Add action buttons
+    const options = document.createElement('div');
+    options.innerHTML = `
+        <button class="btn btn-block" style="margin-bottom:10px;" id="request-service">Request This Service</button>
+        <button class="btn btn-secondary btn-block" id="back-to-services">Back to Services</button>
+    `;
+
+    addMessage(options, false);
+    
+    // Add event listeners
+    document.getElementById('request-service').addEventListener('click', () => {
+        formData.serviceType = serviceInfo[service].title;
+        showRequestForm();
+    });
+    
+    document.getElementById('back-to-services').addEventListener('click', () => {
+        showServices();
+    });
+}
+        
+
+        function showRequestForm() {
+            currentState = 'request_form';
+
+            const formContainer = document.createElement('div');
+            formContainer.innerHTML = `
+                <div style="margin-bottom:15px;color:var(--text);font-size:14px;">
+                    Please provide details for your <span style="color:var(--accent);">${formData.serviceType}</span> request:
+                </div>
+
+                <form id="pentest-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" value="New Pentest Request - ${formData.serviceType}">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="#">
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testType">Type of Test</label>
+                        <select id="testType" name="testType" required>
+                            <option value="">Select...</option>
+                            <option value="Black Box">Black Box</option>
+                            <option value="White Box">White Box</option>
+                            <option value="Gray Box">Gray Box</option>
+                        </select>
+                    </div>
+
+                    ${selectedService === 'mobile' ? `
+                        <div class="form-group">
+                            <label>Upload Application File</label>
+                            <div class="file-upload">
+                                <label class="upload-btn">
+                                    <i class="fas fa-upload"></i> Choose APK/IPA File
+                                    <input type="file" id="appFile" name="appFile" accept=".apk,.ipa">
+                                </label>
+                                <div class="file-name" id="fileName">No file selected</div>
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <div class="form-group">
+                        <label>Preferred Timeline</label>
+                        <div class="timeline-selector">
+                            <div class="timeline-option" data-days="7">1 Week</div>
+                            <div class="timeline-option" data-days="14">2 Weeks</div>
+                            <div class="timeline-option" data-days="30">1 Month</div>
+                        </div>
+                        <input type="hidden" id="timeline" name="timeline" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scope">Scope Details</label>
+                        <textarea id="scope" name="scope" placeholder="Describe what needs to be tested..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="demoCall">Schedule Demo Call</label>
+                        <select id="demoCall" name="demoCall" required>
+                            <option value="">Select...</option>
+                            <option value="ASAP">ASAP</option>
+                            <option value="Within 3 days">Within 3 days</option>
+                            <option value="Next week">Next week</option>
+                            <option value="No demo needed">No demo needed</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-block" style="margin-top:20px;">Submit Request</button>
+                </form>
+            `;
+
+            addMessage(formContainer, false);
+
+            setTimeout(() => {
+                if (selectedService === 'mobile') {
+                    const fileInput = document.getElementById('appFile');
+                    const fileNameDisplay = document.getElementById('fileName');
+                    
+                    fileInput.addEventListener('change', (e) => {
+                        if (fileInput.files.length > 0) {
+                            fileNameDisplay.textContent = fileInput.files[0].name;
+                            fileNameDisplay.style.display = 'block';
+                            formData.file = fileInput.files[0];
+                        }
+                    });
+                }
+
+                document.querySelectorAll('.timeline-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        document.querySelectorAll('.timeline-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        option.classList.add('selected');
+                        document.getElementById('timeline').value = option.textContent;
+                    });
+                });
+
+                document.getElementById('pentest-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const form = e.target;
+                    const requiredFields = form.querySelectorAll('[required]');
+                    let isValid = true;
+                    
+                    requiredFields.forEach(field => {
+                        if (!field.value) {
+                            field.style.borderColor = 'var(--accent)';
+                            isValid = false;
+                        }
+                    });
+
+                    if (!isValid) {
+                        addMessage("Please fill all required fields.", false, true);
+                        return;
+                    }
+
+                    formData = {
+                        name: form.name.value,
+                        email: form.email.value,
+                        company: form.company.value,
+                        serviceType: formData.serviceType,
+                        testType: form.testType.value,
+                        timeline: form.timeline.value,
+                        scope: form.scope.value,
+                        demoCall: form.demoCall.value,
+                        file: formData.file
+                    };
+
+                    showConfirmation();
+
+                    const formDataObj = new FormData(form);
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formDataObj
+                    }).then(response => {
+                        if (!response.ok) {
+                            console.error('Form submission failed');
+                        }
+                    }).catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            }, 100);
+        }
+
+        function showConfirmation() {
+            currentState = 'confirmation';
+
+            const confirmation = document.createElement('div');
+            confirmation.innerHTML = `
+                <div style="text-align:center;margin-bottom:20px;">
+                    <i class="fas fa-check-circle" style="font-size:40px;color:var(--success);margin-bottom:15px;"></i>
+                    <div style="font-weight:bold;margin-bottom:10px;">Request Submitted!</div>
+                    <div style="font-size:13px;color:var(--muted);">
+                        Our security team will contact you within 24 hours to discuss your ${formData.serviceType}.
+                    </div>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:15px;margin-bottom:20px;">
+                    <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">REQUEST SUMMARY</div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                        <span style="color:var(--muted);">Service:</span>
+                        <span>${formData.serviceType}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                        <span style="color:var(--muted);">Test Type:</span>
+                        <span>${formData.testType}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                        <span style="color:var(--muted);">Timeline:</span>
+                        <span>${formData.timeline}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;">
+                        <span style="color:var(--muted);">Demo Call:</span>
+                        <span>${formData.demoCall}</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary btn-block" id="new-request">Start New Request</button>
+            `;
+
+            addMessage(confirmation, false);
+            
+            setTimeout(() => {
+                document.getElementById('new-request').addEventListener('click', () => {
+                    formData = {
+                        name: '',
+                        email: '',
+                        company: '',
+                        serviceType: '',
+                        testType: '',
+                        timeline: '',
+                        scope: '',
+                        demoCall: '',
+                        file: null
+                    };
+                    showWelcome();
+                });
+            }, 100);
+        }
+
+        function showFAQ() {
+            currentState = 'faq';
+
+            const faqContainer = document.createElement('div');
+            faqContainer.innerHTML = `
+                <div style="margin-bottom:15px;color:var(--text);">Frequently Asked Questions:</div>
+
+                <div style="margin-bottom:20px;">
+                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">What's included in a pentest report?</div>
+                    <div style="font-size:13px;color:var(--muted);">
+                        Our reports include executive summary, technical details, risk ratings, proof of concept, and remediation guidance.
+                    </div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">How long does testing take?</div>
+                    <div style="font-size:13px;color:var(--muted);">
+                        Most engagements take 1-3 weeks depending on scope. Red team exercises typically take 2-4 weeks.
+                    </div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Do you retest after fixes?</div>
+                    <div style="font-size:13px;color:var(--muted);">
+                        Yes, we offer free retesting for critical vulnerabilities within 30 days of the initial report.
+                    </div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Are your tests intrusive?</div>
+                    <div style="font-size:13px;color:var(--muted);">
+                        We follow a non-destructive approach unless explicitly authorized for destructive testing.
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary btn-block" style="margin-top:20px;" id="back-from-faq">Back to Main Menu</button>
+            `;
+
+            addMessage(faqContainer, false);
+
+            setTimeout(() => {
+                document.getElementById('back-from-faq').addEventListener('click', () => {
+                    showWelcome();
+                });
+            }, 100);
+        }
+
+        function handleResponse(msg) {
+            if(msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+                showWelcome();
+            }
+            else if(msg.includes('service') || msg.includes('offer') || msg.includes('explore')) {
+                showServices();
+            }
+            else if(msg.includes('request') || msg.includes('need') || msg.includes('assess') || msg.includes('pentest')) {
+                showServices();
+            }
+            else if(msg.includes('price') || msg.includes('cost')) {
+                addMessage("Our pricing depends on scope and complexity:\n\n• Basic pentests start at $5,000\n• Comprehensive assessments: $10,000-$20,000\n• Red team exercises: $15,000-$50,000\n\nWould you like me to help you request a specific service?", false);
+                showQuickReplies(["Yes, request service", "No, thanks"]);
+            }
+            else if(msg.includes('faq') || msg.includes('question') || msg.includes('help')) {
+                showFAQ();
+            }
+            else if(msg.includes('contact') || msg.includes('expert') || msg.includes('talk')) {
+                addMessage("You can reach our security team directly at:\n\n• Email: sarsolutionz7@gmail.com\n\nWould you like to schedule a call now?", false);
+                showQuickReplies(["Schedule call", "Not now"]);
+            }
+            else if(msg.includes('yes') || msg.includes('schedule') || msg.includes('call')) {
+                addMessage("Great! Please provide your availability and we'll contact you to confirm.", false);
+                currentState = 'contact_request';
+            }
+            else if(msg.includes('no') || msg.includes('not now') || msg.includes('later')) {
+                addMessage("No problem. Feel free to reach out anytime. How else can I assist you today?", false);
+                showQuickReplies(["Explore services", "Request pentest", "FAQ"]);
+            }
+            else if(currentState === 'contact_request') {
+                addMessage("Thank you. We've noted your contact request and will reach out soon.", false, true);
+                setTimeout(() => {
+                    showWelcome();
+                }, 1500);
+            }
+            else {
+                const responses = [
+                    "I'm not sure I understand. Could you rephrase that?",
+                    "My expertise is in security testing. Could you ask me about pentesting services?",
+                    "I can help with pentest requests, service info, or general security questions.",
+                    "Let me connect you with a human expert if this is beyond my capabilities."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, false);
+                showQuickReplies(["Explore services", "Request pentest", "FAQ", "Contact expert"]);
+            }
+        }
+
+        // Chatbot Event Listeners
+        launcher.addEventListener('click', () => {
+            container.style.display = 'flex';
+            setTimeout(() => container.classList.add('active'), 10);
+            launcher.style.display = 'none';
+            if(body.children.length === 0) showWelcome();
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            setTimeout(() => {
+                container.style.display = 'none';
+                launcher.style.display = 'flex';
+            }, 300);
+        });
+
+        input.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' && input.value.trim()) {
+                const userText = input.value;
+                addMessage(userText, true);
+                input.value = '';
+
+                const typing = showTyping();
+                setTimeout(() => {
+                    typing.remove();
+                    handleResponse(userText.toLowerCase());
+                }, 1000 + (Math.random() * 1000));
+            }
+        });
+
+          // Scroll to Top Button Functionality
+                const scrollTopBtn = document.querySelector('.scroll-top');
+
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        scrollTopBtn.classList.add('active');
+                    } else {
+                        scrollTopBtn.classList.remove('active');
+                    }
+                });
+
+                scrollTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+    </script>
+
+</body>
+
+</html>
