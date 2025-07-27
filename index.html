@@ -887,157 +887,219 @@
         }
         
          /* Footer */
-        footer {
-            background-color: var(--secondary-dark);
-            padding: 4rem 5% 2rem;
-            position: relative;
-            overflow: hidden;
+        .footer {
+        background-color: var(--secondary-dark);
+        color: var(--text-primary);
+        padding: 4rem 5% 2rem;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid rgba(100, 255, 218, 0.1);
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.5), transparent);
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    .logo-shape {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+    }
+
+    .logo-text span {
+        color: var(--white);
+    }
+
+    .footer-tagline {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(100, 255, 218, 0.1);
+        color: var(--accent);
+        transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+        background-color: rgba(100, 255, 218, 0.2);
+        transform: translateY(-3px);
+    }
+
+    .footer-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.3rem;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .footer-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--accent);
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-link {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 0;
+    }
+
+    .footer-link::before {
+        content: '→';
+        position: absolute;
+        left: -15px;
+        opacity: 0;
+        color: var(--accent);
+        transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+        color: var(--accent);
+        padding-left: 15px;
+    }
+
+    .footer-link:hover::before {
+        opacity: 1;
+        left: 0;
+    }
+
+    .footer-contact {
+        list-style: none;
+    }
+
+    .footer-contact li {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .contact-icon {
+        color: var(--accent);
+        margin-top: 0.2rem;
+        font-size: 1rem;
+    }
+
+    .footer-contact a {
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+    }
+
+    .footer-contact a:hover {
+        color: var(--accent);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-legal {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .legal-link {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .legal-link:hover {
+        color: var(--accent);
+    }
+
+    .footer-copyright {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .footer-main {
+            grid-template-columns: 1fr 1fr;
         }
         
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+        .footer-brand {
+            grid-column: 1 / -1;
         }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-section {
-            margin-bottom: 2rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-logo span {
-            color: var(--white);
-        }
-        
-        .footer-about {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .footer-social a {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-social a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        .footer-heading {
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-        
-        .footer-contact {
-            list-style: none;
-        }
-        
-        .footer-contact li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-        }
-        
-        .footer-contact i {
-            color: var(--accent);
-            margin-top: 0.2rem;
-        }
-        
-        .footer-contact a {
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-        
-        .footer-contact a:hover {
-            color: var(--accent);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+        .footer-main {
+            grid-template-columns: 1fr;
         }
         
         .footer-legal {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            flex-direction: column;
+            gap: 0.5rem;
         }
-        
-        .footer-legal a {
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-        
-        .footer-legal a:hover {
-            color: var(--accent);
-        }
-        
-        .footer-copyright {
-            color: var(--text-secondary);
-        }
+    }
         
         /* Scroll to Top Button */
         .scroll-top {
@@ -1277,6 +1339,46 @@
         /* chatbot */
 
         /* chatbot end */
+         .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+    }
+    
+    .form-group.col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .form-check {
+        display: flex;
+        align-items: center;
+    }
+    
+    .form-check-input {
+        margin-right: 10px;
+        margin-top: 0;
+    }
+    
+    .form-check-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+        .form-group.col-md-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
@@ -1289,7 +1391,7 @@
             <a href="#services">Services</a>
             <a href="#certifications">Certifications</a>
             <a href="#team">Team</a>
-            <a href="#testimonials">Clients</a>
+            <!-- <a href="#testimonials">Clients</a> -->
             <a href="#contact">Contact</a>
             <button class="cta-button">Get Assessment</button>
         </nav>
@@ -1309,7 +1411,7 @@
         <a href="#services" class="mobile-link">Services</a>
         <a href="#certifications" class="mobile-link">Certifications</a>
         <a href="#team" class="mobile-link">Team</a>
-        <a href="#testimonials" class="mobile-link">Clients</a>
+        <!-- <a href="#testimonials" class="mobile-link">Clients</a> -->
         <a href="#contact" class="mobile-link">Contact</a>
         <button class="cta-button">Get Assessment</button>
     </div>
@@ -1378,7 +1480,7 @@
             </div>
             
             <div class="about-image" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Sarsolutionz development and security team" class="floating">
+                <img src="./assets/images/icons/19362653.gif" alt="Sarsolutionz development and security team" class="floating">
             </div>
         </div>
     </section>
@@ -1579,97 +1681,115 @@
     </section>
     
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2 class="section-title" data-aos="fade-up">Get in <span>Touch</span></h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Ready to strengthen your security posture? Contact us for a consultation</p>
-        
-        <div class="contact-container">
-            <div class="contact-info" data-aos="fade-right">
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="contact-details">
-                        <h3>Our Office</h3>
-                        <p>123 Security Plaza, Suite 500<br>San Francisco, CA 94107</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div class="contact-details">
-                        <h3>Email Us</h3>
-                        <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-                    <div class="contact-details">
-                        <h3>Call Us</h3>
-                        <a href="tel:+18005551234">+1 (800) 555-1234</a>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
-                    <div class="contact-details">
-                        <h3>Working Hours</h3>
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Emergency support available 24/7</p>
-                    </div>
+   <section id="contact" class="contact">
+    <h2 class="section-title" data-aos="fade-up">Get in <span>Touch</span></h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Ready to strengthen your security posture? Contact us for a consultation</p>
+    
+    <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-details">
+                    <h3>Our Office</h3>
+                    <p>Mumbai<br></p>
                 </div>
             </div>
             
-            <div class="contact-form" data-aos="fade-left">
-                <form id="contactForm" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
-                    
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" class="form-control">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="service">Service Interested In</label>
-                        <select id="service" name="service" class="form-control">
-                            <option value="">Select a service</option>
-                            <option value="pentesting">Penetration Testing</option>
-                            <option value="red-teaming">Red Teaming</option>
-                            <option value="audit">Security Audit</option>
-                            <option value="vapt">Vulnerability Assessment</option>
-                            <option value="cloud">Cloud Security</option>
-                            <option value="training">Security Training</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" class="form-control" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <span class="btn-text">Send Message</span>
-                        <span class="btn-loader"></span>
-                    </button>
-                    
-                    <div class="form-success">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Thank You!</h3>
-                        <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
-                    </div>
-                </form>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-details">
+                    <h3>Email Us</h3>
+                    <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                <div class="contact-details">
+                    <h3>Working Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Emergency support available 24/7</p>
+                </div>
             </div>
         </div>
-    </section>
+        
+        <div class="contact-form" data-aos="fade-left">
+            <form id="contactForm" class="rnt-contact-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="_subject" value="New Service Request from SAR SOLUTIONZ Website">
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="contact-name">Your Name</label>
+                        <input class="form-control" name="name" id="contact-name" type="text" placeholder="Enter your Name" required>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="contact-phone">Phone Number</label>
+                        <input class="form-control" name="phone" id="contact-phone" type="text" placeholder="Your Phone Number" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-email">Email Address</label>
+                    <input class="form-control" name="email" id="contact-email" type="email" placeholder="Your Email Address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service-type">Service Needed</label>
+                    <select class="form-control" name="service" id="service-type" required>
+                        <option value="">Select a service</option>
+                        <option value="Web Development">Web Application Development</option>
+                        <option value="Mobile Development">Mobile Application Development</option>
+                        <option value="API Development">API Development</option>
+                        <option value="Web Pentesting">Web Penetration Testing</option>
+                        <option value="Mobile Pentesting">Mobile Penetration Testing</option>
+                        <option value="Network Pentesting">Network Penetration Testing</option>
+                        <option value="Cloud Security">Cloud Security Assessment</option>
+                        <option value="Red Teaming">Red Teaming Exercise</option>
+                        <option value="Other">Other Security Services</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="project-urgency">Project Urgency</label>
+                    <select class="form-control" name="urgency" id="project-urgency">
+                        <option value="Not Urgent">Not Urgent</option>
+                        <option value="Within 2 Weeks">Within 2 Weeks</option>
+                        <option value="Within 1 Week">Within 1 Week</option>
+                        <option value="ASAP">ASAP (Emergency)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-message">Project Details</label>
+                    <textarea class="form-control" name="message" id="contact-message" rows="6" placeholder="Describe your project requirements, timeline, and any specific security concerns..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="nda-check" name="nda">
+                        <label class="form-check-label" for="nda-check">
+                            I require an NDA before discussing project details
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">REQUEST SERVICE QUOTE</span>
+                    <span class="btn-loader"></span>
+                </button>
+                
+                <div class="form-success">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Request Submitted!</h3>
+                    <p>Thank you for contacting SAR SOLUTIONZ. We'll review your requirements and get back to you within 24 hours.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
     
     <!-- Scroll to Top Button -->
     <div class="scroll-top">
@@ -1677,73 +1797,95 @@
     </div>
     
     <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-grid">
-                <!-- Company Info -->
-                <div class="footer-section">
-                    <div class="footer-logo">SAR<span>SOLUTIONZ</span></div>
-                    <p class="footer-about">Breaking your systems before attackers break your business.</p>
-                    <div class="footer-social">
-                        <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
-                        <a href="mailto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
-                    </div>
+  <!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 120 40" class="logo-shape">
+                        <path d="M20,10 L40,30 L60,10 L80,30 L100,10" stroke="#64ffda" stroke-width="3" fill="none" />
+                        <circle cx="110" cy="20" r="8" fill="#64ffda" />
+                    </svg>
+                    <span class="logo-text">SAR<span>SOLUTIONZ</span></span>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Design and Development</a></li>
-                        <li><a href="#">Penetration Testing</a></li>
-                        <li><a href="#">Web Penetration Testing</a></li>
-                        <li><a href="#">Mobile Penetration Testing</a></li>
-                        <li><a href="#">Network Penetration Testing</a></li>
-                        <li><a href="#">API Security Testing</a></li>
-                        <li><a href="#">Cloud Penetration Testing</a></li>
-                        <li><a href="#">Red Teaming</a></li>
-                        <li><a href="#">OSINT and Dark Web Research</a></li>
-                        <li><a href="#">Social Engineering</a></li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://sarsolutionz.blogspot.com/">Security Blog</a></li>
-                        <li><a href="#">Whitepapers</a></li>
-                        <li><a href="#">Security Tools</a></li>
-                        <li><a href="#">Sample Reports</a></li>
-                        <li><a href="#">Testing Methodology</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Contact</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a></li>
-                    </ul>
+                <p class="footer-tagline">Breaking your systems before attackers break your business.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/sar_solutionz" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/Rahul-Thakur7" class="social-icon" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:sarsolutionz7@gmail.com" class="social-icon" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Service</a>
-                    <a href="/disclaimer">Disclaimer</a>
-                    <a href="/Contact.html">Contact</a>
-                </div>
-                <div class="footer-copyright">
-                    &copy; 2023 SARSolutionz. All rights reserved.
-                </div>
+            <!-- Services Column -->
+            <div class="footer-column">
+                <h3 class="footer-title">Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Design & Development</a></li>
+                    <li><a href="#" class="footer-link">Penetration Testing</a></li>
+                    <li><a href="#" class="footer-link">Web App Security</a></li>
+                    <li><a href="#" class="footer-link">Mobile Security</a></li>
+                    <li><a href="#" class="footer-link">Cloud Security</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources Column -->
+            <div class="footer-column">
+                <h3 class="footer-title">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://sarsolutionz.blogspot.com/" class="footer-link">Security Blog</a></li>
+                    <li><a href="#" class="footer-link">Whitepapers</a></li>
+                    <li><a href="#" class="footer-link">Security Tools</a></li>
+                    <li><a href="#" class="footer-link">Sample Reports</a></li>
+                    <li><a href="#" class="footer-link">Testing Methodology</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="footer-column">
+                <h3 class="footer-title">Contact</h3>
+                <address class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <span>Mumbai, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock contact-icon"></i>
+                        <span>24/7 Emergency Support</span>
+                    </div>
+                </address>
             </div>
         </div>
-    </footer>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-legal">
+                <a href="/privacy" class="legal-link">Privacy Policy</a>
+                <a href="/terms" class="legal-link">Terms of Service</a>
+                <a href="/disclaimer" class="legal-link">Disclaimer</a>
+                <a href="/contact" class="legal-link">Contact</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 SAR SOLUTIONZ. All rights reserved.
+            </div>
+        </div>
+    </div>
+</footer>
 
 
     <!-- Scripts -->
@@ -2013,6 +2155,74 @@
         
 
         // chtbot end
+          // Animate footer when it comes into view
+    const footer = document.querySelector('.footer');
+    
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                footer.style.opacity = '1';
+                footer.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Initialize footer styles
+    footer.style.opacity = '0';
+    footer.style.transform = 'translateY(20px)';
+    footer.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    
+    // Start observing
+    footerObserver.observe(footer);
+
+    // Enhanced hover effects for links
+    document.querySelectorAll('.footer-link').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            link.style.transition = 'all 0.3s ease';
+        });
+    });
+
+    // form submit
+     // Update your form submission script
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            
+            // Create FormData object
+            const formData = new FormData(contactForm);
+            
+            // Send form data using Fetch API
+            fetch('https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Hide form and show success message
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem submitting your form. Please try again or email us directly.');
+            })
+            .finally(() => {
+                submitBtn.classList.remove('loading');
+            });
+        });
+    }
     </script>
 </body>
 </html>
