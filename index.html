@@ -42,6 +42,51 @@
 
 
 <style>
+    /* Add these to your existing CSS */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 0 10px 5px rgba(100, 255, 218, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+}
+
+@keyframes terminalGlow {
+  0% { box-shadow: 0 0 5px rgba(100, 255, 218, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(100, 255, 218, 0.3); }
+}
+
+/* Add these to your existing CSS */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 0 10px 5px rgba(100, 255, 218, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+}
+
+@keyframes terminalGlow {
+  0% { box-shadow: 0 0 5px rgba(100, 255, 218, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(100, 255, 218, 0.3); }
+}
        /* ========================================== */
 /* COMPREHENSIVE MOBILE RESPONSIVENESS FIXES */
 /* ========================================== */
@@ -2200,246 +2245,14 @@ header {
                 font-size: 24px;
             }
         }
-        /* Enhanced Chatbot Styles */
-#chatbot-container {
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(5, 15, 30, 0.95) 100%);
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.1),
-                0 10px 40px rgba(0, 0, 0, 0.5),
-                inset 0 0 10px rgba(100, 255, 218, 0.1);
-}
-
-#chatbot-header {
-    background: linear-gradient(90deg, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
-    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
-}
-
-.bot-message {
-    background: linear-gradient(135deg, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
-    border-left: 3px solid #64ffda;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.user-message {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 0.15) 0%, rgba(100, 255, 218, 0.05) 100%);
-    border-right: 3px solid #64ffda;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.system-message {
-    background: rgba(5, 217, 165, 0.1);
-    border: 1px dashed rgba(100, 255, 218, 0.5);
-    backdrop-filter: blur(5px);
-}
-
-#chatbot-footer {
-    background: linear-gradient(90deg, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
-    border-top: 1px solid rgba(100, 255, 218, 0.2);
-}
-
-#chatbot-input {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(100, 255, 218, 0.2);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-}
-
-#chatbot-input:focus {
-    border-color: #64ffda;
-    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3),
-                inset 0 0 10px rgba(100, 255, 218, 0.1);
-}
-
-/* Glow effect for important elements */
-.btn, .service-option, .quick-reply {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:hover, .service-option:hover, .quick-reply:hover {
-    box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
-}
-
-.btn::after, .service-option::after, .quick-reply::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to bottom right,
-        rgba(100, 255, 218, 0) 45%,
-        rgba(100, 255, 218, 0.1) 50%,
-        rgba(100, 255, 218, 0) 55%
-    );
-    transform: rotate(30deg);
-    pointer-events: none;
-}
-
-.btn:hover::after, .service-option:hover::after, .quick-reply:hover::after {
-    animation: shine 1.5s infinite;
-}
-
-@keyframes shine {
-    0% { transform: rotate(30deg) translate(-50%, -50%); }
-    100% { transform: rotate(30deg) translate(50%, 50%); }
-}
-/* Enhanced Chatbot Styles */
-#chatbot-container {
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(5, 15, 30, 0.95) 100%);
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.1),
-                0 10px 40px rgba(0, 0, 0, 0.5),
-                inset 0 0 10px rgba(100, 255, 218, 0.1);
-}
-
-#chatbot-header {
-    background: linear-gradient(90deg, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
-    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
-}
-
-.bot-message {
-    background: linear-gradient(135deg, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
-    border-left: 3px solid #64ffda;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.user-message {
-    background: linear-gradient(135deg, rgba(100, 255, 218, 0.15) 0%, rgba(100, 255, 218, 0.05) 100%);
-    border-right: 3px solid #64ffda;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.system-message {
-    background: rgba(5, 217, 165, 0.1);
-    border: 1px dashed rgba(100, 255, 218, 0.5);
-    backdrop-filter: blur(5px);
-}
-
-#chatbot-footer {
-    background: linear-gradient(90deg, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
-    border-top: 1px solid rgba(100, 255, 218, 0.2);
-}
-
-#chatbot-input {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(100, 255, 218, 0.2);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-}
-
-#chatbot-input:focus {
-    border-color: #64ffda;
-    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3),
-                inset 0 0 10px rgba(100, 255, 218, 0.1);
-}
-
-/* Glow effect for important elements */
-.btn, .service-option, .quick-reply {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:hover, .service-option:hover, .quick-reply:hover {
-    box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
-}
-
-.btn::after, .service-option::after, .quick-reply::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to bottom right,
-        rgba(100, 255, 218, 0) 45%,
-        rgba(100, 255, 218, 0.1) 50%,
-        rgba(100, 255, 218, 0) 55%
-    );
-    transform: rotate(30deg);
-    pointer-events: none;
-}
-
-.btn:hover::after, .service-option:hover::after, .quick-reply:hover::after {
-    animation: shine 1.5s infinite;
-}
-
-@keyframes shine {
-    0% { transform: rotate(30deg) translate(-50%, -50%); }
-    100% { transform: rotate(30deg) translate(50%, 50%); }
-}
-#chatbot-launcher {
-    background: linear-gradient(135deg, #64ffda 0%, #52d7d1 100%);
-    box-shadow: 0 0 20px rgba(100, 255, 218, 0.7),
-                0 0 40px rgba(100, 255, 218, 0.4),
-                inset 0 0 10px rgba(255, 255, 255, 0.2);
-    animation: pulse-glow 2s infinite alternate;
-    transition: all 0.3s ease;
-}
-
-@keyframes pulse-glow {
-    0% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.7), 0 0 40px rgba(100, 255, 218, 0.4); }
-    100% { box-shadow: 0 0 30px rgba(100, 255, 218, 0.9), 0 0 60px rgba(100, 255, 218, 0.6); }
-}
-
-#chatbot-launcher:hover {
-    transform: scale(1.1) rotate(10deg);
-    animation: none;
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.9),
-                0 0 60px rgba(100, 255, 218, 0.6),
-                inset 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-#chatbot-container {
-    perspective: 1000px;
-}
-
-.message {
-    transform-style: preserve-3d;
-    transform: translateZ(0);
-    transition: transform 0.3s ease;
-}
-
-.message:hover {
-    transform: translateZ(10px);
-}
-
-.bot-message::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(45deg, #64ffda, #00b4d8, #64ffda);
-    background-size: 200% 200%;
-    z-index: -1;
-    filter: blur(10px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    animation: gradientBG 3s ease infinite;
-}
-
-.bot-message:hover::before {
-    opacity: 0.3;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
     </style>
     
 </head>
 <body>
+    <!-- Audio elements for sound effects -->
+  <audio id="startupSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-robot-notification-915.mp3" preload="auto"></audio>
+  <audio id="typingSound" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-click-tech-2582.mp3" preload="auto"></audio>
+  <audio id="completeSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
       <!-- Header -->
     <header id="header">
         <a href="#" class="logo">SAR<span>SOLUTIONZ</span></a>
@@ -3452,50 +3265,14 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
         }
 
         // Show typing indicator
-       function showTyping() {
-    audioElements.typing.play();
-    
-    const typing = document.createElement('div');
-    typing.className = 'message bot-message typing';
-    typing.innerHTML = `
-    <div class="typing-indicator">
-        <div class="pulse-dot" style="animation-delay:0s"></div>
-        <div class="pulse-dot" style="animation-delay:0.2s"></div>
-        <div class="pulse-dot" style="animation-delay:0.4s"></div>
-    </div>
-    <div class="typing-text">Analyzing request...</div>
-    `;
-    
-    // Add CSS for the typing indicator
-    const style = document.createElement('style');
-    style.textContent = `
-        .typing-indicator {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'message bot-message typing';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            body.appendChild(typing);
+            scrollToBottom();
+            return typing;
         }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #64ffda;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-        .typing-text {
-            font-size: 12px;
-            color: #8892b0;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 1; }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    body.appendChild(typing);
-    scrollToBottom();
-    return typing;
-}
 
         // Scroll to bottom of chat
         function scrollToBottom() {
@@ -3519,154 +3296,249 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
             addMessage(container, false);
         }
 
-        // Welcome message
-        // Audio elements for sound effects
-const audioElements = {
-    powerOn: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-robot-notification-266.mp3'),
-    connection: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3'),
-    typing: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-keyboard-typing-1386.mp3'),
-    welcome: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3'),
-    error: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3'),
-    success: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3')
-};
-
-// Set volume for all sounds
-Object.values(audioElements).forEach(sound => {
-    sound.volume = 0.3;
-});
         function showWelcome() {
     currentState = 'welcome';
     body.innerHTML = '';
     
-    // Add futuristic terminal styling
-    body.style.background = 'radial-gradient(circle, #0a192f 0%, #020c1b 100%)';
-    body.style.color = '#64ffda';
-    body.style.fontFamily = "'Courier New', monospace";
-    body.style.padding = '20px';
-    body.style.boxShadow = 'inset 0 0 10px rgba(100, 255, 218, 0.3)';
+    // Play startup sound
+    const startupSound = document.getElementById('startupSound');
+    try {
+        startupSound.play();
+    } catch (e) {
+        console.log("Audio play failed:", e);
+    }
     
-    // Play power on sound
-    audioElements.powerOn.play();
+    // Create terminal-like container
+    const terminal = document.createElement('div');
+    terminal.style.fontFamily = "'Courier New', monospace";
+    terminal.style.fontSize = "14px";
+    terminal.style.color = "#64ffda";
+    terminal.style.backgroundColor = "#0a192f";
+    terminal.style.padding = "15px";
+    terminal.style.borderRadius = "5px";
+    terminal.style.border = "1px solid rgba(100, 255, 218, 0.3)";
+    terminal.style.boxShadow = "0 0 15px rgba(100, 255, 218, 0.2)";
+    terminal.style.overflow = "hidden";
+    terminal.style.position = "relative";
     
-    // Add scanning effect
-    const scanLine = document.createElement('div');
-    scanLine.style.position = 'absolute';
-    scanLine.style.top = '0';
-    scanLine.style.left = '0';
-    scanLine.style.width = '100%';
-    scanLine.style.height = '2px';
-    scanLine.style.background = 'linear-gradient(90deg, transparent, #64ffda, transparent)';
-    scanLine.style.animation = 'scan 3s linear';
-    body.appendChild(scanLine);
+    // Add blinking cursor effect
+    const cursor = document.createElement('span');
+    cursor.textContent = "▋";
+    cursor.style.animation = "blink 1s infinite";
     
-    // CSS for scan animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes scan {
-            0% { top: 0; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
-        .typing {
-            border-right: 2px solid #64ffda;
-            animation: blink 0.7s step-end infinite;
-        }
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: #64ffda }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // First message with typing effect
-    typeMessage("Initializing Sarsolutionz Assistant...", 0, () => {
-        audioElements.connection.play();
+    // Create typing function
+    function typeText(element, text, speed, callback) {
+        const typingSound = document.getElementById('typingSound');
+        let i = 0;
+        element.innerHTML = '';
         
-        // Second message with typing effect
-        typeMessage("Secure connection established 🔒", 800, () => {
-            audioElements.welcome.play();
-            
-            // Welcome message with advanced styling
-            const welcomeMsg = document.createElement('div');
-            welcomeMsg.innerHTML = `
-            <div style="margin-bottom:15px;font-size:18px;text-shadow:0 0 10px rgba(100, 255, 218, 0.7);">
-                <span style="color: #64ffda;font-weight:bold;font-size:22px;">SAR</span>
-                <span style="color: #ffffff;font-weight:bold;font-size:22px;">SOLUTIONZ</span>
-                <span style="display:inline-block;width:10px;height:10px;background:#64ffda;border-radius:50%;margin-left:5px;box-shadow:0 0 5px #64ffda;"></span>
-            </div>
-            <div style="font-size:14px;color:#ccd6f6;margin-bottom:20px;border-left:2px solid #64ffda;padding-left:10px;">
-                Advanced Assistant System Online
-            </div>
-            <div style="font-size:13px;color:#8892b0;margin-bottom:25px;font-style:italic;">
-                "How may I assist you today, sir?"
-            </div>
-            `;
-            
-            // Add message with fade-in effect
-            setTimeout(() => {
-                welcomeMsg.style.opacity = '0';
-                welcomeMsg.style.transition = 'opacity 0.5s ease-in';
-                body.appendChild(welcomeMsg);
-                setTimeout(() => welcomeMsg.style.opacity = '1', 50);
+        function typing() {
+            if (i < text.length) {
+                // Play typing sound randomly
+                if (Math.random() > 0.7) {
+                    try {
+                        typingSound.currentTime = 0;
+                        typingSound.play();
+                    } catch (e) {
+                        console.log("Typing sound error:", e);
+                    }
+                }
                 
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, speed);
+            } else {
+                if (callback) callback();
+            }
+        }
+        
+        typing();
+    }
+    
+    // Create initial message container
+    const messageContainer = document.createElement('div');
+    messageContainer.style.marginBottom = "10px";
+    terminal.appendChild(messageContainer);
+    
+    // First line - Initializing
+    const initLine = document.createElement('div');
+    initLine.style.display = "flex";
+    initLine.style.alignItems = "center";
+    initLine.style.gap = "5px";
+    messageContainer.appendChild(initLine);
+    
+    const initPrefix = document.createElement('span');
+    initPrefix.textContent = "> ";
+    initPrefix.style.color = "#64ffda";
+    initLine.appendChild(initPrefix);
+    
+    const initText = document.createElement('span');
+    initLine.appendChild(initText);
+    initLine.appendChild(cursor.cloneNode(true));
+    
+    // Second line - Secure connection
+    const secureLine = document.createElement('div');
+    secureLine.style.display = "flex";
+    secureLine.style.alignItems = "center";
+    secureLine.style.gap = "5px";
+    secureLine.style.marginTop = "10px";
+    messageContainer.appendChild(secureLine);
+    
+    const securePrefix = document.createElement('span');
+    securePrefix.textContent = "> ";
+    securePrefix.style.color = "#64ffda";
+    secureLine.appendChild(securePrefix);
+    
+    const secureText = document.createElement('span');
+    secureLine.appendChild(secureText);
+    secureLine.appendChild(cursor.cloneNode(true));
+    
+    // Welcome message container
+    const welcomeContainer = document.createElement('div');
+    welcomeContainer.style.marginTop = "20px";
+    terminal.appendChild(welcomeContainer);
+    
+    // Add terminal to chat
+    body.appendChild(terminal);
+    scrollToBottom();
+    
+    // Type the initialization sequence
+    typeText(initText, "Initializing Sarsolutionz Assistant...", 50, () => {
+        setTimeout(() => {
+            // Remove cursor from first line
+            initLine.removeChild(initLine.lastChild);
+            
+            // Add checkmark
+            const checkmark = document.createElement('span');
+            checkmark.innerHTML = " ✓";
+            checkmark.style.color = "#4CAF50";
+            initLine.appendChild(checkmark);
+            
+            // Play completion sound
+            const completeSound = document.getElementById('completeSound');
+            try {
+                completeSound.play();
+            } catch (e) {
+                console.log("Complete sound error:", e);
+            }
+            
+            // Start second line
+            typeText(secureText, "Secure connection established", 50, () => {
+                // Add lock icon
+                const lockIcon = document.createElement('span');
+                lockIcon.innerHTML = " 🔒";
+                secureText.appendChild(lockIcon);
+                
+                // Remove cursor from second line
+                secureLine.removeChild(secureLine.lastChild);
+                
+                // Add checkmark
+                const checkmark2 = document.createElement('span');
+                checkmark2.innerHTML = " ✓";
+                checkmark2.style.color = "#4CAF50";
+                secureLine.appendChild(checkmark2);
+                
+                // Play completion sound again
+                try {
+                    completeSound.currentTime = 0;
+                    completeSound.play();
+                } catch (e) {
+                    console.log("Complete sound error:", e);
+                }
+                
+                // Show welcome message after delay
                 setTimeout(() => {
-                    showMainMenu();
+                    // Create welcome message with animation
+                    const welcomeMsg = document.createElement('div');
+                    welcomeMsg.style.marginTop = "20px";
+                    welcomeMsg.style.padding = "15px";
+                    welcomeMsg.style.backgroundColor = "rgba(100, 255, 218, 0.1)";
+                    welcomeMsg.style.borderLeft = "3px solid #64ffda";
+                    welcomeMsg.style.borderRadius = "0 8px 8px 0";
+                    welcomeMsg.style.animation = "slideIn 0.5s ease-out";
+                    
+                    const welcomeTitle = document.createElement('div');
+                    welcomeTitle.style.fontSize = "16px";
+                    welcomeTitle.style.fontWeight = "bold";
+                    welcomeTitle.style.marginBottom = "10px";
+                    welcomeTitle.style.color = "#64ffda";
+                    welcomeTitle.innerHTML = "Welcome to <span style='color:#e6f1ff;'>SAR SOLUTIONZ</span> Security Assistant";
+                    welcomeMsg.appendChild(welcomeTitle);
+                    
+                    const welcomeSub = document.createElement('div');
+                    welcomeSub.style.fontSize = "13px";
+                    welcomeSub.style.color = "#8892b0";
+                    welcomeSub.style.marginBottom = "15px";
+                    welcomeSub.textContent = "How can we assist you today?";
+                    welcomeMsg.appendChild(welcomeSub);
+                    
+                    // Add pulse animation to options
+                    const optionsMsg = document.createElement('div');
+                    optionsMsg.style.display = "flex";
+                    optionsMsg.style.flexDirection = "column";
+                    optionsMsg.style.gap = "10px";
+                    
+                    const option1 = document.createElement('div');
+                    option1.style.display = "flex";
+                    option1.style.alignItems = "center";
+                    option1.style.gap = "10px";
+                    option1.style.padding = "10px";
+                    option1.style.backgroundColor = "rgba(100, 255, 218, 0.05)";
+                    option1.style.borderRadius = "5px";
+                    option1.style.cursor = "pointer";
+                    option1.style.transition = "all 0.3s";
+                    option1.style.animation = "pulse 2s infinite";
+                    option1.innerHTML = `<i class="fas fa-shield-alt"></i> Security Services`;
+                    option1.addEventListener('click', () => showServices('security'));
+                    optionsMsg.appendChild(option1);
+                    
+                    const option2 = document.createElement('div');
+                    option2.style.display = "flex";
+                    option2.style.alignItems = "center";
+                    option2.style.gap = "10px";
+                    option2.style.padding = "10px";
+                    option2.style.backgroundColor = "rgba(100, 255, 218, 0.05)";
+                    option2.style.borderRadius = "5px";
+                    option2.style.cursor = "pointer";
+                    option2.style.transition = "all 0.3s";
+                    option2.style.animation = "pulse 2s infinite 0.5s";
+                    option2.innerHTML = `<i class="fas fa-code"></i> Development Services`;
+                    option2.addEventListener('click', () => showServices('development'));
+                    optionsMsg.appendChild(option2);
+                    
+                    const option3 = document.createElement('div');
+                    option3.style.display = "flex";
+                    option3.style.alignItems = "center";
+                    option3.style.gap = "10px";
+                    option3.style.padding = "10px";
+                    option3.style.backgroundColor = "rgba(100, 255, 218, 0.05)";
+                    option3.style.borderRadius = "5px";
+                    option3.style.cursor = "pointer";
+                    option3.style.transition = "all 0.3s";
+                    option3.style.animation = "pulse 2s infinite 1s";
+                    option3.innerHTML = `<i class="fas fa-question-circle"></i> FAQ`;
+                    option3.addEventListener('click', showFAQ);
+                    optionsMsg.appendChild(option3);
+                    
+                    welcomeMsg.appendChild(optionsMsg);
+                    welcomeContainer.appendChild(welcomeMsg);
+                    
+                    // Scroll to bottom
+                    scrollToBottom();
+                    
+                    // Play welcome sound
+                    try {
+                        completeSound.currentTime = 0;
+                        completeSound.play();
+                    } catch (e) {
+                        console.log("Welcome sound error:", e);
+                    }
                 }, 500);
-            }, 300);
-        });
+            });
+        }, 300);
     });
 }
 
-// Helper function for typing effect
-function typeMessage(text, delay, callback) {
-    setTimeout(() => {
-        audioElements.typing.play();
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'typing';
-        body.appendChild(messageDiv);
-        
-        let i = 0;
-        const typingInterval = setInterval(() => {
-            if (i < text.length) {
-                messageDiv.textContent = text.substring(0, i+1);
-                i++;
-            } else {
-                clearInterval(typingInterval);
-                messageDiv.classList.remove('typing');
-                audioElements.typing.pause();
-                audioElements.typing.currentTime = 0;
-                if (callback) callback();
-            }
-        }, 50 + Math.random() * 50); // Random typing speed for realism
-    }, delay);
-}
-function addMessage(text, isUser = false, isSystem = false) {
-    const msg = document.createElement('div');
-    
-    if (isSystem) {
-        msg.className = 'system-message';
-    } else {
-        msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-    }
-
-    // Play sound based on message type
-    if (isUser) {
-        audioElements.connection.play();
-    } else if (!isSystem) {
-        audioElements.success.play();
-    }
-
-    if (typeof text === 'string') {
-        msg.textContent = text;
-    } else {
-        msg.appendChild(text);
-    }
-
-    body.appendChild(msg);
-    scrollToBottom();
-    return msg;
-}
         // Main menu options
         function showMainMenu() {
             currentState = 'main_menu';
@@ -4178,33 +4050,6 @@ document.addEventListener('keydown', e => {
     alert('View source disabled');
   }
 });
-
-function speak(text) {
-    if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        
-        // Try to find a suitable voice
-        const voices = speechSynthesis.getVoices();
-        const preferredVoice = voices.find(voice => 
-            voice.name.includes('Google UK English Male') || 
-            voice.name.includes('Microsoft David') ||
-            voice.name.includes('Alex')
-        );
-        
-        if (preferredVoice) {
-            utterance.voice = preferredVoice;
-        }
-        
-        utterance.rate = 0.9;
-        utterance.pitch = 0.8;
-        utterance.volume = 0.8;
-        
-        speechSynthesis.speak(utterance);
-    }
-}
-
-// Call this when you want the bot to "speak"
-// Example: speak("Welcome to Sarsolutionz Assistant. How may I help you today?");
     </script>
 </body>
 </html>
