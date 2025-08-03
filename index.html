@@ -1,36 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional penetration testing and cybersecurity services to protect your business from digital threats">
-    <meta name="keywords" content="pentesting, cybersecurity, red teaming, vulnerability assessment, penetration testing, VAPT">
-    <title>SAR SOLUTIONZ | Dev & Cybersecurity Solutions</title>
+    <!-- Primary Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+<meta name="theme-color" content="#0a192f">
+
+<!-- SEO Meta Tags -->
+<title>SAR SOLUTIONZ | Top Cybersecurity & Dev Solutions | Penetration Testing Experts</title>
+<meta name="description" content="Enterprise-grade cybersecurity solutions & secure development services. Specializing in penetration testing, red teaming, VAPT, and secure application development. Protect your digital assets today.">
+<meta name="keywords" content="penetration testing, cybersecurity services, red teaming, vulnerability assessment, secure development, VAPT testing, web application security, network pentesting, cloud security, ethical hacking">
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:title" content="SAR SOLUTIONZ | Cybersecurity & Secure Development Experts">
+<meta property="og:description" content="Enterprise-grade penetration testing and secure development services to protect your business from evolving digital threats.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sarsolutionz.com">
+<meta property="og:image" content="https://www.sarsolutionz.com/images/og-image.jpg">
+<meta property="og:site_name" content="SAR SOLUTIONZ">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SAR SOLUTIONZ | Cybersecurity & Secure Development Experts">
+<meta name="twitter:description" content="Professional penetration testing and secure coding services to protect your digital infrastructure.">
+<meta name="twitter:image" content="https://www.sarsolutionz.com/images/twitter-card.jpg">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://www.sarsolutionz.com">
+
+<!-- Fonts & Assets -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+<style>
+       /* ========================================== */
+/* COMPREHENSIVE MOBILE RESPONSIVENESS FIXES */
+/* ========================================== */
+
+@media (max-width: 768px) {
+  /* Service Cards Fixes */
+  .service-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    min-height: auto;
+  }
+  
+  .service-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .service-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    hyphens: auto;
+    word-wrap: break-word;
+  }
+  
+  .service-link {
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Contact Form Fixes */
+  .contact-form {
+    padding: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-control {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+  
+  textarea.form-control {
+    min-height: 120px;
+  }
+  
+  .form-check {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  #nda-check {
+    margin-right: 8px;
+    min-width: 18px;
+    height: 18px;
+  }
+  
+  .form-check-label {
+    white-space: normal;
+    font-size: 14px;
+  }
+  
+ /* Base Button Styles */
+/* Base Button Styles */
+.submit-bttn {
+  position: relative;
+  background: linear-gradient(135deg, #64ffda 0%, #52d7d1 100%);
+  color: #0a192f;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Hover Effect */
+.submit-bttn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4);
+  background: linear-gradient(135deg, #64ffda 0%, #52d7d1 70%);
+}
+
+/* Loading State */
+.submit-bttn.loading {
+  color: transparent;
+}
+
+.submit-bttn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 3px solid transparent;
+  border-top-color: #0a192f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success State */
+.submit-bttn.success {
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.submit-bttn.success::before {
+  content: "✓";
+  position: absolute;
+  font-size: 20px;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+@keyframes bounceIn {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Ripple Effect */
+.submit-bttn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.submit-bttn:focus:not(:active)::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% { transform: scale(0, 0) translate(-50%, -50%); opacity: 0.5; }
+  100% { transform: scale(20, 20) translate(-50%, -50%); opacity: 0; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0, 0); opacity: 0.5; }
+  100% { transform: scale(20, 20); opacity: 0; }
+}
+  /* General Layout Improvements */
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .services-container, 
+  .certifications-container,
+  .team-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* Footer Fixes */
+  .footer-tagline {
+    font-size: 0.9rem;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra Small Screen Adjustments */
+  .service-card {
+    padding: 1.2rem;
+  }
+  
+  .contact-form {
+    padding: 1.2rem;
+  }
+  
+  .form-control {
+    padding: 10px 12px;
+  }
+  
+   .submit-bttn {
+    padding: 12px;
+  }
+}
+/* :root {
+    --primary-dark: #0a192f;
+    --secondary-dark: #172a45;
+    --accent: #64ffda;
+    --accent-light: #88ffdf;
+    --text-primary: #ccd6f6;
+    --text-secondary: #8892b0;
+    --white: #e6f1ff;
+} */
+
+/* Fix for transparent text - force opacity */
+body, .message, .service-card, .certification-card, .team-member {
+    opacity: 1 !important;
+}
+
+/* Scroll to top button fixes */
+.scroll-top {
+    position: fixed;
+    bottom: 100px !important;  /* Position above chatbot */
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #64ffda;
+    color: #0a192f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1100 !important;  /* Higher than everything */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Chatbot container fixes */
+#chatbot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 380px;
+    max-height: 70vh;
+    background: #0a192f; 
+    border: 2px solid  #64ffda;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#chatbot-body {
+    background:  #0a192f;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Message bubble fixes */
+.message {
+    background: #172a45;
+    color: #ccd6f6;
+    max-width: 85%;
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    line-height: 1.5;
+    font-size: 14px;
+    opacity: 1 !important;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bot-message {
+    border-left: 3px solid  #64ffda;
+    margin-right: auto;
+}
+
+.user-message {
+    background: rgba(100, 255, 218, 0.15) !important;
+    border-right: 3px solid  #64ffda;
+    margin-left: auto;
+}
+
+/* Chatbot launcher fixes */
+#chatbot-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background:  #64ffda;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 25px rgba(100, 255, 218, 0.7);
+    z-index: 1001;
+    transition: all 0.3s ease;
+    border: 2px solid  #0a192f;
+}
+
+/* Text visibility fixes */
+h1, h2, h3, h4, h5, h6,
+p, a, span, li, .service-card,
+.certification-card, .team-member {
+    color:#ccd6f6;
+    opacity: 1 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Force visible elements */
+.header, .nav-links, .hero-content,
+section, .footer {
+    opacity: 1 !important;
+}
+
+/* Z-index hierarchy fix */
+header {
+    z-index: 900;
+}
+
+.scroll-top {
+    z-index: 1100;
+}
+
+#chatbot-launcher {
+    z-index: 1001;
+}
+
+#chatbot-container {
+    z-index: 1000;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .scroll-top {
+        bottom: 80px !important;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+    #chatbot-container {
+        width: 90%;
+        right: 5%;
+        max-height: 60vh;
+    }
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    #chatbot-launcher {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-top {
+        bottom: 70px !important;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    #chatbot-container {
+        width: 95%;
+        right: 2.5%;
+        max-height: 50vh;
+        bottom: 20px;
+    }
     
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-dark: #0a192f;
-            --secondary-dark: #172a45;
-            --accent: #64ffda;
-            --accent-light: #88ffdf;
-            --text-primary: #ccd6f6;
-            --text-secondary: #8892b0;
-            --white: #e6f1ff;
-        }
+    #chatbot-launcher {
+        width: 45px;
+        height: 45px;
+    }
+}
         
         * {
             margin: 0;
@@ -40,8 +442,8 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--primary-dark);
-            color: var(--text-primary);
+            background-color: #0a192f;
+            color:#ccd6f6;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -76,14 +478,14 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--accent);
+            color:  #64ffda;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
         .logo span {
-            color: var(--white);
+            color:#e6f1ff;
         }
         
         .nav-links {
@@ -100,7 +502,7 @@
         }
         
         .nav-links a:hover {
-            color: var(--accent);
+            color:  #64ffda;
         }
         
         .nav-links a::after {
@@ -110,7 +512,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--accent);
+            background-color:  #64ffda;
             transition: width 0.3s ease;
         }
         
@@ -120,8 +522,8 @@
         
         .cta-button {
             background-color: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
+            color:  #64ffda;
+            border: 1px solid  #64ffda;
             padding: 0.7rem 1.5rem;
             border-radius: 5px;
             font-weight: 500;
@@ -148,7 +550,7 @@
             position: absolute;
             height: 3px;
             width: 100%;
-            background: var(--accent);
+            background:  #64ffda;
             border-radius: 3px;
             opacity: 1;
             left: 0;
@@ -195,7 +597,7 @@
             right: -100%;
             width: 70%;
             height: 100vh;
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
@@ -215,7 +617,7 @@
         .mobile-menu a {
             font-size: 1.2rem;
             position: relative;
-            color: var(--text-primary);
+            color: #ccd6f6;
             transition: color 0.3s ease;
         }
         
@@ -226,7 +628,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--accent);
+            background-color: #64ffda;
             transition: width 0.3s ease;
         }
         
@@ -235,7 +637,7 @@
         }
         
         .mobile-menu a:hover {
-            color: var(--accent);
+            color: #64ffda;
         }
         
         .mobile-close-btn {
@@ -243,7 +645,7 @@
             top: 2rem;
             right: 2rem;
             font-size: 1.5rem;
-            color: var(--accent);
+            color:  #64ffda;
             background: none;
             border: none;
             cursor: pointer;
@@ -271,18 +673,18 @@
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
-            color: var(--white);
+            color: #e6f1ff;
             line-height: 1.1;
         }
         
         .hero h1 span {
-            color: var(--accent);
+            color:  #64ffda;
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2.5rem;
-            color: var(--text-secondary);
+            color:#8892b0;
             max-width: 600px;
         }
         
@@ -293,8 +695,8 @@
         }
         
         .primary-button {
-            background-color: var(--accent);
-            color: var(--primary-dark);
+            background-color: #64ffda;
+            color:  #0a192f;
             padding: 0.9rem 2rem;
             border-radius: 5px;
             font-weight: 600;
@@ -308,11 +710,11 @@
         
         .secondary-button {
             background-color: transparent;
-            color: var(--accent);
+            color: #64ffda;
             padding: 0.9rem 2rem;
             border-radius: 5px;
             font-weight: 600;
-            border: 1px solid var(--accent);
+            border: 1px solid #64ffda;
             transition: all 0.3s ease;
         }
         
@@ -340,16 +742,16 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             text-align: center;
-            color: var(--white);
+            color:  #e6f1ff;
         }
         
         .section-title span {
-            color: var(--accent);
+            color:  #64ffda;
         }
         
         .section-subtitle {
             text-align: center;
-            color: var(--text-secondary);
+            color: #8892b0;
             max-width: 700px;
             margin: 0 auto 3rem;
             font-size: 1.1rem;
@@ -366,12 +768,12 @@
         .about-text h2 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            color: var(--white);
+            color:  #e6f1ff;
         }
         
         .about-text p {
             margin-bottom: 1.5rem;
-            color: var(--text-secondary);
+            color: #8892b0;
         }
         
         .about-stats {
@@ -384,7 +786,7 @@
         .stat-item {
             text-align: center;
             padding: 1.5rem;
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
@@ -396,13 +798,13 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--accent);
+            color:  #64ffda;
             margin-bottom: 0.5rem;
         }
         
         .stat-label {
             font-size: 1rem;
-            color: var(--text-secondary);
+            color: #8892b0;
         }
         
         .about-image {
@@ -426,7 +828,7 @@
         }
         
         .certification-card {
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             border-radius: 10px;
             padding: 2rem;
             transition: transform 0.3s ease;
@@ -442,18 +844,18 @@
         
         .certification-icon {
             font-size: 3rem;
-            color: var(--accent);
+            color:  #64ffda;
             margin-bottom: 1.5rem;
         }
         
         .certification-card h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color:  #e6f1ff;
         }
         
         .certification-card p {
-            color: var(--text-secondary);
+            color: #8892b0;
             margin-bottom: 1.5rem;
         }
         
@@ -478,7 +880,7 @@
         }
         
         .team-member {
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease;
@@ -513,17 +915,17 @@
         .member-info h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--white);
+            color:  #e6f1ff;
         }
         
         .member-info p {
-            color: var(--accent);
+            color:  #64ffda;
             margin-bottom: 1rem;
             font-weight: 500;
         }
         
         .member-bio {
-            color: var(--text-secondary);
+            color: #8892b0;
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
@@ -546,8 +948,8 @@
         }
         
         .member-social a:hover {
-            background-color: var(--accent);
-            color: var(--primary-dark);
+            background-color:  #64ffda;
+            color: #0a192f;
         }
         
         /* Services Section */
@@ -559,7 +961,7 @@
         }
         
         .service-card {
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             border-radius: 10px;
             padding: 2.5rem 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -592,25 +994,25 @@
         
         .service-icon {
             font-size: 2.5rem;
-            color: var(--accent);
+            color:  #64ffda;
             margin-bottom: 1.5rem;
         }
         
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color:  #e6f1ff;
         }
         
         .service-card p {
-            color: var(--text-secondary);
+            color: #8892b0;
             margin-bottom: 1.5rem;
         }
         
         .service-link {
             display: inline-flex;
             align-items: center;
-            color: var(--accent);
+            color:  #64ffda;
             font-weight: 500;
             transition: transform 0.3s ease;
         }
@@ -637,7 +1039,7 @@
         }
         
         .testimonial-card {
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             border-radius: 10px;
             padding: 2rem;
             position: relative;
@@ -656,7 +1058,7 @@
         
         .testimonial-content {
             margin-bottom: 1.5rem;
-            color: var(--text-secondary);
+            color: #8892b0;
             font-style: italic;
             position: relative;
             z-index: 1;
@@ -683,13 +1085,13 @@
         
         .author-info h4 {
             font-size: 1.1rem;
-            color: var(--white);
+            color:  #e6f1ff;
             margin-bottom: 0.2rem;
         }
         
         .author-info p {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #8892b0;
         }
         
         /* Contact Section */
@@ -714,29 +1116,30 @@
         
         .contact-icon {
             font-size: 1.5rem;
-            color: var(--accent);
+            color:  #64ffda;
         }
         
         .contact-details h3 {
             font-size: 1.2rem;
-            color: var(--white);
+            color:  #e6f1ff;
             margin-bottom: 0.5rem;
         }
         
         .contact-details p, .contact-details a {
-            color: var(--text-secondary);
+            color: #8892b0;
             transition: color 0.3s ease;
         }
         
         .contact-details a:hover {
-            color: var(--accent);
+            color:  #64ffda;
         }
         
         .contact-form {
-            background-color: var(--secondary-dark);
+            background-color: #172a45;
             padding: 2.5rem;
             border-radius: 10px;
         }
+        
         
         .form-group {
             margin-bottom: 1.5rem;
@@ -745,7 +1148,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--white);
+            color:  #e6f1ff;
             font-weight: 500;
         }
         
@@ -755,14 +1158,14 @@
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 5px;
-            color: var(--white);
+            color:  #e6f1ff;
             font-family: 'Inter', sans-serif;
             transition: border-color 0.3s ease;
         }
         
         .form-control:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color:  #64ffda;
         }
         
         select.form-control {
@@ -774,8 +1177,8 @@
         }
         
         select.form-control option {
-            background-color: var(--secondary-dark);
-            color: var(--white);
+            background-color: #172a45;
+            color:  #e6f1ff;
         }
         
         textarea.form-control {
@@ -783,9 +1186,9 @@
             resize: vertical;
         }
         
-        .submit-btn {
-            background-color: var(--accent);
-            color: var(--primary-dark);
+        .submit-bttn {
+            background-color:  #64ffda;
+            color: #0a192f;
             padding: 0.9rem 2rem;
             border: none;
             border-radius: 5px;
@@ -796,17 +1199,17 @@
             overflow: hidden;
         }
         
-        .submit-btn:hover {
+         .submit-bttn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
         }
         
-        .submit-btn .btn-text {
+         .submit-bttn .btn-text {
             position: relative;
             z-index: 2;
         }
         
-        .submit-btn .btn-loader {
+         .submit-bttn .btn-loader {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -814,18 +1217,18 @@
             width: 20px;
             height: 20px;
             border: 3px solid transparent;
-            border-top-color: var(--primary-dark);
+            border-top-color: #0a192f;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         
-        .submit-btn.loading .btn-text {
+         .submit-bttn.loading .btn-text {
             opacity: 0;
         }
         
-        .submit-btn.loading .btn-loader {
+         .submit-bttn.loading .btn-loader {
             opacity: 1;
         }
         
@@ -842,7 +1245,7 @@
         
         .form-success i {
             font-size: 4rem;
-            color: var(--accent);
+            color:  #64ffda;
             margin-bottom: 1.5rem;
             animation: bounce 1s;
         }
@@ -856,11 +1259,11 @@
         .form-success h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color:  #e6f1ff;
         }
         
         .form-success p {
-            color: var(--text-secondary);
+            color: #8892b0;
             margin-bottom: 1.5rem;
         }
         
@@ -888,8 +1291,8 @@
         
          /* Footer */
         .footer {
-        background-color: var(--secondary-dark);
-        color: var(--text-primary);
+        background-color: #172a45;
+        color:#ccd6f6;
         padding: 4rem 5% 2rem;
         position: relative;
         overflow: hidden;
@@ -929,7 +1332,7 @@
         margin-bottom: 1.5rem;
         font-size: 1.8rem;
         font-weight: 700;
-        color: var(--accent);
+        color:  #64ffda;
     }
 
     .logo-shape {
@@ -939,11 +1342,11 @@
     }
 
     .logo-text span {
-        color: var(--white);
+        color:  #e6f1ff;
     }
 
     .footer-tagline {
-        color: var(--text-secondary);
+        color: #8892b0;
         margin-bottom: 1.5rem;
         line-height: 1.6;
     }
@@ -961,7 +1364,7 @@
         align-items: center;
         justify-content: center;
         background-color: rgba(100, 255, 218, 0.1);
-        color: var(--accent);
+        color:  #64ffda;
         transition: all 0.3s ease;
     }
 
@@ -973,7 +1376,7 @@
     .footer-title {
         font-family: 'Space Grotesk', sans-serif;
         font-size: 1.3rem;
-        color: var(--white);
+        color:  #e6f1ff;
         margin-bottom: 1.5rem;
         position: relative;
         padding-bottom: 0.5rem;
@@ -986,7 +1389,7 @@
         bottom: 0;
         width: 40px;
         height: 2px;
-        background-color: var(--accent);
+        background-color:  #64ffda;
     }
 
     .footer-links {
@@ -998,7 +1401,7 @@
     }
 
     .footer-link {
-        color: var(--text-secondary);
+        color: #8892b0;
         font-size: 0.9rem;
         transition: all 0.3s ease;
         position: relative;
@@ -1010,12 +1413,12 @@
         position: absolute;
         left: -15px;
         opacity: 0;
-        color: var(--accent);
+        color:  #64ffda;
         transition: all 0.3s ease;
     }
 
     .footer-link:hover {
-        color: var(--accent);
+        color:  #64ffda;
         padding-left: 15px;
     }
 
@@ -1036,18 +1439,18 @@
     }
 
     .contact-icon {
-        color: var(--accent);
+        color:  #64ffda;
         margin-top: 0.2rem;
         font-size: 1rem;
     }
 
     .footer-contact a {
-        color: var(--text-secondary);
+        color: #8892b0;
         transition: color 0.3s ease;
     }
 
     .footer-contact a:hover {
-        color: var(--accent);
+        color:  #64ffda;
     }
 
     .footer-bottom {
@@ -1065,17 +1468,17 @@
     }
 
     .legal-link {
-        color: var(--text-secondary);
+        color: #8892b0;
         font-size: 0.9rem;
         transition: color 0.3s ease;
     }
 
     .legal-link:hover {
-        color: var(--accent);
+        color:  #64ffda;
     }
 
     .footer-copyright {
-        color: var(--text-secondary);
+        color: #8892b0;
         font-size: 0.9rem;
     }
 
@@ -1108,8 +1511,8 @@
             right: 2rem;
             width: 50px;
             height: 50px;
-            background-color: var(--accent);
-            color: var(--primary-dark);
+            background-color:  #64ffda;
+            color: #0a192f;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1229,14 +1632,14 @@
         .hero-title {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             margin-bottom: 1.5rem;
-            color: var(--white);
+            color:  #e6f1ff;
             line-height: 1.1;
             font-weight: 800;
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
-            color: var(--accent);
+            color:  #64ffda;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
@@ -1244,7 +1647,7 @@
         .hero-description {
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
-            color: var(--text-secondary);
+            color: #8892b0;
             max-width: 600px;
             line-height: 1.6;
         }
@@ -1285,20 +1688,20 @@
         }
         
         .hero-social a {
-            color: var(--text-secondary);
+            color: #8892b0;
             font-size: 1.5rem;
             transition: all 0.3s ease;
         }
         
         .hero-social a:hover {
-            color: var(--accent);
+            color:  #64ffda;
             transform: translateY(-3px);
         }
         
         .hero-social-line {
             width: 100px;
             height: 1px;
-            background-color: var(--text-secondary);
+            background-color: #8892b0;
         }
         
         /* Animated Underline */
@@ -1314,7 +1717,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--accent);
+            background-color:  #64ffda;
             transform: scaleX(0);
             transform-origin: bottom right;
             transition: transform 0.3s ease-out;
@@ -1336,53 +1739,472 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* chatbot */
-
-        /* chatbot end */
-         .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-    
-    .form-group {
-        margin-bottom: 1.5rem;
-        padding-right: 15px;
-        padding-left: 15px;
-        width: 100%;
-    }
-    
-    .form-group.col-md-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-    
-    .form-check {
-        display: flex;
-        align-items: center;
-    }
-    
-    .form-check-input {
-        margin-right: 10px;
-        margin-top: 0;
-    }
-    
-    .form-check-label {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-    }
-    
-    @media (max-width: 768px) {
-        .form-group.col-md-6 {
-            flex: 0 0 100%;
-            max-width: 100%;
+        /* ========================================= */
+        /* CHATBOT SPECIFIC STYLES (SCOPED TO CHATBOT) */
+        /* ========================================= */
+        
+        /* Chatbot Launcher */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background:  #64ffda;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(100, 255, 218, 0.7);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            border: 2px solid #0a192f;
         }
-    }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(100, 255, 218, 0.7);
+        }
+
+        #chatbot-launcher i {
+            font-size: 28px;
+            color: #0a192f;
+        }
+
+        /* Chatbot Container */
+        #chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            max-height: 70vh;
+            background: #0a192f;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid  #64ffda;
+            overflow: hidden;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Chatbot Header */
+        #chatbot-header {
+            padding: 15px 20px;
+            background: #172a45;
+            color:  #64ffda;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        #chatbot-header h3 i {
+            font-size: 18px;
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: #8892b0;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+
+        #close-chat:hover {
+            color:  #64ffda;
+        }
+
+        /* Chatbot Body */
+        #chatbot-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #0a192f;
+        }
+
+        /* Messages */
+        #chatbot-body .message {
+            max-width: 85%;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease;
+            transform-origin: bottom;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #chatbot-body .bot-message {
+            background: #172a45;
+            color:#ccd6f6;
+            border-radius: 8px 8px 8px 2px;
+            margin-right: auto;
+            border-left: 3px solid  #64ffda;
+        }
+
+        #chatbot-body .user-message {
+            background: rgba(100, 255, 218, 0.15);
+            color:#ccd6f6;
+            border-radius: 8px 8px 2px 8px;
+            margin-left: auto;
+            border-right: 3px solid  #64ffda;
+        }
+
+        #chatbot-body .system-message {
+            background: rgba(5, 217, 165, 0.1);
+            color:  #64ffda;
+            border-radius: 8px;
+            margin: 15px auto;
+            text-align: center;
+            font-size: 13px;
+            padding: 10px;
+            border: 1px dashed  #64ffda;
+            max-width: 90%;
+        }
+
+        /* Chatbot Footer */
+        #chatbot-footer {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #172a45;
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+            color:#ccd6f6;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-input:focus {
+            border-color:  #64ffda;
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3);
+        }
+
+        #chatbot-input::placeholder {
+            color: #8892b0;
+        }
+
+        /* Typing Indicator */
+        #chatbot-body .typing {
+            display: inline-flex;
+            gap: 6px;
+            padding: 12px 16px;
+            background: #172a45;
+            border-radius: 8px 8px 8px 2px;
+            border-left: 3px solid  #64ffda;
+        }
+
+        #chatbot-body .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #8892b0;
+            border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+
+        #chatbot-body .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        #chatbot-body .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Buttons & Quick Replies */
+        #chatbot-body .quick-reply {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color:#ccd6f6;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #chatbot-body .quick-reply:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color:  #64ffda;
+            transform: translateY(-2px);
+        }
+
+        #chatbot-body .btn {
+            padding: 10px 20px;
+            background:  #64ffda;
+            color: #0a192f;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        #chatbot-body .btn:hover {
+            background:  #88ffdf;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
+        }
+
+        #chatbot-body .btn-block {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        #chatbot-body .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color:#ccd6f6;
+        }
+
+        #chatbot-body .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Service Options */
+        #chatbot-body .service-option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.05);
+            color:#ccd6f6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #chatbot-body .service-option:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-left-color:  #64ffda;
+        }
+
+        #chatbot-body .service-option i {
+            margin-right: 10px;
+            color:  #64ffda;
+        }
+
+        #chatbot-body .service-option.selected {
+            background: rgba(100, 255, 218, 0.1);
+            border-left-color:  #64ffda;
+        }
+
+        /* Form Elements */
+        #chatbot-body .form-group {
+            margin-bottom: 15px;
+        }
+
+        #chatbot-body .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #8892b0;
+            font-size: 13px;
+        }
+
+        #chatbot-body .form-group input,
+        #chatbot-body .form-group select,
+        #chatbot-body .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color:#ccd6f6;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+
+        #chatbot-body .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        #chatbot-body .file-upload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        #chatbot-body .file-upload input {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+
+        #chatbot-body .upload-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: rgba(100, 255, 218, 0.2);
+            color:  #64ffda;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px dashed  #64ffda;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        #chatbot-body .upload-btn:hover {
+            background: rgba(100, 255, 218, 0.3);
+        }
+
+        #chatbot-body .file-name {
+            font-size: 12px;
+            color: #8892b0;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Timeline Selector */
+        #chatbot-body .timeline-selector {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        #chatbot-body .timeline-option {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        #chatbot-body .timeline-option:hover,
+        #chatbot-body .timeline-option.selected {
+            background:  #64ffda;
+            color: #0a192f;
+        }
+
+        /* Back Button */
+        #chatbot-body .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #8892b0;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: color 0.2s ease;
+        }
+
+        #chatbot-body .back-button:hover {
+            color:  #64ffda;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                max-height: 65vh;
+            }
+            
+            #chatbot-launcher {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #chatbot-container {
+                width: 95%;
+                right: 2.5%;
+                max-height: 60vh;
+                bottom: 10px;
+            }
+            
+            #chatbot-launcher {
+                width: 45px;
+                height: 45px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            #chatbot-launcher i {
+                font-size: 24px;
+            }
+        }
     </style>
+    
 </head>
 <body>
-    <!-- Header -->
+      <!-- Header -->
     <header id="header">
         <a href="#" class="logo">SAR<span>SOLUTIONZ</span></a>
         
@@ -1391,9 +2213,8 @@
             <a href="#services">Services</a>
             <a href="#certifications">Certifications</a>
             <a href="#team">Team</a>
-            <!-- <a href="#testimonials">Clients</a> -->
             <a href="#contact">Contact</a>
-            <button class="cta-button">Get Assessment</button>
+           <a href="/getqouta.html" class="cta-button">Get Assessment</a>
         </nav>
         
         <div class="hamburger">
@@ -1411,7 +2232,6 @@
         <a href="#services" class="mobile-link">Services</a>
         <a href="#certifications" class="mobile-link">Certifications</a>
         <a href="#team" class="mobile-link">Team</a>
-        <!-- <a href="#testimonials" class="mobile-link">Clients</a> -->
         <a href="#contact" class="mobile-link">Contact</a>
         <button class="cta-button">Get Assessment</button>
     </div>
@@ -1437,6 +2257,8 @@
                 <a href="https://github.com/Rahul-Thakur7" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://x.com/sar_solutionz" target="_blank"><i class="fab fa-twitter"></i></a>
+               <a href="https://www.youtube.com/@sarsolutionz" target="_blank"><i class="fab fa-youtube"></i></a>
+
                 <a href="mailto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
@@ -1716,7 +2538,7 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
             <form id="contactForm" class="rnt-contact-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="_next" value="/thank-you.html">
                 <input type="hidden" name="_subject" value="New Service Request from SAR SOLUTIONZ Website">
                 
                 <div class="form-row">
@@ -1767,19 +2589,16 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
                     <textarea class="form-control" name="message" id="contact-message" rows="6" placeholder="Describe your project requirements, timeline, and any specific security concerns..." required></textarea>
                 </div>
                 
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="nda-check" name="nda">
-                        <label class="form-check-label" for="nda-check">
-                            I require an NDA before discussing project details
-                        </label>
-                    </div>
-                </div>
+               <div class="form-group">
+    <div class="form-check" style="display: flex; align-items: center; white-space: nowrap;">
+        <input class="form-check-input" type="checkbox" id="nda-check" name="nda">
+        <label class="form-check-label" for="nda-check" style="margin-left: 5px;">
+            I require an NDA before discussing project details
+        </label>
+    </div>
+</div>
                 
-                <button type="submit" class="submit-btn">
-                    <span class="btn-text">REQUEST SERVICE QUOTE</span>
-                    <span class="btn-loader"></span>
-                </button>
+               <button type="submit" class="submit-bttn">REQUEST SERVICE QUOTE</button>
                 
                 <div class="form-success">
                     <i class="fas fa-check-circle"></i>
@@ -1797,110 +2616,130 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
     </div>
     
     <!-- Footer -->
-  <!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
-        <!-- Main Footer Content -->
-        <div class="footer-main">
-            <!-- Brand Column -->
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 120 40" class="logo-shape">
-                        <path d="M20,10 L40,30 L60,10 L80,30 L100,10" stroke="#64ffda" stroke-width="3" fill="none" />
-                        <circle cx="110" cy="20" r="8" fill="#64ffda" />
-                    </svg>
-                    <span class="logo-text">SAR<span>SOLUTIONZ</span></span>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Main Footer Content -->
+            <div class="footer-main">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 120 40" class="logo-shape">
+                            <path d="M20,10 L40,30 L60,10 L80,30 L100,10" stroke="#64ffda" stroke-width="3" fill="none" />
+                            <circle cx="110" cy="20" r="8" fill="#64ffda" />
+                        </svg>
+                        <span class="logo">SAR<span>SOLUTIONZ</span></span>
+                    </div>
+                    <p class="footer-tagline">Breaking your systems before attackers break your business.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/sarsolutionz/" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/sar_solutionz" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/Rahul-Thakur7" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                         <a href="https://www.youtube.com/@sarsolutionz" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                       
+                        <a href="mailto:sarsolutionz7@gmail.com" class="social-icon" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
-                <p class="footer-tagline">Breaking your systems before attackers break your business.</p>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/company/sarsolutionz/" class="social-icon" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://x.com/sar_solutionz" class="social-icon" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://github.com/Rahul-Thakur7" class="social-icon" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:sarsolutionz7@gmail.com" class="social-icon" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+
+                <!-- Services Column -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="/Design&Dev.html" class="footer-link">Design & Development</a></li>
+                        <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
+                        <li><a href="/WebPentest.html" class="footer-link">Web App Security</a></li>
+                        <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
+                        <li><a href="/NetworkPentest.html" class="footer-link">Network Penetration Testing</a></li>
+                        
+                            <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
+                            <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
+                            <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
+                            <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
+                            <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Column -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sarsolutionz.blogspot.com/" class="footer-link">Security Blog</a></li>
+                        <li><a href="#" class="footer-link">Whitepapers</a></li>
+                        <li><a href="#" class="footer-link">Security Tools</a></li>
+                        <li><a href="/Samplereports.html" class="footer-link">Sample Reports</a></li>
+                        <li><a href="#" class="footer-link">Testing Methodology</a></li>
+
+                   </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact</h3>
+                    <address class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span>Mumbai, India</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock contact-icon"></i>
+                            <span>24/7 Emergency Support</span>
+                        </div>
+                    </address>
                 </div>
             </div>
 
-            <!-- Services Column -->
-            <div class="footer-column">
-                <h3 class="footer-title">Services</h3>
-                <ul class="footer-links">
-                    <li><a href="/Design&Dev.html" class="footer-link">Design & Development</a></li>
-                    <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
-                    <li><a href="/WebPentest.html" class="footer-link">Web App Security</a></li>
-                    <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
-                    <li><a href="/NetworkPentest.html" class="footer-link">Network Penetration Testing</a></li>
-                    
-                        <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
-                        <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
-                        <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
-                        <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
-                        <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
-                </ul>
-            </div>
-
-            <!-- Resources Column -->
-            <div class="footer-column">
-                <h3 class="footer-title">Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="https://sarsolutionz.blogspot.com/" class="footer-link">Security Blog</a></li>
-                    <li><a href="#" class="footer-link">Whitepapers</a></li>
-                    <li><a href="#" class="footer-link">Security Tools</a></li>
-                    <li><a href="/Samplereports.html" class="footer-link">Sample Reports</a></li>
-                    <li><a href="#" class="footer-link">Testing Methodology</a></li>
-
-               </ul>
-            </div>
-
-            <!-- Contact Column -->
-            <div class="footer-column">
-                <h3 class="footer-title">Contact</h3>
-                <address class="footer-contact">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        <span>Mumbai, India</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock contact-icon"></i>
-                        <span>24/7 Emergency Support</span>
-                    </div>
-                </address>
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="/privacy" class="legal-link">Privacy Policy</a>
+                    <a href="/terms" class="legal-link">Terms of Service</a>
+                    <a href="/disclaimer" class="legal-link">Disclaimer</a>
+                    <a href="/contact" class="legal-link">Contact</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2023 SAR SOLUTIONZ. All rights reserved.
+                </div>
             </div>
         </div>
+    </footer>
 
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="footer-legal">
-                <a href="/privacy" class="legal-link">Privacy Policy</a>
-                <a href="/terms" class="legal-link">Terms of Service</a>
-                <a href="/disclaimer" class="legal-link">Disclaimer</a>
-                <a href="/contact" class="legal-link">Contact</a>
-            </div>
-            <div class="footer-copyright">
-                &copy; 2023 SAR SOLUTIONZ. All rights reserved.
-            </div>
+
+    <!-- Chatbot Launcher -->
+    <div id="chatbot-launcher">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> Sarsolutionz Assistant</h3>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-body"></div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Type your message...">
         </div>
     </div>
-</footer>
 
-
-    <!-- Scripts -->
+    <!-- Your existing scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
-        // Mobile Menu Toggle
+     // Mobile Menu Toggle
         const hamburger = document.querySelector('.hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileCloseBtn = document.querySelector('.mobile-close-btn');
@@ -2076,7 +2915,7 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
         
         // Form submission with animation
         const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.querySelector('.submit-btn');
+        const submitBtn = document.querySelector(' .submit-bttn');
         const formSuccess = document.querySelector('.form-success');
         
         if (contactForm) {
@@ -2115,121 +2954,828 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
             }
         });
 
-        // Matrix Effect for Footer Logo
-        const logo = document.getElementById('footer-matrix-logo');
-        const chars = "01!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+        // DOM Elements
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const body = document.getElementById('chatbot-body');
+        const input = document.getElementById('chatbot-input');
+        const closeBtn = document.getElementById('close-chat');
+
+        // State management
+        let currentState = 'welcome';
+        let selectedService = null;
+        let formData = {
+            name: '',
+            email: '',
+            company: '',
+            serviceType: '',
+            serviceCategory: '',
+            testType: '',
+            timeline: '',
+            scope: '',
+            demoCall: '',
+            file: null
+        };
+
+        // Initialize chatbot
+        document.addEventListener('DOMContentLoaded', () => {
+            showWelcome();
+        });
+
+        // Toggle Chat
+        launcher.addEventListener('click', () => {
+            container.style.display = 'flex';
+            setTimeout(() => container.classList.add('active'), 10);
+            launcher.style.display = 'none';
+            input.focus();
+        });
         
-        if (logo) {
-            logo.addEventListener('mouseenter', startMatrixEffect);
-            logo.addEventListener('touchstart', startMatrixEffect, { passive: true });
-            
-            function startMatrixEffect() {
-                const originalText = logo.dataset.value;
-                let iteration = 0;
-                const frameRate = 30;
-                const duration = 1000;
-                const totalFrames = (duration / 1000) * frameRate;
+        closeBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            setTimeout(() => {
+                container.style.display = 'none';
+                launcher.style.display = 'flex';
+            }, 300);
+        });
+
+        // Handle input submission
+        input.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' && input.value.trim()) {
+                const userText = input.value;
+                addMessage(userText, true);
+                input.value = '';
+
+                const typing = showTyping();
+                setTimeout(() => {
+                    typing.remove();
+                    handleResponse(userText.toLowerCase());
+                }, 1000 + (Math.random() * 1000));
+            }
+        });
+
+        // Event delegation for dynamically created elements
+        body.addEventListener('click', (e) => {
+            // Service options
+            if (e.target.classList.contains('service-option') || e.target.closest('.service-option')) {
+                const option = e.target.classList.contains('service-option') ? e.target : e.target.closest('.service-option');
+                const service = option.dataset.service;
+                const category = option.dataset.category;
                 
-                const interval = setInterval(() => {
-                    logo.innerHTML = originalText.split("")
-                        .map((letter, index) => {
-                            if (index < iteration) {
-                                return index < 3 ? 
-                                    `<span class="logo-part-red">${letter}</span>` : 
-                                    `<span class="logo-part-white">${letter}</span>`;
-                            }
-                            const char = chars[Math.floor(Math.random() * chars.length)];
-                            return `<span style="opacity:${0.3 + Math.random() * 0.7}">${char}</span>`;
-                        })
-                        .join("");
-                    
-                    iteration += originalText.length / totalFrames;
-                    
-                    if (iteration >= originalText.length) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            logo.innerHTML = `
-                                <span class="logo-part-red">SAR</span>
-                                <span class="logo-part-white">SOLUTIONZ</span>
-                            `;
-                        }, 200);
+                // Remove selected class from all options
+                document.querySelectorAll('.service-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                
+                // Store service selection
+                selectedService = service;
+                if (category) formData.serviceCategory = category;
+                
+                setTimeout(() => {
+                    showServiceDetails(service, category);
+                }, 500);
+            }
+            
+            // Quick replies
+            if (e.target.classList.contains('quick-reply') || e.target.closest('.quick-reply')) {
+                const reply = e.target.classList.contains('quick-reply') ? e.target : e.target.closest('.quick-reply');
+                const text = reply.textContent;
+                
+                // Hide all quick replies in this group
+                if (reply.parentNode) {
+                    reply.parentNode.querySelectorAll('.quick-reply').forEach(r => {
+                        r.style.display = 'none';
+                    });
+                }
+                
+                addMessage(text, true);
+                handleResponse(text.toLowerCase());
+            }
+            
+            // Form buttons
+            if (e.target.id === 'request-service' || e.target.closest('#request-service')) {
+                e.preventDefault();
+                showRequestForm();
+            }
+            
+            if (e.target.id === 'back-to-services' || e.target.closest('#back-to-services')) {
+                e.preventDefault();
+                showServices(formData.serviceCategory);
+            }
+            
+            if (e.target.id === 'back-from-faq' || e.target.closest('#back-from-faq')) {
+                e.preventDefault();
+                showWelcome();
+            }
+            
+            if (e.target.id === 'new-request' || e.target.closest('#new-request')) {
+                e.preventDefault();
+                resetFormData();
+                showWelcome();
+            }
+            
+            if (e.target.id === 'back-to-menu' || e.target.closest('#back-to-menu')) {
+                e.preventDefault();
+                showWelcome();
+            }
+            
+            // Timeline options
+            if (e.target.classList.contains('timeline-option') || e.target.closest('.timeline-option')) {
+                const option = e.target.classList.contains('timeline-option') ? e.target : e.target.closest('.timeline-option');
+                
+                document.querySelectorAll('.timeline-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                option.classList.add('selected');
+                formData.timeline = option.textContent;
+                
+                const hiddenInput = document.getElementById('timeline');
+                if (hiddenInput) hiddenInput.value = option.textContent;
+            }
+            
+            // Back buttons
+            if (e.target.classList.contains('back-button') || e.target.closest('.back-button')) {
+                e.preventDefault();
+                
+                if (currentState === 'service_details') {
+                    showServices(formData.serviceCategory);
+                } else if (currentState === 'services') {
+                    showMainMenu();
+                } else {
+                    showWelcome();
+                }
+            }
+        });
+
+        // File upload handling
+        body.addEventListener('change', (e) => {
+            if (e.target.id === 'appFile') {
+                const fileInput = e.target;
+                const fileNameDisplay = document.getElementById('fileName');
+                
+                if (fileInput.files.length > 0) {
+                    fileNameDisplay.textContent = fileInput.files[0].name;
+                    fileNameDisplay.style.display = 'block';
+                    formData.file = fileInput.files[0];
+                }
+            }
+        });
+
+        // Form submission
+        body.addEventListener('submit', (e) => {
+            if (e.target.id === 'pentest-form' || e.target.id === 'dev-form') {
+                e.preventDefault();
+                const form = e.target;
+                
+                // Validate form
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        field.style.borderColor = '#64ffda;';
+                        isValid = false;
                     }
-                }, 1000/frameRate);
+                });
+
+                if (!isValid) {
+                    addMessage("Please fill all required fields.", false, true);
+                    return;
+                }
+
+                // Collect form data
+                formData = {
+                    ...formData,
+                    name: form.name?.value || '',
+                    email: form.email?.value || '',
+                    company: form.company?.value || '',
+                    testType: form.testType?.value || '',
+                    timeline: form.timeline?.value || '',
+                    scope: form.scope?.value || '',
+                    demoCall: form.demoCall?.value || '',
+                    file: formData.file
+                };
+
+                // Show confirmation
+                showConfirmation();
+
+                // Submit form data
+                const formDataObj = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formDataObj
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+
+        // ======================
+        // CHATBOT FUNCTIONALITY
+        // ======================
+
+        // Reset form data
+        function resetFormData() {
+            formData = {
+                name: '',
+                email: '',
+                company: '',
+                serviceType: '',
+                serviceCategory: '',
+                testType: '',
+                timeline: '',
+                scope: '',
+                demoCall: '',
+                file: null
+            };
+        }
+
+        // Add message to chat
+        function addMessage(text, isUser = false, isSystem = false) {
+            const msg = document.createElement('div');
+            
+            if (isSystem) {
+                msg.className = 'system-message';
+            } else {
+                msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            }
+
+            if (typeof text === 'string') {
+                msg.textContent = text;
+            } else {
+                msg.appendChild(text);
+            }
+
+            body.appendChild(msg);
+            scrollToBottom();
+            return msg;
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'message bot-message typing';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            body.appendChild(typing);
+            scrollToBottom();
+            return typing;
+        }
+
+        // Scroll to bottom of chat
+        function scrollToBottom() {
+            setTimeout(() => {
+                body.scrollTop = body.scrollHeight;
+            }, 50);
+        }
+
+        // Show quick reply buttons
+        function showQuickReplies(replies) {
+            const container = document.createElement('div');
+            container.style.marginTop = '10px';
+            
+            replies.forEach(reply => {
+                const btn = document.createElement('span');
+                btn.className = 'quick-reply';
+                btn.textContent = reply;
+                container.appendChild(btn);
+            });
+
+            addMessage(container, false);
+        }
+
+        // Welcome message
+        function showWelcome() {
+            currentState = 'welcome';
+            body.innerHTML = '';
+            
+            addMessage("Initializing Sarsolutionz Assistant...", false);
+            
+            setTimeout(() => {
+                addMessage("Secure connection established 🔒", false);
+                
+                setTimeout(() => {
+                    const welcomeMsg = document.createElement('div');
+                    welcomeMsg.innerHTML = `
+                    <div style="margin-bottom:10px;">Welcome to <span style="color: #64ffda;font-weight:bold;">Sarsolutionz</span> Assistant</div>
+                    <div style="font-size:13px;color:#8892b0;margin-bottom:15px;">How can we assist you today?</div>
+                    `;
+                    addMessage(welcomeMsg, false);
+                    
+                    setTimeout(() => {
+                        showMainMenu();
+                    }, 300);
+                }, 800);
+            }, 1000);
+        }
+
+        // Main menu options
+        function showMainMenu() {
+            currentState = 'main_menu';
+            
+            const menu = document.createElement('div');
+            menu.innerHTML = `
+            <div style="margin-bottom:15px;color:#ccd6f6;">Select an option:</div>
+            <button class="btn btn-block" data-category="security">
+                <i class="fas fa-shield-alt"></i> Security Services
+            </button>
+            <button class="btn btn-block" data-category="development">
+                <i class="fas fa-code"></i> Development Services
+            </button>
+            <button class="btn btn-block">
+                <i class="fas fa-question-circle"></i> FAQ
+            </button>
+            <button class="btn btn-block">
+                <i class="fas fa-envelope"></i> Contact Us
+            </button>
+            `;
+            
+            const msg = addMessage(menu, false);
+            
+            // Add event listeners to menu options
+            setTimeout(() => {
+                msg.querySelectorAll('.btn').forEach(btn => {
+                    const category = btn.dataset.category;
+                    
+                    btn.addEventListener('click', () => {
+                        if (category) {
+                            showServices(category);
+                        } else if (btn.textContent.includes('FAQ')) {
+                            showFAQ();
+                        } else if (btn.textContent.includes('Contact')) {
+                            showContactOptions();
+                        }
+                    });
+                });
+            }, 100);
+        }
+
+        // Show services based on category
+        function showServices(category = 'security') {
+            currentState = 'services';
+            formData.serviceCategory = category;
+            
+            const services = document.createElement('div');
+            
+            if (category === 'security') {
+                services.innerHTML = `
+                <div style="margin-bottom:15px;color:#ccd6f6;">Select a security service:</div>
+                <button class="service-option" data-service="web">
+                    <i class="fas fa-globe"></i> Web Application Pentest
+                </button>
+                <button class="service-option" data-service="api">
+                    <i class="fas fa-code"></i> API Security Testing
+                </button>
+                <button class="service-option" data-service="mobile">
+                    <i class="fas fa-mobile-alt"></i> Mobile App Pentest
+                </button>
+                <button class="service-option" data-service="network">
+                    <i class="fas fa-network-wired"></i> Network Pentest
+                </button>
+                <button class="service-option" data-service="cloud">
+                    <i class="fas fa-cloud"></i> Cloud Security Assessment
+                </button>
+                <button class="service-option" data-service="redteam">
+                    <i class="fas fa-user-secret"></i> Red Team Exercise
+                </button>
+                <button class="service-option" data-service="osint">
+                    <i class="fas fa-search"></i> OSINT Investigation
+                </button>
+                <button class="service-option" data-service="social">
+                    <i class="fas fa-mask"></i> Social Engineering
+                </button>
+                <button class="service-option" data-service="darkweb">
+                    <i class="fas fa-eye"></i> Dark Web Analysis
+                </button>
+                <div class="back-button" style="margin-top:15px;">
+                    <i class="fas fa-arrow-left"></i> Back to Main Menu
+                </div>
+                `;
+            } else {
+                // Development services
+                services.innerHTML = `
+                <div style="margin-bottom:15px;color: #ccd6f6;">Select a development service:</div>
+                <button class="service-option" data-service="web-dev" data-category="development">
+                    <i class="fas fa-globe"></i> Web Development
+                </button>
+                <button class="service-option" data-service="mobile-dev" data-category="development">
+                    <i class="fas fa-mobile-alt"></i> Mobile Development
+                </button>
+                <button class="service-option" data-service="api-dev" data-category="development">
+                    <i class="fas fa-plug"></i> API Development
+                </button>
+                <button class="service-option" data-service="desktop-dev" data-category="development">
+                    <i class="fas fa-desktop"></i> Desktop Applications
+                </button>
+                <button class="service-option" data-service="ai-dev" data-category="development">
+                    <i class="fas fa-brain"></i> AI Applications
+                </button>
+                <button class="service-option" data-service="tools-dev" data-category="development">
+                    <i class="fas fa-tools"></i> Custom Tools
+                </button>
+                <button class="service-option" data-service="consulting" data-category="development">
+                    <i class="fas fa-chalkboard-teacher"></i> Technical Consulting
+                </button>
+                <div class="back-button" style="margin-top:15px;">
+                    <i class="fas fa-arrow-left"></i> Back to Main Menu
+                </div>
+                `;
+            }
+            
+            addMessage(services, false);
+        }
+
+        // Show service details
+        function showServiceDetails(service, category = 'security') {
+            currentState = 'service_details';
+            
+            const serviceInfo = {
+                // Security services
+                web: {
+                    title: "Web Application Pentest",
+                    desc: "Comprehensive security assessment of your web applications including OWASP Top 10 vulnerabilities, business logic flaws, and authentication bypass testing.",
+                    icon: "fa-globe"
+                },
+                api: {
+                    title: "API Security Testing",
+                    desc: "In-depth analysis of your API endpoints for security vulnerabilities including improper auth, injection flaws, and data exposure risks.",
+                    icon: "fa-code"
+                },
+                mobile: {
+                    title: "Mobile App Pentest",
+                    desc: "Security assessment for iOS and Android applications including reverse engineering, insecure storage, and communication testing.",
+                    icon: "fa-mobile-alt"
+                },
+                network: {
+                    title: "Network Pentest",
+                    desc: "Internal and external network penetration testing including firewall bypass, VLAN hopping, and privilege escalation.",
+                    icon: "fa-network-wired"
+                },
+                cloud: {
+                    title: "Cloud Security Assessment",
+                    desc: "Comprehensive review of your cloud infrastructure (AWS/Azure/GCP) for misconfigurations and security weaknesses.",
+                    icon: "fa-cloud"
+                },
+                redteam: {
+                    title: "Red Team Exercise",
+                    desc: "Simulated real-world attack scenarios to test your organization's detection and response capabilities.",
+                    icon: "fa-user-secret"
+                },
+                osint: {
+                    title: "OSINT Investigation",
+                    desc: "Open-source intelligence gathering to identify exposed sensitive information and potential attack vectors.",
+                    icon: "fa-search"
+                },
+                social: {
+                    title: "Social Engineering",
+                    desc: "Phishing, vishing, and physical security tests to evaluate employee security awareness.",
+                    icon: "fa-mask"
+                },
+                darkweb: {
+                    title: "Dark Web Analysis",
+                    desc: "Monitoring dark web channels for leaked credentials, company data, and threat intelligence.",
+                    icon: "fa-eye"
+                },
+                
+                // Development services
+                "web-dev": {
+                    title: "Web Development",
+                    desc: "Custom web applications built with modern frameworks (React, Angular, Vue) and secure backend architectures.",
+                    icon: "fa-globe"
+                },
+                "mobile-dev": {
+                    title: "Mobile Development",
+                    desc: "Native and cross-platform mobile apps (iOS/Android) with performance optimization and data security.",
+                    icon: "fa-mobile-alt"
+                },
+                "api-dev": {
+                    title: "API Development",
+                    desc: "Robust RESTful and GraphQL APIs with proper authentication, rate limiting, and encryption.",
+                    icon: "fa-plug"
+                },
+                "desktop-dev": {
+                    title: "Desktop Applications",
+                    desc: "Cross-platform desktop apps with native performance and enterprise-grade security features.",
+                    icon: "fa-desktop"
+                },
+                "ai-dev": {
+                    title: "AI Applications",
+                    desc: "Intelligent solutions leveraging machine learning, computer vision, and NLP technologies.",
+                    icon: "fa-brain"
+                },
+                "tools-dev": {
+                    title: "Custom Tools",
+                    desc: "Specialized software solutions and automation tools tailored to your business processes.",
+                    icon: "fa-tools"
+                },
+                "consulting": {
+                    title: "Technical Consulting",
+                    desc: "Expert guidance on architecture, security, and technology stack selection.",
+                    icon: "fa-chalkboard-teacher"
+                }
+            };
+
+            const details = document.createElement('div');
+            details.innerHTML = `
+            <div style="margin-bottom:15px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <i class="fas ${serviceInfo[service].icon} service-icon" style="color: #64ffda;"></i>
+                    <span style="font-weight:bold;color: #64ffda;">${serviceInfo[service].title}</span>
+                </div>
+                <div style="font-size:13px;color:#8892b0;">${serviceInfo[service].desc}</div>
+            </div>
+            `;
+
+            addMessage(details, false);
+            
+            // Store service type
+            formData.serviceType = serviceInfo[service].title;
+            
+            setTimeout(() => {
+                const options = document.createElement('div');
+                options.innerHTML = `
+                <button class="btn btn-block" style="margin-bottom:10px;" id="request-service">Request This Service</button>
+                <button class="btn btn-secondary btn-block" id="back-to-services">Back to ${category === 'security' ? 'Security' : 'Development'} Services</button>
+                `;
+
+                addMessage(options, false);
+            }, 500);
+        }
+
+        // Show request form
+        function showRequestForm() {
+            currentState = 'request_form';
+            
+            const isSecurity = formData.serviceCategory === 'security';
+            const formTitle = isSecurity ? 
+                `${formData.serviceType} Request` : 
+                `${formData.serviceType} Inquiry`;
+
+            const formContainer = document.createElement('div');
+            formContainer.innerHTML = `
+            <div style="margin-bottom:15px;color:#ccd6f6;font-size:14px;">
+                Please provide details for your <span style="color: #64ffda;">${formData.serviceType}</span> request:
+            </div>
+
+            <form id="${isSecurity ? 'pentest' : 'dev'}-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="New ${formData.serviceType} Request">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="#">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                ${isSecurity ? `
+                <div class="form-group">
+                    <label for="testType">Type of Test</label>
+                    <select id="testType" name="testType" required>
+                        <option value="">Select...</option>
+                        <option value="Black Box">Black Box</option>
+                        <option value="White Box">White Box</option>
+                        <option value="Gray Box">Gray Box</option>
+                    </select>
+                </div>
+                ` : ''}
+
+                ${(isSecurity && selectedService === 'mobile') ? `
+                <div class="form-group">
+                    <label>Upload Application File</label>
+                    <div class="file-upload">
+                        <label class="upload-btn">
+                            <i class="fas fa-upload"></i> Choose APK/IPA File
+                            <input type="file" id="appFile" name="appFile" accept=".apk,.ipa">
+                        </label>
+                        <div class="file-name" id="fileName">No file selected</div>
+                    </div>
+                </div>
+                ` : ''}
+
+                <div class="form-group">
+                    <label>Preferred Timeline</label>
+                    <div class="timeline-selector">
+                        <div class="timeline-option" data-days="7">1 Week</div>
+                        <div class="timeline-option" data-days="14">2 Weeks</div>
+                        <div class="timeline-option" data-days="30">1 Month</div>
+                    </div>
+                    <input type="hidden" id="timeline" name="timeline" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="scope">${isSecurity ? 'Scope Details' : 'Project Details'}</label>
+                    <textarea id="scope" name="scope" placeholder="Describe what you need..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="demoCall">Schedule Call</label>
+                    <select id="demoCall" name="demoCall" required>
+                        <option value="">Select...</option>
+                        <option value="ASAP">ASAP</option>
+                        <option value="Within 3 days">Within 3 days</option>
+                        <option value="Next week">Next week</option>
+                        <option value="No call needed">No call needed</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-block" style="margin-top:20px;">Submit Request</button>
+                <button type="button" class="btn btn-secondary btn-block" id="back-to-menu">Cancel</button>
+            </form>
+            `;
+
+            addMessage(formContainer, false);
+        }
+
+        // Show confirmation
+        function showConfirmation() {
+            currentState = 'confirmation';
+            
+            const isSecurity = formData.serviceCategory === 'security';
+            const serviceType = isSecurity ? 'Security' : 'Development';
+
+            const confirmation = document.createElement('div');
+            confirmation.innerHTML = `
+            <div style="text-align:center;margin-bottom:20px;">
+                <i class="fas fa-check-circle" style="font-size:40px;color: #64ffda;margin-bottom:15px;"></i>
+                <div style="font-weight:bold;margin-bottom:10px;">Request Submitted!</div>
+                <div style="font-size:13px;color: #8892b0;">
+                    Our ${serviceType} team will contact you within 24 hours about your ${formData.serviceType}.
+                </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:15px;margin-bottom:20px;">
+                <div style="font-size:13px;color: #8892b0;margin-bottom:10px;">REQUEST SUMMARY</div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                    <span style="color: #8892b0;">Service:</span>
+                    <span>${formData.serviceType}</span>
+                </div>
+                ${isSecurity ? `
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                    <span style="color: #8892b0;">Test Type:</span>
+                    <span>${formData.testType}</span>
+                </div>
+                ` : ''}
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                    <span style="color: #8892b0;">Timeline:</span>
+                    <span>${formData.timeline}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color: #8892b0;">Contact:</span>
+                    <span>${formData.demoCall}</span>
+                </div>
+            </div>
+
+            <button class="btn btn-secondary btn-block" id="new-request">Start New Request</button>
+            `;
+
+            addMessage(confirmation, false);
+        }
+
+        // Show FAQ
+        function showFAQ() {
+            currentState = 'faq';
+            
+            const faqContainer = document.createElement('div');
+            faqContainer.innerHTML = `
+            <div style="margin-bottom:15px;color: #ccd6f6;">Frequently Asked Questions:</div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color: #64ffda;margin-bottom:5px;font-size:14px;">What's your response time?</div>
+                <div style="font-size:13px;color: #8892b0;">
+                    We typically respond within 24 hours for service inquiries. Emergency requests are handled immediately.
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color: #64ffda;margin-bottom:5px;font-size:14px;">Do you offer ongoing support?</div>
+                <div style="font-size:13px;color: #8892b0;">
+                    Yes, we offer retainer agreements for both security and development services with priority support.
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color: #64ffda;margin-bottom:5px;font-size:14px;">What's your pricing model?</div>
+                <div style="font-size:13px;color: #8892b0;>
+                    Security services are typically project-based. Development services can be project-based or hourly, depending on needs.
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color: #64ffda;margin-bottom:5px;font-size:14px;">Do you sign NDAs?</div>
+                <div style="font-size:13px;color: #8892b0;">
+                    Absolutely. We're happy to sign NDAs before discussing any sensitive project details.
+                </div>
+            </div>
+
+            <button class="btn btn-secondary btn-block" style="margin-top:20px;" id="back-from-faq">Back to Main Menu</button>
+            `;
+
+            addMessage(faqContainer, false);
+        }
+
+        // Show contact options
+        function showContactOptions() {
+            currentState = 'contact';
+            
+            const contactContainer = document.createElement('div');
+            contactContainer.innerHTML = `
+            <div style="margin-bottom:15px;color: #ccd6f6;">Contact Options:</div>
+
+            <div style="margin-bottom:20px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <i class="fas fa-envelope" style="color: #64ffda;"></i>
+                    <span style="font-weight:bold;">Email:</span>
+                    <span>sarsolutionz7@gmail.com</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <i class="fas fa-phone" style="color: #64ffda;"></i>
+                    <span style="font-weight:bold;">Phone:</span>
+                    <span>+91 XXXXXXXXXX</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color: #64ffda;margin-bottom:5px;font-size:14px;">Emergency Support</div>
+                <div style="font-size:13px;color: #8892b0;">
+                    For critical security incidents, contact our 24/7 response team at security@sarsolutionz.com
+                </div>
+            </div>
+
+            <button class="btn btn-block" style="margin-bottom:10px;">
+                <i class="fas fa-calendar-alt"></i> Schedule Call
+            </button>
+            <button class="btn btn-secondary btn-block" id="back-to-menu">
+                <i class="fas fa-arrow-left"></i> Back to Main Menu
+            </button>
+            `;
+
+            addMessage(contactContainer, false);
+        }
+
+        // Handle user responses
+        function handleResponse(msg) {
+            if(msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+                showWelcome();
+            }
+            else if(msg.includes('service') || msg.includes('offer') || msg.includes('explore')) {
+                showMainMenu();
+            }
+            else if(msg.includes('request') || msg.includes('need') || msg.includes('assess') || msg.includes('pentest') || msg.includes('develop')) {
+                showMainMenu();
+            }
+            else if(msg.includes('price') || msg.includes('cost')) {
+                addMessage("Our pricing depends on the service and scope:\n\n• Security assessments: $5,000-$50,000\n• Development projects: $10,000-$200,000+\n• Consulting: $150-$300/hour\n\nWould you like detailed pricing for a specific service?", false);
+                showQuickReplies(["Security pricing", "Development pricing", "No thanks"]);
+            }
+            else if(msg.includes('faq') || msg.includes('question') || msg.includes('help')) {
+                showFAQ();
+            }
+            else if(msg.includes('contact') || msg.includes('expert') || msg.includes('talk') || msg.includes('call')) {
+                showContactOptions();
+            }
+            else if(msg.includes('security') && msg.includes('pricing')) {
+                addMessage("Security service pricing:\n\n• Web/API pentest: $5,000-$15,000\n• Mobile pentest: $7,500-$20,000\n• Network pentest: $10,000-$25,000\n• Red team exercise: $15,000-$50,000\n\nWould you like to request a specific security service?", false);
+                showQuickReplies(["Request security service", "Main menu"]);
+            }
+            else if(msg.includes('development') && msg.includes('pricing')) {
+                addMessage("Development service pricing:\n\n• Web apps: $15,000-$100,000+\n• Mobile apps: $25,000-$150,000+\n• Custom APIs: $10,000-$50,000\n• AI solutions: $50,000-$200,000+\n\nWould you like to discuss a development project?", false);
+                showQuickReplies(["Request development service", "Main menu"]);
+            }
+            else if(msg.includes('no') || msg.includes('not now') || msg.includes('later')) {
+                addMessage("No problem. Feel free to reach out anytime. How else can I assist you today?", false);
+                showQuickReplies(["Services", "FAQ", "Contact"]);
+            }
+            else if(msg.includes('main') && msg.includes('menu')) {
+                showMainMenu();
+            }
+            else {
+                const responses = [
+                    "I'm not sure I understand. Could you rephrase that?",
+                    "I can help with service requests, FAQs, or connecting you with our team.",
+                    "Let me connect you with a human expert if this is beyond my capabilities.",
+                    "Would you like to browse our services or see FAQs?"
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, false);
+                showQuickReplies(["Services", "FAQ", "Contact"]);
             }
         }
 
-        // chatbot
         
-
-        // chtbot end
-          // Animate footer when it comes into view
-    const footer = document.querySelector('.footer');
-    
-    const footerObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                footer.style.opacity = '1';
-                footer.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    // Initialize footer styles
-    footer.style.opacity = '0';
-    footer.style.transform = 'translateY(20px)';
-    footer.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    
-    // Start observing
-    footerObserver.observe(footer);
-
-    // Enhanced hover effects for links
-    document.querySelectorAll('.footer-link').forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            link.style.transition = 'all 0.3s ease';
-        });
-    });
-
-    // form submit
-     // Update your form submission script
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Show loading state
-            submitBtn.classList.add('loading');
-            
-            // Create FormData object
-            const formData = new FormData(contactForm);
-            
-            // Send form data using Fetch API
-            fetch('https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Hide form and show success message
-                    contactForm.style.display = 'none';
-                    formSuccess.style.display = 'block';
-                    
-                    // Reset form
-                    contactForm.reset();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was a problem submitting your form. Please try again or email us directly.');
-            })
-            .finally(() => {
-                submitBtn.classList.remove('loading');
-            });
-        });
-    }
     </script>
 </body>
 </html>
