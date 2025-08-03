@@ -3775,7 +3775,14 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
             }
         }
 
-        
+        // Disable right-click and keyboard shortcuts
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+    e.preventDefault();
+    alert('View source disabled');
+  }
+});
     </script>
 </body>
 </html>
