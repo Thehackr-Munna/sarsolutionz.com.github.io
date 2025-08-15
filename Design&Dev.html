@@ -3,10 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design & Development Services | SARSolutionz</title>
+    <title>Digital Transformation Services | SARSolutionz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Modern Security Theme */
+          /* Navigation menu */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 30px;
+    
+}
+header {
+    background-color: rgba(10, 25, 47, 0.9);
+    color: white;
+    padding: 15px 0;
+    position: sticky;
+    top: 0; /* This was likely missing */
+    z-index: 1000; /* Increased for safety */
+    backdrop-filter: blur(10px);
+    transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+    width: 100%; /* Ensure full width */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Added max-width */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add some padding */
+    width: 100%; /* Ensure it takes full width */
+}
+
+/* Logo styles */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--secondary);
+    z-index: 1001; /* Above the sticky header */
+}
+
+/* Navigation menu */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+       /* Enhanced Mobile Menu Styles */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            padding: 10px;
+        }
+
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--primary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            border-left: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--secondary);
+            transform: translateX(10px);
+        }
+
+        .mobile-menu ul li a::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            left: -10px;
+            top: 0;
+            background: var(--secondary);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .mobile-menu ul li a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        .mobile-submenu {
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background: rgba(17, 34, 64, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 1000px;
+            padding: 15px 20px;
+            animation: slideDown 0.5s ease forwards;
+        }
+
+        .mobile-submenu li {
+            margin-bottom: 10px !important;
+        }
+
+        .mobile-submenu li a {
+            font-size: 16px !important;
+            padding: 8px 0 !important;
+            opacity: 0.9;
+        }
+
+        .mobile-submenu li a:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            font-size: 16px;
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+            color: var(--secondary);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        /* .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        } */
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+          /* Close Button Styles */
+  /* SAR-Themed Close Button */
+    .mobile-close-btn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        width: 40px;
+        height: 40px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 1001;
+        background: rgba(100, 255, 218, 0.1);
+        border-radius: 50%;
+        border: 1px solid var(--secondary);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    
+    .mobile-close-btn:hover {
+        background: rgba(100, 255, 218, 0.2);
+        transform: rotate(90deg);
+    }
+    
+    .mobile-close-btn::before,
+    .mobile-close-btn::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: var(--secondary);
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-close-btn::before {
+        transform: rotate(45deg);
+    }
+    
+    .mobile-close-btn::after {
+        transform: rotate(-45deg);
+    }
+    
+    .mobile-close-btn:hover::before,
+    .mobile-close-btn:hover::after {
+        background-color: var(--light);
+    }
+    
+    @media (max-width: 768px) {
+        .mobile-close-btn {
+            display: flex;
+        }
+    }
+         
+
+        .no-scroll {
+            overflow: hidden;
+        }
+ /* Close Button Styles */
+
+        /* Menu Item Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+.no-scroll {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    nav ul li {
+        margin-left: 15px;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+/* Menu Above code */
+
+
+/* Scroll to Top Button */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--secondary);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background-color: var(--light);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    nav ul {
+        display: none;
+    }
+}
+/* Menu code */
+ 
+        /* Modern Design Theme */
         :root {
             --primary: #0a192f;
             --secondary: #64ffda;
@@ -284,8 +653,8 @@
             opacity: 0.9;
         }
         
-        /* About Services */
-        .about-services {
+        /* Business Value Section */
+        .business-value {
             padding: 100px 0;
             background-color: var(--dark);
         }
@@ -321,43 +690,42 @@
             opacity: 0.8;
         }
         
-        .about-content {
+        .value-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
         
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--light);
+        .value-card {
+            background-color: var(--navy);
+            border-radius: 5px;
+            padding: 40px 30px;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            border-left: 3px solid var(--secondary);
         }
         
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--light);
-            opacity: 0.9;
-        }
-        
-        .about-image {
-            position: relative;
-            height: 400px;
-            background: var(--navy);
-            border-radius: 10px;
-            overflow: hidden;
+        .value-card:hover {
+            transform: translateY(-10px);
             box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
         }
         
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;
-            opacity: 0.7;
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .value-card p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
         }
         
         /* Services Section */
@@ -425,10 +793,125 @@
             color: var(--secondary);
         }
         
-        /* Design Process Section */
-        .design-process {
+        /* Case Studies */
+        .case-studies {
             padding: 100px 0;
             background-color: var(--dark);
+        }
+        
+        .case-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--light-navy);
+        }
+        
+        .case-tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            color: var(--light);
+            opacity: 0.7;
+            transition: all 0.3s;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .case-tab.active {
+            opacity: 1;
+            color: var(--secondary);
+        }
+        
+        .case-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .case-tab:hover {
+            opacity: 1;
+        }
+        
+        .case-content {
+            display: none;
+        }
+        
+        .case-content.active {
+            display: block;
+        }
+        
+        .case-study {
+            background-color: var(--navy);
+            border-radius: 5px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .case-image {
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+        
+        .case-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .case-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .case-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .case-text p {
+            margin-bottom: 20px;
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        .case-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .case-stat {
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .case-stat h4 {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .case-stat p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background-color: var(--navy);
         }
         
         .process-steps {
@@ -457,7 +940,7 @@
         }
         
         .step-number {
-            background-color: var(--navy);
+            background-color: var(--dark);
             color: var(--secondary);
             width: 60px;
             height: 60px;
@@ -472,7 +955,7 @@
         }
         
         .step-content {
-            background-color: var(--navy);
+            background-color: var(--dark);
             padding: 30px;
             border-radius: 5px;
             flex: 1;
@@ -489,63 +972,6 @@
             color: var(--light);
             opacity: 0.8;
             line-height: 1.7;
-        }
-        
-        /* Portfolio Section */
-        .portfolio {
-            padding: 100px 0;
-            background-color: var(--navy);
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .portfolio-card {
-            background-color: var(--light-navy);
-            border-radius: 5px;
-            overflow: hidden;
-            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-        }
-        
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
-        }
-        
-        .portfolio-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .portfolio-content {
-            padding: 30px;
-        }
-        
-        .portfolio-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .portfolio-content p {
-            color: var(--light);
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-        
-        .portfolio-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            background-color: rgba(100, 255, 218, 0.1);
-            color: var(--secondary);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
         }
         
         /* CTA Section */
@@ -619,144 +1045,151 @@
             transform: translateY(-5px);
         }
         
-        /* Footer */
-        .security-footer {
-            background: #0a0e17;
-            color: #e0e0e0;
-            padding: 60px 0 0;
-            position: relative;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            border-top: 1px solid #1e2a3a;
+       /* Footer */
+        footer {
+            background-color: var(--navy);
+            padding: 60px 0 20px;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-grid {
+        .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
 
-        .footer-section {
-            margin-bottom: 30px;
-        }
-
-        .footer-logo {
-            margin-bottom: 20px;
-        }
-
-        .footer-about {
-            color: #a0a8b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .footer-social {
+        .footer-column {
             display: flex;
-            gap: 15px;
+            flex-direction: column;
         }
 
-        .footer-social a {
-            color: #d1d5db;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .footer-social a:hover {
-            color: #dc3545;
-        }
-
-        .footer-heading {
-            color: #ffffff;
-            font-size: 18px;
+        .footer-column h3 {
+            color: var(--light);
             margin-bottom: 20px;
+            font-size: 1.2rem;
             position: relative;
             padding-bottom: 10px;
         }
 
-        .footer-heading::after {
+        .footer-column h3::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
             width: 40px;
             height: 2px;
-            background: #dc3545;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
         }
 
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #a0a8b8;
+        .footer-column a, 
+        .footer-column p {
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 10px;
             text-decoration: none;
-            transition: color 0.3s;
-            display: inline-block;
+            transition: all 0.3s;
         }
 
-        .footer-links a:hover {
-            color: #dc3545;
-            transform: translateX(5px);
+        .footer-column a:hover {
+            color: var(--secondary);
+            opacity: 1;
+            padding-left: 5px;
         }
 
-        .footer-contact {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-contact li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-contact i {
+        .footer-column i {
             margin-right: 10px;
-            color: #dc3545;
-            width: 20px;
-            text-align: center;
+            color: var(--secondary);
         }
 
-        .footer-bottom {
-            border-top: 1px solid #1e2a3a;
-            padding: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-legal {
+        .footer-social-links {
             display: flex;
             gap: 15px;
+            margin-top: 15px;
         }
 
-        .footer-legal a {
-            color: #a0a8b8;
+        .footer-social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-navy);
+            color: var(--light);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: var(--secondary);
             text-decoration: none;
-            transition: color 0.3s;
-            font-size: 14px;
         }
 
-        .footer-legal a:hover {
-            color: #dc3545;
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 0;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: all 0.5s ease;
+                z-index: 99;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 100;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
-        .footer-copyright {
-            color: #a0a8b8;
-            font-size: 14px;
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .scroll-top {
+                width: 40px;
+                height: 40px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
+
 
         /* Matrix Logo Styles */
         .matrix-logo {
@@ -782,12 +1215,11 @@
 
         /* Responsive */
         @media (max-width: 992px) {
-            .about-content {
+            .case-study {
                 grid-template-columns: 1fr;
             }
             
-            .about-image {
-                height: 300px;
+            .case-image {
                 order: -1;
             }
         }
@@ -841,6 +1273,10 @@
                 flex-direction: column;
                 gap: 10px;
             }
+            
+            .case-stat {
+                grid-column: span 2;
+            }
         }
 
         /* Animation Classes */
@@ -879,8 +1315,9 @@
     </style>
 </head>
 <body>
+ 
     <header>
-        <div class="container header-container">
+        <div class="header-container">
             <div class="logo">
                 <span class="matrix-logo">
                     <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
@@ -888,37 +1325,89 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#design">Design Services</a></li>
-                    <li><a href="#development">Development</a></li>
-                    <li><a href="#process">Our Process</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#testing-types">Testing Types</a></li>
+                    <li><a href="#tools">Tools</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
-    
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose">
-            <i class="fas fa-times"></i>
-        </button>
+      <button class="mobile-close-btn" id="mobileCloseBtn">
+    <span class="close-line"></span>
+    <span class="close-line"></span>
+</button>
         <ul>
-            <li><a href="#design">Design Services</a></li>
-            <li><a href="#development">Development</a></li>
-            <li><a href="#process">Our Process</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li style="animation: slideIn 0.3s 0.1s both;">
+                <a href="/">Home</a>
+            </li>
+            
+            <li class="menu-item-has-children" style="animation: slideIn 0.3s 0.2s both;">
+                <div class="mobile-menu-toggle">
+                    <a href="/services.html">Services</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li class="menu-item-has-children">
+                        <div class="mobile-menu-toggle">
+                            <a href="/hacking-services.html">Hacking Services</a>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="mobile-submenu">
+                            <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                            <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
+                            <li><a href="/MobilePentest.html">Mobile Security Testing</a></li>
+                             <li><a href="/DarkWeb&OSINT.html">Dark Web, Deep Web Research & OSINT</a></li>
+                              <li><a href="/Phishing.html">Phishing Simulation</a></li>
+                               <li><a href="/MobilePentest.html"></a></li>
+                            <li><a href="/Redteam.html">Red Teaming</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <div class="mobile-menu-toggle">
+                            <a href="/Design&Dev.html">Development Services</a>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="mobile-submenu">
+                            <li><a href="/services/web-development.html">Web Development</a></li>
+                            <li><a href="/services/mobile-development.html">Mobile App Development</a></li>
+                            <li><a href="/services/api-development.html">API Development</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            
+            <li style="animation: slideIn 0.3s 0.3s both;">
+                <a href="/blog.html">Blog</a>
+            </li>
+            <li style="animation: slideIn 0.3s 0.4s both;">
+                <a href="/About.html">About</a>
+            </li>
+            <li style="animation: slideIn 0.3s 0.5s both;">
+                <a href="/contact.html">Contact</a>
+            </li>
         </ul>
+    </div>
+     <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
     </div>
     
     <section class="hero">
         <div class="container">
-            <h1 class="fade-in">Transformative <span>Design & Development</span></h1>
-            <p class="fade-in delay-1">We craft digital experiences that combine stunning aesthetics with flawless functionality, driving engagement and business growth.</p>
+            <h1 class="fade-in">Digital Transformation <span>That Drives Growth</span></h1>
+            <p class="fade-in delay-1">We design and develop digital experiences that combine stunning aesthetics with flawless functionality to accelerate your business success.</p>
             <a href="#contact" class="btn fade-in delay-2">Start Your Project</a>
         </div>
     </section>
@@ -928,7 +1417,7 @@
             <div class="stats-grid">
                 <div class="stat-card fade-in">
                     <div class="stat-number">10+</div>
-                    <div class="stat-label">Projects Completed</div>
+                    <div class="stat-label">Years of Experience</div>
                 </div>
                 <div class="stat-card fade-in delay-1">
                     <div class="stat-number">95%</div>
@@ -936,45 +1425,80 @@
                 </div>
                 <div class="stat-card fade-in delay-2">
                     <div class="stat-number">40%</div>
-                    <div class="stat-label">Increase in Conversion</div>
+                    <div class="stat-label">Average Conversion Increase</div>
                 </div>
                 <div class="stat-card fade-in delay-3">
                     <div class="stat-number">7x</div>
-                    <div class="stat-label">Faster Development</div>
+                    <div class="stat-label">Faster Time-to-Market</div>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="design" class="about-services">
+    <section id="value" class="business-value">
         <div class="container">
             <div class="section-title">
-                <h2>Design Services</h2>
-                <p>Creating visually stunning and highly functional digital experiences</p>
+                <h2>Business Value We Deliver</h2>
+                <p>Our digital solutions are designed to drive measurable business outcomes</p>
             </div>
             
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 class="fade-in">User-Centered Design</h3>
-                    <p class="fade-in delay-1">Our design philosophy puts users at the center of every decision. We combine aesthetics with usability to create interfaces that are not only beautiful but intuitive and engaging.</p>
-                    
-                    <h3 class="fade-in delay-2">Comprehensive Solutions</h3>
-                    <p class="fade-in delay-3">From initial concept to final pixel-perfect designs, we provide end-to-end design services that align with your brand identity and business objectives.</p>
-                    
-                    <h3 class="fade-in delay-4">Cutting-Edge Tools</h3>
-                    <p class="fade-in delay-5">We leverage industry-standard tools like Figma, Adobe Creative Suite, and Sketch to create responsive, accessible designs that work across all devices.</p>
+            <div class="value-grid">
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Revenue Growth</h3>
+                    <p>Optimized digital experiences that convert visitors into customers and increase average order values through strategic design and seamless user journeys.</p>
                 </div>
                 
-                <div class="about-image fade-in"></div>
+                <div class="value-card fade-in delay-1">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Engagement</h3>
+                    <p>Intuitive interfaces and personalized experiences that increase user engagement, retention, and brand loyalty across all digital touchpoints.</p>
+                </div>
+                
+                <div class="value-card fade-in delay-2">
+                    <div class="value-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Operational Efficiency</h3>
+                    <p>Streamlined digital workflows and automation that reduce operational costs and improve productivity across your organization.</p>
+                </div>
+                
+                <div class="value-card fade-in delay-3">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Competitive Advantage</h3>
+                    <p>Cutting-edge digital solutions that differentiate your brand and position you as an innovator in your industry.</p>
+                </div>
+                
+                <div class="value-card fade-in delay-4">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation Enablement</h3>
+                    <p>Future-proof technology foundations that allow you to quickly adapt to market changes and capitalize on emerging opportunities.</p>
+                </div>
+                
+                <div class="value-card fade-in delay-5">
+                    <div class="value-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data-Driven Decisions</h3>
+                    <p>Actionable insights from user behavior analytics to inform strategic decisions and continuous optimization of your digital presence.</p>
+                </div>
             </div>
         </div>
     </section>
     
-    <section id="design-services" class="services">
+    <section id="services" class="services">
         <div class="container">
             <div class="section-title">
-                <h2>Our Design Services</h2>
-                <p>Comprehensive design solutions tailored to your brand and audience</p>
+                <h2>Our Comprehensive Services</h2>
+                <p>End-to-end digital solutions tailored to your business needs</p>
             </div>
             
             <div class="services-grid">
@@ -983,568 +1507,359 @@
                         <i class="fas fa-pencil-ruler"></i>
                     </div>
                     <h3>UI/UX Design</h3>
-                    <p>Create intuitive, engaging interfaces with user experience at the core, resulting in higher engagement and conversion rates.</p>
+                    <p>Human-centered design that creates intuitive, engaging experiences that drive conversions and customer satisfaction.</p>
                     <ul class="service-features">
                         <li>User research and persona development</li>
-                        <li>Wireframing and prototyping</li>
-                        <li>Interaction design and micro-interactions</li>
-                        <li>Usability testing and iteration</li>
+                        <li>Information architecture and wireframing</li>
+                        <li>Interactive prototyping and testing</li>
+                        <li>Accessibility and inclusive design</li>
                     </ul>
                 </div>
                 
                 <div class="service-card fade-in delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Graphic Design</h3>
-                    <p>Visual storytelling through compelling graphics that communicate your brand message effectively.</p>
-                    <ul class="service-features">
-                        <li>Brand identity and logo design</li>
-                        <li>Marketing collateral</li>
-                        <li>Infographics and data visualization</li>
-                        <li>Print and digital media design</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-2">
                     <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>Mobile App Design</h3>
-                    <p>Specialized design for mobile platforms focusing on thumb-friendly navigation and platform-specific patterns.</p>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile apps that deliver seamless experiences across iOS and Android devices.</p>
                     <ul class="service-features">
-                        <li>iOS and Android UI design</li>
-                        <li>Mobile-first responsive design</li>
-                        <li>Gesture-based interaction design</li>
-                        <li>App store graphics and assets</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-3">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-Commerce Design</h3>
-                    <p>Optimized shopping experiences designed to reduce friction and increase conversions.</p>
-                    <ul class="service-features">
-                        <li>Product page optimization</li>
-                        <li>Checkout flow design</li>
-                        <li>Merchandising and promotions</li>
-                        <li>Mobile commerce optimization</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-4">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Dashboard Design</h3>
-                    <p>Complex data presented clearly through thoughtful information architecture and visualization.</p>
-                    <ul class="service-features">
-                        <li>Data visualization best practices</li>
-                        <li>Custom chart and graph design</li>
-                        <li>Responsive dashboard layouts</li>
-                        <li>User permissions and roles</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-5">
-                    <div class="service-icon">
-                        <i class="fas fa-vr-cardboard"></i>
-                    </div>
-                    <h3>AR/VR Design</h3>
-                    <p>Immersive experiences designed for next-generation interfaces and platforms.</p>
-                    <ul class="service-features">
-                        <li>3D environment design</li>
-                        <li>Spatial interface design</li>
-                        <li>Interaction patterns for XR</li>
-                        <li>Prototyping for immersive tech</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="development" class="about-services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Development Services</h2>
-                <p>Building robust, scalable digital solutions with cutting-edge technologies</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-                
-                <div class="about-text">
-                    <h3 class="fade-in">Full-Stack Expertise</h3>
-                    <p class="fade-in delay-1">Our development team brings expertise across the entire stack, from frontend interfaces to backend systems and everything in between.</p>
-                    
-                    <h3 class="fade-in delay-2">Modern Technologies</h3>
-                    <p class="fade-in delay-3">We work with the latest frameworks and technologies to build fast, secure, and scalable applications that stand the test of time.</p>
-                    
-                    <h3 class="fade-in delay-4">Agile Methodology</h3>
-                    <p class="fade-in delay-5">Our agile development process ensures transparency, flexibility, and continuous delivery of value throughout the project lifecycle.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="development-services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Development Services</h2>
-                <p>Custom development solutions tailored to your business needs</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Custom web applications built with modern frameworks for performance, scalability, and security.</p>
-                    <ul class="service-features">
-                        <li>React, Angular, Vue                        <li>React, Angular, Vue development</li>
-                        <li>Node.js, Python, PHP backends</li>
-                        <li>Headless CMS integration</li>
-                        <li>Progressive Web Apps</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile"></i>
-                    </div>
-                    <h3>Mobile App Development</h3>
-                    <p>Native and cross-platform mobile applications for iOS and Android platforms.</p>
-                    <ul class="service-features">
-                        <li>React Native development</li>
-                        <li>Flutter applications</li>
+                        <li>React Native and Flutter development</li>
                         <li>Native iOS (Swift) and Android (Kotlin)</li>
+                        <li>Mobile UX optimization</li>
                         <li>App store deployment</li>
                     </ul>
                 </div>
                 
                 <div class="service-card fade-in delay-2">
                     <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-globe"></i>
                     </div>
-                    <h3>E-Commerce Development</h3>
-                    <p>Custom online stores with seamless shopping experiences and secure payment processing.</p>
+                    <h3>Web Development</h3>
+                    <p>High-performance websites and web applications built with modern technologies for scalability and security.</p>
                     <ul class="service-features">
-                        <li>Shopify, WooCommerce, Magento</li>
-                        <li>Custom e-commerce solutions</li>
-                        <li>Payment gateway integration</li>
-                        <li>Inventory management systems</li>
+                        <li>React, Angular, Vue development</li>
+                        <li>Headless CMS implementations</li>
+                        <li>Progressive Web Apps (PWAs)</li>
+                        <li>E-commerce solutions</li>
                     </ul>
                 </div>
                 
                 <div class="service-card fade-in delay-3">
                     <div class="service-icon">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-cloud"></i>
                     </div>
-                    <h3>API Development</h3>
-                    <p>RESTful and GraphQL APIs to power your applications and enable integrations.</p>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and serverless architectures that grow with your business needs.</p>
                     <ul class="service-features">
-                        <li>Custom API development</li>
+                        <li>AWS, Azure, Google Cloud</li>
                         <li>Microservices architecture</li>
-                        <li>Third-party API integration</li>
-                        <li>Webhook implementation</li>
+                        <li>DevOps and CI/CD pipelines</li>
+                        <li>Containerization with Docker</li>
                     </ul>
                 </div>
                 
                 <div class="service-card fade-in delay-4">
                     <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
+                        <i class="fas fa-code"></i>
                     </div>
-                    <h3>Cloud Solutions</h3>
-                    <p>Scalable cloud infrastructure and serverless applications for optimal performance.</p>
+                    <h3>API Development</h3>
+                    <p>Robust API solutions that power your applications and enable seamless system integrations.</p>
                     <ul class="service-features">
-                        <li>AWS, Azure, Google Cloud</li>
-                        <li>Serverless architecture</li>
-                        <li>Containerization with Docker</li>
-                        <li>CI/CD pipeline setup</li>
+                        <li>RESTful and GraphQL APIs</li>
+                        <li>Third-party API integration</li>
+                        <li>Webhook implementation</li>
+                        <li>API security and documentation</li>
                     </ul>
                 </div>
                 
                 <div class="service-card fade-in delay-5">
                     <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-search"></i>
                     </div>
-                    <h3>Maintenance & Support</h3>
-                    <p>Ongoing support and maintenance to keep your applications running smoothly.</p>
+                    <h3>Digital Strategy</h3>
+                    <p>Comprehensive digital transformation roadmaps aligned with your business objectives.</p>
                     <ul class="service-features">
-                        <li>Performance optimization</li>
-                        <li>Security updates</li>
-                        <li>Bug fixes and troubleshooting</li>
-                        <li>Feature enhancements</li>
+                        <li>Technology consulting</li>
+                        <li>Digital maturity assessment</li>
+                        <li>Roadmap development</li>
+                        <li>Innovation workshops</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="process" class="design-process">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Design & Development Process</h2>
-                <p>A structured approach to delivering exceptional digital products</p>
+    <section id="case-studies" class="case-studies">
+<div class="container">
+<div class="section-title">
+<h2>Success Stories</h2>
+<p>Real-world results from our digital transformation projects</p>
+</div>
+        <div class="case-tabs">
+            <div class="case-tab active" data-tab="finance">FinTech</div>
+            <div class="case-tab" data-tab="healthcare">Healthcare</div>
+            <div class="case-tab" data-tab="retail">Retail</div>
+        </div>
+        
+        <div class="case-content active" id="finance-case">
+            <div class="case-study">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="FinTech Dashboard">
+                </div>
+                <div class="case-text">
+                    <h3>Wealth Management Platform</h3>
+                    <p>Transformed a legacy financial dashboard into a modern, data-driven investment platform that increased user engagement by 180% and reduced customer support queries by 65% through intuitive UX design and real-time analytics.</p>
+                    
+                    <div class="case-stats">
+                        <div class="case-stat">
+                            <h4>230%</h4>
+                            <p>Increase in mobile adoption</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>40%</h4>
+                            <p>Reduction in onboarding time</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>3.2x</h4>
+                            <p>Faster transaction processing</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>98%</h4>
+                            <p>Uptime reliability</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="case-content" id="healthcare-case">
+            <div class="case-study">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Healthcare App">
+                </div>
+                <div class="case-text">
+                    <h3>Telemedicine Platform</h3>
+                    <p>Developed a HIPAA-compliant telehealth solution that reduced patient wait times by 75% and increased provider efficiency by enabling 3x more consultations per day through optimized scheduling and video consultation workflows.</p>
+                    
+                    <div class="case-stats">
+                        <div class="case-stat">
+                            <h4>92%</h4>
+                            <p>Patient satisfaction rate</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>4.8/5</h4>
+                            <p>App Store rating</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>60%</h4>
+                            <p>Reduction in no-shows</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>100%</h4>
+                            <p>Compliance with regulations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="case-content" id="retail-case">
+            <div class="case-study">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="E-commerce Platform">
+                </div>
+                <div class="case-text">
+                    <h3>Omnichannel Retail Experience</h3>
+                    <p>Created a unified commerce platform that connected physical stores with e-commerce, resulting in a 140% increase in online sales and 35% higher average order value through personalized recommendations and seamless checkout.</p>
+                    
+                    <div class="case-stats">
+                        <div class="case-stat">
+                            <h4>78%</h4>
+                            <p>Faster page loads</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>45%</h4>
+                            <p>Mobile conversion rate</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>2.5x</h4>
+                            <p>More repeat customers</p>
+                        </div>
+                        <div class="case-stat">
+                            <h4>30%</h4>
+                            <p>Reduced cart abandonment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="process" class="process">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Proven Process</h2>
+            <p>A structured approach that delivers results at every stage</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Discovery & Strategy</h3>
+                    <p>We begin with in-depth research to understand your business goals, target audience, and competitive landscape. Through workshops and stakeholder interviews, we define success metrics and create a comprehensive digital strategy.</p>
+                </div>
             </div>
             
-            <div class="process-steps">
-                <div class="step fade-in">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Discovery & Research</h3>
-                        <p>We begin by understanding your business goals, target audience, and technical requirements through in-depth discovery sessions and market research.</p>
-                    </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Design & Prototyping</h3>
+                    <p>Our designers create wireframes, user flows, and high-fidelity prototypes that bring your vision to life. We validate concepts through user testing to ensure intuitive navigation and optimal user experience before development begins.</p>
                 </div>
-                
-                <div class="step fade-in delay-1">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Planning & Strategy</h3>
-                        <p>Our team creates a comprehensive project plan with milestones, deliverables, and technology stack recommendations tailored to your needs.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-2">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Design & Prototyping</h3>
-                        <p>We transform concepts into interactive prototypes with user flows, wireframes, and high-fidelity designs for stakeholder feedback.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-3">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Development</h3>
-                        <p>Our developers build your solution using agile methodologies with regular demos and iterations based on your feedback.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-4">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Testing & Quality Assurance</h3>
-                        <p>We conduct rigorous testing across devices and browsers to ensure functionality, performance, and security meet our high standards.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-5">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
-                        <h3>Launch & Optimization</h3>
-                        <p>After deployment, we monitor performance, gather user feedback, and make data-driven optimizations to enhance your digital product.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Portfolio</h2>
-                <p>Showcasing our expertise through successful projects</p>
             </div>
             
-            <div class="portfolio-grid">
-                <div class="portfolio-card fade-in">
-                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-tag">E-Commerce</span>
-                        <h3>Luxury Fashion Platform</h3>
-                        <p>A high-end fashion e-commerce platform with AR try-on features and personalized recommendations.</p>
-                    </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Development & Testing</h3>
+                    <p>Using agile methodologies, we build your solution in iterative sprints with continuous testing. Our developers follow best practices for clean, maintainable code while implementing robust QA processes at every stage.</p>
                 </div>
-                
-                <div class="portfolio-card fade-in delay-1">
-                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-tag">Mobile App</span>
-                        <h3>Fitness Tracking Application</h3>
-                        <p>AI-powered fitness app with real-time coaching and progress tracking for iOS and Android.</p>
-                    </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Deployment & Launch</h3>
+                    <p>We manage the complete deployment process, including environment setup, performance optimization, and security hardening. Our launch checklist ensures a smooth transition to production with minimal downtime.</p>
                 </div>
-                
-                <div class="portfolio-card fade-in delay-2">
-                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80');"></div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-tag">Web Application</span>
-                        <h3>Enterprise SaaS Platform</h3>
-                        <p>Custom CRM solution with advanced analytics and automation features for a global client.</p>
-                    </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Optimization & Growth</h3>
+                    <p>Post-launch, we analyze user behavior and performance metrics to identify improvement opportunities. Our continuous optimization services help you adapt to changing market needs and scale your digital presence.</p>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <section class="cta" id="contact">
+    </div>
+</section>
+
+<section id="contact" class="cta">
+    <div class="container">
+        <h2 class="fade-in">Ready to Transform Your Digital Presence?</h2>
+        <p class="fade-in delay-1">Let's discuss how we can help you achieve your business goals with cutting-edge digital solutions.</p>
+        <a href="#" class="btn fade-in delay-2">Get in Touch</a>
+    </div>
+</section>
+
+ <footer>
         <div class="container">
-            <h2 class="fade-in">Ready to Build Something Amazing?</h2>
-            <p class="fade-in delay-1">Contact us today to discuss your design and development needs with our experts.</p>
-            <a href="/Contact.html" class="btn fade-in delay-2">Get Started</a>
-        </div>
-    </section>
-    
-     
-   <footer class="security-footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <!-- Company Info -->
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <span class="matrix-logo">
-                            <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
-                        </span>
-                    </div>
-                    <p class="footer-about">Breaking your systems before attackers break your business.</p>
-                    <div class="footer-social">
-                        <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
-                        <a href="mainto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SARSOLUTIONZ</h3>
+                    <p>Breaking your systems before attackers break your business.</p>
+                    <div class="footer-social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Services</h3>
-                    <ul class="footer-links">
-                         <li><a href="/Design&Dev.html">Design and Development</a></li>
-                        <li><a href="/VAPT.html">Penetration Testing</a></li>
-                        <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
-                        <li><a href="/MobilePentest.html">Mobile Penetration Testing</a></li>
-                        <li><a href="/NetworkPentest.html">Network Penetration Testing</a></li>
-                        <li><a href="/APIPentest.html">API Security Testing</a></li>
-                        <li><a href="/CloudPentest.html">Cloud Penetration Testing</a></li>
-                        <li><a href="/Redteam.html">Red Teaming</a></li>
-                        <li><a href="/DarkWeb&OSINT.html">OSINT and Dark Web Research</a></li>
-                        <li><a href="/Phishing.html">Social Engineering</a></li>
-                    </ul>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="/">Home</a>
+                    <a href="/about.html">About Us</a>
+                    <a href="/services.html">Services</a>
+                    <a href="/blog.html">Blog</a>
+                    <a href="/contact.html">Contact</a>
                 </div>
-
-                <!-- Resources -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://sarsolutionz.blogspot.com/">Security Blog</a></li>
-                        <li><a href="#">Whitepapers</a></li>
-                        <li><a href="#">Security Tools</a></li>
-                        <li><a href="/Samplereports.html">Sample Reports</a></li>
-                        <li><a href="#">Testing Methodology</a></li>
-                    </ul>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="/services/web-pentesting.html">Web Application Testing</a>
+                    <a href="/services/mobile-pentesting.html">Mobile Security Testing</a>
+                    <a href="/services/network-pentesting.html">Network Penetration Testing</a>
+                    <a href="/services/red-teaming.html">Red Teaming</a>
+                    <a href="/services/training.html">Security Training</a>
                 </div>
-
-                <!-- Contact Info -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Contact</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</li>
-                        <!-- <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li> -->
-                        <li><i class="fas fa-envelope"></i>sarsolutionz7@gmail.com</li>
-                        <!-- <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM EST</li> -->
-                    </ul>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</p>
+                    <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <a href="/privacy">Privacy Policy</a> |
-                    <a href="/terms">Terms of Service</a> |
-                   <a href="/disclaimer">Disclaimer</a>  |
-                    <a href="/Contact.html">Contact</a>
-                </div>
-                <div class="footer-copyright">
-                    &copy; 2023 SARSolutionz. All rights reserved.
-                </div>
+            <div class="copyright">
+                &copy; 2023 SARSOLUTIONZ. All rights reserved. | <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a>
             </div>
         </div>
+    </footer>
 
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
-        <style>
-            /* Footer Styles */
-            .security-footer {
-                background: #0a0e17;
-                color: #e0e0e0;
-                padding: 60px 0 0;
-                position: relative;
-                font-family: 'Segoe UI', 'Roboto', sans-serif;
-                border-top: 1px solid #1e2a3a;
-            }
+    <script>
+        // Simple animation for elements with fade-in class
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
 
-            .footer-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px;
-            }
+            fadeElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                fadeInObserver.observe(el);
+            });
 
-            .footer-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 40px;
-                margin-bottom: 40px;
-            }
+            // Hamburger Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
 
-            .footer-section {
-                margin-bottom: 30px;
-            }
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
 
-            .footer-logo {
-                width: 180px;
-                margin-bottom: 20px;
-            }
+            // Close menu when clicking on a link
+            document.querySelectorAll('#nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
 
-            .footer-about {
-                color: #a0a8b8;
-                line-height: 1.6;
-                margin-bottom: 20px;
-            }
+            // Scroll to Top Button
+            const scrollTopBtn = document.getElementById('scrollTop');
 
-            .footer-social {
-                display: flex;
-                gap: 15px;
-            }
-
-            .footer-social a {
-                color: #d1d5db;
-                font-size: 18px;
-                transition: color 0.3s;
-            }
-
-            .footer-social a:hover {
-                color: #dc3545;
-            }
-
-            .footer-heading {
-                color: #ffffff;
-                font-size: 18px;
-                margin-bottom: 20px;
-                position: relative;
-                padding-bottom: 10px;
-            }
-
-            .footer-heading::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 40px;
-                height: 2px;
-                background: #dc3545;
-            }
-
-            .footer-links {
-                list-style: none;
-                padding: 0;
-            }
-
-            .footer-links li {
-                margin-bottom: 12px;
-            }
-
-            .footer-links a {
-                color: #a0a8b8;
-                text-decoration: none;
-                transition: color 0.3s;
-                display: inline-block;
-            }
-
-            .footer-links a:hover {
-                color: #dc3545;
-                transform: translateX(5px);
-            }
-
-            .footer-contact {
-                list-style: none;
-                padding: 0;
-            }
-
-            .footer-contact li {
-                margin-bottom: 15px;
-                display: flex;
-                align-items: center;
-            }
-
-            .footer-contact i {
-                margin-right: 10px;
-                color: #dc3545;
-                width: 20px;
-                text-align: center;
-            }
-
-            .footer-bottom {
-                border-top: 1px solid #1e2a3a;
-                padding: 20px 0;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .footer-legal {
-                display: flex;
-                gap: 15px;
-            }
-
-            .footer-legal a {
-                color: #a0a8b8;
-                text-decoration: none;
-                transition: color 0.3s;
-                font-size: 14px;
-            }
-
-            .footer-legal a:hover {
-                color: #dc3545;
-            }
-
-            .footer-copyright {
-                color: #a0a8b8;
-                font-size: 14px;
-            }
-
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(5px);
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
                 }
+            });
 
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-            /* Responsive Adjustments */
-            @media (max-width: 768px) {
-                .footer-grid {
-                    grid-template-columns: 1fr 1fr;
-                }
-
-                .pentest-chatbot-container {
-                    width: 90%;
-                    right: 5%;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .footer-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .footer-bottom {
-                    flex-direction: column;
-                    gap: 10px;
-                }
-
-                .pentest-chatbot-container {
-                    height: 70vh;
-                }
-            }
-        </style>
         </script>
        
             <title>⚡ Sarsolutionz Pentest Assistant</title>
@@ -2661,43 +2976,50 @@
 
             <script>
                  // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+    
+    function toggleMenu() {
+        mobileMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    }
+    
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+    mobileCloseBtn.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
+    
+    // Submenu Toggle
+    const menuToggles = document.querySelectorAll('.mobile-menu-toggle');
+    menuToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const submenu = toggle.parentElement.querySelector('.mobile-submenu');
+            toggle.classList.toggle('active');
+            submenu.classList.toggle('active');
         });
-        
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
+    });
+    
+    // Scroll to Top Button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-               
+    });
+</script>
 
-                // Scroll to Top Button Functionality
-                const scrollTopBtn = document.querySelector('.scroll-top');
-
-                window.addEventListener('scroll', () => {
-                    if (window.pageYOffset > 300) {
-                        scrollTopBtn.classList.add('active');
-                    } else {
-                        scrollTopBtn.classList.remove('active');
-                    }
-                });
-
-                scrollTopBtn.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            </script>
 </body>
 </html>
