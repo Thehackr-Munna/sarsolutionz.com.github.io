@@ -335,6 +335,27 @@ header {
 }
 /* Menu Above code */
 
+  .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a8b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #dc3545;
+            transform: translateX(5px);
+        }
+
 
 /* Scroll to Top Button */
 .scroll-top {
@@ -1960,27 +1981,38 @@ header {
                     <h3>SARSOLUTIONZ</h3>
                     <p>Breaking your systems before attackers break your business.</p>
                     <div class="footer-social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                         <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
+                        <a href="mailto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
+                         <a href="https://www.youtube.com/@sarsolutionz" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <a href="/">Home</a>
-                    <a href="/about.html">About Us</a>
+                    <a href="/About.html">About Us</a>
                     <a href="/services.html">Services</a>
                     <a href="/blog.html">Blog</a>
                     <a href="/contact.html">Contact</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <a href="/services/web-pentesting.html">Web Application Testing</a>
-                    <a href="/services/mobile-pentesting.html">Mobile Security Testing</a>
-                    <a href="/services/network-pentesting.html">Network Penetration Testing</a>
-                    <a href="/services/red-teaming.html">Red Teaming</a>
-                    <a href="/services/training.html">Security Training</a>
+               <div class="footer-column">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="/Design&Dev.html" class="footer-link">Design & Development</a></li>
+                        <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
+                        <li><a href="/WebPentest.html" class="footer-link">Web App Security</a></li>
+                        <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
+                        <li><a href="/NetworkPentest.html" class="footer-link">Network Penetration Testing</a></li>
+                        
+                        <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
+                        <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
+                        <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
+                        <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
+                        <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
+                    </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
