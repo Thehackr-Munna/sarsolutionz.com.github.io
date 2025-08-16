@@ -3,34 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Professional Pentesting Services</title>
+    <title>Get in touch with our team for custom development projects and professional cybersecurity services</title>
+    <meta name="description" content="Contact our team of cybersecurity experts for penetration testing, security assessments, and consulting services.">
     <style>
-        /* Professional Security Theme */
+        /* Modern Security Theme with Cyberpunk Accents */
         :root {
             --primary: #2563eb;  /* Professional blue */
             --primary-dark: #1e40af;
+            --primary-light: #93c5fd;
+            --accent: #10b981;   /* Security green */
+            --accent-dark: #059669;
             --dark: #111827;
+            --darker: #0d1321;
             --light: #f3f4f6;
-            --danger: #dc2626;
-            --success: #16a34a;
+            --lighter: #f9fafb;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
             --bg-color: #f9fafb;
             --text-color: var(--dark);
+            --text-muted: #6b7280;
             --card-bg: white;
             --border-color: #e5e7eb;
+            --border-radius: 12px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
         }
         
         /* Dark mode variables */
         [data-theme="dark"] {
             --primary: #3b82f6;
             --primary-dark: #2563eb;
+            --primary-light: #1e3a8a;
+            --accent: #10b981;
+            --accent-dark: #047857;
             --dark: #f3f4f6;
+            --darker: #e5e7eb;
             --light: #1f2937;
-            --bg-color: #111827;
+            --lighter: #111827;
+            --bg-color: #0d1321;
             --text-color: #f3f4f6;
-            --card-bg: #1f2937;
+            --text-muted: #9ca3af;
+            --card-bg: #1e293b;
             --border-color: #374151;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
@@ -40,16 +68,66 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: var(--transition);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            height: 100vh;
+            padding: 0 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
         }
         
         /* Header and Navigation */
@@ -57,83 +135,263 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 25px 0;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 100;
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            border-radius: 8px;
+            color: white;
         }
         
         .nav-container {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
         }
         
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
         
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
         }
         
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
         
-        /* Mobile menu */
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Mobile menu toggle */
         .hamburger {
             display: none;
             cursor: pointer;
             background: none;
             border: none;
             color: var(--text-color);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            z-index: 110;
+            padding: 5px;
+            border-radius: 5px;
+            transition: var(--transition);
         }
         
+        .hamburger:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mobile Navigation Styles */
         .mobile-nav {
-            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--card-bg);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            border-left: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .mobile-nav ul li a:hover {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .mobile-nav ul li a::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            left: -10px;
+            top: 0;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .mobile-nav ul li a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        .mobile-submenu {
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background: rgba(17, 34, 64, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 1000px;
+            padding: 15px 20px;
+            animation: slideDown 0.5s ease forwards;
+        }
+
+        .mobile-submenu li {
+            margin-bottom: 10px !important;
+        }
+
+        .mobile-submenu li a {
+            font-size: 16px !important;
+            padding: 8px 0 !important;
+            opacity: 0.9;
+        }
+
+        .mobile-submenu li a:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            font-size: 16px;
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        /* Close Button */
+        .mobile-close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            border: 1px solid var(--primary);
+            transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        
+        .mobile-close-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .mobile-close-btn::before,
+        .mobile-close-btn::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-close-btn::before {
+            transform: rotate(45deg);
+        }
+        
+        .mobile-close-btn::after {
+            transform: rotate(-45deg);
+        }
+        
+        .mobile-close-btn:hover::before,
+        .mobile-close-btn:hover::after {
+            background-color: var(--light);
+        }
+        
+        /* Mobile overlay */
+        .mobile-nav-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-color);
-            z-index: 1000;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
         }
         
-        .mobile-nav.active {
-            display: flex;
-        }
-        
-        .mobile-nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-        
-        .close-menu {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: pointer;
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
         
         /* Theme toggle */
@@ -146,14 +404,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            transition: background-color 0.2s;
+            transition: var(--transition);
         }
         
         .theme-toggle:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotate(30deg);
         }
         
         /* Main content */
@@ -162,142 +421,213 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 40px 0;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         
         .header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-color);
-            margin-bottom: 16px;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
             line-height: 1.2;
         }
         
         .header p {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            opacity: 0.8;
+            font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
+            color: var(--text-muted);
         }
         
+        /* Contact container */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 40px;
             max-height: 60vh;
             overflow: hidden;
         }
         
-        .contact-info, .contact-form {
+        /* Contact info card */
+        .contact-info {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border-color);
             overflow-y: auto;
             max-height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            z-index: -1;
+            border-radius: var(--border-radius);
         }
         
         .contact-info h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 24px;
-            position: relative;
-        }
-        
-        .contact-info h2:after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-        }
-        
-        .contact-info p {
-            color: var(--text-color);
-            opacity: 0.8;
             margin-bottom: 30px;
         }
         
-        .contact-method {
-            margin-bottom: 20px;
+        .contact-info p {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
         }
         
-        .contact-method h3 {
-            font-size: 1rem;
+        .contact-method {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-method-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-method-content h3 {
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-color);
             margin-bottom: 5px;
         }
         
-        .contact-method p {
+        .contact-method-content p {
             margin: 0;
-            opacity: 0.8;
+            font-size: 1rem;
+            color: var(--text-muted);
         }
         
         .social-links {
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .social-links h3 {
             font-size: 1rem;
-            color: var(--text-color);
-            opacity: 0.7;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .social-links .social-icons {
+            display: flex;
+            gap: 15px;
         }
         
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: var(--light);
             color: var(--text-color);
-            border-radius: 8px;
-            margin-right: 12px;
-            transition: all 0.2s;
+            border-radius: 50%;
+            transition: var(--transition);
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .social-links a:hover {
-            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .social-links a:hover:before {
+            opacity: 1;
+        }
+        
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-links a:hover i {
             color: white;
-            transform: translateY(-2px);
+        }
+        
+        /* Contact form */
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            overflow-y: auto;
+            max-height: 100%;
+            position: relative;
+        }
+        
+        .contact-form:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+            z-index: -1;
+            border-radius: var(--border-radius);
         }
         
         /* Form styles */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
         }
         
         label {
             display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--text-color);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         input, textarea, select {
-            width: 95%;
-            padding: 12px 16px;
+            width: 100%;
+            padding: 14px 18px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 1rem;
-            transition: all 0.2s;
+            transition: var(--transition);
             background-color: var(--card-bg);
             color: var(--text-color);
+            font-family: 'Inter', sans-serif;
         }
         
         input:focus, textarea:focus, select:focus {
@@ -307,7 +637,7 @@
         }
         
         textarea {
-            min-height: 120px;
+            min-height: 150px;
             resize: vertical;
         }
         
@@ -323,81 +653,103 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23f3f4f6' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
         }
         
+        /* Button styles */
         .btn {
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
             border: none;
             border-radius: 8px;
-            padding: 14px 28px;
+            padding: 16px 32px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-dark) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
         }
         
         .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn:hover:before {
+            opacity: 1;
         }
         
         .btn i {
-            margin-left: 8px;
+            transition: var(--transition);
+        }
+        
+        .btn:hover i {
+            transform: translateX(3px);
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.7;
+            padding: 30px 0;
+            font-size: 0.95rem;
+            color: var(--text-muted);
             margin-top: auto;
+            border-top: 1px solid var(--border-color);
         }
         
-        /* Responsive */
-        @media (max-width: 992px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                max-height: none;
-            }
-            
-            .contact-info, .contact-form {
-                max-height: none;
-                overflow: visible;
-            }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
             }
-            
-            .header p {
-                font-size: 1rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hamburger {
-                display: block;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5rem;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
             }
-            
-            .contact-info, .contact-form {
-                padding: 20px;
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
         
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -416,22 +768,105 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--primary-dark);
         }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .contact-container {
+                gap: 30px;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                max-height: none;
+                gap: 30px;
+            }
+            
+            .contact-info, .contact-form {
+                max-height: none;
+                overflow: visible;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 25px;
+            }
+            
+            .contact-method {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-method-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Utility classes */
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mt-4 { margin-top: 2rem; }
+        
+        .text-center { text-align: center; }
     </style>
     <!-- Feather Icons -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Font Awesome for mobile menu icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">SAR Solutions</div>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-feather="shield"></i>
+                </div>
+                <span>SAR Solutionz</span>
+            </div>
             <div class="nav-container">
                 <nav class="nav-links">
-                    <a href="/">Home</a>
-                    <a href="#">Services</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+                    <a href="/"><i data-feather="home"></i> Home</a>
+                    <a href="#"><i data-feather="tool"></i> Services</a>
+                    <a href="/About.html"><i data-feather="info"></i> About</a>
                 </nav>
                 <button class="theme-toggle" aria-label="Toggle dark mode">
                     <i data-feather="moon"></i>
@@ -443,59 +878,77 @@
         </header>
         
         <div class="main-content">
-            <div class="header">
+            <div class="header animate-fade-in">
                 <h1>Let's Build or Break Things (Securely)</h1>
-                <p>Contact our team of security professionals to discuss your penetration testing needs and security challenges.</p>
+                <p class="animate-fade-in delay-1">Contact our team of developers and security professionals to discuss your project needs - from building robust applications to testing their security..</p>
             </div>
             
             <div class="contact-container">
-                <div class="contact-info">
+                <div class="contact-info animate-fade-in delay-2">
                     <h2>Let's Connect</h2>
-                    <p>Whether you're a startup looking to launch fast or an enterprise that needs its security posture strengthened — we offer professional penetration testing and security assessment services.</p>
+                    <p>Whether you need custom software development, web/mobile applications, or security testing for your existing systems - we provide end-to-end solutions to build and secure your digital assets.</p>
                     
                     <div class="contact-method">
-                        <h3>Email</h3>
-                        <p>security@sarsolutionz.com</p>
+                        <div class="contact-method-icon">
+                            <i data-feather="mail"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h3>Email</h3>
+                            <p>sarsolutionz7@gmail.com</p>
+                        </div>
                     </div>
                     
                     <div class="contact-method">
-                        <h3>Office</h3>
-                        <p>Security Tower, Cyber District</p>
+                        <div class="contact-method-icon">
+                            <i data-feather="map-pin"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h3>Location</h3>
+                            <p>Mumbai, India</p>
+                        </div>
                     </div>
                     
                     <div class="social-links">
                         <h3>Find With Me</h3>
-                        <a href="https://github.com/Rahul-Thakur7" aria-label="GitHub"><i data-feather="github"></i></a>
-                        <a href="https://in.linkedin.com/in/rahul-thakur7" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
-                        <a href="#" aria-label="Twitter"><i data-feather="twitter"></i></a>
+                        <div class="social-icons">
+                            <a href="https://github.com/Rahul-Thakur7" aria-label="GitHub"><i data-feather="github"></i></a>
+                            <a href="https://in.linkedin.com/in/rahul-thakur7" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i data-feather="twitter"></i></a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <form id="security-contact-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST">
+                <div class="contact-form animate-fade-in delay-3">
+                    <form id="pentest-form" action="https://formspree.io/f/xzzvwlqa" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you">
+                        <input type="hidden" name="_next" value="https://sarsolutionz.com/thank-you">
                         
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="John Smith" required>
+                            <input type="text" id="name" name="name" placeholder="Munna" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                            <input type="email" id="email" name="email" placeholder="Munna@company.com" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="service">Service Needed</label>
                             <select id="service" name="service" required>
                                 <option value="" disabled selected>Select a service</option>
+                                <option value="Development">Web Application Development</option>
+                                <option value="Development">Mobile Application Development</option>
+                                <option value="Development">API Application Development</option>
                                 <option value="web-pentesting">Web Application Pentesting</option>
+                                <option value="api-pentesting">API Pentesting</option>
                                 <option value="network-pentesting">Network Pentesting</option>
                                 <option value="mobile-pentesting">Mobile Application Pentesting</option>
                                 <option value="cloud-security">Cloud Security Assessment</option>
-                                <option value="red-teaming">Red Teaming</option>
+                                <!-- <option value="red-teaming">Red Teaming</option> -->
                                 <option value="security-consulting">Security Consulting</option>
+                                <option value="osint">OSINT and Dark Web Research</option>
+                                <option value="social-engineering">Social Engineering</option>
                             </select>
                         </div>
                         
@@ -512,60 +965,120 @@
             </div>
         </div>
         
-        <footer>
+        <footer class="animate-fade-in delay-4">
             <p>&copy; 2023 SAR Solutions. All rights reserved.</p>
         </footer>
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
-        <button class="close-menu" aria-label="Close menu">
-            <i data-feather="x"></i>
-        </button>
-        <a href="/">Home</a>
-        <a href="/">Services</a>
-        <a href="#">About</a>
-        <a href="/Contact.html">Contact</a>
-        <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
-           
-        </button>
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu"></button>
+        
+        <ul>
+            <li style="animation: slideIn 0.3s 0.1s both;">
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+            </li>
+            
+            <li class="menu-item-has-children" style="animation: slideIn 0.3s 0.2s both;">
+                <div class="mobile-menu-toggle">
+                    <a href="/services.html"><i class="fas fa-tools"></i> Services</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li class="menu-item-has-children">
+                        <div class="mobile-menu-toggle">
+                            <a href="/hacking-services.html"><i class="fas fa-shield-alt"></i> Hacking Services</a>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="mobile-submenu">
+                            <li><a href="/WebPentest.html"><i class="fas fa-globe"></i> Web Pentesting</a></li>
+                            <li><a href="/NetworkPentest.html"><i class="fas fa-network-wired"></i> Network Pentesting</a></li>
+                            <li><a href="/MobilePentest.html"><i class="fas fa-mobile-alt"></i> Mobile Security</a></li>
+                            <li><a href="/Redteam.html"><i class="fas fa-user-secret"></i> Red Teaming</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <div class="mobile-menu-toggle">
+                            <a href="/Design&Dev.html"><i class="fas fa-code"></i> Development Services</a>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="mobile-submenu">
+                            <li><a href="/services/web-development.html"><i class="fas fa-laptop-code"></i> Web Development</a></li>
+                            <li><a href="/services/mobile-development.html"><i class="fas fa-mobile"></i> Mobile Development</a></li>
+                            <li><a href="/services/api-development.html"><i class="fas fa-plug"></i> API Development</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            
+            <li style="animation: slideIn 0.3s 0.3s both;">
+                <a href="/blog.html"><i class="fas fa-blog"></i> Blog</a>
+            </li>
+            <li style="animation: slideIn 0.3s 0.4s both;">
+                <a href="/About.html"><i class="fas fa-info-circle"></i> About</a>
+            </li>
+            <li style="animation: slideIn 0.3s 0.5s both;">
+                <a href="/contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </li>
+        </ul>
     </div>
 
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
     <script>
+        
         // Initialize Feather Icons
         feather.replace();
         
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
-        const closeMenu = document.querySelector('.close-menu');
         const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
         
         hamburger.addEventListener('click', () => {
             mobileNav.classList.add('active');
+            mobileNavOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
         
-        closeMenu.addEventListener('click', () => {
+        mobileCloseBtn.addEventListener('click', () => {
             mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
             document.body.style.overflow = '';
+        });
+        
+        mobileNavOverlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Toggle mobile submenus
+        document.querySelectorAll('.mobile-menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.parentElement.querySelector('.mobile-submenu');
+                toggle.classList.toggle('active');
+                submenu.classList.toggle('active');
+            });
         });
         
         // Theme toggle
         const themeToggle = document.querySelector('.theme-toggle');
-        const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
         const html = document.documentElement;
         
         // Check for saved theme preference or use preferred color scheme
         const currentTheme = localStorage.getItem('theme') || 
-                             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                           (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         
         // Apply the current theme
         if (currentTheme === 'dark') {
             html.setAttribute('data-theme', 'dark');
             themeToggle.innerHTML = '<i data-feather="sun"></i>';
-            if (mobileThemeToggle) {
-                mobileThemeToggle.innerHTML = '<i data-feather="sun"></i>';
-            }
+        } else {
+            html.removeAttribute('data-theme');
+            themeToggle.innerHTML = '<i data-feather="moon"></i>';
         }
         
         // Theme toggle function
@@ -574,42 +1087,63 @@
                 html.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
                 themeToggle.innerHTML = '<i data-feather="moon"></i>';
-                if (mobileThemeToggle) {
-                    mobileThemeToggle.innerHTML = '<i data-feather="moon"></i>';
-                }
             } else {
                 html.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 themeToggle.innerHTML = '<i data-feather="sun"></i>';
-                if (mobileThemeToggle) {
-                    mobileThemeToggle.innerHTML = '<i data-feather="sun"></i>';
-                }
             }
             feather.replace();
         }
         
         themeToggle.addEventListener('click', toggleTheme);
-        if (mobileThemeToggle) {
-            mobileThemeToggle.addEventListener('click', toggleTheme);
-        }
         
         // Form submission handling
-        document.getElementById('security-contact-form').addEventListener('submit', function(e) {
-            const btn = this.querySelector('button[type="submit"]');
-            if(btn) {
-                btn.innerHTML = 'Sending... <i data-feather="loader"></i>';
-                btn.disabled = true;
-                feather.replace();
+        const contactForm = document.getElementById('security-contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const btn = this.querySelector('button[type="submit"]');
+                if(btn) {
+                    btn.innerHTML = 'Sending... <i data-feather="loader" class="spin"></i>';
+                    btn.disabled = true;
+                    feather.replace();
+                }
+            });
+        }
+        
+        // Add spin animation class
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
             }
-        });
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+        `;
+        document.head.appendChild(style);
         
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                document.body.style.overflow = '';
+            if (!link.parentElement.classList.contains('mobile-menu-toggle')) {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    mobileNavOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
+
     </script>
 </body>
 </html>
