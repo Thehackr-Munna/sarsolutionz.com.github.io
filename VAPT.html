@@ -6,6 +6,315 @@
     <title>Comprehensive Penetration Testing Services | SARSolutionz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
+               
+/* Navigation menu */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 30px;
+    
+}
+header {
+    background-color: rgba(10, 25, 47, 0.9);
+    color: white;
+    padding: 15px 0;
+    position: sticky;
+    top: 0; /* This was likely missing */
+    z-index: 1000; /* Increased for safety */
+    backdrop-filter: blur(10px);
+    transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+    width: 100%; /* Ensure full width */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Added max-width */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add some padding */
+    width: 100%; /* Ensure it takes full width */
+}
+
+/* Logo styles */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--secondary);
+    z-index: 1001; /* Above the sticky header */
+}
+
+/* Navigation menu */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+       /* Enhanced Mobile Menu Styles */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            padding: 10px;
+        }
+
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--primary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            border-left: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--secondary);
+            transform: translateX(10px);
+        }
+
+        .mobile-menu ul li a::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            left: -10px;
+            top: 0;
+            background: var(--secondary);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .mobile-menu ul li a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        .mobile-submenu {
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background: rgba(17, 34, 64, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 1000px;
+            padding: 15px 20px;
+            animation: slideDown 0.5s ease forwards;
+        }
+
+        .mobile-submenu li {
+            margin-bottom: 10px !important;
+        }
+
+        .mobile-submenu li a {
+            font-size: 16px !important;
+            padding: 8px 0 !important;
+            opacity: 0.9;
+        }
+
+        .mobile-submenu li a:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            font-size: 16px;
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+            color: var(--secondary);
+        }
+
+        /* .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        } */
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Menu Item Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+.no-scroll {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    nav ul li {
+        margin-left: 15px;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Scroll to Top Button */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--secondary);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background-color: var(--light);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    nav ul {
+        display: none;
+    }
+}
+/* For smoth Menu above code */
         /* Modern Security Theme */
         :root {
             --primary: #0a192f;
@@ -283,6 +592,323 @@
             color: var(--light);
             opacity: 0.9;
         }
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column h3 {
+            color: var(--light);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+        }
+
+        .footer-column a, 
+        .footer-column p {
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .footer-column i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .footer-social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-navy);
+            color: var(--light);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 0;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: all 0.5s ease;
+                z-index: 99;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 100;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .scroll-top {
+                width: 40px;
+                height: 40px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(2, 12, 27, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--light);
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 100px 0;
+            background-color: var(--dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--light);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--secondary);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .mission-text p {
+            margin-bottom: 20px;
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .mission-image {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .mission-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background-color: var(--navy);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background-color: var(--light-navy);
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid var(--secondary);
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+
+        .team-member .position {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .team-member p {
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--light);
+            background-color: var(--navy);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
         
         /* About Pentesting */
         .about-pentest {
@@ -846,7 +1472,7 @@
 </head>
 <body>
     <header>
-        <div class="container header-container">
+        <div class="header-container">
             <div class="logo">
                 <span class="matrix-logo">
                     <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
@@ -854,31 +1480,79 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#about">What is Pentesting?</a></li>
-                    <li><a href="#services">Services</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
                     <li><a href="#methodology">Methodology</a></li>
-                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#testing-types">Testing Types</a></li>
+                    <li><a href="#tools">Tools</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
-    
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose">
-            <i class="fas fa-times"></i>
-        </button>
         <ul>
-            <li><a href="#about">What is Pentesting?</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#methodology">Methodology</a></li>
-            <li><a href="#case-studies">Case Studies</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li style="animation: slideIn 0.3s 0.1s both;">
+                <a href="/">Home</a>
+            </li>
+            
+            <li class="menu-item-has-children" style="animation: slideIn 0.3s 0.2s both;">
+                <div class="mobile-menu-toggle">
+                    <a href="/services.html">Services</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li class="menu-item-has-children">
+                        <div class="mobile-menu-toggle">
+                            <a href="/hacking-services.html">Hacking Services</a>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="mobile-submenu">
+                            <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                            <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
+                            <li><a href="/MobilePentest.html">Mobile Security Testing</a></li>
+                             <li><a href="/DarkWeb&OSINT.html">Dark Web, Deep Web Research & OSINT</a></li>
+                              <li><a href="/Phishing.html">Phishing Simulation</a></li>
+                               <li><a href="/MobilePentest.html"></a></li>
+                            <li><a href="/Redteam.html">Red Teaming</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <div class="mobile-menu-toggle">
+                            <a href="/Design&Dev.html">Development Services</a>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="mobile-submenu">
+                            <li><a href="/services/web-development.html">Web Development</a></li>
+                            <li><a href="/services/mobile-development.html">Mobile App Development</a></li>
+                            <li><a href="/services/api-development.html">API Development</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            
+            <li style="animation: slideIn 0.3s 0.3s both;">
+                <a href="/blog.html">Blog</a>
+            </li>
+            <li style="animation: slideIn 0.3s 0.4s both;">
+                <a href="/About.html">About</a>
+            </li>
+            <li style="animation: slideIn 0.3s 0.5s both;">
+                <a href="/contact.html">Contact</a>
+            </li>
         </ul>
+    </div>
+     <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
     </div>
     
     <section class="hero">
@@ -1136,75 +1810,54 @@
         </div>
     </section>
     
-    <!-- Footer -->
-    <footer class="security-footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <!-- Company Info -->
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <span class="matrix-logo">
-                            <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
-                        </span>
-                    </div>
-                    <p class="footer-about">Breaking your systems before attackers break your business.</p>
-                    <div class="footer-social">
-                         <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
+      <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SARSOLUTIONZ</h3>
+                    <p>Breaking your systems before attackers break your business.</p>
+                    <div class="footer-social-links">
+                          <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
                         <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
                         <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
-                        <a href="mainto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
+                         <a href="https://www.youtube.com/@sarsolutionz" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
                     </div>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Services</h3>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="/">Home</a>
+                   <a href="/About.html">About Us</a>
+                    <a href="/services.html">Services</a>
+                    <a href="/blog.html">Blog</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+               <div class="footer-column">
+                    <h3 class="footer-title">Services</h3>
                     <ul class="footer-links">
-                         <li><a href="/Design&Dev.html">Design and Development</a></li>
-                        <li><a href="/VAPT.html">Penetration Testing</a></li>
-                        <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
-                        <li><a href="/MobilePentest.html">Mobile Penetration Testing</a></li>
-                        <li><a href="/NetworkPentest.html">Network Penetration Testing</a></li>
-                        <li><a href="/APIPentest.html">API Security Testing</a></li>
-                        <li><a href="/CloudPentest.html">Cloud Penetration Testing</a></li>
-                        <li><a href="/Redteam.html">Red Teaming</a></li>
-                        <li><a href="/DarkWeb&OSINT.html">OSINT and Dark Web Research</a></li>
-                        <li><a href="/Phishing.html">Social Engineering</a></li>
+                        <li><a href="/Design&Dev.html" class="footer-link">Design & Development</a></li>
+                        <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
+                        <li><a href="/WebPentest.html" class="footer-link">Web App Security</a></li>
+                        <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
+                        <li><a href="/NetworkPentest.html" class="footer-link">Network Penetration Testing</a></li>
+                        
+                        <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
+                        <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
+                        <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
+                        <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
+                        <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
                     </ul>
                 </div>
-
-                <!-- Resources -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://sarsolutionz.blogspot.com/">Security Blog</a></li>
-                        <li><a href="#">Whitepapers</a></li>
-                        <li><a href="#">Security Tools</a></li>
-                        <li><a href="/Samplereports.html">Sample Reports</a></li>
-                        <li><a href="#">Testing Methodology</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="footer-section">
-                    <h3 class="footer-heading">Contact</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</li>
-                        <li><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</li>
-                    </ul>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</p>
+                    <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <a href="/privacy">Privacy Policy</a> |
-                    <a href="/terms">Terms of Service</a> |
-                    <a href="/disclaimer">Disclaimer</a>  |
-                    <a href="/Contact.html">Contact</a>
-                </div>
-                <div class="footer-copyright">
-                    &copy; 2023 SARSolutionz. All rights reserved.
-                </div>
+            <div class="copyright">
+                &copy; 2023 SARSOLUTIONZ. All rights reserved. | <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a>
             </div>
         </div>
     </footer>
@@ -1215,1394 +1868,52 @@
     </div>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
-        
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Scroll to Top Button
-        const scrollTopBtn = document.getElementById('scrollTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('active');
-            } else {
-                scrollTopBtn.classList.remove('active');
-            }
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Matrix Effect for Footer Logo
-        document.addEventListener('DOMContentLoaded', function() {
-            const logo = document.querySelector('.footer-logo .matrix-logo');
-            const chars = "01!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            
-            logo.addEventListener('mouseenter', startMatrixEffect);
-            logo.addEventListener('touchstart', startMatrixEffect, { passive: true });
-            
-            function startMatrixEffect() {
-                const originalText = "SARSOLUTIONZ";
-                let iteration = 0;
-                const frameRate = 30;
-                const duration = 1000;
-                const totalFrames = (duration / 1000) * frameRate;
-                
-                const interval = setInterval(() => {
-                    logo.innerHTML = originalText.split("")
-                        .map((letter, index) => {
-                            if (index < iteration) {
-                                return index < 3 ? 
-                                    `<span class="logo-part-red">${letter}</span>` : 
-                                    `<span class="logo-part-white">${letter}</span>`;
-                            }
-                            const char = chars[Math.floor(Math.random() * chars.length)];
-                            return `<span style="opacity:${0.3 + Math.random() * 0.7}">${char}</span>`;
-                        })
-                        .join("");
-                    
-                    iteration += originalText.length / totalFrames;
-                    
-                    if (iteration >= originalText.length) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            logo.innerHTML = `
-                                <span class="logo-part-red">SAR</span>
-                                <span class="logo-part-white">SOLUTIONZ</span>
-                            `;
-                        }, 200);
-                    }
-                }, 1000/frameRate);
-            }
-        });
-    </script>
-     <!-- Footer with Advanced Pentest Chatbot -->
-       <style>
-        /* Footer Styles */
-        .security-footer {
-            background: #0a0e17;
-            color: #e0e0e0;
-            padding: 60px 0 0;
-            position: relative;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            border-top: 1px solid #1e2a3a;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section {
-            margin-bottom: 30px;
-        }
-
-        .footer-logo {
-            width: 180px;
-            margin-bottom: 20px;
-        }
-
-        .footer-about {
-            color: #a0a8b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer-social a {
-            color: #d1d5db;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .footer-social a:hover {
-            color: #dc3545;
-        }
-
-        .footer-heading {
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: #dc3545;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #a0a8b8;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: #dc3545;
-            transform: translateX(5px);
-        }
-
-        .footer-contact {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-contact li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-contact i {
-            margin-right: 10px;
-            color: #dc3545;
-            width: 20px;
-            text-align: center;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #1e2a3a;
-            padding: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer-legal a {
-            color: #a0a8b8;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 14px;
-        }
-
-        .footer-legal a:hover {
-            color: #dc3545;
-        }
-
-        .footer-copyright {
-            color: #a0a8b8;
-            font-size: 14px;
-        }
-
-        /* Matrix Logo Styles */
-        .matrix-logo {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .logo-part-red {
-            color: #ff3366;
-            text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
-        }
-
-        .logo-part-white {
-            color: #e0e0e0;
-            text-shadow: 0 0 8px rgba(224, 224, 224, 0.4);
-        }
-
-        /* Chatbot Styles */
-        :root {
-            --bg: #0a0a12;
-            --card: #1a1a2e;
-            --accent: #ff2a6d;
-            --accent-dark: #d1005b;
-            --text: #e0e0ff;
-            --muted: #8a8a9a;
-            --success: #05d9a5;
-            --warning: #ff9a56;
-            --terminal: #0aff0a;
-        }
-
-        @font-face {
-            font-family: 'Hack';
-            src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.003/web/fonts/hack-regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        #chatbot-launcher {
-            position: fixed;
-            bottom: 120px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 5px 25px rgba(255, 42, 109, 0.5);
-            z-index: 999;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            animation: pulse 2s infinite;
-        }
-
-        #chatbot-launcher:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(255, 42, 109, 0.7);
-        }
-
-        #chatbot-launcher i {
-            font-size: 28px;
-            color: white;
-        }
-
-        #chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 0px;
-            width: 380px;
-            max-height: 80vh;
-            background: var(--bg);
-            border-radius: 12px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-            font-family: 'Hack', 'Courier New', monospace;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            transform: translateY(10px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        #chatbot-container.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        #chatbot-header {
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--accent);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        #chatbot-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
-        }
-
-        #chatbot-header h3 i {
-            font-size: 18px;
-        }
-
-        #chatbot-body {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            background: var(--bg);
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        .message {
-            max-width: 85%;
-            margin-bottom: 15px;
-            padding: 12px 16px;
-            border-radius: 8px;
-            line-height: 1.5;
-            font-size: 14px;
-            animation: fadeIn 0.3s ease;
-            transform-origin: bottom;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .bot-message {
-            background: var(--card);
-            color: var(--text);
-            border-radius: 8px 8px 8px 2px;
-            margin-right: auto;
-            border-left: 3px solid var(--accent);
-        }
-
-        .user-message {
-            background: rgba(255, 42, 109, 0.15);
-            color: var(--text);
-            border-radius: 8px 8px 2px 8px;
-            margin-left: auto;
-            border-right: 3px solid var(--accent);
-        }
-
-        .system-message {
-            background: rgba(5, 217, 165, 0.1);
-            color: var(--success);
-            border-radius: 8px;
-            margin: 15px auto;
-            text-align: center;
-            font-size: 13px;
-            padding: 10px;
-            border: 1px dashed var(--success);
-            max-width: 90%;
-        }
-
-        #chatbot-footer {
-            padding: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        #chatbot-input {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.5);
-            color: var(--terminal);
-            font-family: 'Hack', 'Courier New', monospace;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        #chatbot-input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(255, 42, 109, 0.3);
-        }
-
-        #chatbot-input::placeholder {
-            color: var(--muted);
-        }
-
-        .typing {
-            display: inline-flex;
-            gap: 6px;
-            padding: 12px 16px;
-            background: var(--card);
-            border-radius: 8px 8px 8px 2px;
-            border-left: 3px solid var(--accent);
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--muted);
-            border-radius: 50%;
-            animation: bounce 1s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .quick-reply {
-            display: inline-block;
-            margin: 5px;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .quick-reply:hover {
-            background: rgba(255, 42, 109, 0.2);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .service-option {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-            text-align: left;
-            font-family: 'Hack', 'Courier New', monospace;
-        }
-
-        .service-option:hover {
-            background: rgba(255, 42, 109, 0.1);
-            border-left-color: var(--accent);
-        }
-
-        .service-option i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            color: var(--text);
-            font-family: 'Hack', 'Courier New', monospace;
-            font-size: 14px;
-        }
-
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .file-upload {
-            position: relative;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
-        .file-upload input {
-            position: absolute;
-            font-size: 50px;
-            opacity: 0;
-            right: 0;
-            top: 0;
-            cursor: pointer;
-        }
-
-        .upload-btn {
-            display: inline-block;
-            padding: 10px 15px;
-            background: rgba(255, 42, 109, 0.2);
-            color: var(--accent);
-            border-radius: 6px;
-            cursor: pointer;
-            border: 1px dashed var(--accent);
-            font-size: 13px;
-            transition: all 0.2s ease;
-        }
-
-        .upload-btn:hover {
-            background: rgba(255, 42, 109, 0.3);
-        }
-
-        .file-name {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 5px;
-            display: none;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Hack', 'Courier New', monospace;
-            font-weight: bold;
-            transition: all 0.2s ease;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.4);
-        }
-
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .service-icon {
-            font-size: 20px;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-
-        .timeline-selector {
-            display: flex;
-            gap: 5px;
-            margin: 10px 0;
-        }
-
-        .timeline-option {
-            flex: 1;
-            padding: 8px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .timeline-option:hover,
-        .timeline-option.selected {
-            background: var(--accent);
-            color: white;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-4px);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(255, 42, 109, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 42, 109, 0);
-            }
-        }
-
-        /* Terminal-like effects */
-        .terminal-text {
-            position: relative;
-        }
-
-        .terminal-text::after {
-            content: "|";
-            animation: blink 1s infinite;
-            position: absolute;
-            right: -5px;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            #chatbot-container {
-                width: 90%;
-                right: 5%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            #chatbot-container {
-                height: 70vh;
-            }
-        }
-    </style>
-</head>
-<body>
-   
-    <!-- Pentest Chatbot -->
-    <div id="chatbot-launcher">
-        <i class="fas fa-shield-alt"></i>
-    </div>
-
-    <div id="chatbot-container">
-        <div id="chatbot-header">
-            <h3><i class="fas fa-terminal"></i> Sarsolutionz Pentest</h3>
-            <button id="close-chat" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div id="chatbot-body"></div>
-        <div id="chatbot-footer">
-            <input type="text" id="chatbot-input" placeholder="Type your message...">
-        </div>
-    </div>
-
-    <script>
-        // DOM Elements
-        const launcher = document.getElementById('chatbot-launcher');
-        const container = document.getElementById('chatbot-container');
-        const body = document.getElementById('chatbot-body');
-        const input = document.getElementById('chatbot-input');
-        const closeBtn = document.getElementById('close-chat');
-
-        // State management
-        let currentState = 'welcome';
-        let selectedService = null;
-        let formData = {
-            name: '',
-            email: '',
-            company: '',
-            serviceType: '',
-            testType: '',
-            timeline: '',
-            scope: '',
-            demoCall: '',
-            file: null
-        };
-
-        // Matrix Effect for Footer Logo
-        document.addEventListener('DOMContentLoaded', function() {
-            const logo = document.getElementById('footer-matrix-logo');
-            const chars = "01!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            
-            logo.addEventListener('mouseenter', startMatrixEffect);
-            logo.addEventListener('touchstart', startMatrixEffect, { passive: true });
-            
-            function startMatrixEffect() {
-                const originalText = logo.dataset.value;
-                let iteration = 0;
-                const frameRate = 30;
-                const duration = 1000;
-                const totalFrames = (duration / 1000) * frameRate;
-                
-                const interval = setInterval(() => {
-                    logo.innerHTML = originalText.split("")
-                        .map((letter, index) => {
-                            if (index < iteration) {
-                                return index < 3 ? 
-                                    `<span class="logo-part-red">${letter}</span>` : 
-                                    `<span class="logo-part-white">${letter}</span>`;
-                            }
-                            const char = chars[Math.floor(Math.random() * chars.length)];
-                            return `<span style="opacity:${0.3 + Math.random() * 0.7}">${char}</span>`;
-                        })
-                        .join("");
-                    
-                    iteration += originalText.length / totalFrames;
-                    
-                    if (iteration >= originalText.length) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            logo.innerHTML = `
-                                <span class="logo-part-red">SAR</span>
-                                <span class="logo-part-white">SOLUTIONZ</span>
-                            `;
-                        }, 200);
-                    }
-                }, 1000/frameRate);
-            }
-        });
-
-        // Chatbot Functions
-        function addMessage(text, isUser = false, isSystem = false) {
-            const msg = document.createElement('div');
-            if (isSystem) {
-                msg.className = 'system-message';
-            } else {
-                msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            }
-
-            if (typeof text === 'string') {
-                msg.textContent = text;
-            } else {
-                msg.appendChild(text);
-            }
-
-            body.appendChild(msg);
-            body.scrollTop = body.scrollHeight;
-            return msg;
-        }
-
-        function showTyping() {
-            const typing = document.createElement('div');
-            typing.className = 'message bot-message typing';
-            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-            body.appendChild(typing);
-            body.scrollTop = body.scrollHeight;
-            return typing;
-        }
-
-        function showWelcome() {
-            currentState = 'welcome';
-            addMessage("Initializing Hacker Bot", false);
-            
-            setTimeout(() => {
-                addMessage("Secure connection established 🔒", false);
-                
-                setTimeout(() => {
-                    const welcomeMsg = document.createElement('div');
-                    welcomeMsg.innerHTML = `
-                        <div style="margin-bottom:10px;">Welcome to <span style="color:var(--accent);font-weight:bold;">SARSolutionz</span> Pentest Assistant</div>
-                        <div style="font-size:13px;color:var(--muted);margin-bottom:15px;">How can we assist with your security needs today?</div>
-                    `;
-                    addMessage(welcomeMsg, false);
-                    
-                    setTimeout(() => {
-                        showQuickReplies([
-                            "Explore services",
-                            "Request pentest",
-                            "FAQ",
-                            "Contact expert"
-                        ]);
-                    }, 300);
-                }, 800);
-            }, 1000);
-        }
-
-        function showQuickReplies(replies) {
-            const container = document.createElement('div');
-            container.style.marginTop = '10px';
-            
-            replies.forEach(reply => {
-                const btn = document.createElement('span');
-                btn.className = 'quick-reply';
-                btn.textContent = reply;
-                btn.addEventListener('click', () => {
-                    container.querySelectorAll('.quick-reply').forEach(b => b.style.display = 'none');
-                    addMessage(reply, true);
-                    handleResponse(reply.toLowerCase());
-                });
-                container.appendChild(btn);
-            });
-
-            addMessage(container, false);
-        }
-
-        function showServices() {
-            currentState = 'services';
-            const services = document.createElement('div');
-            services.innerHTML = `
-                <div style="margin-bottom:15px;color:var(--text);">Select a pentest service:</div>
-                <button class="service-option" data-service="web"><i class="fas fa-globe"></i> Web Application Pentest</button>
-                <button class="service-option" data-service="api"><i class="fas fa-code"></i> API Security Testing</button>
-                <button class="service-option" data-service="mobile"><i class="fas fa-mobile-alt"></i> Mobile App Pentest</button>
-                <button class="service-option" data-service="network"><i class="fas fa-network-wired"></i> Network Pentest</button>
-                <button class="service-option" data-service="cloud"><i class="fas fa-cloud"></i> Cloud Security Assessment</button>
-                <button class="service-option" data-service="redteam"><i class="fas fa-user-secret"></i> Red Team Exercise</button>
-                <button class="service-option" data-service="osint"><i class="fas fa-search"></i> OSINT Investigation</button>
-                <button class="service-option" data-service="social"><i class="fas fa-mask"></i> Social Engineering</button>
-                <button class="service-option" data-service="darkweb"><i class="fas fa-eye"></i> Dark Web Analysis</button>
-            `;
-
-            addMessage(services, false);
-
-            setTimeout(() => {
-                document.querySelectorAll('.service-option').forEach(option => {
-                    option.addEventListener('click', () => {
-                        selectedService = option.getAttribute('data-service');
-                        option.parentNode.querySelectorAll('.service-option').forEach(opt => {
-                            opt.style.background = 'rgba(255,255,255,0.05)';
-                            opt.style.borderLeftColor = 'transparent';
-                        });
-                        option.style.background = 'rgba(255,42,109,0.1)';
-                        option.style.borderLeftColor = 'var(--accent)';
-
-                        setTimeout(() => {
-                            showServiceDetails(selectedService);
-                        }, 500);
-                    });
-                });
-            }, 100);
-        }
-
-        function showServices() {
-    currentState = 'services';
-    const services = document.createElement('div');
-    services.innerHTML = `
-        <div style="margin-bottom:15px;color:var(--text);">Select a pentest service:</div>
-        <button class="service-option" data-service="web"><i class="fas fa-globe"></i> Web Application Pentest</button>
-        <button class="service-option" data-service="api"><i class="fas fa-code"></i> API Security Testing</button>
-        <button class="service-option" data-service="mobile"><i class="fas fa-mobile-alt"></i> Mobile App Pentest</button>
-        <button class="service-option" data-service="network"><i class="fas fa-network-wired"></i> Network Pentest</button>
-        <button class="service-option" data-service="cloud"><i class="fas fa-cloud"></i> Cloud Security Assessment</button>
-        <button class="service-option" data-service="redteam"><i class="fas fa-user-secret"></i> Red Team Exercise</button>
-        <button class="service-option" data-service="osint"><i class="fas fa-search"></i> OSINT Investigation</button>
-        <button class="service-option" data-service="social"><i class="fas fa-mask"></i> Social Engineering</button>
-        <button class="service-option" data-service="darkweb"><i class="fas fa-eye"></i> Dark Web Analysis</button>
-    `;
-
-    // Clear previous messages and add new services list
-    body.innerHTML = '';
-    addMessage(services, false);
-
-    // Add event listeners to service options
-    setTimeout(() => {
-        document.querySelectorAll('.service-option').forEach(option => {
-            option.addEventListener('click', function() {
-                selectedService = this.getAttribute('data-service');
-                document.querySelectorAll('.service-option').forEach(opt => {
-                    opt.style.background = 'rgba(255,255,255,0.05)';
-                    opt.style.borderLeftColor = 'transparent';
-                });
-                this.style.background = 'rgba(255,42,109,0.1)';
-                this.style.borderLeftColor = 'var(--accent)';
-                showServiceDetails(selectedService);
-            });
-        });
-    }, 100);
-}
-
-function showServiceDetails(service) {
-    currentState = 'service_details';
-    const serviceInfo = {
-        web: {
-            title: "Web Application Pentest",
-            desc: "Comprehensive security assessment of your web applications including OWASP Top 10 vulnerabilities, business logic flaws, and authentication bypass testing.",
-            icon: "fa-globe"
-        },
-        api: {
-            title: "API Security Testing",
-            desc: "In-depth analysis of your API endpoints for security vulnerabilities including improper auth, injection flaws, and data exposure risks.",
-            icon: "fa-code"
-        },
-        mobile: {
-            title: "Mobile App Pentest",
-            desc: "Security assessment for iOS and Android applications including reverse engineering, insecure storage, and communication testing.",
-            icon: "fa-mobile-alt"
-        },
-        network: {
-            title: "Network Pentest",
-            desc: "Internal and external network penetration testing including firewall bypass, VLAN hopping, and privilege escalation.",
-            icon: "fa-network-wired"
-        },
-        cloud: {
-            title: "Cloud Security Assessment",
-            desc: "Comprehensive review of your cloud infrastructure (AWS/Azure/GCP) for misconfigurations and security weaknesses.",
-            icon: "fa-cloud"
-        },
-        redteam: {
-            title: "Red Team Exercise",
-            desc: "Simulated real-world attack scenarios to test your organization's detection and response capabilities.",
-            icon: "fa-user-secret"
-        },
-        osint: {
-            title: "OSINT Investigation",
-            desc: "Open-source intelligence gathering to identify exposed sensitive information and potential attack vectors.",
-            icon: "fa-search"
-        },
-        social: {
-            title: "Social Engineering",
-            desc: "Phishing, vishing, and physical security tests to evaluate employee security awareness.",
-            icon: "fa-mask"
-        },
-        darkweb: {
-            title: "Dark Web Analysis",
-            desc: "Monitoring dark web channels for leaked credentials, company data, and threat intelligence.",
-            icon: "fa-eye"
-        }
-    };
-
-    // Create new container for service details
-    const detailsContainer = document.createElement('div');
-    detailsContainer.innerHTML = `
-        <div style="margin-bottom:15px;">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-                <i class="fas ${serviceInfo[service].icon} service-icon" style="color:var(--accent);"></i>
-                <span style="font-weight:bold;color:var(--accent);">${serviceInfo[service].title}</span>
-            </div>
-            <div style="font-size:13px;color:var(--muted);">${serviceInfo[service].desc}</div>
-        </div>
-    `;
-
-    // Clear previous messages and add service details
-    body.innerHTML = '';
-    addMessage(detailsContainer, false);
+          // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
     
-    // Add action buttons
-    const options = document.createElement('div');
-    options.innerHTML = `
-        <button class="btn btn-block" style="margin-bottom:10px;" id="request-service">Request This Service</button>
-        <button class="btn btn-secondary btn-block" id="back-to-services">Back to Services</button>
-    `;
-
-    addMessage(options, false);
-    
-    // Add event listeners
-    document.getElementById('request-service').addEventListener('click', () => {
-        formData.serviceType = serviceInfo[service].title;
-        showRequestForm();
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     });
     
-    document.getElementById('back-to-services').addEventListener('click', () => {
-        showServices();
+    menuOverlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
     });
-}
-        
-
-        function showRequestForm() {
-            currentState = 'request_form';
-
-            const formContainer = document.createElement('div');
-            formContainer.innerHTML = `
-                <div style="margin-bottom:15px;color:var(--text);font-size:14px;">
-                    Please provide details for your <span style="color:var(--accent);">${formData.serviceType}</span> request:
-                </div>
-
-                <form id="pentest-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_subject" value="New Pentest Request - ${formData.serviceType}">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="#">
-
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="testType">Type of Test</label>
-                        <select id="testType" name="testType" required>
-                            <option value="">Select...</option>
-                            <option value="Black Box">Black Box</option>
-                            <option value="White Box">White Box</option>
-                            <option value="Gray Box">Gray Box</option>
-                        </select>
-                    </div>
-
-                    ${selectedService === 'mobile' ? `
-                        <div class="form-group">
-                            <label>Upload Application File</label>
-                            <div class="file-upload">
-                                <label class="upload-btn">
-                                    <i class="fas fa-upload"></i> Choose APK/IPA File
-                                    <input type="file" id="appFile" name="appFile" accept=".apk,.ipa">
-                                </label>
-                                <div class="file-name" id="fileName">No file selected</div>
-                            </div>
-                        </div>
-                    ` : ''}
-
-                    <div class="form-group">
-                        <label>Preferred Timeline</label>
-                        <div class="timeline-selector">
-                            <div class="timeline-option" data-days="7">1 Week</div>
-                            <div class="timeline-option" data-days="14">2 Weeks</div>
-                            <div class="timeline-option" data-days="30">1 Month</div>
-                        </div>
-                        <input type="hidden" id="timeline" name="timeline" value="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="scope">Scope Details</label>
-                        <textarea id="scope" name="scope" placeholder="Describe what needs to be tested..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="demoCall">Schedule Demo Call</label>
-                        <select id="demoCall" name="demoCall" required>
-                            <option value="">Select...</option>
-                            <option value="ASAP">ASAP</option>
-                            <option value="Within 3 days">Within 3 days</option>
-                            <option value="Next week">Next week</option>
-                            <option value="No demo needed">No demo needed</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-block" style="margin-top:20px;">Submit Request</button>
-                </form>
-            `;
-
-            addMessage(formContainer, false);
-
-            setTimeout(() => {
-                if (selectedService === 'mobile') {
-                    const fileInput = document.getElementById('appFile');
-                    const fileNameDisplay = document.getElementById('fileName');
-                    
-                    fileInput.addEventListener('change', (e) => {
-                        if (fileInput.files.length > 0) {
-                            fileNameDisplay.textContent = fileInput.files[0].name;
-                            fileNameDisplay.style.display = 'block';
-                            formData.file = fileInput.files[0];
-                        }
-                    });
-                }
-
-                document.querySelectorAll('.timeline-option').forEach(option => {
-                    option.addEventListener('click', () => {
-                        document.querySelectorAll('.timeline-option').forEach(opt => {
-                            opt.classList.remove('selected');
-                        });
-                        option.classList.add('selected');
-                        document.getElementById('timeline').value = option.textContent;
-                    });
-                });
-
-                document.getElementById('pentest-form').addEventListener('submit', (e) => {
-                    e.preventDefault();
-
-                    const form = e.target;
-                    const requiredFields = form.querySelectorAll('[required]');
-                    let isValid = true;
-                    
-                    requiredFields.forEach(field => {
-                        if (!field.value) {
-                            field.style.borderColor = 'var(--accent)';
-                            isValid = false;
-                        }
-                    });
-
-                    if (!isValid) {
-                        addMessage("Please fill all required fields.", false, true);
-                        return;
-                    }
-
-                    formData = {
-                        name: form.name.value,
-                        email: form.email.value,
-                        company: form.company.value,
-                        serviceType: formData.serviceType,
-                        testType: form.testType.value,
-                        timeline: form.timeline.value,
-                        scope: form.scope.value,
-                        demoCall: form.demoCall.value,
-                        file: formData.file
-                    };
-
-                    showConfirmation();
-
-                    const formDataObj = new FormData(form);
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: formDataObj
-                    }).then(response => {
-                        if (!response.ok) {
-                            console.error('Form submission failed');
-                        }
-                    }).catch(error => {
-                        console.error('Error:', error);
-                    });
-                });
-            }, 100);
-        }
-
-        function showConfirmation() {
-            currentState = 'confirmation';
-
-            const confirmation = document.createElement('div');
-            confirmation.innerHTML = `
-                <div style="text-align:center;margin-bottom:20px;">
-                    <i class="fas fa-check-circle" style="font-size:40px;color:var(--success);margin-bottom:15px;"></i>
-                    <div style="font-weight:bold;margin-bottom:10px;">Request Submitted!</div>
-                    <div style="font-size:13px;color:var(--muted);">
-                        Our security team will contact you within 24 hours to discuss your ${formData.serviceType}.
-                    </div>
-                </div>
-
-                <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:15px;margin-bottom:20px;">
-                    <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">REQUEST SUMMARY</div>
-                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
-                        <span style="color:var(--muted);">Service:</span>
-                        <span>${formData.serviceType}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
-                        <span style="color:var(--muted);">Test Type:</span>
-                        <span>${formData.testType}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
-                        <span style="color:var(--muted);">Timeline:</span>
-                        <span>${formData.timeline}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;font-size:13px;">
-                        <span style="color:var(--muted);">Demo Call:</span>
-                        <span>${formData.demoCall}</span>
-                    </div>
-                </div>
-
-                <button class="btn btn-secondary btn-block" id="new-request">Start New Request</button>
-            `;
-
-            addMessage(confirmation, false);
-            
-            setTimeout(() => {
-                document.getElementById('new-request').addEventListener('click', () => {
-                    formData = {
-                        name: '',
-                        email: '',
-                        company: '',
-                        serviceType: '',
-                        testType: '',
-                        timeline: '',
-                        scope: '',
-                        demoCall: '',
-                        file: null
-                    };
-                    showWelcome();
-                });
-            }, 100);
-        }
-
-        function showFAQ() {
-            currentState = 'faq';
-
-            const faqContainer = document.createElement('div');
-            faqContainer.innerHTML = `
-                <div style="margin-bottom:15px;color:var(--text);">Frequently Asked Questions:</div>
-
-                <div style="margin-bottom:20px;">
-                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">What's included in a pentest report?</div>
-                    <div style="font-size:13px;color:var(--muted);">
-                        Our reports include executive summary, technical details, risk ratings, proof of concept, and remediation guidance.
-                    </div>
-                </div>
-
-                <div style="margin-bottom:20px;">
-                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">How long does testing take?</div>
-                    <div style="font-size:13px;color:var(--muted);">
-                        Most engagements take 1-3 weeks depending on scope. Red team exercises typically take 2-4 weeks.
-                    </div>
-                </div>
-
-                <div style="margin-bottom:20px;">
-                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Do you retest after fixes?</div>
-                    <div style="font-size:13px;color:var(--muted);">
-                        Yes, we offer free retesting for critical vulnerabilities within 30 days of the initial report.
-                    </div>
-                </div>
-
-                <div style="margin-bottom:20px;">
-                    <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Are your tests intrusive?</div>
-                    <div style="font-size:13px;color:var(--muted);">
-                        We follow a non-destructive approach unless explicitly authorized for destructive testing.
-                    </div>
-                </div>
-
-                <button class="btn btn-secondary btn-block" style="margin-top:20px;" id="back-from-faq">Back to Main Menu</button>
-            `;
-
-            addMessage(faqContainer, false);
-
-            setTimeout(() => {
-                document.getElementById('back-from-faq').addEventListener('click', () => {
-                    showWelcome();
-                });
-            }, 100);
-        }
-
-        function handleResponse(msg) {
-            if(msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
-                showWelcome();
-            }
-            else if(msg.includes('service') || msg.includes('offer') || msg.includes('explore')) {
-                showServices();
-            }
-            else if(msg.includes('request') || msg.includes('need') || msg.includes('assess') || msg.includes('pentest')) {
-                showServices();
-            }
-            else if(msg.includes('price') || msg.includes('cost')) {
-                addMessage("Our pricing depends on scope and complexity:\n\n• Basic pentests start at $5,000\n• Comprehensive assessments: $10,000-$20,000\n• Red team exercises: $15,000-$50,000\n\nWould you like me to help you request a specific service?", false);
-                showQuickReplies(["Yes, request service", "No, thanks"]);
-            }
-            else if(msg.includes('faq') || msg.includes('question') || msg.includes('help')) {
-                showFAQ();
-            }
-            else if(msg.includes('contact') || msg.includes('expert') || msg.includes('talk')) {
-                addMessage("You can reach our security team directly at:\n\n• Email: sarsolutionz7@gmail.com\n\nWould you like to schedule a call now?", false);
-                showQuickReplies(["Schedule call", "Not now"]);
-            }
-            else if(msg.includes('yes') || msg.includes('schedule') || msg.includes('call')) {
-                addMessage("Great! Please provide your availability and we'll contact you to confirm.", false);
-                currentState = 'contact_request';
-            }
-            else if(msg.includes('no') || msg.includes('not now') || msg.includes('later')) {
-                addMessage("No problem. Feel free to reach out anytime. How else can I assist you today?", false);
-                showQuickReplies(["Explore services", "Request pentest", "FAQ"]);
-            }
-            else if(currentState === 'contact_request') {
-                addMessage("Thank you. We've noted your contact request and will reach out soon.", false, true);
-                setTimeout(() => {
-                    showWelcome();
-                }, 1500);
-            }
-            else {
-                const responses = [
-                    "I'm not sure I understand. Could you rephrase that?",
-                    "My expertise is in security testing. Could you ask me about pentesting services?",
-                    "I can help with pentest requests, service info, or general security questions.",
-                    "Let me connect you with a human expert if this is beyond my capabilities."
-                ];
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                addMessage(randomResponse, false);
-                showQuickReplies(["Explore services", "Request pentest", "FAQ", "Contact expert"]);
-            }
-        }
-
-        // Chatbot Event Listeners
-        launcher.addEventListener('click', () => {
-            container.style.display = 'flex';
-            setTimeout(() => container.classList.add('active'), 10);
-            launcher.style.display = 'none';
-            if(body.children.length === 0) showWelcome();
+    
+    // Submenu Toggle
+    const menuToggles = document.querySelectorAll('.mobile-menu-toggle');
+    menuToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const submenu = toggle.parentElement.querySelector('.mobile-submenu');
+            toggle.classList.toggle('active');
+            submenu.classList.toggle('active');
         });
-        
-        closeBtn.addEventListener('click', () => {
-            container.classList.remove('active');
-            setTimeout(() => {
-                container.style.display = 'none';
-                launcher.style.display = 'flex';
-            }, 300);
+    });
+    
+    // Scroll to Top Button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-
-        input.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter' && input.value.trim()) {
-                const userText = input.value;
-                addMessage(userText, true);
-                input.value = '';
-
-                const typing = showTyping();
-                setTimeout(() => {
-                    typing.remove();
-                    handleResponse(userText.toLowerCase());
-                }, 1000 + (Math.random() * 1000));
-            }
-        });
+    });
+           
     </script>
 </body>
 </html>
