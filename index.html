@@ -43,210 +43,86 @@
 
 <style>
 
-    /* Mobile Navigation Styles */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 85%;
-    max-width: 350px;
-    height: 100vh;
-    background-color: #172a45;
-    padding: 80px 30px 30px;
-    transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-    z-index: 999;
-    overflow-y: auto;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-    border-left: 1px solid rgba(100, 255, 218, 0.1);
-}
-
-.mobile-menu.active {
-    right: 0;
-}
-
-.mobile-menu ul {
-    list-style: none;
-}
-
-.mobile-menu ul li {
-    margin-bottom: 15px;
+    /* Dropdown Styles */
+.dropdown {
     position: relative;
-    overflow: hidden;
+    display: inline-block;
 }
 
-.mobile-menu ul li a {
+.dropbtn {
+    background-color: transparent;
     color: #ccd6f6;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #172a45;
+    min-width: 250px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a {
+    color: #ccd6f6;
+    padding: 0.8rem 1rem;
     text-decoration: none;
-    font-size: 18px;
     display: block;
-    padding: 12px 0;
-    transition: all 0.4s ease;
-    position: relative;
-}
-
-.mobile-menu ul li a:hover {
-    color: #64ffda;
-    transform: translateX(10px);
-}
-
-.mobile-menu ul li a::before {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 100%;
-    left: -10px;
-    top: 0;
-    background: #64ffda;
-    transition: all 0.3s ease;
-    opacity: 0;
-}
-
-.mobile-menu ul li a:hover::before {
-    left: 0;
-    opacity: 1;
-}
-
-.mobile-submenu {
-    padding-left: 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-    background: rgba(23, 42, 69, 0.8);
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-.mobile-submenu.active {
-    max-height: 1000px;
-    padding: 15px 20px;
-    animation: slideDown 0.5s ease forwards;
-}
-
-.mobile-submenu li {
-    margin-bottom: 10px !important;
-}
-
-.mobile-submenu li a {
-    font-size: 16px !important;
-    padding: 8px 0 !important;
-    opacity: 0.9;
-}
-
-.mobile-submenu li a:hover {
-    opacity: 1;
-}
-
-.mobile-menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
-.mobile-menu-toggle:hover {
+.dropdown-content a:hover {
+    background-color: rgba(100, 255, 218, 0.1);
     color: #64ffda;
+    padding-left: 1.2rem;
 }
 
-.mobile-menu-toggle i {
-    transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    font-size: 16px;
-}
-
-.mobile-menu-toggle.active i {
-    transform: rotate(180deg);
-    color: #64ffda;
-}
-
-/* Close Button */
-.mobile-close-btn {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1001;
-    background: rgba(100, 255, 218, 0.1);
-    border-radius: 50%;
-    border: 1px solid #64ffda;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.mobile-close-btn:hover {
-    background: rgba(100, 255, 218, 0.2);
-    transform: rotate(90deg);
-}
-
-.mobile-close-btn::before,
-.mobile-close-btn::after {
-    content: '';
-    position: absolute;
+.dropdown-content i {
+    margin-right: 0.5rem;
     width: 20px;
-    height: 2px;
-    background-color: #64ffda;
-    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.mobile-close-btn::before {
-    transform: rotate(45deg);
-}
-
-.mobile-close-btn::after {
-    transform: rotate(-45deg);
-}
-
-.mobile-close-btn:hover::before,
-.mobile-close-btn:hover::after {
-    background-color: #e6f1ff;
-}
-
-/* Mobile overlay */
-.mobile-nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.mobile-nav-overlay.active {
+.dropdown:hover .dropdown-content {
+    display: block;
     opacity: 1;
-    pointer-events: all;
+    transform: translateY(0);
 }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.dropdown:hover .dropbtn {
+    color: #64ffda;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.dropdown:hover .dropbtn::after {
+    width: 100%;
 }
 
-/* Mobile Menu code above */
-
+/* Keep existing hover effect */
+.dropdown .dropbtn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #64ffda;
+    transition: width 0.3s ease;
+}
     /* Add these to your existing CSS */
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -840,71 +716,142 @@ header {
             left: 50%;
         }
         
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 70%;
-            height: 100vh;
-            background-color: #172a45;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            transition: right 0.5s ease;
-            z-index: 1000;
-            padding: 2rem;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .mobile-menu.open {
-            right: 0;
-        }
-        
-        .mobile-menu a {
-            font-size: 1.2rem;
-            position: relative;
-            color: #ccd6f6;
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #64ffda;
-            transition: width 0.3s ease;
-        }
-        
-        .mobile-menu a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu a:hover {
-            color: #64ffda;
-        }
-        
-        .mobile-close-btn {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 1.5rem;
-            color:  #64ffda;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .mobile-menu .cta-button {
-            margin-top: 1rem;
-        }
-        
+       /* Mobile Menu Styles */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: #172a45;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.5s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+.mobile-menu.open {
+    right: 0;
+}
+
+.mobile-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    color: #64ffda;
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.mobile-link {
+    font-size: 1.1rem;
+    color: #ccd6f6;
+    padding: 0.8rem 0;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-link:hover {
+    color: #64ffda;
+}
+
+.mobile-cta-button {
+    background-color: transparent;
+    color: #64ffda;
+    border: 1px solid #64ffda;
+    padding: 0.9rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.mobile-cta-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* Mobile Dropdown Styles */
+.mobile-dropdown {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-dropbtn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #ccd6f6;
+    font-size: 1.1rem;
+    padding: 0.8rem 0;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-dropbtn i {
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .mobile-dropbtn i {
+    transform: rotate(180deg);
+}
+
+.mobile-dropdown-content {
+    display: none;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+}
+
+.mobile-dropdown.active .mobile-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.mobile-dropdown-content a {
+    color: #8892b0;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.mobile-dropdown-content a:hover {
+    color: #64ffda;
+}
+
+.mobile-dropdown-content a i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -2461,14 +2408,42 @@ header {
     <header id="header">
         <a href="#" class="logo">SAR<span>SOLUTIONZ</span></a>
         
-        <nav class="nav-links">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#certifications">Certifications</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
-           <a href="/getqouta.html" class="cta-button">Get Assessment</a>
-        </nav>
+       <nav class="nav-links">
+    <a href="#about">About</a>
+    
+    <!-- Hacking Services Dropdown -->
+    <div class="dropdown">
+        <button class="dropbtn">Hacking Services <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+            <a href="/WebPentest.html"><i class="fas fa-globe"></i> Web Pentesting</a>
+            <a href="/NetworkPentest.html"><i class="fas fa-network-wired"></i> Network Pentesting</a>
+            <a href="/MobilePentest.html"><i class="fas fa-mobile-alt"></i> Mobile Security</a>
+            <a href="/VAPT.html"><i class="fas fa-shield-alt"></i> Penetration Testing</a>
+            <a href="/APIPentest.html"><i class="fas fa-code"></i> API Security Testing</a>
+            <a href="/CloudPentest.html"><i class="fas fa-cloud"></i> Cloud Pentesting</a>
+            <a href="/DarkWeb&OSINT.html"><i class="fas fa-search"></i> OSINT & Dark Web</a>
+            <a href="/Phishing.html"><i class="fas fa-user-ninja"></i> Social Engineering</a>
+        </div>
+    </div>
+    
+    <!-- Development Services Dropdown -->
+    <div class="dropdown">
+        <button class="dropbtn">Development Services <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+            <a href="/Design&Dev.html"><i class="fas fa-laptop-code"></i> Web Development</a>
+            <a href="#"><i class="fas fa-mobile"></i> Mobile Development</a>
+            <a href="#"><i class="fas fa-plug"></i> API Development</a>
+            <a href="#"><i class="fas fa-desktop"></i> Desktop Applications</a>
+            <a href="#"><i class="fas fa-brain"></i> AI Applications</a>
+            <a href="#"><i class="fas fa-tools"></i> Custom Tools</a>
+        </div>
+    </div>
+    
+    <a href="#certifications">Certifications</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+    <a href="/getqouta.html" class="cta-button">Get Assessment</a>
+</nav>
         
         <div class="hamburger">
             <span></span>
@@ -2478,74 +2453,47 @@ header {
         </div>
     </header>
     
-   <!-- Mobile Navigation -->
-<div class="mobile-menu" id="mobileNav">
-    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu"></button>
+    <!-- Mobile Menu (replace existing mobile menu div) -->
+<div class="mobile-menu">
+    <button class="mobile-close-btn"><i class="fas fa-times"></i></button>
     
-    <ul>
-        <li style="animation: slideIn 0.3s 0.1s both;">
-            <a href="#about"><i class="fas fa-info-circle"></i> About</a>
-        </li>
+    <div class="mobile-nav-links">
+        <a href="#about" class="mobile-link">About</a>
         
-        <li class="menu-item-has-children" style="animation: slideIn 0.3s 0.2s both;">
-            <div class="mobile-menu-toggle">
-                <a href="#services"><i class="fas fa-tools"></i> Services</a>
-                <i class="fas fa-chevron-down"></i>
+        <!-- Hacking Services Dropdown -->
+        <div class="mobile-dropdown">
+            <button class="mobile-dropbtn">Hacking Services <i class="fas fa-chevron-down"></i></button>
+            <div class="mobile-dropdown-content">
+                <a href="/WebPentest.html"><i class="fas fa-globe"></i> Web Pentesting</a>
+                <a href="/NetworkPentest.html"><i class="fas fa-network-wired"></i> Network Pentesting</a>
+                <a href="/MobilePentest.html"><i class="fas fa-mobile-alt"></i> Mobile Security</a>
+                <a href="/VAPT.html"><i class="fas fa-shield-alt"></i> Penetration Testing</a>
+                <a href="/APIPentest.html"><i class="fas fa-code"></i> API Security Testing</a>
+                <a href="/CloudPentest.html"><i class="fas fa-cloud"></i> Cloud Pentesting</a>
+                <a href="/DarkWeb&OSINT.html"><i class="fas fa-search"></i> OSINT & Dark Web</a>
+                <a href="/Phishing.html"><i class="fas fa-user-ninja"></i> Social Engineering</a>
             </div>
-            <ul class="mobile-submenu">
-                <li class="menu-item-has-children">
-                    <div class="mobile-menu-toggle">
-                        <a href="#services"><i class="fas fa-shield-alt"></i> Hacking Services</a>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <ul class="mobile-submenu">
-                        <li><a href="/WebPentest.html"><i class="fas fa-globe"></i> Web Pentesting</a></li>
-                        <li><a href="/NetworkPentest.html"><i class="fas fa-network-wired"></i> Network Pentesting</a></li>
-                        <li><a href="/MobilePentest.html"><i class="fas fa-mobile-alt"></i> Mobile Security</a></li>
-                        <!-- <li><a href="/Redteam.html"><i class="fas fa-user-secret"></i> Red Teaming</a></li> -->
-                        <li><a href="/VAPT.html" class="footer-link"><i class="fas fa-shield-alt"></i> Penetration Testing</a></li>
-                        <li><a href="/WebPentest.html" class="footer-link"><i class="fas fa-globe"></i> Web App Security</a></li>
-                        <li><a href="/MobilePentest.html" class="footer-link"><i class="fas fa-mobile-alt"></i> Mobile Security</a></li>
-                        <li><a href="/NetworkPentest.html" class="footer-link"><i class="fas fa-network-wired"></i> Network Penetration Testing</a></li>
-                        <li><a href="/APIPentest.html" class="footer-link"><i class="fas fa-code"></i> API Security Testing</a></li>
-                        <li><a href="/CloudPentest.html" class="footer-link"><i class="fas fa-cloud"></i> Cloud Penetration Testing</a></li>
-                        <li><a href="/DarkWeb&OSINT.html" class="footer-link"><i class="fas fa-search"></i> OSINT and Dark Web Research</a></li>
-                        <li><a href="/Phishing.html" class="footer-link"><i class="fas fa-user-ninja"></i> Social Engineering</a></li>
-
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <div class="mobile-menu-toggle">
-                        <a href="#services"><i class="fas fa-code"></i> Development Services</a>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <ul class="mobile-submenu">
-                        <li><a href="Design&Dev.html"><i class="fas fa-laptop-code"></i> Web Development</a></li>
-                        <li><a href="#services"><i class="fas fa-mobile"></i> Mobile Development</a></li>
-                        <li><a href="#services"><i class="fas fa-plug"></i> API Development</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
+        </div>
         
-        <li style="animation: slideIn 0.3s 0.3s both;">
-            <a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a>
-        </li>
-        <li style="animation: slideIn 0.3s 0.4s both;">
-            <a href="#team"><i class="fas fa-users"></i> Team</a>
-        </li>
-        <li style="animation: slideIn 0.3s 0.5s both;">
-            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-        </li>
-        <li style="animation: slideIn 0.3s 0.6s both;">
-            <a href="/getqouta.html" class="cta-button" style="display: inline-block; width: 100%; padding: 10px; text-align: center; margin-top: 10px;">
-                <i class="fas fa-shield-alt"></i> Get Assessment
-            </a>
-        </li>
-    </ul>
+        <!-- Development Services Dropdown -->
+        <div class="mobile-dropdown">
+            <button class="mobile-dropbtn">Development Services <i class="fas fa-chevron-down"></i></button>
+            <div class="mobile-dropdown-content">
+                <a href="/Design&Dev.html"><i class="fas fa-laptop-code"></i> Web Development</a>
+                <a href="#"><i class="fas fa-mobile"></i> Mobile Development</a>
+                <a href="#"><i class="fas fa-plug"></i> API Development</a>
+                <a href="#"><i class="fas fa-desktop"></i> Desktop Applications</a>
+                <a href="#"><i class="fas fa-brain"></i> AI Applications</a>
+                <a href="#"><i class="fas fa-tools"></i> Custom Tools</a>
+            </div>
+        </div>
+        
+        <a href="#certifications" class="mobile-link">Certifications</a>
+        <a href="#team" class="mobile-link">Team</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        <a href="/getqouta.html" class="mobile-cta-button">Get Assessment</a>
+    </div>
 </div>
-
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
     
     <!-- Hero Section -->
     <section class="hero">
@@ -2880,7 +2828,7 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
                         <option value="Mobile Pentesting">Mobile Penetration Testing</option>
                         <option value="Network Pentesting">Network Penetration Testing</option>
                         <option value="Cloud Security">Cloud Security Assessment</option>
-                        <!-- <option value="Red Teaming">Red Teaming Exercise</option> -->
+                        <option value="Red Teaming">Red Teaming Exercise</option>
                         <option value="Other">Other Security Services</option>
                     </select>
                 </div>
@@ -2973,7 +2921,7 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
                         
                             <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
                             <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
-                            <!-- <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li> -->
+                            <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
                             <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
                             <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
                     </ul>
@@ -3050,51 +2998,54 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
-    // Mobile menu toggle
+    // Update mobile menu toggle functionality
 const hamburger = document.querySelector('.hamburger');
-const mobileNav = document.getElementById('mobileNav');
-const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
 
 hamburger.addEventListener('click', () => {
-    mobileNav.classList.add('active');
-    mobileNavOverlay.classList.add('active');
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
     document.body.style.overflow = 'hidden';
 });
 
 mobileCloseBtn.addEventListener('click', () => {
-    mobileNav.classList.remove('active');
-    mobileNavOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-mobileNavOverlay.addEventListener('click', () => {
-    mobileNav.classList.remove('active');
-    mobileNavOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-// Toggle mobile submenus
-document.querySelectorAll('.mobile-menu-toggle').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const submenu = toggle.parentElement.querySelector('.mobile-submenu');
-        toggle.classList.toggle('active');
-        submenu.classList.toggle('active');
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = 'auto';
+    
+    // Close all dropdowns when closing menu
+    mobileDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
     });
 });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    if (!link.parentElement.classList.contains('mobile-menu-toggle')) {
-        link.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            mobileNavOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+// Mobile dropdown functionality
+mobileDropdowns.forEach(dropdown => {
+    const dropbtn = dropdown.querySelector('.mobile-dropbtn');
+    
+    dropbtn.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+        
+        // Close other dropdowns
+        mobileDropdowns.forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+                otherDropdown.classList.remove('active');
+            }
         });
-    }
+    });
 });
 
+// Close mobile menu when clicking a link
+const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-dropdown-content a');
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
+    });
+});
         // Initialize AOS animation library
         AOS.init({
             once: true,
@@ -4067,8 +4018,8 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
                 Please provide details for your <span style="color: #64ffda;">${formData.serviceType}</span> request:
             </div>
 
-           <form id="${isSecurity ? 'pentest' : 'dev'}-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
-                 <input type="hidden" name="_subject" value="New ${formData.serviceType} Request">
+            <form id="${isSecurity ? 'pentest' : 'dev'}-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="New ${formData.serviceType} Request">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="#">
@@ -4337,11 +4288,11 @@ function showFunnyAlert() {
   alert(randomMessage);
 }
  
-// Disable right-click
-document.addEventListener('contextmenu', e => {
-  e.preventDefault();
-  showFunnyAlert();
-});
+ Disable right-click
+ document.addEventListener('contextmenu', e => {
+   e.preventDefault();
+   showFunnyAlert();
+ });
  
 // Disable Ctrl+U or similar key combos
 document.addEventListener('keydown', e => {
@@ -4354,7 +4305,6 @@ document.addEventListener('keydown', e => {
     showFunnyAlert();
   }
 });
-
 
 
 /* 
