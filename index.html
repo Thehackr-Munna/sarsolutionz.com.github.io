@@ -2400,9 +2400,12 @@ header {
     </style>
 </head>
 <body>
-    <div id="matrix-loader" class="matrix-loader">
+  <div id="matrix-loader" class="matrix-loader">
   <canvas id="matrix-canvas"></canvas>
-  <div class="matrix-text">SAR SOLUTIONZ</div>
+  <div class="matrix-content">
+    <div class="matrix-text">SAR SOLUTIONZ</div>
+    <div class="matrix-motto">Development & Security Solutions </div>
+  </div>
 </div>
 
 <style>
@@ -2429,67 +2432,131 @@ header {
   opacity: 0.7;
 }
 
-.matrix-text {
+.matrix-content {
   position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.matrix-text {
   color: #64ffda;
   font-family: 'Courier New', monospace;
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 4rem);
   text-shadow: 0 0 10px #64ffda;
-  z-index: 2;
   letter-spacing: 5px;
   animation: textGlow 2s infinite alternate;
+  margin-bottom: 1rem;
+}
+
+.matrix-motto {
+  color: #4CAF50;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  text-shadow: 0 0 5px #4CAF50;
+  letter-spacing: 2px;
+  animation: textGlow 2s infinite alternate;
+  animation-delay: 0.5s;
+  opacity: 0;
+  animation: fadeIn 1s forwards 1s;
 }
 
 @keyframes textGlow {
   from { text-shadow: 0 0 10px #64ffda; }
   to { text-shadow: 0 0 20px #64ffda, 0 0 30px rgba(100, 255, 218, 0.5); }
 }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .matrix-text {
+    letter-spacing: 3px;
+  }
+  
+  .matrix-motto {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
 </style>
 
 <script>
-// Matrix Rain Effect
+// Enhanced Matrix Rain Effect with mobile responsiveness
 window.addEventListener('load', function() {
   const canvas = document.getElementById('matrix-canvas');
   const ctx = canvas.getContext('2d');
   
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  
-  const binary = '01サルソリューションズ';
-  const fontSize = 16;
-  const columns = canvas.width / fontSize;
-  
-  const rainDrops = [];
-  for (let i = 0; i < columns; i++) {
-    rainDrops[i] = 1;
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initMatrix();
   }
   
-  function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  function initMatrix() {
+    const binary = '01サルSARソリューションズ10開発セキュリティ';
+    const fontSize = Math.max(14, window.innerWidth / 60); // Responsive font size
+    const columns = Math.floor(canvas.width / fontSize);
     
-    ctx.fillStyle = '#64ffda';
-    ctx.font = fontSize + 'px monospace';
-    
-    for (let i = 0; i < rainDrops.length; i++) {
-      const text = binary.charAt(Math.floor(Math.random() * binary.length));
-      ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-      
-      if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        rainDrops[i] = 0;
-      }
-      rainDrops[i]++;
+    const rainDrops = [];
+    for (let i = 0; i < columns; i++) {
+      rainDrops[i] = Math.random() * -100; // Start at different positions
     }
+    
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#64ffda';
+      ctx.font = fontSize + 'px monospace';
+      
+      for (let i = 0; i < rainDrops.length; i++) {
+        // Create a "head" character with brighter color
+        const headChar = binary.charAt(Math.floor(Math.random() * binary.length));
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(headChar, i * fontSize, rainDrops[i] * fontSize);
+        
+        // Create trailing characters with fading color
+        for (let j = 1; j < 10; j++) {
+          if (rainDrops[i] - j > 0) {
+            const trailChar = binary.charAt(Math.floor(Math.random() * binary.length));
+            const opacity = 1 - (j * 0.1);
+            ctx.fillStyle = `rgba(100, 255, 218, ${opacity})`;
+            ctx.fillText(trailChar, i * fontSize, (rainDrops[i] - j) * fontSize);
+          }
+        }
+        
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+      }
+    }
+    
+    // Clear any existing interval
+    if (window.matrixInterval) {
+      clearInterval(window.matrixInterval);
+    }
+    
+    window.matrixInterval = setInterval(draw, 33); // ~30fps
   }
   
-  const matrixInterval = setInterval(draw, 30);
+  // Initial setup
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
   
+  // Auto-close after 4 seconds
   setTimeout(function() {
-    clearInterval(matrixInterval);
+    clearInterval(window.matrixInterval);
     const loader = document.getElementById('matrix-loader');
+    loader.style.transition = 'opacity 0.8s ease-out';
     loader.style.opacity = '0';
-    setTimeout(() => loader.style.display = 'none', 500);
-  }, 3000);
+    setTimeout(() => {
+      loader.style.display = 'none';
+      window.removeEventListener('resize', resizeCanvas);
+    }, 800);
+  }, 4000);
 });
 </script>
     <!-- Audio elements for sound effects -->
