@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <!-- Primary Meta Tags -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
@@ -42,6 +43,7 @@
 
 
 <style>
+    
 
     /* Dropdown Styles */
 .dropdown {
@@ -1486,220 +1488,578 @@ header {
             opacity: 1;
         }
         
-         /* Footer */
-        .footer {
-        background-color: #172a45;
-        color:#ccd6f6;
-        padding: 4rem 5% 2rem;
-        position: relative;
-        overflow: hidden;
-        border-top: 1px solid rgba(100, 255, 218, 0.1);
-    }
+         /* Footer Styles */
+       .footer {
+    background: linear-gradient(180deg, #0a192f 0%, #0c1e3e 100%);
+    color: #ccd6f6;
+    padding: 4rem 0 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
 
-    .footer::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.5), transparent);
-    }
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.5), transparent);
+}
 
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
+/* Footer Main Content */
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* Brand Section */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 15px;
+}
+
+.logo-icon {
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #64ffda;
+    line-height: 1;
+}
+
+.footer-logo .logo span {
+    color: #e6f1ff;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: #8892b0;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.footer-description {
+    color: #8892b0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.05));
+    color: #64ffda;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.social-icon:hover {
+    background: linear-gradient(145deg, rgba(100, 255, 218, 0.2), rgba(100, 255, 218, 0.1));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+/* Footer Columns */
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    color: #e6f1ff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #64ffda, transparent);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-link {
+    color: #8892b0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-link::before {
+    content: '→';
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    color: #64ffda;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #64ffda;
+    padding-left: 15px;
+}
+
+.footer-link:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.contact-item .contact-icon {
+    color: #64ffda;
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-details h4 {
+    font-size: 0.95rem;
+    color: #e6f1ff;
+    margin-bottom: 0.3rem;
+}
+
+.contact-details p, .contact-details a {
+    color: #8892b0;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: #64ffda;
+}
+
+.emergency {
+    color: #64ffda !important;
+    font-weight: 500;
+    font-size: 0.85rem !important;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background: linear-gradient(90deg, rgba(100, 255, 218, 0.05), rgba(100, 255, 218, 0.02));
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.newsletter-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.newsletter-content h3 {
+    font-size: 1.3rem;
+    color: #e6f1ff;
+    margin-bottom: 0.5rem;
+}
+
+.newsletter-content p {
+    color: #8892b0;
+    font-size: 0.95rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    min-width: 400px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #ccd6f6;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form input:focus {
+    border-color: #64ffda;
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+}
+
+.newsletter-form input::placeholder {
+    color: #8892b0;
+}
+
+.newsletter-form button {
+    background: linear-gradient(135deg, #64ffda 0%, #52d7d1 100%);
+    color: #0a192f;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.copyright {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.legal-link {
+    color: #8892b0;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.legal-link:hover {
+    color: #64ffda;
+}
+
+.security-badges {
+    display: flex;
+    gap: 1rem;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 12px;
+    background: rgba(100, 255, 218, 0.05);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #8892b0;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.badge i {
+    color: #64ffda;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #64ffda 0%, #52d7d1 100%);
+    color: #0a192f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.4);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .newsletter-form {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
     .footer-main {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 3rem;
-        margin-bottom: 3rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
-
+    
     .footer-brand {
-        display: flex;
+        grid-column: 1 / -1;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-legal {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .security-badges {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+    
+    .newsletter-form {
         flex-direction: column;
     }
-
-    .footer-logo {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color:  #64ffda;
-    }
-
-    .logo-shape {
-        width: 40px;
-        height: 40px;
-        margin-right: 12px;
-    }
-
-    .logo-text span {
-        color:  #e6f1ff;
-    }
-
-    .footer-tagline {
-        color: #8892b0;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-
-    .footer-social {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(100, 255, 218, 0.1);
-        color:  #64ffda;
-        transition: all 0.3s ease;
-    }
-
-    .social-icon:hover {
-        background-color: rgba(100, 255, 218, 0.2);
-        transform: translateY(-3px);
-    }
-
-    .footer-title {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.3rem;
-        color:  #e6f1ff;
-        margin-bottom: 1.5rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .footer-title::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 40px;
-        height: 2px;
-        background-color:  #64ffda;
-    }
-
-    .footer-links {
-        list-style: none;
-    }
-
-    .footer-links li {
-        margin-bottom: 0.8rem;
-    }
-
-    .footer-link {
-        color: #8892b0;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        position: relative;
-        padding-left: 0;
-    }
-
-    .footer-link::before {
-        content: '→';
-        position: absolute;
-        left: -15px;
-        opacity: 0;
-        color:  #64ffda;
-        transition: all 0.3s ease;
-    }
-
-    .footer-link:hover {
-        color:  #64ffda;
-        padding-left: 15px;
-    }
-
-    .footer-link:hover::before {
-        opacity: 1;
-        left: 0;
-    }
-
-    .footer-contact {
-        list-style: none;
-    }
-
-    .footer-contact li {
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: flex-start;
+    
+    .footer-legal {
+        flex-direction: column;
         gap: 0.8rem;
     }
-
-    .contact-icon {
-        color:  #64ffda;
-        margin-top: 0.2rem;
-        font-size: 1rem;
+    
+    .security-badges {
+        flex-direction: column;
+        width: 100%;
     }
-
-    .footer-contact a {
-        color: #8892b0;
-        transition: color 0.3s ease;
-    }
-
-    .footer-contact a:hover {
-        color:  #64ffda;
-    }
-
-    .footer-bottom {
-        text-align: center;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .footer-legal {
-        display: flex;
+    
+    .badge {
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1rem;
     }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
 
-    .legal-link {
-        color: #8892b0;
-        font-size: 0.9rem;
-        transition: color 0.3s ease;
+/* Animation for footer elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-    .legal-link:hover {
-        color:  #64ffda;
-    }
+.footer-brand,
+.footer-column,
+.newsletter-section {
+    animation: fadeInUp 0.6s ease-out;
+}
 
-    .footer-copyright {
-        color: #8892b0;
-        font-size: 0.9rem;
-    }
+.footer-column:nth-child(2) { animation-delay: 0.1s; }
+.footer-column:nth-child(3) { animation-delay: 0.2s; }
+.footer-column:nth-child(4) { animation-delay: 0.3s; }
+.footer-column:nth-child(5) { animation-delay: 0.4s; }
+.newsletter-section { animation-delay: 0.5s; }
 
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-        .footer-main {
-            grid-template-columns: 1fr 1fr;
-        }
-        
-        .footer-brand {
-            grid-column: 1 / -1;
-        }
-    }
+/* Collapsible Sections */
+.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
 
-    @media (max-width: 480px) {
-        .footer-main {
-            grid-template-columns: 1fr;
-        }
-        
-        .footer-legal {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+.collapsible-header i {
+    transition: transform 0.3s ease;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.collapsible.active .collapsible-content {
+    max-height: 500px;
+}
+
+.collapsible.active .collapsible-header i {
+    transform: rotate(180deg);
+}
+
+/* Matrix Logo Effect */
+.matrix-logo {
+    position: relative;
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #64ffda;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.7);
+    overflow: hidden;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.matrix-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 90%, rgba(100, 255, 218, 0.1) 100%);
+    animation: matrixScan 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes matrixScan {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+.logo-text {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Responsive adjustments for collapsible sections */
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr;
     }
+    
+    .collapsible-content {
+        max-height: 0;
+    }
+    
+    .collapsible.active .collapsible-content {
+        max-height: 1000px;
+    }
+    
+    
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+}
         
         /* Scroll to Top Button */
         .scroll-top {
@@ -2404,7 +2764,7 @@ header {
   <canvas id="matrix-canvas"></canvas>
   <div class="matrix-content">
     <div class="matrix-text">SAR SOLUTIONZ</div>
-    <div class="matrix-motto">Development & Security Solutions </div>
+    <div class="matrix-motto">Under Construction</div>
   </div>
 </div>
 
@@ -2572,7 +2932,7 @@ window.addEventListener('load', function() {
     
     <!-- Hacking Services Dropdown -->
     <div class="dropdown">
-        <button class="dropbtn">Hacking Services <i class="fas fa-chevron-down"></i></button>
+        <button class="dropbtn">Security Services <i class="fas fa-chevron-down"></i></button>
         <div class="dropdown-content">
             <a href="/WebPentest.html"><i class="fas fa-globe"></i> Web Pentesting</a>
             <a href="/NetworkPentest.html"><i class="fas fa-network-wired"></i> Network Pentesting</a>
@@ -2598,8 +2958,8 @@ window.addEventListener('load', function() {
         </div>
     </div>
     
-    <a href="#certifications">Certifications</a>
-    <a href="#team">Team</a>
+    <!-- <a href="#certifications">Certifications</a>
+    <a href="#team">Team</a> -->
     <a href="#contact">Contact</a>
     <a href="/getqouta.html" class="cta-button">Get Assessment</a>
 </nav>
@@ -2621,7 +2981,7 @@ window.addEventListener('load', function() {
         
         <!-- Hacking Services Dropdown -->
         <div class="mobile-dropdown">
-            <button class="mobile-dropbtn">Hacking Services <i class="fas fa-chevron-down"></i></button>
+            <button class="mobile-dropbtn">Security Services <i class="fas fa-chevron-down"></i></button>
             <div class="mobile-dropdown-content">
                 <a href="/WebPentest.html"><i class="fas fa-globe"></i> Web Pentesting</a>
                 <a href="/NetworkPentest.html"><i class="fas fa-network-wired"></i> Network Pentesting</a>
@@ -2672,7 +3032,7 @@ window.addEventListener('load', function() {
             </div>
             <div class="hero-social">
                 <div class="hero-social-line"></div>
-                <a href="https://github.com/Rahul-Thakur7" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://x.com/sar_solutionz" target="_blank"><i class="fab fa-twitter"></i></a>
                <a href="https://www.youtube.com/@sarsolutionz" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -2690,7 +3050,7 @@ window.addEventListener('load', function() {
         <div class="about-content">
             <div class="about-text" data-aos="fade-right">
                 <h2>Where Secure Development Meets Cutting-Edge Solutions</h2>
-                <p>Founded in 2025, Sarsolutionz is redefining technology services by combining custom software development with enterprise-grade security. Our dual expertise allows us to build solutions that are innovative by design and secure by default.</p>
+                <p>Technology services by combining custom software development with enterprise-grade security. Our dual expertise allows us to build solutions that are innovative by design and secure by default.</p>
                 
                 <div class="expertise-areas">
                     <div class="expertise-item" data-aos="fade-up" data-aos-delay="100">
@@ -2705,16 +3065,16 @@ window.addEventListener('load', function() {
                 
                 <div class="about-stats">
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">Projects Delivered</div>
+                        <!-- <div class="stat-number">30+</div>
+                        <div class="stat-label">Projects Delivered</div> -->
                     </div>
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Secure by Design</div>
+                        <!-- <div class="stat-number">100%</div>
+                        <div class="stat-label">Secure by Design</div> -->
                     </div>
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="stat-number">0</div>
-                        <div class="stat-label">Security Breaches</div>
+                        <!-- <div class="stat-number">0</div>
+                        <div class="stat-label">Security Breaches</div> -->
                     </div>
                 </div>
             </div>
@@ -2725,101 +3085,8 @@ window.addEventListener('load', function() {
         </div>
     </section>
     
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications">
-        <h2 class="section-title" data-aos="fade-up">Our <span>Certifications</span></h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Industry-recognized credentials that demonstrate our expertise and commitment to security excellence</p>
-        
-        <div class="certifications-container">
-            <div class="certification-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="certification-badge">
-                    <!-- <img src="https://www.offensive-security.com/wp-content/uploads/2019/01/" alt="MCEH Certification"> -->
-                </div>
-               <h3>MCEH</h3>
-    <p>Master Certified Ethical Hacker – Hands-on penetration testing certification.</p>
-</div>
-            
-            <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="certification-badge">
-                    <!-- <img src="https://www.offensive-security.com/wp-content/uploads/2019/01/" alt="eCCPTv2 Certification"> -->
-                </div>
-               <h3>eCPPTv2</h3>
-    <p>Certified Professional Penetration Tester – Advanced exploitation and pentesting skills.</p>
-</div>
-            
-            <div class="certification-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="certification-badge">
-                    <!-- <img src="https://www.isc2.org/-/media/ISC2/Images/Partner-Resources/" alt="CRTA Certification"> -->
-                </div>
-                <h3>CRTA</h3>
-    <p>Certified Red Team Analyst – Adversary simulation and red teaming certification.</p>
-</div>
-        </div>
-    </section>
+  
 
-    <!-- Team Section -->
-    <section id="team" class="team">
-        <h2 class="section-title" data-aos="fade-up">Our <span>Team</span></h2>
-       <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Meet our elite teams of cybersecurity experts and developers with diverse backgrounds in offensive security, secure coding, and scalable application development</p>
-
-        
-        <div class="team-container">
-            <div class="team-member" data-aos="fade-up" data-aos-delay="100">
-                <div class="member-image">
-                    <!-- <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="John Carter"> -->
-                </div>
-              <div class="member-info">
-    <h3>Rahul Thakur</h3>
-    <p>Security Analyst & Penetration Tester</p>
-    <div class="member-bio">
-        Offensive security specialist with 4+ years experience in vulnerability assessment, penetration testing. Skilled in identifying and mitigating application vulnerabilities (OWASP Top 10) and network security threats.
-    </div>
-    <div class="member-social">
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-    </div>
-</div>
-            </div>
-            
-            <div class="team-member" data-aos="fade-up" data-aos-delay="300">
-                <div class="member-image">
-                    <!-- <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Michael Chen"> -->
-                </div>
-              <div class="member-info">
-    <h3>SatyaPrakash Yadav</h3>
-    <p>Full Stack Developer & Cloud Architect</p>
-    <div class="member-bio">
-       He is a certified Python Full Stack Developer with expertise in backend development, MERN stack, AWS deployment, and microservices. He also works with AI/ML and modern tech stacks to deliver scalable and intelligent web solutions.
-    </div>
-    <div class="member-social">
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-    </div>
-</div>
-</div>
-
-<div class="team-member" data-aos="fade-up" data-aos-delay="400">
-    <div class="member-image">
-        <!-- <img src="https://images.unsplash.com/photo-1590086783191-a0694c7d1e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Ashish Soni"> -->
-    </div>
-    <div class="member-info">
-        <h3>Ashish Soni</h3>
-        <p>Full Stack Developer</p>
-        <div class="member-bio">
-A backend specialist with expertise in system design, RESTful APIs, cloud deployment (AWS), CI/CD, and Docker. He builds secure, scalable server-side systems and integrates AI/ML to deliver intelligent, high-performance solutions.        </div>
-        <div class="member-social">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
-</div>
-                </div>
-            </div>
-        </div>
-    </section>
     
     <!-- Services Section -->
     <section id="services" class="services">
@@ -2831,7 +3098,7 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
                 <div class="service-icon"><i class="fas fa-code"></i></div>
                 <h3>Web Applications Development</h3>
                 <p>Custom web solutions built with modern frameworks (React, Angular, Vue) and secure backend architectures to power your digital presence.</p>
-                <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                <a href="/Design&Dev.html" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
             </div>
             
             <div class="service-card" data-aos="fade-up" data-aos-delay="200">
@@ -2872,7 +3139,7 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
     </section>
     
     <section id="services" class="services">
-        <h2 class="section-title" data-aos="fade-up">Our <span>Hacking Services</span></h2>
+        <h2 class="section-title" data-aos="fade-up">Our <span>Security Services</span></h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Comprehensive security solutions tailored to your organization's needs</p>
         
         <div class="services-container">
@@ -2880,58 +3147,58 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
             <div class="service-icon"><i class="fas fa-globe"></i></div>
             <h3>Web Penetration Testing</h3>
             <p>Comprehensive assessment of web applications to identify OWASP Top 10 vulnerabilities, business logic flaws, and security misconfigurations.</p>
-            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            <a href="/WebPentest.html" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
         
         <div class="service-card" data-aos="fade-up" data-aos-delay="200">
             <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
             <h3>Mobile Penetration Testing</h3>
             <p>Security evaluation of iOS and Android applications, including reverse engineering, API testing, and data storage analysis.</p>
-            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            <a href="/MobilePentest.html" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
         
         <div class="service-card" data-aos="fade-up" data-aos-delay="300">
             <div class="service-icon"><i class="fas fa-network-wired"></i></div>
             <h3>Network Penetration Testing</h3>
             <p>Identification of vulnerabilities in network infrastructure, including firewall testing, router security, and wireless network assessments.</p>
-            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            <a href="/VAPT.html" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
         
         <div class="service-card" data-aos="fade-up" data-aos-delay="400">
             <div class="service-icon"><i class="fas fa-plug"></i></div>
             <h3>API Security Testing</h3>
             <p>Comprehensive testing of RESTful and GraphQL APIs for authentication flaws, injection vulnerabilities, and improper data exposure.</p>
-            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            <a href="/APIPentest.html" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
         
         <div class="service-card" data-aos="fade-up" data-aos-delay="500">
             <div class="service-icon"><i class="fas fa-cloud"></i></div>
             <h3>Cloud Penetration Testing</h3>
             <p>Specialized assessments for AWS, Azure, and GCP environments focusing on IAM misconfigurations, storage vulnerabilities, and cloud-native services.</p>
-            <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            <a href="/CloudPentest.html" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
         
-        <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+        <!-- <div class="service-card" data-aos="fade-up" data-aos-delay="600">
             <div class="service-icon"><i class="fas fa-user-secret"></i></div>
             <h3>Red Teaming</h3>
             <p>Full-scope adversary simulation exercises to test your organization's people, processes, and technology against advanced attack scenarios.</p>
             <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
-        </div>
+        </div> -->
     </div>
     </section>
     
     <!-- Contact Section -->
    <section id="contact" class="contact">
     <h2 class="section-title" data-aos="fade-up">Get in <span>Touch</span></h2>
-    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Ready to strengthen your security posture? Contact us for a consultation</p>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">We'd love to hear from you. Our team is always ready to assist you with any inquiries or support you might need.</p>
     
     <div class="contact-container">
         <div class="contact-info" data-aos="fade-right">
             <div class="contact-item">
-                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <!-- <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div> -->
                 <div class="contact-details">
-                    <h3>Our Office</h3>
-                    <p>Mumbai<br></p>
+                    <!-- <h3>Our Office</h3>
+                    <p>Mumbai<br></p> -->
                 </div>
             </div>
             
@@ -2985,9 +3252,10 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
                         <option value="API Development">API Development</option>
                         <option value="Web Pentesting">Web Penetration Testing</option>
                         <option value="Mobile Pentesting">Mobile Penetration Testing</option>
+                         <option value="API Pentesting">API Penetration Testing</option>
                         <option value="Network Pentesting">Network Penetration Testing</option>
                         <option value="Cloud Security">Cloud Security Assessment</option>
-                        <option value="Red Teaming">Red Teaming Exercise</option>
+                        <!-- <option value="Red Teaming">Red Teaming Exercise</option> -->
                         <option value="Other">Other Security Services</option>
                     </select>
                 </div>
@@ -3033,106 +3301,123 @@ A backend specialist with expertise in system design, RESTful APIs, cloud deploy
         <i class="fas fa-arrow-up"></i>
     </div>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <!-- Main Footer Content -->
-            <div class="footer-main">
-                <!-- Brand Column -->
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <svg viewBox="0 0 120 40" class="logo-shape">
-                            <path d="M20,10 L40,30 L60,10 L80,30 L100,10" stroke="#64ffda" stroke-width="3" fill="none" />
-                            <circle cx="110" cy="20" r="8" fill="#64ffda" />
-                        </svg>
-                        <span class="logo">SAR<span>SOLUTIONZ</span></span>
+  <footer class="footer">
+    <div class="footer-container">
+              <!-- Main Footer Content -->
+        <div class="footer-main">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="matrix-logo" id="matrixLogo">
+                        <span class="logo-text">SAR SOLUTIONZ</span>
                     </div>
-                    <p class="footer-tagline">Breaking your systems before attackers break your business.</p>
-                    <div class="footer-social">
-                        <a href="https://www.linkedin.com/company/sarsolutionz/" class="social-icon" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://x.com/sar_solutionz" class="social-icon" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://github.com/Rahul-Thakur7" class="social-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                         <a href="https://www.youtube.com/@sarsolutionz" class="social-icon" aria-label="GitHub">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                       
-                        <a href="mailto:sarsolutionz7@gmail.com" class="social-icon" aria-label="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
+                    <p class="tagline">Breaking systems before attackers do</p>
                 </div>
-
-                <!-- Services Column -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="/Design&Dev.html" class="footer-link">Design & Development</a></li>
-                        <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
-                        <li><a href="/WebPentest.html" class="footer-link">Web App Security</a></li>
-                        <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
-                        <li><a href="/NetworkPentest.html" class="footer-link">Network Penetration Testing</a></li>
-                        
-                            <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
-                            <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
-                            <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
-                            <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
-                            <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
-                    </ul>
-                </div>
-
-                <!-- Resources Column -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://sarsolutionz.blogspot.com/" class="footer-link">Security Blog</a></li>
-                        <li><a href="#" class="footer-link">Whitepapers</a></li>
-                        <li><a href="#" class="footer-link">Security Tools</a></li>
-                        <li><a href="/Samplereports.html" class="footer-link">Sample Reports</a></li>
-                        <li><a href="#" class="footer-link">Testing Methodology</a></li>
-
-                   </ul>
-                </div>
-
-                <!-- Contact Column -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Contact</h3>
-                    <address class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt contact-icon"></i>
-                            <span>Mumbai, India</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope contact-icon"></i>
-                            <a href="mailto:sarsolutionz7@gmail.com">sarsolutionz7@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock contact-icon"></i>
-                            <span>24/7 Emergency Support</span>
-                        </div>
-                    </address>
+                <p class="footer-description">
+                    Enterprise-grade cybersecurity solutions & secure development services. 
+                    Protecting digital assets with cutting-edge technology.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/sar_solutionz" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sarsolutionz" class="social-icon" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="mailto:sarsolutionz7@gmail.com" class="social-icon" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <a href="/privacy" class="legal-link">Privacy Policy</a>
-                    <a href="/terms" class="legal-link">Terms of Service</a>
-                    <a href="/disclaimer" class="legal-link">Disclaimer</a>
-                    <a href="/contact" class="legal-link">Contact</a>
+            <!-- Collapsible Security Services Column -->
+            <div class="footer-column collapsible">
+                <h3 class="footer-title collapsible-header">
+                    Security Services <i class="fas fa-chevron-down"></i>
+                </h3>
+                <ul class="footer-links collapsible-content">
+                    <li><a href="/WebPentest.html" class="footer-link">Web Pentesting</a></li>
+                    <li><a href="/NetworkPentest.html" class="footer-link">Network Pentesting</a></li>
+                    <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
+                    <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
+                    <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
+                    <li><a href="/CloudPentest.html" class="footer-link">Cloud Pentesting</a></li>
+                    <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT & Dark Web</a></li>
+                    <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
+                </ul>
+            </div>
+
+            <!-- Collapsible Development Column -->
+            <div class="footer-column collapsible">
+                <h3 class="footer-title collapsible-header">
+                    Development <i class="fas fa-chevron-down"></i>
+                </h3>
+                <ul class="footer-links collapsible-content">
+                    <li><a href="/Design&Dev.html" class="footer-link">Web Development</a></li>
+                    <li><a href="#" class="footer-link">Mobile Development</a></li>
+                    <li><a href="#" class="footer-link">API Development</a></li>
+                    <li><a href="#" class="footer-link">Desktop Applications</a></li>
+                    <li><a href="#" class="footer-link">AI Applications</a></li>
+                    <li><a href="#" class="footer-link">Custom Tools</a></li>
+                    <li><a href="#" class="footer-link">Technical Consulting</a></li>
+                </ul>
+            </div>
+
+            <!-- Collapsible Resources Column -->
+            <div class="footer-column collapsible">
+                <h3 class="footer-title collapsible-header">
+                    Resources & Links <i class="fas fa-chevron-down"></i>
+                </h3>
+                <ul class="footer-links collapsible-content">
+                    <li><a href="https://sarsolutionz.blogspot.com/" class="footer-link">Security Blog</a></li>
+                    <li><a href="#" class="footer-link">Whitepapers</a></li>
+                    <li><a href="#" class="footer-link">Security Tools</a></li>
+                    <li><a href="/Samplereports.html" class="footer-link">Sample Reports</a></li>
+                    <li><a href="#" class="footer-link">Testing Methodology</a></li>
+                    <li><a href="#" class="footer-link">Case Studies</a></li>
+                    <!-- <li><a href="/About.html" class="footer-link">About Us</a></li> -->
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>&copy; 2025 SAR SOLUTIONZ. All rights reserved.</p>
                 </div>
-                <div class="footer-copyright">
-                    &copy; 2023 SAR SOLUTIONZ. All rights reserved.
+                <div class="footer-legal">
+                    <!-- <a href="/" class="legal-link">Privacy Policy</a>
+                    <a href="/" class="legal-link">Terms of Service</a>
+                    <a href="/" class="legal-link">Disclaimer</a>
+                    <a href="/" class="legal-link">Sitemap</a> -->
+                </div>
+                <div class="security-badges">
+                    <div class="badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Encrypted</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-lock"></i>
+                        <span>No Tracking</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+</footer>
 
 
     <!-- Chatbot Launcher -->
@@ -4481,7 +4766,30 @@ document.addEventListener('keydown', e => {
  ║        Send crypto to: 0xDECAFBADCODE            ║
  ╚══════════════════════════════════════════════════╝
 */
-
+// Collapsible sections functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const collapsibles = document.querySelectorAll('.collapsible');
+    
+    collapsibles.forEach(item => {
+        const header = item.querySelector('.collapsible-header');
+        
+        header.addEventListener('click', function() {
+            item.classList.toggle('active');
+        });
+    });
+    
+    // Matrix logo effect
+    const matrixLogo = document.getElementById('matrixLogo');
+    if (matrixLogo) {
+        matrixLogo.addEventListener('mouseenter', function() {
+            this.style.textShadow = '0 0 15px #64ffda, 0 0 25px #64ffda';
+        });
+        
+        matrixLogo.addEventListener('mouseleave', function() {
+            this.style.textShadow = '0 0 10px rgba(100, 255, 218, 0.7)';
+        });
+    }
+});
     </script>
 </body>
 </html>
