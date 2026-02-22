@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SARSOLUTIONZ | Professional Pentest Services</title>
+    <title>Request Sample Reports | SARSOLUTIONZ - Security Assessment Deliverables</title>
+    <meta name="description" content="Request sample penetration testing, red team, and security assessment reports. See our methodology, findings presentation, and remediation guidance quality.">
+    <meta name="keywords" content="sample penetration testing report, red team report example, security assessment template, vulnerability report sample, pentest deliverables">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #1e293b;
-            --text: #334155;
-            --text-light: #64748b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --header-bg: #ffffff;
-            --footer-bg: #0f172a;
-            --accent: #e11d48;
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #ff3366;
+            --accent-secondary: #ff6b6b;
+            --accent-glow: rgba(255, 51, 102, 0.4);
             --success: #10b981;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dark-mode {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #f1f5f9;
-            --text: #e2e8f0;
-            --text-light: #94a3b8;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --header-bg: #1e293b;
-            --footer-bg: #020617;
-            --border: #334155;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -44,1073 +40,1773 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--text);
-            background-color: var(--bg);
-            transition: var(--transition);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--header-bg);
-            position: sticky;
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 51, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 102, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -200px; right: -100px; animation: float 15s infinite ease-in-out; }
+        .orb-2 { width: 300px; height: 300px; background: var(--accent-secondary); bottom: -100px; left: -100px; animation: float 20s infinite ease-in-out reverse; }
+        .orb-3 { width: 200px; height: 200px; background: var(--info); top: 50%; right: 20%; animation: float 18s infinite ease-in-out; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
             transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 5%;
+            background: rgba(10, 14, 23, 0.95);
         }
 
         .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             text-decoration: none;
         }
 
         .logo-icon {
-            color: var(--accent);
-            font-size: 1.75rem;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(255, 107, 107, 0.3); }
         }
 
         .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text);
-            transition: var(--transition);
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
         }
 
-        .logo-tagline {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-top: 0.25rem;
-            transition: var(--transition);
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
-        nav ul li a {
-            color: var(--text);
+        nav a {
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 0;
+            font-size: 0.9rem;
             position: relative;
             transition: var(--transition);
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        nav ul li a::after {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
         }
 
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
             width: 100%;
         }
 
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* Fixed Theme Toggle */
-        .theme-toggle {
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
             position: relative;
-            width: 3.5rem;
-            height: 1.75rem;
-            display: flex;
-            align-items: center;
+            overflow: hidden;
         }
 
-        .theme-toggle input {
+        .cta-nav::before {
+            content: '';
             position: absolute;
-            opacity: 0;
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            cursor: pointer;
-            z-index: 2;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
 
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--border);
-            border-radius: 2rem;
-            transition: var(--transition);
+        .cta-nav:hover::before {
+            left: 100%;
         }
 
-        .toggle-slider::before {
-            position: absolute;
-            content: '';
-            height: 1.25rem;
-            width: 1.25rem;
-            left: 0.25rem;
-            bottom: 0.25rem;
-            background-color: var(--card-bg);
-            border-radius: 50%;
-            transition: var(--transition);
-            z-index: 1;
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
         }
 
-        input:checked + .toggle-slider {
-            background-color: var(--primary);
-        }
-
-        input:checked + .toggle-slider::before {
-            transform: translateX(1.75rem);
-        }
-
-        .toggle-icons {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 0.5rem;
-            z-index: 1;
-        }
-
-        .toggle-icons i {
-            font-size: 0.75rem;
-            color: var(--text-light);
-        }
-
-        /* Hamburger Menu */
+        /* Mobile Menu */
         .hamburger {
             display: none;
+            flex-direction: column;
+            gap: 5px;
             cursor: pointer;
-            background: none;
+            z-index: 1001;
+            background: transparent;
             border: none;
-            color: var(--text);
-            font-size: 1.5rem;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
             transition: var(--transition);
+            border-radius: 2px;
         }
 
-        .hamburger:hover {
-            color: var(--primary);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 100%), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.75rem 1.75rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px -1px rgba(225, 29, 72, 0.3), 0 2px 4px -1px rgba(225, 29, 72, 0.1);
-        }
-
-        .cta-button:hover {
-            background-color: #be123c;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(225, 29, 72, 0.3), 0 4px 6px -2px rgba(225, 29, 72, 0.1);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background-color: var(--card-bg);
-            border-radius: 0.5rem;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
+        .mobile-menu {
+            position: fixed;
             top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--secondary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid var(--border);
         }
 
-        .service-card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .mobile-menu.active {
+            right: 0;
         }
 
-        .service-card:hover::before {
-            height: 100%;
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .learn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            color: var(--primary);
-            font-weight: 500;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .learn-more i {
-            transition: var(--transition);
-        }
-
-        .learn-more:hover {
-            color: var(--primary-dark);
-        }
-
-        .learn-more:hover i {
-            transform: translateX(3px);
-        }
-
-        /* Request Section */
-        .request-section {
-            padding: 5rem 0;
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border);
+        .mobile-menu li {
             border-bottom: 1px solid var(--border);
         }
 
-        .request-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        #security-contact-form {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 0.875rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 0.375rem;
-            background-color: var(--card-bg);
-            color: var(--text);
-            font-family: inherit;
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
             transition: var(--transition);
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 10px;
         }
 
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            position: relative;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: var(--transition);
+        .mobile-submenu {
+            max-height: 0;
             overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 20px;
         }
 
-        .submit-button:hover {
-            background-color: var(--primary-dark);
+        .mobile-submenu.active {
+            max-height: 500px;
         }
 
-        .submit-button .button-text {
-            position: relative;
-            z-index: 1;
-            transition: var(--transition);
+        .mobile-menu-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem 0;
+            color: var(--text-primary);
         }
 
-        .submit-button .button-icon {
-            position: relative;
-            z-index: 1;
-            transition: var(--transition);
+        .mobile-menu-toggle i {
+            transition: transform 0.3s;
         }
 
-        .submit-button::before {
-            content: '';
-            position: absolute;
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .menu-overlay {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 0;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .submit-button:hover::before {
             width: 100%;
-        }
-
-        /* Loading animation */
-        .submit-button.loading .button-text {
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-
-        .submit-button.loading .button-icon {
-            opacity: 0;
-            transform: translateX(10px);
-        }
-
-        .submit-button.loading::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        /* Success state */
-        .submit-button.success {
-            background-color: var(--success);
-        }
-
-        .submit-button.success .button-text,
-        .submit-button.success .button-icon {
-            opacity: 0;
-        }
-
-        .submit-button.success::after {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            color: white;
-            font-size: 1.25rem;
-            animation: none;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--footer-bg);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .footer-column p {
-            color: #94a3b8;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-column ul li a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-column ul li a:hover {
-            color: white;
-        }
-
-        .footer-column ul li a i {
-            width: 1.25rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #64748b;
-            font-size: 0.875rem;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 3rem;
-            height: 3rem;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.25rem;
-            cursor: pointer;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: var(--transition);
-            z-index: 99;
-            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
         }
 
-        .scroll-top.active {
+        .menu-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .scroll-top:hover {
-            background-color: var(--primary-dark);
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(ellipse at top, rgba(255, 51, 102, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1.5rem;
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 51, 102, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.6); }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Report Types Section */
+        .report-types {
+            padding: 4rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .report-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .report-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .report-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .report-card.selected {
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .report-card.selected::before {
+            transform: scaleX(1);
+        }
+
+        .report-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .report-card:hover .report-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .report-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .report-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .report-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .report-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .report-checkbox {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .report-card.selected .report-checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .report-checkbox i {
+            color: var(--primary);
+            font-size: 0.875rem;
+            opacity: 0;
+        }
+
+        .report-card.selected .report-checkbox i {
+            opacity: 1;
+        }
+
+        /* Report Preview Section */
+        .report-preview {
+            padding: 4rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: rgba(255, 51, 102, 0.05);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .preview-title i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .preview-title h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .preview-badge {
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--success);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .preview-body {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 500px;
+        }
+
+        .preview-sidebar {
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 1px solid var(--border);
+            padding: 2rem;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            background: rgba(255, 51, 102, 0.1);
+            color: var(--accent);
+        }
+
+        .sidebar-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .preview-content {
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+
+        .preview-content h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .preview-content .line {
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: typeLine 0.5s forwards;
+        }
+
+        .preview-content .line:nth-child(1) { animation-delay: 0.1s; }
+        .preview-content .line:nth-child(2) { animation-delay: 0.2s; }
+        .preview-content .line:nth-child(3) { animation-delay: 0.3s; }
+        .preview-content .line:nth-child(4) { animation-delay: 0.4s; }
+        .preview-content .line:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .preview-content .comment { color: var(--text-muted); }
+        .preview-content .keyword { color: var(--accent); }
+        .preview-content .string { color: var(--success); }
+        .preview-content .function { color: var(--warning); }
+        .preview-content .danger { color: var(--danger); }
+
+        /* Request Form Section */
+        .request-section {
+            padding: 4rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-label span {
+            color: var(--accent);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.1);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .selected-reports {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .selected-report-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .selected-report-tag i {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .selected-report-tag i:hover {
+            color: var(--danger);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--accent);
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+        }
+
+        .checkbox-item label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Trust Indicators */
+        .trust-indicators {
+            padding: 3rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .trust-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--accent);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .trust-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
             transform: translateY(-3px);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .footer-links {
+            list-style: none;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: row;
-                align-items: center;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 320px;
-                height: 100vh;
-                background-color: var(--card-bg);
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-                transition: var(--transition);
-                z-index: 1000;
-                padding: 2rem;
-                display: flex;
-                flex-direction: column;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 1.5rem;
-                margin-top: 2rem;
-            }
-
-            .nav-actions {
-                margin-top: auto;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .hamburger {
-                display: block;
-                z-index: 1001;
-            }
-
-            .hero {
-                padding: 4rem 0;
-            }
-
-            .hero h1 {
-                font-size: 2.25rem;
-            }
-
-            .hero p {
-                font-size: 1.125rem;
-            }
-
-            .services {
-                padding: 3rem 0;
-            }
-
-            .section-title h2 {
-                font-size: 1.75rem;
-            }
+        .footer-links li {
+            margin-bottom: 0.75rem;
         }
 
-        /* Small mobile */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.75rem;
-            }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-            .services-grid {
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Success Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        .modal-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .preview-body {
                 grid-template-columns: 1fr;
             }
+            
+            .preview-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <div class="container header-container">
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
             <a href="/" class="logo">
                 <div class="logo-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <div>
-                    <div class="logo-text">SARSOLUTIONZ</div>
-                    <div class="logo-tagline">Breaking your systems before attackers break your business.</div>
-                </div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
             </a>
             
-            <nav id="nav">
+            <nav>
                 <ul>
-                    <li><a href="#services" class="active">Services</a></li>
-                    <li><a href="#request">Request Reports</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/Samplereports.html" style="color: var(--accent);">Sample Reports</a></li>
+                    <li><a href="/contact" class="cta-nav">Contact</a></li>
                 </ul>
-                
-                <div class="nav-actions">
-                    <div class="theme-toggle">
-                        <input type="checkbox" id="theme-toggle">
-                        <span class="toggle-slider">
-                            <span class="toggle-icons">
-                                <i class="fas fa-moon"></i>
-                                <i class="fas fa-sun"></i>
-                            </span>
-                        </span>
-                    </div>
-                </div>
             </nav>
             
-            <button class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </header>
 
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/Samplereports.html" style="color: var(--accent);">Sample Reports</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-content">
-            <h1>Advanced Penetration Testing Services</h1>
-            <p>Identify vulnerabilities before attackers do with our comprehensive security assessments and ethical hacking services.</p>
-            <a href="#request" class="cta-button">
-                Request Sample Reports
-                <i class="fas fa-arrow-right"></i>
-            </a>
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-file-shield"></i>
+                Confidential Sample Reports
+            </div>
+            <h1>
+                Experience Our <span class="gradient-text">Deliverables</span><br>
+                Before You Engage
+            </h1>
+            <p class="hero-description">
+                Request sanitized sample reports to evaluate our methodology, reporting quality, and remediation guidance. See exactly what you'll receive after a security assessment.
+            </p>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Security Services</h2>
-                <p>Comprehensive penetration testing services to protect your digital assets</p>
+    <!-- Report Types Section -->
+    <section class="report-types" id="reports">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-folder-open"></i> Available Samples
+                </span>
+                <h2 class="section-title">Select Reports to <span class="gradient-text">Preview</span></h2>
+                <p class="section-subtitle">Click on the report types you're interested in. We'll send you sanitized versions that demonstrate our methodology without exposing client data.</p>
             </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+
+            <div class="reports-grid" id="reportsGrid">
+                <!-- Report cards will be generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Preview Section -->
+    <section class="report-preview">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-eye"></i> Report Structure
+                </span>
+                <h2 class="section-title">Sample <span class="gradient-text">Report Layout</span></h2>
+                <p class="section-subtitle">Interactive preview of how we structure our findings, evidence, and remediation guidance.</p>
+            </div>
+
+            <div class="preview-container reveal">
+                <div class="preview-header">
+                    <div class="preview-title">
+                        <i class="fas fa-file-code"></i>
+                        <h3>Web Application Penetration Test Report</h3>
                     </div>
-                    <h3>Web Penetration Testing</h3>
-                    <p>Identify vulnerabilities in web applications including OWASP Top 10 risks with our thorough assessments.</p>
-                    <a href="/WebPentest.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
+                    <span class="preview-badge">SAMPLE</span>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                <div class="preview-body">
+                    <div class="preview-sidebar">
+                        <div class="sidebar-section">
+                            <div class="sidebar-title">Executive Summary</div>
+                            <div class="sidebar-item active">
+                                <i class="fas fa-chart-pie"></i> Risk Overview
+                            </div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-bullseye"></i> Key Findings
+                            </div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-road"></i> Remediation Roadmap
+                            </div>
+                        </div>
+                        <div class="sidebar-section">
+                            <div class="sidebar-title">Technical Findings</div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-bug"></i> Critical (2)
+                            </div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-exclamation-triangle"></i> High (4)
+                            </div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-info-circle"></i> Medium (6)
+                            </div>
+                        </div>
+                        <div class="sidebar-section">
+                            <div class="sidebar-title">Appendices</div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-sitemap"></i> Test Scope
+                            </div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-vial"></i> Methodology
+                            </div>
+                            <div class="sidebar-item">
+                                <i class="fas fa-terminal"></i> Evidence Logs
+                            </div>
+                        </div>
                     </div>
-                    <h3>Mobile Penetration Testing</h3>
-                    <p>Security assessment for iOS and Android applications to identify security weaknesses and data leaks.</p>
-                    <a href="/MobilePentest.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-network-wired"></i>
+                    <div class="preview-content">
+                        <h4><i class="fas fa-shield-virus" style="color: var(--danger);"></i> Critical Finding: SQL Injection (CWE-89)</h4>
+                        <div class="line comment">// Authentication Bypass via Login Form</div>
+                        <div class="line"><span class="keyword">POST</span> /api/v1/auth/login HTTP/1.1</div>
+                        <div class="line"><span class="keyword">Host:</span> target-application.com</div>
+                        <div class="line"><span class="keyword">Content-Type:</span> application/json</div>
+                        <div class="line"></div>
+                        <div class="line">{</div>
+                        <div class="line">  <span class="string">"username"</span>: <span class="danger">"admin' OR '1'='1' --"</span>,</div>
+                        <div class="line">  <span class="string">"password"</span>: <span class="string">"irrelevant"</span></div>
+                        <div class="line">}</div>
+                        <div class="line"></div>
+                        <div class="line"><span class="function">[RESPONSE]</span> HTTP/1.1 <span class="danger">200 OK</span></div>
+                        <div class="line"><span class="string">"token"</span>: <span class="string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span></div>
+                        <div class="line"><span class="string">"role"</span>: <span class="danger">"administrator"</span></div>
+                        <div class="line"></div>
+                        <div class="line comment">// Impact: Full database compromise + admin access</div>
+                        <div class="line comment">// CVSS Score: 9.8 (Critical)</div>
                     </div>
-                    <h3>Network Penetration Testing</h3>
-                    <p>External and internal network infrastructure testing to uncover security gaps in your systems.</p>
-                    <a href="/NetworkPentest.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>API Security Testing</h3>
-                    <p>Specialized testing for REST, SOAP, and GraphQL API endpoints to ensure secure data exchange.</p>
-                    <a href="/APIPentest.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Cloud Penetration Testing</h3>
-                    <p>Configuration review and security testing for AWS, Azure, and GCP cloud environments.</p>
-                    <a href="/CloudPentest.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-secret"></i>
-                    </div>
-                    <h3>Red Teaming</h3>
-                    <p>Simulated real-world attacks to test your organization's detection and response capabilities.</p>
-                    <a href="/Redteam.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>OSINT & Dark Web Research</h3>
-                    <p>Identify exposed information and potential threats from open sources and dark web monitoring.</p>
-                    <a href="/DarkWeb&OSINT.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-people-arrows"></i>
-                    </div>
-                    <h3>Social Engineering</h3>
-                    <p>Test your human firewall through phishing, vishing, and physical security assessments.</p>
-                    <a href="/Phishing.html" class="learn-more">
-                        Learn more
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Request Section -->
+    <!-- Request Form Section -->
     <section class="request-section" id="request">
-        <div class="container request-container">
-            <div class="section-title">
-                <h2>Request Sample Reports</h2>
-                <p>Get access to our sample penetration testing reports to evaluate our methodology and quality</p>
+        <div class="section-container">
+            <div class="form-container reveal">
+                <div class="form-header">
+                    <h2>Request Sample Reports</h2>
+                    <p>Fill in your details and select the reports you'd like to receive. We'll send them within 24 hours.</p>
+                </div>
+
+                <form id="sampleRequestForm">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span>*</span></label>
+                            <input type="text" class="form-input" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Work Email <span>*</span></label>
+                            <input type="email" class="form-input" placeholder="john@company.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Company Name <span>*</span></label>
+                            <input type="text" class="form-input" placeholder="Acme Corporation" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Job Title <span>*</span></label>
+                            <input type="text" class="form-input" placeholder="CISO / Security Manager" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Industry</label>
+                        <select class="form-select">
+                            <option value="">Select your industry...</option>
+                            <option value="finance">Banking & Finance</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="technology">Technology</option>
+                            <option value="retail">Retail & E-commerce</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="government">Government</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Selected Reports <span>*</span></label>
+                        <div class="selected-reports" id="selectedReports">
+                            <span style="color: var(--text-muted); font-size: 0.875rem;">Click on report cards above to select...</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Additional Requirements</label>
+                        <textarea class="form-textarea" placeholder="Tell us about your specific requirements, compliance needs, or any questions about our reporting methodology..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">How did you hear about us?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="referral1">
+                                <label for="referral1">Google Search</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="referral2">
+                                <label for="referral2">LinkedIn</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="referral3">
+                                <label for="referral3">Referral</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="referral4">
+                                <label for="referral4">Conference/Event</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item" style="background: transparent; border: none; padding-left: 0;">
+                            <input type="checkbox" id="nda" required>
+                            <label for="nda">I agree to treat these sample reports as confidential and not distribute them to third parties.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Request Sample Reports
+                    </button>
+                </form>
             </div>
-            
-            <form id="security-contact-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST">
-                <input type="hidden" name="_subject" value="New Sample Report Request - SARSOLUTIONZ">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="thank-you.html">
-                <input type="hidden" name="_captcha" value="false">
-                
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-indicators">
+        <div class="trust-grid reveal">
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-user-shield"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="company">Company Name</label>
-                    <input type="text" id="company" name="company" required>
+                <h4>Santized Data</h4>
+                <p>All samples are completely anonymized with no client information</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-clock"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+                <h4>24h Delivery</h4>
+                <p>Reports sent within one business day of request verification</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-lock"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="service">Service Interested In</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service</option>
-                        <option value="web">Web Penetration Testing</option>
-                        <option value="mobile">Mobile Penetration Testing</option>
-                        <option value="network">Network Penetration Testing</option>
-                        <option value="api">API Security Testing</option>
-                        <option value="cloud">Cloud Penetration Testing</option>
-                        <option value="red">Red Teaming</option>
-                        <option value="osint">OSINT & Dark Web Research</option>
-                        <option value="social">Social Engineering</option>
-                        <option value="all">All Services</option>
-                    </select>
+                <h4>NDA Protected</h4>
+                <p>All sample recipients bound by confidentiality agreement</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-headset"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="message">Additional Information</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your specific requirements or questions"></textarea>
-                </div>
-                
-                <button type="submit" class="submit-button">
-                    <span class="button-text">Submit Request</span>
-                    <i class="fas fa-paper-plane button-icon"></i>
-                </button>
-            </form>
+                <h4>Follow-up Call</h4>
+                <p>Optional consultation to discuss report structure and methodology</p>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>SARSOLUTIONZ</h3>
-                    <p>Professional penetration testing services to help organizations identify and remediate security vulnerabilities before they can be exploited.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Web Penetration Testing</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Mobile Penetration Testing</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Network Penetration Testing</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> API Security Testing</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Cloud Penetration Testing</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Red Teaming</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Social Engineering</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><a href="mailto:info@sarsolutionz.com"><i class="fas fa-envelope"></i> info@sarsolutionz.com</a></li>
-                        <li><a href="tel:+15551234567"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Security Ave, Cyber City</a></li>
-                        <li><a href="#request"><i class="fas fa-file-alt"></i> Request Sample Reports</a></li>
-                    </ul>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </a>
+                <p>Elite cybersecurity and development services. We help organizations build secure systems and identify vulnerabilities before they can be exploited.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://in.linkedin.com/in/rahul-thakur7" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 SARSOLUTIONZ. All rights reserved.</p>
+
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="/WebPentest.html"><i class="fas fa-chevron-right"></i> Web Testing</a></li>
+                    <li><a href="/MobilePentest.html"><i class="fas fa-chevron-right"></i> Mobile Testing</a></li>
+                    <li><a href="/NetworkPentest.html"><i class="fas fa-chevron-right"></i> Network Testing</a></li>
+                    <li><a href="/Redteam.html"><i class="fas fa-chevron-right"></i> Red Teaming</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="/Samplereports.html"><i class="fas fa-chevron-right"></i> Sample Reports</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Case Studies</a></li>
+                    <li><a href="https://sarsolutionz.blogspot.com/"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-phone"></i> +91 XXX XXX XXXX</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2024 SARSOLUTIONZ. All rights reserved. | Secure by Design
+            </div>
+            <div class="footer-badges">
+                <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ISO 27001 Aligned</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Confidential</span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3>Request Submitted!</h3>
+            <p>We've received your sample report request. Our team will verify your details and send the reports to your email within 24 hours.</p>
+            <button class="modal-btn" onclick="closeModal()">Got it!</button>
+        </div>
     </div>
 
     <script>
-        // Mobile Navigation
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            hamburger.innerHTML = nav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+        // Report Types Data
+        const reportTypes = [
+            {
+                id: 'web-pt',
+                title: 'Web Application Pentest',
+                description: 'Comprehensive OWASP-based assessment with exploitation evidence and remediation code.',
+                icon: 'fa-globe',
+                tags: ['OWASP Top 10', 'API Testing', 'Business Logic']
+            },
+            {
+                id: 'network-pt',
+                title: 'Network Infrastructure Test',
+                description: 'Internal & external network assessment with segmentation testing and lateral movement analysis.',
+                icon: 'fa-network-wired',
+                tags: ['Active Directory', 'Segmentation', 'Wireless']
+            },
+            {
+                id: 'mobile-pt',
+                title: 'Mobile Security Assessment',
+                description: 'iOS & Android testing including reverse engineering, runtime analysis, and API security.',
+                icon: 'fa-mobile-alt',
+                tags: ['iOS', 'Android', 'Reverse Engineering']
+            },
+            {
+                id: 'red-team',
+                title: 'Red Team Operation Report',
+                description: 'Full-spectrum adversary simulation with kill chain analysis and detection gap assessment.',
+                icon: 'fa-user-ninja',
+                tags: ['APT Simulation', 'Social Engineering', 'Physical']
+            },
+            {
+                id: 'cloud-pt',
+                title: 'Cloud Security Assessment',
+                description: 'AWS/Azure/GCP configuration review, IAM assessment, and container security testing.',
+                icon: 'fa-cloud',
+                tags: ['AWS', 'Azure', 'Kubernetes']
+            },
+            {
+                id: 'api-pt',
+                title: 'API Security Testing',
+                description: 'REST, GraphQL, and SOAP API testing with authentication and authorization validation.',
+                icon: 'fa-plug',
+                tags: ['REST', 'GraphQL', 'OAuth']
+            },
+            {
+                id: 'dark-web',
+                title: 'Dark Web & OSINT Report',
+                description: 'Threat intelligence gathering, credential exposure analysis, and brand protection assessment.',
+                icon: 'fa-search',
+                tags: ['OSINT', 'Threat Intel', 'Brand Protection']
+            },
+            {
+                id: 'phishing',
+                title: 'Social Engineering Assessment',
+                description: 'Phishing, vishing, and pretexting campaign results with human vulnerability metrics.',
+                icon: 'fa-envelope-open-text',
+                tags: ['Phishing', 'Vishing', 'Training']
+            },
+            {
+                id: 'secure-code',
+                title: 'Secure Code Review',
+                description: 'Manual and automated source code analysis with secure coding recommendations.',
+                icon: 'fa-code',
+                tags: ['SAST', 'Manual Review', 'SDLC']
+            }
+        ];
+
+        // Generate Report Cards
+        const reportsGrid = document.getElementById('reportsGrid');
+        const selectedReports = new Set();
+
+        reportTypes.forEach(report => {
+            const card = document.createElement('div');
+            card.className = 'report-card reveal';
+            card.dataset.id = report.id;
+            card.innerHTML = `
+                <div class="report-checkbox">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="report-icon">
+                    <i class="fas ${report.icon}"></i>
+                </div>
+                <h3>${report.title}</h3>
+                <p>${report.description}</p>
+                <div class="report-tags">
+                    ${report.tags.map(tag => `<span class="report-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+            
+            card.addEventListener('click', () => toggleReport(report.id, report.title, card));
+            reportsGrid.appendChild(card);
         });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Dark Mode Toggle - Fixed
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeToggle.checked = true;
+
+        // Toggle Report Selection
+        function toggleReport(id, title, card) {
+            if (selectedReports.has(id)) {
+                selectedReports.delete(id);
+                card.classList.remove('selected');
+            } else {
+                selectedReports.add(id);
+                card.classList.add('selected');
+            }
+            updateSelectedDisplay();
         }
-        
-        themeToggle.addEventListener('change', () => {
-            if (themeToggle.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
+
+        // Update Selected Reports Display
+        function updateSelectedDisplay() {
+            const container = document.getElementById('selectedReports');
+            if (selectedReports.size === 0) {
+                container.innerHTML = '<span style="color: var(--text-muted); font-size: 0.875rem;">Click on report cards above to select...</span>';
             } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
+                container.innerHTML = Array.from(selectedReports).map(id => {
+                    const report = reportTypes.find(r => r.id === id);
+                    return `
+                        <span class="selected-report-tag">
+                            ${report.title}
+                            <i class="fas fa-times" onclick="removeReport('${id}')"></i>
+                        </span>
+                    `;
+                }).join('');
             }
-        });
-        
-        // Scroll to Top Button
-        const scrollTop = document.getElementById('scrollTop');
-        
+        }
+
+        // Remove Report from Selection
+        function removeReport(id) {
+            selectedReports.delete(id);
+            const card = document.querySelector(`[data-id="${id}"]`);
+            if (card) card.classList.remove('selected');
+            updateSelectedDisplay();
+        }
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('active');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                scrollTop.classList.remove('active');
+                header.classList.remove('scrolled');
             }
         });
-        
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
         });
-        
-        // Form Submission with Animation
-        const form = document.getElementById('security-contact-form');
-        const submitButton = form.querySelector('.submit-button');
-        
-        form.addEventListener('submit', (e) => {
+
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Form Submission
+        document.getElementById('sampleRequestForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Show loading state
-            submitButton.classList.add('loading');
+            if (selectedReports.size === 0) {
+                alert('Please select at least one report type.');
+                return;
+            }
             
-            // Create FormData object
-            const formData = new FormData(form);
+            // Show success modal
+            document.getElementById('successModal').classList.add('active');
             
-            // Submit form using Fetch API
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success state
-                    submitButton.classList.remove('loading');
-                    submitButton.classList.add('success');
-                    
-                    // Redirect after animation completes
-                    setTimeout(() => {
-                        window.location.href = form.querySelector('[name="_next"]').value;
-                    }, 1500);
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .catch(error => {
-                submitButton.classList.remove('loading');
-                alert('Error submitting form. Please try again.');
-                console.error('Error:', error);
-            });
+            // Reset form
+            e.target.reset();
+            selectedReports.clear();
+            document.querySelectorAll('.report-card').forEach(card => card.classList.remove('selected'));
+            updateSelectedDisplay();
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // Preview Sidebar Interaction
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
             });
         });
     </script>
