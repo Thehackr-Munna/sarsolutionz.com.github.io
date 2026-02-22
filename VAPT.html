@@ -3,100 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Penetration Testing Services | SARSolutionz</title>
+    <title>Enterprise Penetration Testing Services | SARSolutionz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0a0e17;
+            --primary-light: #111827;
+            --secondary: #00f0ff;
+            --accent: #ff3366;
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --secondary-glow: rgba(0, 240, 255, 0.3);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --surface: #1e293b;
+            --surface-hover: #334155;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
 
-               
-/* Navigation menu */
-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-nav ul li {
-    margin-left: 30px;
-    
-}
-header {
-    background-color: rgba(10, 25, 47, 0.9);
-    color: white;
-    padding: 15px 0;
-    position: sticky;
-    top: 0; /* This was likely missing */
-    z-index: 1000; /* Increased for safety */
-    backdrop-filter: blur(10px);
-    transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-    width: 100%; /* Ensure full width */
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px; /* Added max-width */
-    margin: 0 auto; /* Center the container */
-    padding: 0 20px; /* Add some padding */
-    width: 100%; /* Ensure it takes full width */
-}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* Logo styles */
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--secondary);
-    z-index: 1001; /* Above the sticky header */
-}
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-/* Navigation menu */
-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
 
-nav ul li {
-    margin-left: 30px;
-}
-       /* Enhanced Mobile Menu Styles */
+        ::-webkit-scrollbar-thumb {
+            background: var(--surface);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 14, 23, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span:first-child {
+            color: var(--accent);
+        }
+
+        .logo-text span:last-child {
+            color: var(--text-primary);
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--secondary);
+        }
+
+        nav ul li a:hover {
+            color: var(--text-primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* CTA Button in Nav */
+        .nav-cta {
+            background: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-cta:hover {
+            color: var(--primary);
+            box-shadow: 0 0 20px var(--secondary-glow);
+        }
+
+        .nav-cta:hover::before {
+            left: 0;
+        }
+
+        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: transparent;
+            background: none;
             border: none;
-            color: var(--light);
-            font-size: 28px;
+            color: var(--text-primary);
+            font-size: 1.5rem;
             cursor: pointer;
-            z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-            padding: 10px;
+            padding: 0.5rem;
+            z-index: 1001;
         }
 
-        .mobile-menu-btn.active {
-            transform: rotate(90deg);
-            color: var(--secondary);
-        }
-
+        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 85%;
-            max-width: 350px;
+            width: 100%;
+            max-width: 400px;
             height: 100vh;
-            background-color: var(--primary);
-            padding: 80px 30px 30px;
-            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background: var(--primary-light);
+            backdrop-filter: blur(20px);
+            padding: 6rem 2rem 2rem;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 999;
-            overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-            border-left: 1px solid rgba(100, 255, 218, 0.1);
+            border-left: 1px solid var(--border);
         }
 
         .mobile-menu.active {
             right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .mobile-menu ul {
@@ -104,134 +280,349 @@ nav ul li {
         }
 
         .mobile-menu ul li {
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
         }
 
+        .mobile-menu.active ul li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu ul li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu ul li:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu ul li:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu ul li:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu ul li:nth-child(5) { transition-delay: 0.3s; }
+
         .mobile-menu ul li a {
-            color: var(--light);
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 18px;
+            font-size: 1.25rem;
+            font-weight: 500;
             display: block;
-            padding: 12px 0;
-            transition: all 0.4s ease;
-            position: relative;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.3s ease;
         }
 
         .mobile-menu ul li a:hover {
             color: var(--secondary);
-            transform: translateX(10px);
         }
 
-        .mobile-menu ul li a::before {
-            content: '';
-            position: absolute;
-            width: 3px;
-            height: 100%;
-            left: -10px;
-            top: 0;
-            background: var(--secondary);
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .mobile-menu ul li a:hover::before {
-            left: 0;
-            opacity: 1;
-        }
-
-        .mobile-submenu {
-            padding-left: 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-            background: rgba(17, 34, 64, 0.3);
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
-        .mobile-submenu.active {
-            max-height: 1000px;
-            padding: 15px 20px;
-            animation: slideDown 0.5s ease forwards;
-        }
-
-        .mobile-submenu li {
-            margin-bottom: 10px !important;
-        }
-
-        .mobile-submenu li a {
-            font-size: 16px !important;
-            padding: 8px 0 !important;
-            opacity: 0.9;
-        }
-
-        .mobile-submenu li a:hover {
-            opacity: 1;
-        }
-
-        .mobile-menu-toggle {
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 120px 2rem 80px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at top, var(--primary-light) 0%, var(--primary) 50%);
         }
 
-        .mobile-menu-toggle:hover {
-            color: var(--secondary);
-        }
-
-        .mobile-menu-toggle i {
-            transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-            font-size: 16px;
-        }
-
-        .mobile-menu-toggle.active i {
-            transform: rotate(180deg);
-            color: var(--secondary);
-        }
-
-        /* .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        } */
-
-        .no-scroll {
+        .hero-bg {
+            position: absolute;
+            inset: 0;
             overflow: hidden;
         }
 
-        /* Menu Item Animations */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
         }
 
-        @keyframes slideDown {
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-100px) translateX(50px); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge i {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--secondary-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .security-orb {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--secondary), transparent 70%);
+            opacity: 0.2;
+            filter: blur(40px);
+            animation: orbPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .terminal-window {
+            position: absolute;
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+            animation: floatTerminal 6s ease-in-out infinite;
+        }
+
+        @keyframes floatTerminal {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .terminal-header {
+            background: var(--primary-light);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: var(--accent); }
+        .terminal-dot.yellow { background: var(--warning); }
+        .terminal-dot.green { background: var(--success); }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: typeLine 0.5s ease forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(2) { animation-delay: 1s; }
+        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+        .terminal-line:nth-child(4) { animation-delay: 2s; }
+        .terminal-line:nth-child(5) { animation-delay: 2.5s; }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .terminal-prompt {
+            color: var(--success);
+        }
+
+        .terminal-command {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+        }
+
+        .terminal-highlight {
+            color: var(--accent);
+        }
+
+        .terminal-success {
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -239,1681 +630,1472 @@ nav ul li {
             }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            nav ul {
-                display: none;
-            }
-        }
-.no-scroll {
-    overflow: hidden;
-}
-
-@media (max-width: 768px) {
-    header {
-        padding: 10px 0;
-    }
-    
-    .logo {
-        font-size: 20px;
-    }
-    
-    nav ul li {
-        margin-left: 15px;
-    }
-}
-html {
-    scroll-behavior: smooth;
-}
-
-header {
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* Scroll to Top Button */
-.scroll-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--secondary);
-    color: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 99;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.scroll-top.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.scroll-top:hover {
-    background-color: var(--light);
-    transform: translateY(-3px);
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-btn {
-        display: block;
-    }
-    
-    nav ul {
-        display: none;
-    }
-}
-/* For smoth Menu above code */
-        /* Modern Security Theme */
-        :root {
-            --primary: #0a192f;
-            --secondary: #64ffda;
-            --accent: #ff2a6d;
-            --light: #ccd6f6;
-            --dark: #020c1b;
-            --navy: #112240;
-            --light-navy: #233554;
-            --terminal: #0aff0a;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Calibre', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
-        }
-        
-        body {
-            line-height: 1.6;
-            color: var(--light);
-            background-color: var(--dark);
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            background-color: rgba(10, 25, 47, 0.9);
-            color: white;
-            padding: 25px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--secondary);
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 16px;
-            padding: 10px 0;
-            position: relative;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        nav ul li a::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::before {
-            width: 100%;
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 101;
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background-color: var(--primary);
-            padding: 100px 30px 30px;
-            transition: right 0.3s ease;
-            z-index: 100;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu ul {
-            list-style: none;
-        }
-        
-        .mobile-menu ul li {
-            margin-bottom: 20px;
-        }
-        
-        .mobile-menu ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-        }
-        
-        .mobile-menu ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .mobile-menu-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 24px;
-            color: var(--light);
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary);
-            color: white;
-            padding: 150px 0 100px;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
-            opacity: 0.3;
-        }
-        
-        .hero .container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-            line-height: 1.1;
-            color: var(--light);
-        }
-        
-        .hero h1 span {
-            color: var(--secondary);
-            display: block;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 0 40px;
-            color: var(--light);
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--secondary);
-            padding: 12px 30px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid var(--secondary);
-            font-size: 16px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .btn:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
-            z-index: -1;
-        }
-        
-        .btn:hover::before {
-            width: 100%;
-        }
-        
         /* Stats Section */
-        .stats {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary), var(--navy));
-            clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--light);
-            opacity: 0.9;
-        }
-        /* Footer */
-        footer {
-            background-color: var(--navy);
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-column h3 {
-            color: var(--light);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+        .stats-section {
+            padding: 6rem 2rem;
+            background: var(--primary-light);
             position: relative;
-            padding-bottom: 10px;
         }
 
-        .footer-column h3::after {
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 2px;
-            bottom: 0;
+            top: 0;
             left: 0;
-            background-color: var(--secondary);
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .footer-column a, 
-        .footer-column p {
-            color: var(--light);
-            opacity: 0.8;
-            margin-bottom: 10px;
-            text-decoration: none;
-            transition: all 0.3s;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .footer-column a:hover {
-            color: var(--secondary);
-            opacity: 1;
-            padding-left: 5px;
+        .stat-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .footer-column i {
-            margin-right: 10px;
-            color: var(--secondary);
-        }
-
-        .footer-social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .footer-social-links a {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--light-navy);
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .footer-social-links a:hover {
-            background-color: var(--secondary);
-            color: var(--navy);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--light-navy);
-            color: var(--light);
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        .copyright a {
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
             color: var(--secondary);
-            text-decoration: none;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 12px 0;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            nav ul {
-                position: fixed;
-                top: 60px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 60px);
-                background-color: var(--primary);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 30px;
-                transition: all 0.5s ease;
-                z-index: 99;
-            }
-
-            nav ul.active {
-                left: 0;
-            }
-
-            .hamburger {
-                display: block;
-                z-index: 100;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        @media (max-width: 480px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .scroll-top {
-                width: 40px;
-                height: 40px;
-                bottom: 20px;
-                right: 20px;
-            }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
-        /* Rest of your existing styles... */
-        /* Hero Section */
-        .about-hero {
-            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(2, 12, 27, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 150px 0 100px;
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
             text-align: center;
         }
 
-        .about-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-            line-height: 1.1;
-            color: var(--light);
-        }
-
-        .about-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: var(--light);
-            opacity: 0.9;
-        }
-
-        /* Mission Section */
-        .mission {
-            padding: 100px 0;
-            background-color: var(--dark);
+        .section-label {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 50px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
         }
 
-        .section-title h2 {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            color: var(--light);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            bottom: -10px;
-            left: 25%;
-            background-color: var(--secondary);
+        /* About Section */
+        .about-section {
+            background: var(--primary);
         }
 
-        .mission-content {
+        .about-grid {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 4rem;
             align-items: center;
         }
 
-        .mission-text p {
-            margin-bottom: 20px;
-            color: var(--light);
-            opacity: 0.8;
+        .about-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li i {
+            color: var(--secondary);
+            font-size: 1.25rem;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .security-shield {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+
+        .shield-ring {
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: rotate 20s linear infinite;
+        }
+
+        .shield-ring:nth-child(2) {
+            inset: 30px;
+            animation-direction: reverse;
+            animation-duration: 15s;
+        }
+
+        .shield-ring:nth-child(3) {
+            inset: 60px;
+            animation-duration: 10s;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .shield-core {
+            position: absolute;
+            inset: 90px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 0 60px var(--secondary-glow);
+        }
+
+        /* Services Section */
+        .services-section {
+            background: var(--primary-light);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(0, 240, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
             line-height: 1.7;
         }
 
-        .mission-image {
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .service-features li i {
+            color: var(--secondary);
+            font-size: 0.75rem;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* Methodology Section */
+        .methodology-section {
+            background: var(--primary);
+        }
+
+        .methodology-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
             position: relative;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
         }
 
-        .mission-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
+        .methodology-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            transform: translateX(-50%);
         }
 
-        .mission-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Team Section */
-        .team {
-            padding: 100px 0;
-            background-color: var(--navy);
-        }
-
-        .team-grid {
+        .method-step {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
         }
 
-        .team-member {
-            background-color: var(--light-navy);
-            border-radius: 5px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        .method-step:nth-child(even) .step-content {
+            grid-column: 2;
         }
 
-        .team-member:hover {
-            transform: translateY(-10px);
+        .method-step:nth-child(even) .step-number-wrapper {
+            grid-column: 1;
+            grid-row: 1;
+            justify-self: end;
         }
 
-        .member-image {
-            width: 150px;
-            height: 150px;
+        .step-number-wrapper {
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--surface);
+            border: 2px solid var(--secondary);
             border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 30px var(--secondary-glow);
         }
 
-        .member-image img {
+        .step-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .method-step:nth-child(odd) .step-content::before {
+            left: -11px;
+        }
+
+        .method-step:nth-child(even) .step-content::before {
+            right: -11px;
+            transform: translateY(-50%) rotate(-135deg);
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Case Studies */
+        .cases-section {
+            background: var(--primary-light);
+        }
+
+        .cases-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .case-card {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .case-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-light), var(--surface));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .team-member h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            color: var(--light);
+        .case-card:hover .case-image img {
+            transform: scale(1.1);
         }
 
-        .team-member .position {
-            color: var(--secondary);
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .team-member p {
-            color: var(--light);
-            opacity: 0.8;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .social-links a {
-            color: var(--light);
-            background-color: var(--navy);
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--secondary);
-            color: var(--navy);
-            transform: translateY(-3px);
-        }
-
-        
-        /* About Pentesting */
-        .about-pentest {
-            padding: 100px 0;
-            background-color: var(--dark);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            color: var(--light);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            bottom: -10px;
-            left: 25%;
-            background-color: var(--secondary);
-        }
-        
-        .section-title p {
-            color: var(--light);
-            max-width: 700px;
-            margin: 20px auto 0;
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--light);
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--light);
-            opacity: 0.9;
-        }
-        
-        .about-image {
-            position: relative;
-            height: 400px;
-            background: var(--navy);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
-        }
-        
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;
-            opacity: 0.7;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: var(--navy);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .service-card {
-            background-color: var(--light-navy);
-            border-radius: 5px;
-            padding: 30px;
-            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-            border-left: 3px solid transparent;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
-            border-left-color: var(--secondary);
-        }
-        
-        .service-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .service-card p {
-            color: var(--light);
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-top: 20px;
-        }
-        
-        .service-features li {
-            margin-bottom: 10px;
-            color: var(--light);
-            opacity: 0.8;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .service-features li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-        }
-        
-        /* Methodology Section */
-        .methodology {
-            padding: 100px 0;
-            background-color: var(--dark);
-        }
-        
-        .method-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-top: 50px;
-            position: relative;
-        }
-        
-        .method-steps::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 30px;
-            height: 100%;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--secondary), transparent);
-        }
-        
-        .step {
-            display: flex;
-            align-items: flex-start;
-            gap: 30px;
-            position: relative;
-        }
-        
-        .step-number {
-            background-color: var(--navy);
-            color: var(--secondary);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            flex-shrink: 0;
-            border: 3px solid var(--secondary);
-        }
-        
-        .step-content {
-            background-color: var(--navy);
-            padding: 30px;
-            border-radius: 5px;
-            flex: 1;
-            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
-        }
-        
-        .step-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .step-content p {
-            color: var(--light);
-            opacity: 0.8;
-            line-height: 1.7;
-        }
-        
-        /* Case Studies */
-        .case-studies {
-            padding: 100px 0;
-            background-color: var(--navy);
-        }
-        
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .case-card {
-            background-color: var(--light-navy);
-            border-radius: 5px;
-            overflow: hidden;
-            transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-        }
-        
-        .case-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
-        }
-        
-        .case-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .case-content {
-            padding: 30px;
-        }
-        
-        .case-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .case-content p {
-            color: var(--light);
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-        
         .case-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            background-color: rgba(100, 255, 218, 0.1);
-            color: var(--secondary);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
-        
+
+        .case-content {
+            padding: 2rem;
+        }
+
+        .case-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .case-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
         /* CTA Section */
-        .cta {
-            padding: 120px 0;
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
             text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--navy));
             position: relative;
             overflow: hidden;
         }
-        
-        .cta::before {
+
+        .cta-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            inset: 0;
+            background: radial-gradient(circle at center, var(--secondary-glow) 0%, transparent 70%);
             opacity: 0.3;
         }
-        
-        .cta .container {
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
             position: relative;
-            z-index: 1;
-        }
-        
-        .cta h2 {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            margin-bottom: 20px;
-            color: var(--light);
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-            color: var(--light);
-        }
-        
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 99;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .scroll-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .scroll-top:hover {
-            background-color: var(--light);
-            transform: translateY(-5px);
-        }
-        
-        /* Footer */
-        .security-footer {
-            background: #0a0e17;
-            color: #e0e0e0;
-            padding: 60px 0 0;
-            position: relative;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            border-top: 1px solid #1e2a3a;
+            z-index: 2;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
         }
 
         .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
         }
 
-        .footer-section {
-            margin-bottom: 30px;
-        }
-
-        .footer-logo {
-            margin-bottom: 20px;
-        }
-
-        .footer-about {
-            color: #a0a8b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1.5rem 0;
+            line-height: 1.7;
         }
 
         .footer-social {
             display: flex;
-            gap: 15px;
+            gap: 1rem;
         }
 
         .footer-social a {
-            color: #d1d5db;
-            font-size: 18px;
-            transition: color 0.3s;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .footer-social a:hover {
-            color: #dc3545;
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
         }
 
-        .footer-heading {
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: #dc3545;
+        .footer-column h4 {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .footer-links {
             list-style: none;
-            padding: 0;
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
         }
 
         .footer-links a {
-            color: #a0a8b8;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
-            display: inline-block;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .footer-links a:hover {
-            color: #dc3545;
+            color: var(--secondary);
             transform: translateX(5px);
         }
 
-        .footer-contact {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-contact li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-contact i {
-            margin-right: 10px;
-            color: #dc3545;
-            width: 20px;
-            text-align: center;
-        }
-
         .footer-bottom {
-            border-top: 1px solid #1e2a3a;
-            padding: 20px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .footer-legal {
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom-links {
             display: flex;
-            gap: 15px;
+            gap: 2rem;
         }
 
-        .footer-legal a {
-            color: #a0a8b8;
+        .footer-bottom-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.3s;
-            font-size: 14px;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
         }
 
-        .footer-legal a:hover {
-            color: #dc3545;
+        .footer-bottom-links a:hover {
+            color: var(--secondary);
         }
 
-        .footer-copyright {
-            color: #a0a8b8;
-            font-size: 14px;
-        }
-
-        /* Matrix Logo Styles */
-        .matrix-logo {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
             cursor: pointer;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
         }
 
-        .logo-part-red {
-            color: #ff3366;
-            text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .logo-part-white {
-            color: #e0e0e0;
-            text-shadow: 0 0 8px rgba(224, 224, 224, 0.4);
+        .scroll-top:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
         }
 
         /* Responsive */
-        @media (max-width: 992px) {
-            .about-content {
+        @media (max-width: 1024px) {
+            .hero-content {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
-            
-            .about-image {
-                height: 300px;
-                order: -1;
+
+            .hero-description {
+                margin: 0 auto 2rem;
             }
-        }
-        
-        @media (max-width: 768px) {
-            header {
-                padding: 20px 0;
+
+            .hero-cta-group {
+                justify-content: center;
             }
-            
-            nav ul {
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
                 display: none;
             }
-            
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cases-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .methodology-timeline::before {
+                left: 40px;
+            }
+
+            .method-step {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .method-step:nth-child(even) .step-content,
+            .method-step:nth-child(even) .step-number-wrapper {
+                grid-column: 1;
+                grid-row: auto;
+            }
+
+            .step-number-wrapper {
+                justify-self: start;
+            }
+
+            .step-content::before {
+                display: none;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
-            
-            .hero {
-                padding: 120px 0 80px;
-                text-align: center;
-            }
-            
-            .hero .container {
-                align-items: center;
-            }
-            
-            .hero p {
-                text-align: center;
-            }
-            
-            .method-steps::before {
-                left: 25px;
-            }
-            
-            .step {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .footer-grid {
+
+            .services-grid,
+            .cases-grid,
+            .stats-container {
                 grid-template-columns: 1fr;
             }
-            
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .footer-bottom {
                 flex-direction: column;
-                gap: 10px;
+                text-align: center;
             }
+
+            .hero-cta-group {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--primary);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--surface);
+            border-top-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        /* Intersection Observer Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Initializing Security Protocol...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
         <div class="header-container">
-            <div class="logo">
-                <span class="matrix-logo">
-                    <span class="logo-part-red">SAR</span><span class="logo-part-white">SOLUTIONZ</span>
-                </span>
-            </div>
+            <a href="#" class="logo">
+                <div class="logo-icon">SAR</div>
+                <div class="logo-text">
+                    <span>SAR</span><span>SOLUTIONZ</span>
+                </div>
+            </a>
+            
             <nav>
                 <ul>
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#why-us">Why Us</a></li>
+                      <li><a href="/">Home</a></li>
+                    <li><a href="#services">Services</a></li>
                     <li><a href="#methodology">Methodology</a></li>
-                    <li><a href="#testing-types">Testing Types</a></li>
-                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#cases">Case Studies</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <!-- Mobile Menu Button -->
+
+            <!-- <button class="nav-cta">Get Started</button> -->
+            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
+
     <!-- Mobile Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li style="animation: slideIn 0.3s 0.1s both;">
-                <a href="/">Home</a>
-            </li>
-            
-            <li class="menu-item-has-children" style="animation: slideIn 0.3s 0.2s both;">
-                <div class="mobile-menu-toggle">
-                    <a href="/services.html">Services</a>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="mobile-submenu">
-                    <li class="menu-item-has-children">
-                        <div class="mobile-menu-toggle">
-                            <a href="/hacking-services.html">Hacking Services</a>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
-                            <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
-                            <li><a href="/MobilePentest.html">Mobile Security Testing</a></li>
-                             <li><a href="/DarkWeb&OSINT.html">Dark Web, Deep Web Research & OSINT</a></li>
-                              <li><a href="/Phishing.html">Phishing Simulation</a></li>
-                               <li><a href="/MobilePentest.html"></a></li>
-                            <li><a href="/Redteam.html">Red Teaming</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <div class="mobile-menu-toggle">
-                            <a href="/Design&Dev.html">Development Services</a>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <ul class="mobile-submenu">
-                            <li><a href="/services/web-development.html">Web Development</a></li>
-                            <li><a href="/services/mobile-development.html">Mobile App Development</a></li>
-                            <li><a href="/services/api-development.html">API Development</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            
-            <li style="animation: slideIn 0.3s 0.3s both;">
-                <a href="/blog.html">Blog</a>
-            </li>
-            <li style="animation: slideIn 0.3s 0.4s both;">
-                <a href="/About.html">About</a>
-            </li>
-            <li style="animation: slideIn 0.3s 0.5s both;">
-                <a href="/contact.html">Contact</a>
-            </li>
+             <li><a href="/">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#cases">Case Studies</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
-     <!-- Scroll to Top Button -->
-    <div class="scroll-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-    
+
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1 class="fade-in">Comprehensive <span>Penetration Testing</span></h1>
-            <p class="fade-in delay-1">We don't just scan for vulnerabilities - we think and act like real attackers to uncover business-critical security flaws that automated tools miss.</p>
-            <a href="#contact" class="btn fade-in delay-2">Request Assessment</a>
+        <div class="hero-bg">
+            <div class="hero-grid"></div>
+            <div class="hero-particles" id="particles"></div>
         </div>
-    </section>
-    
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card fade-in">
-                    <div class="stat-number">93%</div>
-                    <div class="stat-label">of web applications have serious vulnerabilities</div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    Certified Ethical Hackers
                 </div>
-                <div class="stat-card fade-in delay-1">
-                    <div class="stat-number">287</div>
-                    <div class="stat-label">days average time to detect a breach</div>
+                <h1>
+                    Enterprise <span class="gradient-text">Penetration Testing</span> Services
+                </h1>
+                <p class="hero-description">
+                    We simulate sophisticated cyber attacks to identify critical vulnerabilities before malicious actors exploit them. Our certified ethical hackers combine advanced tools with manual techniques to uncover business logic flaws automated scanners miss.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="/getqouta.html" class="btn-primary">
+                        Request Assessment
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#methodology" class="btn-secondary">
+                        View Methodology
+                        <i class="fas fa-play-circle"></i>
+                    </a>
                 </div>
-                <div class="stat-card fade-in delay-2">
-                    <div class="stat-number">$4.24M</div>
-                    <div class="stat-label">average cost of a data breach</div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">500+</span>
+                        <span class="hero-stat-label">Tests Completed</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">98%</span>
+                        <span class="hero-stat-label">Client Retention</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">0</span>
+                        <span class="hero-stat-label">Data Breaches</span>
+                    </div>
                 </div>
-                <div class="stat-card fade-in delay-3">
-                    <div class="stat-number">600%</div>
-                    <div class="stat-label">increase in cyber attacks since 2020</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="about" class="about-pentest">
-        <div class="container">
-            <div class="section-title">
-                <h2>What is Penetration Testing?</h2>
-                <p>Simulated cyber attacks to identify vulnerabilities before criminals exploit them</p>
             </div>
             
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 class="fade-in">Beyond Automated Scans</h3>
-                    <p class="fade-in delay-1">Penetration testing is a simulated cyber attack against your systems to identify exploitable vulnerabilities. Unlike automated vulnerability scans, our experts think like real attackers, combining tools with manual techniques to find business logic flaws that scanners miss.</p>
-                    
-                    <h3 class="fade-in delay-2">Why It's Essential</h3>
-                    <p class="fade-in delay-3">With cyber attacks increasing exponentially, proactive security is no longer optional. Our tests help you find and fix vulnerabilities before criminals exploit them, saving you from financial loss, reputational damage, and regulatory penalties.</p>
-                    
-                    <h3 class="fade-in delay-4">Our Approach</h3>
-                    <p class="fade-in delay-5">We go beyond automated tools. We are  certified ethical hackers (MCEH, eCPPT, MCRTA, CRTA ) use manual techniques to uncover business logic flaws, chained vulnerabilities, and advanced persistent threats that automated scanners can't detect.</p>
+            <div class="hero-visual">
+                <div class="security-orb"></div>
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                        <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8rem;">sarsolutionz@pentest:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">nmap -sV target.com</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-output">Scanning 1000 ports...</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-output">PORT STATE SERVICE</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-highlight">22/tcp open ssh</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-success">Vulnerability found: CVE-2023-1234</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="about-image fade-in"></div>
             </div>
         </div>
     </section>
-    
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Penetration Testing Services</h2>
-                <p>Comprehensive security assessments tailored to your technology stack</p>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <div class="stat-number" data-target="93">0%</div>
+                <div class="stat-label">of web apps have serious vulnerabilities</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-number" data-target="287">0</div>
+                <div class="stat-label">days avg. time to detect breach</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-number" data-target="4.24">0M</div>
+                <div class="stat-label">average cost of data breach</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-number" data-target="600">0%</div>
+                <div class="stat-label">increase in cyber attacks</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-header reveal">
+            <span class="section-label">About Us</span>
+            <h2 class="section-title">What is Penetration Testing?</h2>
+            <p class="section-subtitle">Simulated cyber attacks to identify vulnerabilities before criminals exploit them</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-content reveal">
+                <h3>Beyond Automated Scans</h3>
+                <p>Penetration testing is a simulated cyber attack against your systems to identify exploitable vulnerabilities. Unlike automated vulnerability scans, our experts think like real attackers, combining tools with manual techniques to find business logic flaws that scanners miss.</p>
+                
+                <h3>Why It's Essential</h3>
+                <p>With cyber attacks increasing exponentially, proactive security is no longer optional. Our tests help you find and fix vulnerabilities before criminals exploit them, saving you from financial loss, reputational damage, and regulatory penalties.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> OWASP Top 10 & CWE/SANS Top 25 Coverage</li>
+                    <li><i class="fas fa-check-circle"></i> Business Logic & Zero-Day Vulnerability Testing</li>
+                    <li><i class="fas fa-check-circle"></i> Compliance Ready Reports (PCI DSS, HIPAA, GDPR)</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 Support During Testing</li>
+                </ul>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
+            <div class="about-visual reveal">
+                <div class="security-shield">
+                    <div class="shield-ring"></div>
+                    <div class="shield-ring"></div>
+                    <div class="shield-ring"></div>
+                    <div class="shield-core">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Web Application Testing</h3>
-                    <p>Comprehensive assessment of your web apps for OWASP Top 10 vulnerabilities including SQLi, XSS, CSRF, SSRF, and business logic flaws.</p>
-                    <ul class="service-features">
-                        <li>Modern framework testing (React, Angular, Vue)</li>
-                        <li>API security (REST, GraphQL, SOAP)</li>
-                        <li>Authentication bypass testing</li>
-                        <li>Privilege escalation analysis</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile App Testing</h3>
-                    <p>iOS and Android app security testing covering insecure storage, weak cryptography, improper platform usage, and reverse engineering risks.</p>
-                    <ul class="service-features">
-                        <li>Static and dynamic analysis</li>
-                        <li>Binary protections assessment</li>
-                        <li>Inter-app communication testing</li>
-                        <li>Secure storage validation</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-2">
-                    <div class="service-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Network Pentesting</h3>
-                    <p>External and internal network assessments identifying misconfigurations, vulnerable services, weak authentication, and lateral movement opportunities.</p>
-                    <ul class="service-features">
-                        <li>Firewall and IDS evasion</li>
-                        <li>Privilege escalation paths</li>
-                        <li>Wireless security testing</li>
-                        <li>Active Directory assessment</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-3">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Cloud Security</h3>
-                    <p>AWS, Azure, and GCP configuration reviews identifying IAM misconfigurations, exposed storage, insecure APIs, and data leakage risks.</p>
-                    <ul class="service-features">
-                        <li>IAM privilege escalation</li>
-                        <li>Storage bucket misconfigurations</li>
-                        <li>Serverless function security</li>
-                        <li>Container security testing</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-4">
-                    <div class="service-icon">
-                        <i class="fas fa-user-secret"></i>
-                    </div>
-                    <h3>Red Teaming</h3>
-                    <p>Advanced simulated attacks testing your people, processes, and technology across multiple attack vectors to evaluate detection and response capabilities.</p>
-                    <ul class="service-features">
-                        <li>Multi-phase attack simulations</li>
-                        <li>Physical security testing</li>
-                        <li>Social engineering campaigns</li>
-                        <li>Covert persistence testing</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card fade-in delay-5">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>OSINT & Dark Web</h3>
-                    <p>Open-source intelligence gathering and dark web monitoring to identify exposed credentials, sensitive data leaks, and potential attack vectors.</p>
-                    <ul class="service-features">
-                        <li>Digital footprint analysis</li>
-                        <li>Dark web credential monitoring</li>
-                        <li>Executive protection services</li>
-                        <li>Threat actor profiling</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section id="methodology" class="methodology">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Testing Methodology</h2>
-                <p>A strategic approach designed to uncover your most critical vulnerabilities</p>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-header reveal">
+            <span class="section-label">Our Services</span>
+            <h2 class="section-title">Penetration Testing Services</h2>
+            <p class="section-subtitle">Comprehensive security assessments tailored to your technology stack</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Web Application Testing</h3>
+                <p>Comprehensive assessment of your web apps for OWASP Top 10 vulnerabilities including SQLi, XSS, CSRF, SSRF, and business logic flaws.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-chevron-right"></i> Modern framework testing</li>
+                    <li><i class="fas fa-chevron-right"></i> API security (REST, GraphQL)</li>
+                    <li><i class="fas fa-chevron-right"></i> Authentication bypass testing</li>
+                    <li><i class="fas fa-chevron-right"></i> Privilege escalation analysis</li>
+                </ul>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile App Testing</h3>
+                <p>iOS and Android app security testing covering insecure storage, weak cryptography, improper platform usage, and reverse engineering risks.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-chevron-right"></i> Static and dynamic analysis</li>
+                    <li><i class="fas fa-chevron-right"></i> Binary protections assessment</li>
+                    <li><i class="fas fa-chevron-right"></i> Inter-app communication testing</li>
+                    <li><i class="fas fa-chevron-right"></i> Secure storage validation</li>
+                </ul>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Network Pentesting</h3>
+                <p>External and internal network assessments identifying misconfigurations, vulnerable services, weak authentication, and lateral movement opportunities.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-chevron-right"></i> Firewall and IDS evasion</li>
+                    <li><i class="fas fa-chevron-right"></i> Privilege escalation paths</li>
+                    <li><i class="fas fa-chevron-right"></i> Wireless security testing</li>
+                    <li><i class="fas fa-chevron-right"></i> Active Directory assessment</li>
+                </ul>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Cloud Security</h3>
+                <p>AWS, Azure, and GCP configuration reviews identifying IAM misconfigurations, exposed storage, insecure APIs, and data leakage risks.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-chevron-right"></i> IAM privilege escalation</li>
+                    <li><i class="fas fa-chevron-right"></i> Storage bucket misconfigurations</li>
+                    <li><i class="fas fa-chevron-right"></i> Serverless function security</li>
+                    <li><i class="fas fa-chevron-right"></i> Container security testing</li>
+                </ul>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3>Red Teaming</h3>
+                <p>Advanced simulated attacks testing your people, processes, and technology across multiple attack vectors to evaluate detection and response capabilities.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-chevron-right"></i> Multi-phase attack simulations</li>
+                    <li><i class="fas fa-chevron-right"></i> Physical security testing</li>
+                    <li><i class="fas fa-chevron-right"></i> Social engineering campaigns</li>
+                    <li><i class="fas fa-chevron-right"></i> Covert persistence testing</li>
+                </ul>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>OSINT & Dark Web</h3>
+                <p>Open-source intelligence gathering and dark web monitoring to identify exposed credentials, sensitive data leaks, and potential attack vectors.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-chevron-right"></i> Digital footprint analysis</li>
+                    <li><i class="fas fa-chevron-right"></i> Dark web credential monitoring</li>
+                    <li><i class="fas fa-chevron-right"></i> Executive protection services</li>
+                    <li><i class="fas fa-chevron-right"></i> Threat actor profiling</li>
+                </ul>
+                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="methodology-section" id="methodology">
+        <div class="section-header reveal">
+            <span class="section-label">Our Process</span>
+            <h2 class="section-title">Testing Methodology</h2>
+            <p class="section-subtitle">A strategic approach designed to uncover your most critical vulnerabilities</p>
+        </div>
+        
+        <div class="methodology-timeline">
+            <div class="method-step reveal">
+                <div class="step-number-wrapper">
+                    <div class="step-number">01</div>
+                </div>
+                <div class="step-content">
+                    <h3>Planning & Scoping</h3>
+                    <p>We define test boundaries, rules of engagement, and success criteria tailored to your business objectives and compliance requirements (PCI DSS, HIPAA, GDPR).</p>
+                </div>
+            </div>
+
+            <div class="method-step reveal">
+                <div class="step-number-wrapper">
+                    <div class="step-number">02</div>
+                </div>
+                <div class="step-content">
+                    <h3>Reconnaissance</h3>
+                    <p>Gathering intelligence through passive and active methods to identify potential attack surfaces and entry points, including open-source intelligence (OSINT) collection.</p>
+                </div>
+            </div>
+
+            <div class="method-step reveal">
+                <div class="step-number-wrapper">
+                    <div class="step-number">03</div>
+                </div>
+                <div class="step-content">
+                    <h3>Vulnerability Analysis</h3>
+                    <p>Combining automated scanning with manual testing to identify security weaknesses and potential exploitation paths, prioritizing based on business impact.</p>
+                </div>
+            </div>
+
+            <div class="method-step reveal">
+                <div class="step-number-wrapper">
+                    <div class="step-number">04</div>
+                </div>
+                <div class="step-content">
+                    <h3>Exploitation</h3>
+                    <p>Safely attempting to exploit identified vulnerabilities to validate their impact, including privilege escalation, data exfiltration, and system compromise.</p>
+                </div>
+            </div>
+
+            <div class="method-step reveal">
+                <div class="step-number-wrapper">
+                    <div class="step-number">05</div>
+                </div>
+                <div class="step-content">
+                    <h3>Post-Exploitation</h3>
+                    <p>Assessing what additional access or data could be compromised through lateral movement, persistence mechanisms, and clean-up activities to avoid detection.</p>
+                </div>
+            </div>
+
+            <div class="method-step reveal">
+                <div class="step-number-wrapper">
+                    <div class="step-number">06</div>
+                </div>
+                <div class="step-content">
+                    <h3>Reporting & Remediation</h3>
+                    <p>Detailed technical report with risk ratings, evidence, and actionable remediation guidance prioritized by business impact, followed by retesting to verify fixes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="cases-section" id="cases">
+        <div class="section-header reveal">
+            <span class="section-label">Success Stories</span>
+            <h2 class="section-title">Case Studies</h2>
+            <p class="section-subtitle">Real-world examples of vulnerabilities we've discovered and fixed</p>
+        </div>
+        
+        <div class="cases-grid">
+            <div class="case-card reveal">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="Banking Security">
+                    <span class="case-tag">Financial</span>
+                </div>
+                <div class="case-content">
+                    <h3>Banking Application Vulnerability</h3>
+                    <p>Discovered a business logic flaw allowing unauthorized fund transfers between accounts, preventing potential $15M in fraud losses.</p>
+                    <div class="case-stat">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>$15M Potential Loss Prevented</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card reveal">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="E-commerce">
+                    <span class="case-tag">E-Commerce</span>
+                </div>
+                <div class="case-content">
+                    <h3>Checkout Process Bypass</h3>
+                    <p>Identified API vulnerability allowing complete checkout process bypass, saving the client from significant revenue loss during peak season.</p>
+                    <div class="case-stat">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Revenue Protection</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card reveal">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Healthcare">
+                    <span class="case-tag">Healthcare</span>
+                </div>
+                <div class="case-content">
+                    <h3>PHI Data Exposure</h3>
+                    <p>Uncovered patient health information exposure through API misconfiguration, helping achieve HIPAA compliance and avoid $2.8M in penalties.</p>
+                    <div class="case-stat">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>HIPAA Compliance Achieved</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content reveal">
+            <span class="section-label">Get Started</span>
+            <h2>Ready to Strengthen Your Security?</h2>
+            <p>Contact us today to discuss your penetration testing needs and get a free consultation with our security experts.</p>
+            <a href="/getqouta.html" class="btn-primary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">
+                Request Free Consultation
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">SAR</div>
+                    <div class="logo-text">
+                        <span>SAR</span><span>SOLUTIONZ</span>
+                    </div>
+                </a>
+                <p>Breaking your systems before attackers break your business. We provide enterprise-grade penetration testing services to keep your organization secure.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
             
-            <div class="method-steps">
-                <div class="step fade-in">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Planning & Scoping</h3>
-                        <p>We define test boundaries, rules of engagement, and success criteria tailored to your business objectives and compliance requirements (PCI DSS, HIPAA, GDPR).</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-1">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Reconnaissance</h3>
-                        <p>Gathering intelligence through passive and active methods to identify potential attack surfaces and entry points, including open-source intelligence (OSINT) collection.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-2">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Vulnerability Analysis</h3>
-                        <p>Combining automated scanning with manual testing to identify security weaknesses and potential exploitation paths, prioritizing based on business impact.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-3">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Exploitation</h3>
-                        <p>Safely attempting to exploit identified vulnerabilities to validate their impact, including privilege escalation, data exfiltration, and system compromise.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-4">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Post-Exploitation</h3>
-                        <p>Assessing what additional access or data could be compromised through lateral movement, persistence mechanisms, and clean-up activities to avoid detection.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-5">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
-                        <h3>Reporting & Remediation</h3>
-                        <p>Detailed technical report with risk ratings, evidence, and actionable remediation guidance prioritized by business impact, followed by retesting to verify fixes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="case-studies" class="case-studies">
-        <div class="container">
-            <div class="section-title">
-                <h2>Case Studies</h2>
-                <p>Real-world examples of vulnerabilities we've discovered and fixed</p>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="/WebPentest.html">Web App Testing</a></li>
+                    <li><a href="/MobilePentest.html">Mobile Security</a></li>
+                    <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
+                    <li><a href="/CloudPentest.html">Cloud Security</a></li>
+                    <li><a href="/Redteam.html">Red Teaming</a></li>
+                </ul>
             </div>
             
-            <div class="case-grid">
-                <div class="case-card fade-in">
-                    <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-                    <div class="case-content">
-                        <span class="case-tag">Financial Sector</span>
-                        <h3>Banking Application Vulnerability</h3>
-                        <p>Discovered a business logic flaw allowing unauthorized fund transfers between accounts, preventing potential $15M in fraud losses.</p>
-                    </div>
-                </div>
-                
-                <div class="case-card fade-in delay-1">
-                    <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-                    <div class="case-content">
-                        <span class="case-tag">E-Commerce</span>
-                        <h3>Checkout Process Bypass</h3>
-                        <p>Identified API vulnerability allowing complete checkout process bypass, saving the client from significant revenue loss during peak season.</p>
-                    </div>
-                </div>
-                
-                <div class="case-card fade-in delay-2">
-                    <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-                    <div class="case-content">
-                        <span class="case-tag">Healthcare</span>
-                        <h3>PHI Data Exposure</h3>
-                        <p>Uncovered patient health information (PHI) exposure through API misconfiguration, helping achieve HIPAA compliance and avoid $2.8M in penalties.</p>
-                    </div>
-                </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="/About.html">About Us</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <!-- <li><a href="#">Careers</a></li> -->
+                    <li><a href="/getqouta.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
             </div>
         </div>
-    </section>
-    
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2 class="fade-in">Ready to Strengthen Your Security?</h2>
-            <p class="fade-in delay-1">Contact us today to discuss your penetration testing needs and get a free consultation.</p>
-            <a href="/Contact.html" class="btn fade-in delay-2">Request Assessment</a>
-        </div>
-    </section>
-    
-      <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>SARSOLUTIONZ</h3>
-                    <p>Breaking your systems before attackers break your business.</p>
-                    <div class="footer-social-links">
-                          <a href="https://www.linkedin.com/company/sarsolutionz/"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://x.com/sar_solutionz"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/Rahul-Thakur7"><i class="fab fa-github"></i></a>
-                        <a href="mailto:sarsolutionz7@gmail.com"><i class="fas fa-envelope"></i></a>
-                         <a href="https://www.youtube.com/@sarsolutionz" class="social-icon">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <a href="/">Home</a>
-                   <a href="/About.html">About Us</a>
-                    <a href="/services.html">Services</a>
-                    <a href="/blog.html">Blog</a>
-                    <a href="/contact.html">Contact</a>
-                </div>
-               <div class="footer-column">
-                    <h3 class="footer-title">Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="/Design&Dev.html" class="footer-link">Design & Development</a></li>
-                        <li><a href="/VAPT.html" class="footer-link">Penetration Testing</a></li>
-                        <li><a href="/WebPentest.html" class="footer-link">Web App Security</a></li>
-                        <li><a href="/MobilePentest.html" class="footer-link">Mobile Security</a></li>
-                        <li><a href="/NetworkPentest.html" class="footer-link">Network Penetration Testing</a></li>
-                        
-                        <li><a href="/APIPentest.html" class="footer-link">API Security Testing</a></li>
-                        <li><a href="/CloudPentest.html"class="footer-link" >Cloud Penetration Testing</a></li>
-                        <li><a href="/Redteam.html"class="footer-link" >Red Teaming</a></li>
-                        <li><a href="/DarkWeb&OSINT.html" class="footer-link">OSINT and Dark Web Research</a></li>
-                        <li><a href="/Phishing.html" class="footer-link">Social Engineering</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Security Tower, Cyber District</p>
-                    <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2023 SARSOLUTIONZ. All rights reserved. | <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 SARSOLUTIONZ. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Sitemap</a>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
+    <!-- Scroll to Top -->
     <div class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
     <script>
-          // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
-    });
-    
-    menuOverlay.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-    });
-    
-    // Submenu Toggle
-    const menuToggles = document.querySelectorAll('.mobile-menu-toggle');
-    menuToggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            const submenu = toggle.parentElement.querySelector('.mobile-submenu');
-            toggle.classList.toggle('active');
-            submenu.classList.toggle('active');
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
         });
-    });
-    
-    // Scroll to Top Button
-    const scrollTopBtn = document.querySelector('.scroll-top');
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('active');
-        } else {
-            scrollTopBtn.classList.remove('active');
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         }
-    });
-    
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
         });
-    });
-           
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animate numbers if it's a stat card
+                    if (entry.target.classList.contains('stat-card')) {
+                        animateNumber(entry.target.querySelector('.stat-number'));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.stat-card').forEach(el => observer.observe(el));
+
+        // Number animation
+        function animateNumber(element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const suffix = element.textContent.replace(/[0-9.]/g, '');
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = start + (target - start) * easeOutQuart;
+                
+                if (suffix === '%') {
+                    element.textContent = Math.round(current) + suffix;
+                } else if (suffix === 'M') {
+                    element.textContent = current.toFixed(2) + suffix;
+                } else {
+                    element.textContent = Math.round(current) + suffix;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
