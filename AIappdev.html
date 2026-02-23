@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Enterprise AI application development with fixed pricing, explainable models, and 60-day support. Conversational AI, computer vision, predictive analytics, and generative AI solutions.">
+    <meta name="theme-color" content="#0a0e17">
+    <meta name="keywords" content="AI development, machine learning, conversational AI, computer vision, generative AI, predictive analytics, enterprise AI">
+    
+    <title>AI Application Development Services | SAR SOLUTIONZ - Enterprise AI Solutions</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #00d4ff;
+            --accent-secondary: #7c3aed;
+            --accent-glow: rgba(0, 212, 255, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Fluid typography scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+            --text-4xl: clamp(2.25rem, 1.8rem + 2.25vw, 4rem);
+            
+            /* Spacing scale */
+            --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+            --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+            --space-xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+            --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Scrollbar - Webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* Firefox scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--secondary);
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .orb-1 { 
+            width: clamp(200px, 30vw, 400px); 
+            height: clamp(200px, 30vw, 400px); 
+            background: var(--accent); 
+            top: -10%; 
+            right: -5%; 
+            animation: float 15s infinite ease-in-out; 
+        }
+        .orb-2 { 
+            width: clamp(150px, 25vw, 300px); 
+            height: clamp(150px, 25vw, 300px); 
+            background: var(--accent-secondary); 
+            bottom: -5%; 
+            left: -5%; 
+            animation: float 20s infinite ease-in-out reverse; 
+        }
+        .orb-3 { 
+            width: clamp(100px, 20vw, 200px); 
+            height: clamp(100px, 20vw, 200px); 
+            background: var(--accent); 
+            top: 50%; 
+            left: 30%; 
+            animation: float 18s infinite ease-in-out; 
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-sm) 5%;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: calc(var(--space-xs) * 0.8) 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.5rem, 1vw, 0.75rem);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: clamp(35px, 5vw, 45px);
+            height: clamp(35px, 5vw, 45px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: clamp(8px, 1vw, 12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(124, 58, 237, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            list-style: none;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .desktop-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--text-sm);
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--accent);
+        }
+
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: var(--text-sm);
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+            position: relative;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .menu-toggle.active span:first-child {
+            transform: rotate(45deg) translate(5px, -5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .menu-toggle.active span:last-child {
+            transform: rotate(-45deg) translate(5px, 5px);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Navigation Panel */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85%, 400px);
+            height: 100vh;
+            background: var(--secondary);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: calc(var(--space-xl) + 60px) var(--space-lg) var(--space-lg);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .mobile-nav li {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            display: block;
+            padding: var(--space-sm) 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--accent);
+            padding-left: var(--space-sm);
+        }
+
+        .mobile-nav .cta-nav {
+            display: inline-block;
+            margin-top: var(--space-md);
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            padding: calc(80px + var(--space-lg)) 5% var(--space-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: var(--space-md);
+            animation: glow 3s infinite;
+            flex-wrap: wrap;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+            word-break: break-word;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: var(--text-sm);
+            font-family: inherit;
+            line-height: 1.5;
+            text-align: center;
+            flex: 1;
+            min-width: fit-content;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Neural Network Animation */
+        .hero-visual {
+            position: relative;
+            height: clamp(350px, 50vw, 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .neural-network {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            position: relative;
+        }
+
+        .neural-node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: nodePulse 3s infinite;
+        }
+
+        .neural-node:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .neural-node:nth-child(2) { top: 10%; left: 50%; animation-delay: 0.5s; }
+        .neural-node:nth-child(3) { top: 10%; left: 80%; animation-delay: 1s; }
+        .neural-node:nth-child(4) { top: 50%; left: 10%; animation-delay: 1.5s; }
+        .neural-node:nth-child(5) { top: 50%; left: 50%; animation-delay: 2s; }
+        .neural-node:nth-child(6) { top: 50%; left: 90%; animation-delay: 2.5s; }
+        .neural-node:nth-child(7) { top: 90%; left: 30%; animation-delay: 0.3s; }
+        .neural-node:nth-child(8) { top: 90%; left: 70%; animation-delay: 0.8s; }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0.3;
+            animation: dataFlow 2s infinite;
+        }
+
+        /* Floating Cards */
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatCard 5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .float-card-1 {
+            top: 5%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 15%;
+            left: -15%;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-card-icon {
+            width: clamp(30px, 4vw, 40px);
+            height: clamp(30px, 4vw, 40px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        .float-card-text {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Trust Badges Section */
+        .trust-section {
+            padding: var(--space-lg) 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .trust-text {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        /* Section Base Styles */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
+            padding: 0 var(--space-sm);
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* AI Services Section */
+        .ai-services {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .service-card-icon {
+            width: clamp(50px, 8vw, 60px);
+            height: clamp(50px, 8vw, 60px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+            color: var(--accent);
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .service-features li i {
+            color: var(--success);
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        /* Project Request Form Section */
+        .project-request {
+            padding: var(--space-2xl) 0;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: clamp(2rem, 5vw, 3rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .form-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: var(--text-base);
+        }
+
+        .form-section {
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-label-form {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-lg);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .section-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: var(--space-md);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .form-label .required {
+            color: var(--danger);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 0.875rem 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: var(--text-sm);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-input.error, .form-select.error, .form-textarea.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: var(--text-xs);
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Multi-select Chips */
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .chip {
+            padding: 0.625rem 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+        }
+
+        .chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .chip.selected {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border-color: transparent;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .chip i {
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .chip.selected i {
+            opacity: 1;
+        }
+
+        /* Radio Cards */
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: 0.75rem;
+        }
+
+        .radio-card {
+            padding: 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .radio-card:hover {
+            border-color: var(--accent);
+        }
+
+        .radio-card.selected {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .radio-card input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .radio-card-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            font-size: var(--text-sm);
+        }
+
+        .radio-card-desc {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        /* Budget Segmented Control */
+        .budget-control {
+            display: flex;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.25rem;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .budget-option {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.875rem 0.5rem;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            border: none;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        .budget-option:hover {
+            color: var(--text-primary);
+        }
+
+        .budget-option.selected {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .file-upload:hover, .file-upload.dragover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .file-upload-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .file-upload-text {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload-hint {
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* Dynamic Estimate */
+        .estimate-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .estimate-label {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+
+        .estimate-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .estimate-note {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* Form Footer */
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border);
+        }
+
+        .form-security {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .form-security i {
+            color: var(--success);
+        }
+
+        .submit-btn {
+            padding: 1rem 2.5rem;
+            font-size: var(--text-base);
+        }
+
+        /* Differentiators Section */
+        .diff-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .diff-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .diff-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .diff-icon {
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .diff-card:hover .diff-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .diff-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .diff-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .diff-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .diff-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .diff-features li i {
+            color: var(--success);
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .cta-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+            font-size: var(--text-base);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: var(--space-xl) 5% var(--space-lg);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: var(--space-xl);
+        }
+
+        .footer-brand {
+            max-width: 100%;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: var(--space-sm) 0;
+            line-height: 1.7;
+            font-size: var(--text-sm);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            word-break: break-word;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: var(--space-xl) auto 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            text-align: center;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            font-size: var(--text-lg);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-xl);
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .hero-visual {
+                order: 1;
+                height: auto;
+                min-height: 350px;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .float-card {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                padding-top: calc(70px + var(--space-lg));
+            }
+            
+            .hero h1 {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+            }
+            
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .budget-control {
+                flex-direction: column;
+            }
+            
+            .budget-option {
+                width: 100%;
+            }
+            
+            .form-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-lg);
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+            
+            .footer-contact p {
+                justify-content: center;
+            }
+            
+            .scroll-top {
+                right: var(--space-md);
+                bottom: var(--space-md);
+            }
+        }
+
+        @media (max-width: 479px) {
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 0.375rem 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+            
+            .chip {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">🧠</div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul class="desktop-nav">
+                     <li><a href="/">Home</a></li>
+                    <li><a href="#ai-services">AI Services</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <!-- <li><a href="/getqouta.html">Start Project</a></li> -->
+                    <li><a href="/getqouta.html" class="cta-nav">Get Quote</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul>
+            <li><a href="#ai-services">AI Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#project-request">Start Project</a></li>
+            <li><a href="#project-request" class="cta-nav">Get Quote</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🚀 Fixed-Price AI Projects • No Surprise Token Costs</span>
+                </div>
+                <h1>
+                    AI That Actually Works.<br>
+                    <span class="gradient-text">No Black Boxes. No Budget Surprises.</span>
+                </h1>
+                <p class="hero-description">
+                    We build production-ready AI applications with explainable models, fixed pricing, and 60-day support. From conversational AI to computer vision—delivered on time, on budget, with full transparency.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">40+</span>
+                        <span class="hero-stat-label">AI Models Deployed</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">Explainable AI</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">0</span>
+                        <span class="hero-stat-label">Scope Creep</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#project-request" class="btn-primary">
+                        <i class="fas fa-rocket"></i> Start Your AI Project
+                    </a>
+                    <a href="#ai-services" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> Explore Services
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="neural-network">
+                    <div class="neural-node"><i class="fas fa-brain"></i></div>
+                    <div class="neural-node"><i class="fas fa-robot"></i></div>
+                    <div class="neural-node"><i class="fas fa-eye"></i></div>
+                    <div class="neural-node"><i class="fas fa-comments"></i></div>
+                    <div class="neural-node"><i class="fas fa-chart-line"></i></div>
+                    <div class="neural-node"><i class="fas fa-file-alt"></i></div>
+                    <div class="neural-node"><i class="fas fa-cogs"></i></div>
+                    <div class="neural-node"><i class="fas fa-shield-alt"></i></div>
+                </div>
+                
+                <div class="float-card float-card-1">
+                    <div class="float-card-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="float-card-text">Pricing</div>
+                    <div class="float-card-value">Fixed</div>
+                </div>
+                
+                <div class="float-card float-card-2">
+                    <div class="float-card-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="float-card-text">Models</div>
+                    <div class="float-card-value">Open Source</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-text">Trusted by Innovators & Enterprises</div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Explainable AI Guarantee</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>On-Premise Options</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-headset"></i>
+                    <span>60-Day Model Monitoring</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Fixed-Price Contracts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Services Section -->
+    <section id="ai-services" class="ai-services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-robot"></i> AI Services
+                </span>
+                <h2 class="section-title">End-to-End AI <span class="gradient-text">Development</span></h2>
+                <p class="section-subtitle">From strategy to deployment, we build AI solutions that solve real business problems—with full interpretability and no vendor lock-in.</p>
+            </div>
+            
+            <div class="service-grid">
+                <div class="service-card reveal">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Conversational AI</h3>
+                    </div>
+                    <p>Intelligent chatbots and virtual assistants that understand context, handle multi-turn conversations, and integrate with your existing systems.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> GPT-4/Claude/Llama integration</li>
+                        <li><i class="fas fa-check"></i> Custom fine-tuning on your data</li>
+                        <li><i class="fas fa-check"></i> Voice-enabled interfaces</li>
+                        <li><i class="fas fa-check"></i> Human handoff protocols</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Computer Vision</h3>
+                    </div>
+                    <p>Image and video analysis systems for quality control, security, medical imaging, and autonomous systems—deployed on edge or cloud.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Object detection & tracking</li>
+                        <li><i class="fas fa-check"></i> OCR & document processing</li>
+                        <li><i class="fas fa-check"></i> Facial recognition & analysis</li>
+                        <li><i class="fas fa-check"></i> Edge deployment (TensorRT)</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Predictive Analytics</h3>
+                    </div>
+                    <p>Machine learning models that forecast demand, predict churn, optimize pricing, and identify risks— with full explainability.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Demand forecasting</li>
+                        <li><i class="fas fa-check"></i> Churn prediction</li>
+                        <li><i class="fas fa-check"></i> Anomaly detection</li>
+                        <li><i class="fas fa-check"></i> SHAP/LIME interpretability</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h3>Generative AI</h3>
+                    </div>
+                    <p>Custom generative models for content creation, code generation, synthetic data, and design automation—trained on your brand voice.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Text/code generation</li>
+                        <li><i class="fas fa-check"></i> Image synthesis</li>
+                        <li><i class="fas fa-check"></i> Synthetic data generation</li>
+                        <li><i class="fas fa-check"></i> Cost optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Document AI</h3>
+                    </div>
+                    <p>Intelligent document processing that extracts data from invoices, contracts, forms, and emails— with 99%+ accuracy.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Layout-aware OCR</li>
+                        <li><i class="fas fa-check"></i> Entity extraction</li>
+                        <li><i class="fas fa-check"></i> Classification & routing</li>
+                        <li><i class="fas fa-check"></i> Compliance redaction</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>AI Agents & Automation</h3>
+                    </div>
+                    <p>Autonomous AI agents that perform complex workflows, make decisions, and integrate with your tools—always with human oversight.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Multi-agent orchestration</li>
+                        <li><i class="fas fa-check"></i> Tool use (APIs, databases)</li>
+                        <li><i class="fas fa-check"></i> Memory & context management</li>
+                        <li><i class="fas fa-check"></i> Human-in-the-loop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="diff-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-star"></i> Why SAR SOLUTIONZ
+                </span>
+                <h2 class="section-title">The AI Partner <span class="gradient-text">That Explains Everything</span></h2>
+                <p class="section-subtitle">We believe AI should be transparent, controllable, and aligned with your business goals—not a black box that makes mysterious decisions.</p>
+            </div>
+            
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Explainable AI Guarantee</h3>
+                    <p>Every model we build includes interpretability features. You'll understand why the AI made each decision, ensuring compliance and trust.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> SHAP/LIME explanations</li>
+                        <li><i class="fas fa-check"></i> Decision audit trails</li>
+                        <li><i class="fas fa-check"></i> Bias detection reports</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Fixed-Price, No Token Surprises</h3>
+                    <p>Unlike AI agencies that bill by token usage, we quote fixed prices. Your costs stay predictable even as usage scales.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Unlimited inference included</li>
+                        <li><i class="fas fa-check"></i> No per-token charges</li>
+                        <li><i class="fas fa-check"></i> Cost-optimized architecture</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>On-Premise & Edge Options</h3>
+                    <p>Your data never leaves your infrastructure unless you want it to. We deploy on-premise, private cloud, or edge devices.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Air-gapped deployments</li>
+                        <li><i class="fas fa-check"></i> Edge optimization (TensorRT)</li>
+                        <li><i class="fas fa-check"></i> Full data sovereignty</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3>60-Day Model Monitoring</h3>
+                    <p>AI models drift over time. We monitor performance, retrain when needed, and guarantee accuracy for 60 days post-launch.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Performance dashboards</li>
+                        <li><i class="fas fa-check"></i> Drift detection alerts</li>
+                        <li><i class="fas fa-check"></i> Free retraining included</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>No Vendor Lock-In</h3>
+                    <p>We use open-source models (Llama, Mistral, BERT) and standard formats. You own the model weights, not us.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Open-source foundation</li>
+                        <li><i class="fas fa-check"></i> Portable model formats</li>
+                        <li><i class="fas fa-check"></i> Full IP transfer</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Human-in-the-Loop Design</h3>
+                    <p>We build AI that augments humans, not replaces them. Every system includes oversight, feedback, and escalation paths.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Confidence thresholds</li>
+                        <li><i class="fas fa-check"></i> Human override controls</li>
+                        <li><i class="fas fa-check"></i> Feedback integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Request Form Section -->
+    <section id="project-request" class="project-request">
+        <div class="section-container">
+            <div class="form-container reveal">
+                <div class="form-header">
+                    <h2 class="form-title">Build Your AI Solution</h2>
+                    <p class="form-subtitle">Get a fixed-price quote in 24 hours. No surprise token costs, no black-box models—just transparent, production-ready AI.</p>
+                </div>
+
+                <!-- Dynamic Estimate -->
+                <div class="estimate-box" id="dynamicEstimate">
+                    <div>
+                        <div class="estimate-label">Estimated Investment Range</div>
+                        <div class="estimate-value" id="estimateValue">Select options to see estimate</div>
+                    </div>
+                    <div class="estimate-note">
+                        <i class="fas fa-info-circle"></i> This is a preliminary range. Final quote depends on detailed requirements.
+                    </div>
+                </div>
+
+                <form id="aiProjectForm" novalidate>
+                    <!-- Section A: Contact & Company -->
+                    <div class="form-section">
+                        <div class="section-label-form">
+                            <div class="section-number">1</div>
+                            <span>Contact & Company</span>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Full Name <span class="required">*</span></label>
+                                <input type="text" class="form-input" name="name" required placeholder="Jane Smith">
+                                <span class="error-message">Please enter your full name</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Work Email <span class="required">*</span></label>
+                                <input type="email" class="form-input" name="email" required placeholder="jane@company.com">
+                                <span class="error-message">Please enter a valid work email</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-input" name="company" placeholder="Acme Inc.">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Industry <span class="required">*</span></label>
+                                <select class="form-select" name="industry" required>
+                                    <option value="">Select Industry</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="fintech">FinTech</option>
+                                    <option value="ecommerce">E-Commerce</option>
+                                    <option value="manufacturing">Manufacturing</option>
+                                    <option value="education">Education</option>
+                                    <option value="legal">Legal</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="error-message">Please select your industry</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Company Size</label>
+                                <select class="form-select" name="company_size">
+                                    <option value="">Select Size</option>
+                                    <option value="startup">Startup (1-10 employees)</option>
+                                    <option value="growth">Growth (11-50)</option>
+                                    <option value="midmarket">Mid-Market (51-200)</option>
+                                    <option value="enterprise">Enterprise (200+)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section B: AI Project Details -->
+                    <div class="form-section">
+                        <div class="section-label-form">
+                            <div class="section-number">2</div>
+                            <span>AI Project Details</span>
+                        </div>
+                        
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">AI Solution Type <span class="required">*</span> <span style="font-weight: 400; color: var(--text-muted);">(Select all that apply)</span></label>
+                            <div class="chip-group" id="aiTypeChips">
+                                <div class="chip" data-value="conversational">
+                                    <i class="fas fa-check"></i>
+                                    <span>Conversational AI</span>
+                                </div>
+                                <div class="chip" data-value="computer-vision">
+                                    <i class="fas fa-check"></i>
+                                    <span>Computer Vision</span>
+                                </div>
+                                <div class="chip" data-value="predictive">
+                                    <i class="fas fa-check"></i>
+                                    <span>Predictive Analytics</span>
+                                </div>
+                                <div class="chip" data-value="generative">
+                                    <i class="fas fa-check"></i>
+                                    <span>Generative AI</span>
+                                </div>
+                                <div class="chip" data-value="document">
+                                    <i class="fas fa-check"></i>
+                                    <span>Document AI</span>
+                                </div>
+                                <div class="chip" data-value="recommendation">
+                                    <i class="fas fa-check"></i>
+                                    <span>Recommendation Engine</span>
+                                </div>
+                                <div class="chip" data-value="agents">
+                                    <i class="fas fa-check"></i>
+                                    <span>AI Agents & Automation</span>
+                                </div>
+                                <div class="chip" data-value="custom">
+                                    <i class="fas fa-check"></i>
+                                    <span>Custom ML Model</span>
+                                </div>
+                                <div class="chip" data-value="consultation">
+                                    <i class="fas fa-check"></i>
+                                    <span>Not Sure — Need Consultation</span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="ai_types" id="aiTypesInput" required>
+                            <span class="error-message">Please select at least one AI solution type</span>
+                        </div>
+
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Primary Use Case <span class="required">*</span></label>
+                            <textarea class="form-textarea" name="use_case" required placeholder="Describe the business problem you want AI to solve (e.g., 'Reduce customer support response time by 60%' or 'Automate quality control in manufacturing')"></textarea>
+                            <span class="error-message">Please describe your use case</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Expected Scale</label>
+                            <select class="form-select" name="scale">
+                                <option value="">Select Expected Usage</option>
+                                <option value="small">&lt; 1K interactions/month</option>
+                                <option value="medium">1K - 10K/month</option>
+                                <option value="large">10K - 100K/month</option>
+                                <option value="xlarge">100K - 1M/month</option>
+                                <option value="enterprise">1M+/month</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section C: Data & Technical Requirements -->
+                    <div class="form-section">
+                        <div class="section-label-form">
+                            <div class="section-number">3</div>
+                            <span>Data & Technical Requirements</span>
+                        </div>
+                        
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Data Availability</label>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="data_availability" value="ready">
+                                    <div class="radio-card-icon"><i class="fas fa-database"></i></div>
+                                    <div class="radio-card-title">Clean & Ready</div>
+                                    <div class="radio-card-desc">Labeled datasets prepared</div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="data_availability" value="raw">
+                                    <div class="radio-card-icon"><i class="fas fa-broom"></i></div>
+                                    <div class="radio-card-title">Raw Data</div>
+                                    <div class="radio-card-desc">Needs cleaning & labeling</div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="data_availability" value="help">
+                                    <div class="radio-card-icon"><i class="fas fa-hands-helping"></i></div>
+                                    <div class="radio-card-title">Need Help</div>
+                                    <div class="radio-card-desc">Data strategy required</div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="data_availability" value="unsure">
+                                    <div class="radio-card-icon"><i class="fas fa-question"></i></div>
+                                    <div class="radio-card-title">Unsure</div>
+                                    <div class="radio-card-desc">Need consultation</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Deployment Preference <span class="required">*</span></label>
+                            <div class="chip-group" id="deploymentChips">
+                                <div class="chip" data-value="cloud">
+                                    <i class="fas fa-check"></i>
+                                    <span>Cloud (AWS/Azure/GCP)</span>
+                                </div>
+                                <div class="chip" data-value="onpremise">
+                                    <i class="fas fa-check"></i>
+                                    <span>On-Premise/Private Cloud</span>
+                                </div>
+                                <div class="chip" data-value="edge">
+                                    <i class="fas fa-check"></i>
+                                    <span>Edge/On-Device</span>
+                                </div>
+                                <div class="chip" data-value="hybrid">
+                                    <i class="fas fa-check"></i>
+                                    <span>Hybrid</span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="deployment" id="deploymentInput" required>
+                            <span class="error-message">Please select at least one deployment option</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Integration Requirements</label>
+                            <div class="chip-group" id="integrationChips">
+                                <div class="chip" data-value="crm">
+                                    <i class="fas fa-check"></i>
+                                    <span>CRM (Salesforce/HubSpot)</span>
+                                </div>
+                                <div class="chip" data-value="erp">
+                                    <i class="fas fa-check"></i>
+                                    <span>ERP (SAP/Oracle)</span>
+                                </div>
+                                <div class="chip" data-value="api">
+                                    <i class="fas fa-check"></i>
+                                    <span>Existing APIs</span>
+                                </div>
+                                <div class="chip" data-value="database">
+                                    <i class="fas fa-check"></i>
+                                    <span>Legacy Databases</span>
+                                </div>
+                                <div class="chip" data-value="thirdparty">
+                                    <i class="fas fa-check"></i>
+                                    <span>Third-party AI Services</span>
+                                </div>
+                                <div class="chip" data-value="none">
+                                    <i class="fas fa-check"></i>
+                                    <span>No Integration Needed</span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="integrations" id="integrationsInput">
+                        </div>
+                    </div>
+
+                    <!-- Section D: Constraints & Preferences -->
+                    <div class="form-section">
+                        <div class="section-label-form">
+                            <div class="section-number">4</div>
+                            <span>Constraints & Preferences</span>
+                        </div>
+                        
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Must-Have Features</label>
+                            <div class="chip-group" id="featuresChips">
+                                <div class="chip" data-value="realtime">
+                                    <i class="fas fa-check"></i>
+                                    <span>Real-time (&lt;100ms)</span>
+                                </div>
+                                <div class="chip" data-value="explainable">
+                                    <i class="fas fa-check"></i>
+                                    <span>Explainable AI</span>
+                                </div>
+                                <div class="chip" data-value="multilingual">
+                                    <i class="fas fa-check"></i>
+                                    <span>Multilingual Support</span>
+                                </div>
+                                <div class="chip" data-value="offline">
+                                    <i class="fas fa-check"></i>
+                                    <span>Offline Capability</span>
+                                </div>
+                                <div class="chip" data-value="humanloop">
+                                    <i class="fas fa-check"></i>
+                                    <span>Human-in-the-Loop</span>
+                                </div>
+                                <div class="chip" data-value="bias">
+                                    <i class="fas fa-check"></i>
+                                    <span>Bias Auditing</span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="features" id="featuresInput">
+                        </div>
+<!-- 
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Budget Range <span class="required">*</span></label>
+                            <div class="budget-control" id="budgetControl">
+                                <button type="button" class="budget-option" data-value="15-30">$15K — $30K<br><small>MVP/POC</small></button>
+                                <button type="button" class="budget-option" data-value="30-75">$30K — $75K<br><small>Production v1</small></button>
+                                <button type="button" class="budget-option" data-value="75-150">$75K — $150K<br><small>Enterprise</small></button>
+                                <button type="button" class="budget-option" data-value="150+">$150K+<br><small>Transformative</small></button>
+                                <button type="button" class="budget-option" data-value="custom">Custom<br><small>Estimate</small></button>
+                            </div>
+                            <input type="hidden" name="budget" id="budgetInput" required>
+                            <span class="error-message">Please select a budget range</span>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="form-label">Timeline <span class="required">*</span></label>
+                            <select class="form-select" name="timeline" required>
+                                <option value="">Select Timeline</option>
+                                <option value="asap">ASAP (&lt; 4 weeks)</option>
+                                <option value="standard">Standard (1-2 months)</option>
+                                <option value="flexible">Flexible (3+ months)</option>
+                                <option value="exploring">Not urgent — exploring</option>
+                            </select>
+                            <span class="error-message">Please select a timeline</span>
+                        </div>
+                    </div>
+
+                    <!-- Section E: Additional Context -->
+                    <div class="form-section">
+                        <div class="section-label-form">
+                            <div class="section-number">5</div>
+                            <span>Additional Context</span>
+                        </div>
+                        
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <!-- <label class="form-label">Compliance Requirements</label> -->
+                            <div class="chip-group" id="complianceChips">
+                               
+                            </div>
+                            <input type="hidden" name="compliance" id="complianceInput">
+                        </div>
+
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Competitor/Example</label>
+                            <input type="text" class="form-input" name="competitor" placeholder="Any AI solution you admire or want to surpass?">
+                        </div>
+
+                        <div class="form-group full-width" style="margin-bottom: var(--space-md);">
+                            <label class="form-label">Additional Details</label>
+                            <textarea class="form-textarea" name="details" placeholder="Any other requirements, concerns, or context we should know about?"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">Upload Relevant Files <span style="font-weight: 400; color: var(--text-muted);">(Optional)</span></label>
+                            <div class="file-upload" id="fileUpload">
+                                <div class="file-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <div class="file-upload-text">Drag & drop files here or click to browse</div>
+                                <div class="file-upload-hint">RFPs, data samples, architecture diagrams (Max 10MB)</div>
+                                <input type="file" class="file-input" id="fileInput" multiple accept=".pdf,.doc,.docx,.png,.jpg,.csv,.json">
+                            </div>
+                            <div id="fileList" style="margin-top: 0.5rem; font-size: var(--text-xs); color: var(--text-muted);"></div>
+                        </div>
+                    </div>
+
+                    <!-- Form Footer -->
+                    <div class="form-footer">
+                        <div class="form-security">
+                            <i class="fas fa-lock"></i>
+                            <span>Your information is secure and will never be shared. NDA available upon request.</span>
+                        </div>
+                        <button type="submit" class="btn-primary submit-btn">
+                            <i class="fas fa-paper-plane"></i> Get My Fixed-Price Quote
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container reveal">
+            <h2>Ready to Build Transparent AI?</h2>
+            <p>Join 40+ companies who've chosen explainable, fixed-price AI development over black-box solutions with surprise costs.</p>
+            <div class="cta-buttons">
+                <a href="/getqouta.html" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Start Your Project
+                </a>
+                <a href="mailto:sarsolutionz7@gmail.com" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">🧠</div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </div>
+                <p>Transparent AI development with explainable models, fixed pricing, and 60-day support. Based in Mumbai, serving clients globally.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/sar_solutionz" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sarsolutionz" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>AI Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Conversational AI</a></li>
+                    <li><a href="#">Computer Vision</a></li>
+                    <li><a href="#">Predictive Analytics</a></li>
+                    <li><a href="#">Generative AI</a></li>
+                    <li><a href="#">Document AI</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Why Us</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Explainable AI</a></li>
+                    <li><a href="#">Fixed Pricing</a></li>
+                    <li><a href="#">On-Premise Options</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+                <p><i class="fas fa-headset"></i> 24/7 Emergency Support</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 SAR SOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>SOC 2 Aligned</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>NDA Protected</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Fixed-Price Guarantee</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        function toggleMobileNav() {
+            const isOpen = mobileNav.classList.contains('active');
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', !isOpen);
+            mobileNav.setAttribute('aria-hidden', isOpen);
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
+
+        menuToggle.addEventListener('click', toggleMobileNav);
+        mobileNavOverlay.addEventListener('click', toggleMobileNav);
+
+        // Chip Selection Logic
+        function setupChips(containerId, inputId) {
+            const container = document.getElementById(containerId);
+            const input = document.getElementById(inputId);
+            const chips = container.querySelectorAll('.chip');
+            
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    chip.classList.toggle('selected');
+                    updateInput();
+                    updateEstimate();
+                });
+            });
+            
+            function updateInput() {
+                const selected = Array.from(container.querySelectorAll('.chip.selected'))
+                    .map(c => c.dataset.value);
+                input.value = selected.join(',');
+            }
+        }
+
+        setupChips('aiTypeChips', 'aiTypesInput');
+        setupChips('deploymentChips', 'deploymentInput');
+        setupChips('integrationChips', 'integrationsInput');
+        setupChips('featuresChips', 'featuresInput');
+        setupChips('complianceChips', 'complianceInput');
+
+        // Radio Card Selection
+        document.querySelectorAll('.radio-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const name = card.querySelector('input').name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+                    input.closest('.radio-card').classList.remove('selected');
+                });
+                card.classList.add('selected');
+                card.querySelector('input').checked = true;
+            });
+        });
+
+        // Budget Selection
+        const budgetOptions = document.querySelectorAll('.budget-option');
+        const budgetInput = document.getElementById('budgetInput');
+
+        budgetOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                budgetOptions.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                budgetInput.value = option.dataset.value;
+                updateEstimate();
+            });
+        });
+
+        // Dynamic Estimate Update
+        function updateEstimate() {
+            const aiTypes = document.getElementById('aiTypesInput').value.split(',').filter(Boolean);
+            const budget = document.getElementById('budgetInput').value;
+            const estimateValue = document.getElementById('estimateValue');
+            
+            if (aiTypes.length === 0 && !budget) {
+                estimateValue.textContent = 'Select options to see estimate';
+                return;
+            }
+            
+            // Simple estimation logic
+            let baseMin = 15000, baseMax = 30000;
+            
+            if (aiTypes.includes('computer-vision') || aiTypes.includes('agents')) {
+                baseMin += 10000;
+                baseMax += 20000;
+            }
+            if (aiTypes.includes('generative')) {
+                baseMin += 5000;
+                baseMax += 15000;
+            }
+            if (aiTypes.length > 2) {
+                baseMin += (aiTypes.length - 2) * 5000;
+                baseMax += (aiTypes.length - 2) * 10000;
+            }
+            
+            if (budget === '15-30') {
+                estimateValue.textContent = `$15,000 — $30,000`;
+            } else if (budget === '30-75') {
+                estimateValue.textContent = `$30,000 — $75,000`;
+            } else if (budget === '75-150') {
+                estimateValue.textContent = `$75,000 — $150,000`;
+            } else if (budget === '150+') {
+                estimateValue.textContent = `$150,000+`;
+            } else if (budget === 'custom') {
+                estimateValue.textContent = `Custom Quote`;
+            } else {
+                estimateValue.textContent = `$${baseMin.toLocaleString()} — $${baseMax.toLocaleString()}`;
+            }
+        }
+
+        // File Upload
+        const fileUpload = document.getElementById('fileUpload');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        fileUpload.addEventListener('click', () => fileInput.click());
+        fileUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUpload.classList.add('dragover');
+        });
+        fileUpload.addEventListener('dragleave', () => {
+            fileUpload.classList.remove('dragover');
+        });
+        fileUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUpload.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', () => {
+            handleFiles(fileInput.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const names = Array.from(files).map(f => f.name).join(', ');
+                fileList.textContent = `Selected: ${names}`;
+            }
+        }
+
+        // Form Validation & Submission
+        const form = document.getElementById('aiProjectForm');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.form-input, .form-select').forEach(input => {
+                input.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.classList.remove('visible');
+            });
+            
+            // Validate required fields
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    const errorMsg = field.parentElement.querySelector('.error-message');
+                    if (errorMsg) errorMsg.classList.add('visible');
+                    isValid = false;
+                }
+            });
+            
+            // Validate email
+            const emailField = form.querySelector('input[type="email"]');
+            if (emailField && emailField.value) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(emailField.value)) {
+                    emailField.classList.add('error');
+                    const errorMsg = emailField.parentElement.querySelector('.error-message');
+                    if (errorMsg) errorMsg.classList.add('visible');
+                    isValid = false;
+                }
+            }
+            
+            if (isValid) {
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Quote Request Sent!';
+                btn.style.background = 'var(--success)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    form.reset();
+                    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+                    document.querySelectorAll('.budget-option').forEach(b => b.classList.remove('selected'));
+                    document.querySelectorAll('.radio-card').forEach(r => r.classList.remove('selected'));
+                    document.getElementById('estimateValue').textContent = 'Select options to see estimate';
+                    fileList.textContent = '';
+                }, 3000);
+            }
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
