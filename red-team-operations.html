@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Red Team Services | Adversary Simulation & Attack Defense | SARSOLUTIONZ</title>
+    <meta name="description" content="Enterprise red team services simulating real-world APT attacks. Full-spectrum adversary simulation including external, internal, physical & social engineering. Former nation-state operators.">
+    <meta name="keywords" content="red teaming, adversary simulation, APT emulation, penetration testing, breach simulation, cyber defense testing, ethical hacking">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #ff3366;
+            --accent-secondary: #ff6b6b;
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 51, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 102, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -200px; right: -100px; animation: float 15s infinite ease-in-out; }
+        .orb-2 { width: 300px; height: 300px; background: var(--accent-secondary); bottom: -100px; left: -100px; animation: float 20s infinite ease-in-out reverse; }
+        .orb-3 { width: 200px; height: 200px; background: var(--accent); top: 50%; left: 30%; animation: float 18s infinite ease-in-out; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(255, 107, 107, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--secondary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 20px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(ellipse at top, rgba(255, 51, 102, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1.5rem;
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 51, 102, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.6); }
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Terminal Window */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .terminal-window {
+            width: 100%;
+            max-width: 500px;
+            background: var(--secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: terminalFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes terminalFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .terminal-header {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-dot.red { background: #ef4444; }
+        .terminal-dot.yellow { background: #f59e0b; }
+        .terminal-dot.green { background: #10b981; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            min-height: 300px;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: typeLine 0.5s forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(2) { animation-delay: 1s; }
+        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+        .terminal-line:nth-child(4) { animation-delay: 2s; }
+        .terminal-line:nth-child(5) { animation-delay: 2.5s; }
+        .terminal-line:nth-child(6) { animation-delay: 3s; }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .terminal-comment { color: var(--text-muted); }
+        .terminal-keyword { color: var(--accent); }
+        .terminal-string { color: var(--success); }
+        .terminal-function { color: var(--warning); }
+
+        /* Floating Cards */
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatCard 5s ease-in-out infinite;
+        }
+
+        .float-card-1 {
+            top: 10%;
+            right: -20px;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 20%;
+            left: -30px;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .float-card-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+        }
+
+        /* Why Red Teaming Section */
+        .why-redteam {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .comparison-card.pentest {
+            border-left: 4px solid var(--text-muted);
+        }
+
+        .comparison-card.redteam {
+            border-left: 4px solid var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .comparison-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .comparison-card.pentest h3 { color: var(--text-muted); }
+        .comparison-card.redteam h3 { color: var(--accent); }
+
+        .comparison-card ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .comparison-card li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .comparison-card li i {
+            font-size: 0.875rem;
+        }
+
+        .comparison-card.pentest li i { color: var(--text-muted); }
+        .comparison-card.redteam li i { color: var(--accent); }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .service-features li i {
+            color: var(--accent);
+            font-size: 0.875rem;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .method-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .method-tab {
+            padding: 0.875rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .method-tab:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .method-tab.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .method-content {
+            display: none;
+        }
+
+        .method-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), rgba(255, 51, 102, 0.3));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item.left::after {
+            right: -10px;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 25px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(2, 12, 27, 0.5);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .timeline-content h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-content li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .diff-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .diff-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .diff-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .diff-card:hover .diff-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .diff-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .diff-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Techniques Section */
+        .techniques {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border-left: 3px solid var(--accent);
+        }
+
+        .tech-card:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .tech-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .tech-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Tools Section */
+        .tools {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .tool-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.2);
+        }
+
+        .tool-card h4 {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .cta-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Chatbot */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px var(--accent-glow);
+            z-index: 1001;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        #chatbot-launcher i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 380px;
+            max-height: 60vh;
+            background: var(--secondary);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        #chatbot-header {
+            padding: 1.25rem;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        #close-chat:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        #chatbot-body {
+            flex: 1;
+            padding: 1.25rem;
+            overflow-y: auto;
+            background: var(--primary);
+        }
+
+        #chatbot-body .message {
+            max-width: 85%;
+            margin-bottom: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 0.875rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #chatbot-body .bot-message {
+            background: var(--glass);
+            color: var(--text-primary);
+            border-radius: 12px 12px 12px 4px;
+            margin-right: auto;
+            border: 1px solid var(--border);
+        }
+
+        #chatbot-body .user-message {
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.2) 0%, rgba(255, 107, 107, 0.2) 100%);
+            color: var(--text-primary);
+            border-radius: 12px 12px 4px 12px;
+            margin-left: auto;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+
+        #chatbot-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            background: var(--secondary);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.1);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                order: -1;
+                height: 400px;
+            }
+            
+            .float-card {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item.left, .timeline-item.right {
+                left: 0;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                bottom: 90px;
+            }
+            
+            .method-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .method-tab {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul>
+                     <li><a href="/">Home</a></li>
+                    <li><a href="#why-redteam">Why Red Team</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#contact" class="cta-nav">Get Assessment</a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <div class="mobile-menu-toggle">
+                    <span>Services</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                    <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
+                    <li><a href="/MobilePentest.html">Mobile Security</a></li>
+                    <li><a href="/Redteam.html">Red Teaming</a></li>
+                    <li><a href="/APIPentest.html">API Security</a></li>
+                    <li><a href="/CloudPentest.html">Cloud Security</a></li>
+                </ul>
+            </li>
+            <li><a href="/About.html">About</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <!-- <li><a href="/contact.html">Contact</a></li> -->
+            <li><a href="/getqouta.html" style="color: var(--accent);">Get Quote</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>⚡ Former Nation-State Operators</span>
+                </div>
+                <h1>
+                    Advanced <span class="gradient-text">Red Team</span> Services<br>
+                    Real-World Attack Simulation
+                </h1>
+                <p class="hero-description">
+                    We simulate sophisticated adversaries to test your organization's detection and response capabilities. Unlike penetration testing, we emulate full-spectrum APT attacks—testing people, processes, and technology against real-world TTPs.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24h</span>
+                        <span class="hero-stat-label">Deployment</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">0%</span>
+                        <span class="hero-stat-label">False Positives</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">∞</span>
+                        <span class="hero-stat-label">Retesting</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="/getqouta.html" class="btn-primary">
+                        <i class="fas fa-rocket"></i> Start Red Team Exercise
+                    </a>
+                    <a href="#methodology" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> View Kill Chain
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                        <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.875rem;">redteam-operation.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-comment"># Phase 1: Initial Access</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-keyword">$</span> spear-phish --target="C-Suite" --payload="invoice.pdf.exe"
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-string">[SUCCESS]</span> Beacon established: 192.168.1.105
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-keyword">$</span> lateral-move --technique="pass-the-hash"
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-function">[ALERT]</span> Domain Admin compromised
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-comment"># Mission Objective: Data Exfiltration</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="float-card float-card-1">
+                    <div class="float-card-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="float-card-text">Detection Rate</div>
+                    <div class="float-card-value">0%</div>
+                </div>
+                
+                <div class="float-card float-card-2">
+                    <div class="float-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="float-card-text">Dwell Time</div>
+                    <div class="float-card-value">14 Days</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-text">Trusted by Security-Conscious Organizations</div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-certificate"></i>
+                    <span>eCPPT Certified</span>
+                </div>
+                 <div class="trust-badge">
+                    <i class="fas fa-certificate"></i>
+                    <span>CRTO Loading...</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>MITRE ATT&CK Aligned</span>
+                </div>
+                <!-- <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CREST Accredited</span>
+                </div> -->
+                <div class="trust-badge">
+                    <i class="fas fa-infinity"></i>
+                    <span>Free Remediation Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Red Teaming Section -->
+    <section id="why-redteam" class="why-redteam">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-question-circle"></i> Why Red Team
+                </span>
+                <h2 class="section-title">Red Team vs <span class="gradient-text">Penetration Testing</span></h2>
+                <p class="section-subtitle">Understanding the critical difference between vulnerability assessment and adversary simulation.</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card pentest reveal">
+                    <h3><i class="fas fa-bug"></i> Traditional Pentest</h3>
+                    <p>Point-in-time vulnerability assessment with defined scope and time limits.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Identifies known vulnerabilities</li>
+                        <li><i class="fas fa-check"></i> Limited time engagement (1-2 weeks)</li>
+                        <li><i class="fas fa-check"></i> Focuses on technical vulnerabilities</li>
+                        <li><i class="fas fa-check"></i> Stops at initial compromise</li>
+                        <li><i class="fas fa-check"></i> No evasion techniques</li>
+                        <li><i class="fas fa-check"></i> Tests security controls in isolation</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card redteam reveal">
+                    <h3><i class="fas fa-user-ninja"></i> Red Team Exercise</h3>
+                    <p>Full-spectrum adversary simulation testing detection & response over extended periods.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Tests entire kill chain (recon to exfil)</li>
+                        <li><i class="fas fa-check"></i> Extended operations (weeks to months)</li>
+                        <li><i class="fas fa-check"></i> Includes social engineering & physical</li>
+                        <li><i class="fas fa-check"></i> Tests detection & response capabilities</li>
+                        <li><i class="fas fa-check"></i> Advanced evasion & persistence</li>
+                        <li><i class="fas fa-check"></i> Measures security program maturity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-crosshairs"></i> Our Services
+                </span>
+                <h2 class="section-title">Full-Spectrum <span class="gradient-text">Adversary Simulation</span></h2>
+                <p class="section-subtitle">Multi-domain attack scenarios tailored to your threat profile and business objectives.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>External Red Teaming</h3>
+                    <p>Simulate external threat actors targeting your perimeter, cloud infrastructure, and public-facing assets.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> OSINT & reconnaissance</li>
+                        <li><i class="fas fa-check"></i> Spear phishing campaigns</li>
+                        <li><i class="fas fa-check"></i> External infra exploitation</li>
+                        <li><i class="fas fa-check"></i> Supply chain attacks</li>
+                        <li><i class="fas fa-check"></i> Zero-day simulation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Internal Red Teaming</h3>
+                    <p>Assume breach scenario testing lateral movement, privilege escalation, and domain dominance.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Lateral movement techniques</li>
+                        <li><i class="fas fa-check"></i> Active Directory attacks</li>
+                        <li><i class="fas fa-check"></i> Kerberoasting/ASREPRoasting</li>
+                        <li><i class="fas fa-check"></i> Persistence mechanisms</li>
+                        <li><i class="fas fa-check"></i> Data exfiltration paths</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Physical & Social Engineering</h3>
+                    <p>Test human and physical security controls through on-site infiltration and impersonation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Badge cloning & tailgating</li>
+                        <li><i class="fas fa-check"></i> USB drop attacks</li>
+                        <li><i class="fas fa-check"></i> Vishing & impersonation</li>
+                        <li><i class="fas fa-check"></i> Executive protection testing</li>
+                        <li><i class="fas fa-check"></i> Facility access testing</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Purple Team Exercise</h3>
+                    <p>Collaborative testing with your blue team to improve detection capabilities and response playbooks.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Real-time attack/defense</li>
+                        <li><i class="fas fa-check"></i> Detection tuning</li>
+                        <li><i class="fas fa-check"></i> SIEM rule validation</li>
+                        <li><i class="fas fa-check"></i> Knowledge transfer</li>
+                        <li><i class="fas fa-check"></i> Custom detection engineering</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Adversary Emulation</h3>
+                    <p>Simulate specific APT groups (APT29, APT41, Lazarus) with their known TTPs and malware.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> APT group TTP replication</li>
+                        <li><i class="fas fa-check"></i> Custom malware development</li>
+                        <li><i class="fas fa-check"></i> MITRE ATT&CK mapping</li>
+                        <li><i class="fas fa-check"></i> Threat intel integration</li>
+                        <li><i class="fas fa-check"></i> Industry-specific scenarios</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Objective-Based Testing</h3>
+                    <p>Focused engagements targeting specific assets: crown jewels, critical systems, or compliance requirements.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Crown jewel exfiltration</li>
+                        <li><i class="fas fa-check"></i> Ransomware readiness</li>
+                        <li><i class="fas fa-check"></i> PCI-DSS/ISO 27001 testing</li>
+                        <li><i class="fas fa-check"></i> Merger & acquisition assessment</li>
+                        <li><i class="fas fa-check"></i> Board-level reporting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-project-diagram"></i> Our Process
+                </span>
+                <h2 class="section-title">Red Team <span class="gradient-text">Kill Chain</span></h2>
+                <p class="section-subtitle">Comprehensive methodology based on MITRE ATT&CK framework and real-world adversary TTPs.</p>
+            </div>
+            
+            <div class="method-tabs reveal">
+                <button class="method-tab active" onclick="switchTab('external')">External Approach</button>
+                <button class="method-tab" onclick="switchTab('internal')">Internal Approach</button>
+                <button class="method-tab" onclick="switchTab('full')">Full Scope</button>
+            </div>
+            
+            <div id="external" class="method-content active">
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>1. Reconnaissance</h3>
+                            <ul>
+                                <li>Open-source intelligence (OSINT)</li>
+                                <li>Domain/subdomain enumeration</li>
+                                <li>Employee profiling & social media</li>
+                                <li>Technology stack fingerprinting</li>
+                                <li>Supply chain mapping</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2. Initial Compromise</h3>
+                            <ul>
+                                <li>Spear-phishing campaigns</li>
+                                <li>External vulnerability exploitation</li>
+                                <li>Credential stuffing & brute force</li>
+                                <li>Cloud misconfiguration abuse</li>
+                                <li>Watering hole attacks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>3. Establish Foothold</h3>
+                            <ul>
+                                <li>C2 infrastructure setup</li>
+                                <li>Persistence mechanisms</li>
+                                <li>Defense evasion techniques</li>
+                                <li>AMSI/EDR bypass</li>
+                                <li>Living-off-the-land binaries</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>4. Internal Recon</h3>
+                            <ul>
+                                <li>Network topology mapping</li>
+                                <li>Credential harvesting</li>
+                                <li>Service discovery</li>
+                                <li>Privilege escalation paths</li>
+                                <li>Shadow IT identification</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="internal" class="method-content">
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>1. Initial Access</h3>
+                            <ul>
+                                <li>Insider threat simulation</li>
+                                <li>Stolen credential use</li>
+                                <li>Physical access compromise</li>
+                                <li>Malicious device planting</li>
+                                <li>Guest network pivoting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2. Privilege Escalation</h3>
+                            <ul>
+                                <li>Local privilege escalation</li>
+                                <li>Service misconfiguration abuse</li>
+                                <li>Token impersonation</li>
+                                <li>Kerberoasting attacks</li>
+                                <li>AS-REP Roasting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>3. Lateral Movement</h3>
+                            <ul>
+                                <li>Pass-the-hash/ticket</li>
+                                <li>RDP/SSH session hijacking</li>
+                                <li>WMI/PowerShell remoting</li>
+                                <li>Application whitelisting bypass</li>
+                                <li>Trust relationship abuse</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>4. Domain Dominance</h3>
+                            <ul>
+                                <li>Golden/Silver ticket attacks</li>
+                                <li>DCShadow attacks</li>
+                                <li>ADCS exploitation</li>
+                                <li>Group Policy manipulation</li>
+                                <li>Domain trust attacks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="full" class="method-content">
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Phase 1: External Compromise</h3>
+                            <ul>
+                                <li>Multi-vector initial access</li>
+                                <li>Advanced phishing with MFA bypass</li>
+                                <li>Zero-day vulnerability chain</li>
+                                <li>Cloud environment breach</li>
+                                <li>Establish stealthy C2</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Phase 2: Internal Expansion</h3>
+                            <ul>
+                                <li>Credential harvesting at scale</li>
+                                <li>Privilege escalation to Domain Admin</li>
+                                <li>Lateral movement across forests</li>
+                                <li>Persistence in critical systems</li>
+                                <li>Data staging & compression</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Phase 3: Mission Execution</h3>
+                            <ul>
+                                <li>Crown jewel identification</li>
+                                <li>Data exfiltration simulation</li>
+                                <li>Ransomware deployment (simulated)</li>
+                                <li>Business impact assessment</li>
+                                <li>Detection timeline measurement</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Phase 4: Reporting & Remediation</h3>
+                            <ul>
+                                <li>Executive war game summary</li>
+                                <li>Technical attack path analysis</li>
+                                <li>Detection gap assessment</li>
+                                <li>Remediation roadmap</li>
+                                <li>Purple team validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="why-us">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-trophy"></i> Why SARSOLUTIONZ
+                </span>
+                <h2 class="section-title">The Red Team <span class="gradient-text">Advantage</span></h2>
+                <p class="section-subtitle">What separates elite adversary simulation from basic penetration testing.</p>
+            </div>
+            
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <h3>Former Nation-State Operators</h3>
+                    <p>Our team includes former government red team operators and military cyber warfare specialists with real-world APT experience.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Adversary Mindset</h3>
+                    <p>We don't follow checklists—we think like attackers. Creative problem-solving to find paths that automated tools miss.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Custom Tool Development</h3>
+                    <p>Bespoke malware and tools developed specifically for your environment to bypass your specific EDR/XDR controls.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Continuous Engagement</h3>
+                    <p>Unlike point-in-time tests, we operate over weeks to test detection capabilities and dwell time tolerance.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>Evasion Expertise</h3>
+                    <p>Advanced techniques to bypass modern defenses: EDR evasion, AMSI bypass, living-off-the-land, and more.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>War Game Reporting</h3>
+                    <p>Executive-ready reports with business impact analysis, attack narratives, and board-level risk presentations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section class="techniques">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-tools"></i> TTP Arsenal
+                </span>
+                <h2 class="section-title">Advanced <span class="gradient-text">Techniques</span></h2>
+                <p class="section-subtitle">MITRE ATT&CK aligned tactics, techniques, and procedures we employ.</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-card reveal">
+                    <h4>Initial Access</h4>
+                    <p>Spear phishing, supply chain compromise, valid accounts, external remote services exploitation.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Execution</h4>
+                    <p>Living-off-the-land binaries, command/script interpreters, container deployment, native API.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Persistence</h4>
+                    <p>Registry run keys, scheduled tasks, WMI event subscriptions, boot or logon autostart execution.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Privilege Escalation</h4>
+                    <p>Token impersonation, bypass user account control, process injection, scheduled task/job abuse.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Defense Evasion</h4>
+                    <p>Process hollowing, API unhooking, timestomping, indicator removal, virtualization/sandbox evasion.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Credential Access</h4>
+                    <p>LSASS memory dumping, Kerberoasting, AS-REP Roasting, DCSync, credential manager dumping.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Lateral Movement</h4>
+                    <p>Pass-the-hash, pass-the-ticket, remote service hijacking, SSH hijacking, application deployment.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Collection</h4>
+                    <p>Screen capture, clipboard data, input capture, email collection, audio/video capture.</p>
+                </div>
+                
+                <div class="tech-card reveal">
+                    <h4>Exfiltration</h4>
+                    <p>Data encryption, C2 channel exfiltration, alternative protocols, web service exfiltration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-laptop-code"></i> Arsenal
+                </span>
+                <h2 class="section-title">Red Team <span class="gradient-text">Toolset</span></h2>
+                <p class="section-subtitle">Commercial, open-source, and custom-developed tools for sophisticated operations.</p>
+            </div>
+            
+            <div class="tools-grid reveal">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h4>Cobalt Strike</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h4>Sliver</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Metasploit</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h4>Mythic</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Custom C2</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h4>Impacket</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-hat-wizard"></i>
+                    </div>
+                    <h4>Mimikatz</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>BloodHound</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>CloudGoat</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h4>Burp Suite</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h4>Responder</h4>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4>Automation</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-container reveal">
+            <h2>Ready to Test Your Defenses Against Advanced Threats?</h2>
+            <p>Join organizations that trust SARSOLUTIONZ to simulate real-world adversaries. Start with a free consultation or immediate engagement.</p>
+            <div class="cta-buttons">
+                <a href="/getqouta.html" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Schedule Red Team
+                </a>
+                <a href="mailto:sarsolutionz7@gmail.com" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Contact Sales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </a>
+                <p>Elite red team operations and adversary simulation services. We break your defenses before real attackers do.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/sar_solutionz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.youtube.com/@sarsolutionz" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Red Team Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">External Red Teaming</a></li>
+                    <li><a href="#services">Internal Red Teaming</a></li>
+                    <li><a href="#services">Physical Security</a></li>
+                    <li><a href="#services">Purple Teaming</a></li>
+                    <li><a href="#services">Adversary Emulation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="/About.html">About Us</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="/Samplereports.html">Sample Reports</a></li>
+                    <li><a href="https://sarsolutionz.blogspot.com/">Blog</a></li>
+                    <!-- <li><a href="/Careers.html">Careers</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+                <p><i class="fas fa-headset"></i> 24/7 Emergency Support</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 SARSOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <!-- <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ISO 27001 Aligned</span>
+                </div> -->
+                <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>NDA Protected</span>
+                </div>
+                <!-- <div class="footer-badge">
+                    <i class="fas fa-user-secret"></i>
+                    <span>CREST Certified</span>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot-launcher">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> Red Team Assistant</h3>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-body">
+            <div class="message bot-message">
+                👋 Welcome! I'm your red team advisor. How can I help you today?
+            </div>
+        </div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Ask about red teaming...">
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const mobileToggles = document.querySelectorAll('.mobile-menu-toggle');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        mobileToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                const submenu = toggle.nextElementSibling;
+                submenu.classList.toggle('active');
+            });
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.method-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.method-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Chatbot Toggle
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const closeBtn = document.getElementById('close-chat');
+        const input = document.getElementById('chatbot-input');
+        const body = document.getElementById('chatbot-body');
+
+        launcher.addEventListener('click', () => {
+            container.style.display = 'flex';
+            setTimeout(() => container.classList.add('active'), 10);
+            input.focus();
+        });
+
+        closeBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            setTimeout(() => container.style.display = 'none', 300);
+        });
+
+        // Simple Chatbot Responses
+        const responses = {
+            'price': 'Red team engagements start at $15,000 for small organizations and scale based on scope, duration, and complexity. Contact us for a custom quote.',
+            'cost': 'Red team engagements start at $15,000 for small organizations and scale based on scope, duration, and complexity. Contact us for a custom quote.',
+            'time': 'Standard red team operations run 2-4 weeks. We can adjust duration based on your objectives and detection capability testing needs.',
+            'duration': 'Standard red team operations run 2-4 weeks. We can adjust duration based on your objectives and detection capability testing needs.',
+            'difference': 'Unlike pentesting, red teaming tests your detection and response capabilities over time, uses advanced evasion, and includes social engineering and physical security.',
+            'pentest': 'Unlike pentesting, red teaming tests your detection and response capabilities over time, uses advanced evasion, and includes social engineering and physical security.',
+            'purple': 'Purple teaming combines red and blue teams working together to improve detection capabilities and response playbooks in real-time.',
+            'physical': 'Yes, we conduct physical security assessments including tailgating, badge cloning, and facility access testing as part of full-scope engagements.',
+            'social': 'Yes, we perform vishing, phishing, and pretexting attacks to test human security awareness and incident response.',
+            'report': 'You receive an executive war game summary, technical attack path analysis, detection gap assessment, and prioritized remediation roadmap.',
+            'hello': 'Hello! How can I help with your red team requirements today?',
+            'hi': 'Hi there! Ready to test your defenses against advanced threats?'
+        };
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const userMsg = input.value.trim();
+                
+                // Add user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.textContent = userMsg;
+                body.appendChild(userDiv);
+                
+                input.value = '';
+                body.scrollTop = body.scrollHeight;
+                
+                // Bot response
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message bot-message';
+                    
+                    const lowerMsg = userMsg.toLowerCase();
+                    let response = 'I can help with pricing, engagement types (external/internal/purple), duration, or connect you with our team. What would you like to know?';
+                    
+                    for (const [key, value] of Object.entries(responses)) {
+                        if (lowerMsg.includes(key)) {
+                            response = value;
+                            break;
+                        }
+                    }
+                    
+                    botDiv.textContent = response;
+                    body.appendChild(botDiv);
+                    body.scrollTop = body.scrollHeight;
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

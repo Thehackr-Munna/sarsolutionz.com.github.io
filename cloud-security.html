@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Penetration Testing Services | AWS Azure GCP Security | SARSOLUTIONZ</title>
+    <meta name="description" content="Enterprise cloud penetration testing for AWS, Azure, and GCP. Real-world attack simulation, IAM privilege escalation testing, and continuous cloud security validation.">
+    <meta name="keywords" content="cloud penetration testing, AWS security assessment, Azure pentest, GCP security testing, cloud misconfiguration, IAM testing">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #00d4ff;
+            --accent-secondary: #0099cc;
+            --accent-glow: rgba(0, 212, 255, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--accent); top: -200px; right: -100px; animation: float 15s infinite ease-in-out; }
+        .orb-2 { width: 400px; height: 400px; background: var(--accent-secondary); bottom: -100px; left: -100px; animation: float 20s infinite ease-in-out reverse; }
+        .orb-3 { width: 300px; height: 300px; background: var(--accent); top: 50%; left: 30%; animation: float 18s infinite ease-in-out; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(0, 212, 255, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Desktop Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--secondary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 20px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem 0;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.3s;
+            color: var(--accent);
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1.5rem;
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Terminal */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .terminal-window {
+            width: 100%;
+            max-width: 600px;
+            background: var(--secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: terminalFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes terminalFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .terminal-header {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-dot.red { background: #ef4444; }
+        .terminal-dot.yellow { background: #f59e0b; }
+        .terminal-dot.green { background: #10b981; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            min-height: 300px;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.75rem;
+            opacity: 0;
+            animation: typeLine 0.5s forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(2) { animation-delay: 1s; }
+        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+        .terminal-line:nth-child(4) { animation-delay: 2s; }
+        .terminal-line:nth-child(5) { animation-delay: 2.5s; }
+        .terminal-line:nth-child(6) { animation-delay: 3s; }
+        .terminal-line:nth-child(7) { animation-delay: 3.5s; }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .terminal-prompt {
+            color: var(--accent);
+        }
+
+        .terminal-command {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+        }
+
+        .terminal-success {
+            color: var(--success);
+        }
+
+        .terminal-warning {
+            color: var(--warning);
+        }
+
+        .terminal-danger {
+            color: var(--danger);
+        }
+
+        /* Floating Cards */
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatCard 5s ease-in-out infinite;
+        }
+
+        .float-card-1 {
+            top: 10%;
+            right: -20px;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 20%;
+            left: -30px;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .float-card-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+        }
+
+        /* Why Cloud Pentest Section */
+        .why-cloud {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .threat-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .threat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .threat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .threat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .threat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .threat-desc {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .service-features li i {
+            color: var(--accent);
+            font-size: 0.875rem;
+        }
+
+        /* Cloud Providers Section */
+        .providers {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .provider-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .provider-tab {
+            padding: 0.875rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .provider-tab:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .provider-tab.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .provider-content {
+            display: none;
+        }
+
+        .provider-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .provider-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .provider-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .provider-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .provider-card h3 i {
+            color: var(--accent);
+        }
+
+        .provider-card ul {
+            list-style: none;
+        }
+
+        .provider-card li {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .provider-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .method-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .method-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .method-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .step-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Tools Section */
+        .tools {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.2);
+        }
+
+        .tool-card h3 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .diff-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .diff-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .diff-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .diff-card:hover .diff-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .diff-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .diff-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 204, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .cta-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Chatbot */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px var(--accent-glow);
+            z-index: 1001;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        #chatbot-launcher i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 380px;
+            max-height: 60vh;
+            background: var(--secondary);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        #chatbot-header {
+            padding: 1.25rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        #close-chat:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        #chatbot-body {
+            flex: 1;
+            padding: 1.25rem;
+            overflow-y: auto;
+            background: var(--primary);
+        }
+
+        #chatbot-body .message {
+            max-width: 85%;
+            margin-bottom: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 0.875rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #chatbot-body .bot-message {
+            background: var(--glass);
+            color: var(--text-primary);
+            border-radius: 12px 12px 12px 4px;
+            margin-right: auto;
+            border: 1px solid var(--border);
+        }
+
+        #chatbot-body .user-message {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 204, 0.2) 100%);
+            color: var(--text-primary);
+            border-radius: 12px 12px 4px 12px;
+            margin-left: auto;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        #chatbot-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            background: var(--secondary);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                order: -1;
+                height: 400px;
+            }
+            
+            .float-card {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .method-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                bottom: 90px;
+            }
+            
+            .provider-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .provider-tab {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .services-grid,
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .cta-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .terminal-window {
+                max-width: 100%;
+            }
+
+            .method-step,
+            .service-card,
+            .diff-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Additional Mobile Optimizations */
+        @media (max-width: 375px) {
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .threat-number,
+            .hero-stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            .service-card:hover,
+            .diff-card:hover,
+            .threat-card:hover {
+                transform: none;
+            }
+
+            .float-card {
+                animation: none;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#why-cloud">Why Cloud Pentest</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#providers">AWS/Azure/GCP</a></li>
+                    <li><a href="#contact" class="cta-nav">Get Assessment</a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <div class="mobile-menu-toggle">
+                    <span>Services</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                    <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
+                    <li><a href="/MobilePentest.html">Mobile Security</a></li>
+                    <li><a href="/CloudPentest.html">Cloud Security</a></li>
+                    <li><a href="/APIPentest.html">API Security</a></li>
+                    <li><a href="/Phishing.html">Social Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/About.html">About</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/getqouta.html" style="color: var(--accent);">Get Quote</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>☁️ Cloud-Native Security Testing</span>
+                </div>
+                <h1>
+                    Advanced Cloud <span class="gradient-text">Penetration Testing</span><br>
+                    AWS • Azure • GCP
+                </h1>
+                <p class="hero-description">
+                    We go beyond automated scanners to uncover critical cloud vulnerabilities: IAM privilege escalations, misconfigured storage, container escape vulnerabilities, and real-world attack paths that expose your data to sophisticated threat actors.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">$10K+</span>
+                        <span class="hero-stat-label">Avg. Cloud Breach Cost</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">65%</span>
+                        <span class="hero-stat-label">Misconfig Causes</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24h</span>
+                        <span class="hero-stat-label">Initial Access Time</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="/getqouta.html" class="btn-primary">
+                        <i class="fas fa-rocket"></i> Request Cloud Assessment
+                    </a>
+                    <a href="#methodology" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> See Methodology
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                        <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.875rem;">cloud-pentest.sh — sarsolutionz@cloud:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">aws sts get-caller-identity</span>
+                        </div>
+                        <div class="terminal-line terminal-output">
+                            <span class="terminal-danger">[CRITICAL]</span> Overprivileged IAM role detected<br>
+                            Role: ec2-admin-role<br>
+                            Permissions: iam:*, s3:*, ec2:*
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">pacu --module iam__privesc_scan</span>
+                        </div>
+                        <div class="terminal-line terminal-output">
+                            <span class="terminal-warning">[!]</span> 4 privilege escalation paths identified:<br>
+                            1. iam:PassRole + ec2:RunInstances<br>
+                            2. iam:CreateAccessKey<br>
+                            3. sts:AssumeRole on AdminRole<br>
+                            4. lambda:UpdateFunctionCode
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">python3 exploit_chain.py --target s3-bucket</span>
+                        </div>
+                        <div class="terminal-line terminal-output">
+                            <span class="terminal-success">[SUCCESS]</span> Data exfiltration simulated<br>
+                            2.4GB sensitive data exposed<br>
+                            Bucket: customer-data-prod<br>
+                            Time to compromise: 4m 32s
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">_</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="float-card float-card-1">
+                    <div class="float-card-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="float-card-text">Vulns Found</div>
+                    <div class="float-card-value">47</div>
+                </div>
+                
+                <div class="float-card float-card-2">
+                    <div class="float-card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="float-card-text">Risk Score</div>
+                    <div class="float-card-value">Critical</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-text">Trusted by Cloud-First Organizations</div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-cloud"></i>
+                    <span>AWS Partner</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-certificate"></i>
+                    <span>Azure Expert</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-server"></i>
+                    <span>GCP Specialized</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-infinity"></i>
+                    <span>CISSP/OCSP Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Cloud Pentest Section -->
+    <section id="why-cloud" class="why-cloud">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-exclamation-triangle"></i> The Cloud Risk
+                </span>
+                <h2 class="section-title">Why Cloud Penetration Testing is <span class="gradient-text">Essential</span></h2>
+                <p class="section-subtitle">Cloud environments introduce unique attack vectors that traditional security tools miss. Misconfigurations are the #1 cause of cloud breaches.</p>
+            </div>
+            
+            <div class="threat-stats">
+                <div class="threat-card reveal">
+                    <div class="threat-number">65%</div>
+                    <div class="threat-label">of Breaches</div>
+                    <div class="threat-desc">Caused by cloud misconfigurations and credential theft, not sophisticated exploits</div>
+                </div>
+                
+                <div class="threat-card reveal">
+                    <div class="threat-number">$4.5M</div>
+                    <div class="threat-label">Avg. Breach Cost</div>
+                    <div class="threat-desc">Average cost of a cloud data breach, 15% higher than on-premise breaches</div>
+                </div>
+                
+                <div class="threat-card reveal">
+                    <div class="threat-number">277</div>
+                    <div class="threat-label">Days to Identify</div>
+                    <div class="threat-desc">Average time to identify and contain a cloud breach without continuous testing</div>
+                </div>
+                
+                <div class="threat-card reveal">
+                    <div class="threat-number">99%</div>
+                    <div class="threat-label">Preventable</div>
+                    <div class="threat-desc">Of cloud misconfigurations and IAM issues are preventable with proper testing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-crosshairs"></i> Our Services
+                </span>
+                <h2 class="section-title">Comprehensive <span class="gradient-text">Cloud Security</span> Testing</h2>
+                <p class="section-subtitle">Multi-cloud penetration testing that goes beyond CIS benchmarks to find exploitable vulnerabilities in your AWS, Azure, and GCP environments.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>IAM Privilege Escalation</h3>
+                    <p>Identify dangerous permission combinations, overprivileged roles, and attack paths from low-access to admin credentials across your cloud identity infrastructure.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Role assumption chains</li>
+                        <li><i class="fas fa-check"></i> Policy evaluation</li>
+                        <li><i class="fas fa-check"></i> Cross-account access</li>
+                        <li><i class="fas fa-check"></i> Service account risks</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Storage & Data Exposure</h3>
+                    <p>Test S3 buckets, Azure Blobs, and Cloud Storage for public access, encryption gaps, and data exfiltration paths including ransomware simulation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Public bucket detection</li>
+                        <li><i class="fas fa-check"></i> Encryption at rest/transit</li>
+                        <li><i class="fas fa-check"></i> ACL & policy review</li>
+                        <li><i class="fas fa-check"></i> Data loss prevention</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Security Assessment</h3>
+                    <p>Evaluate VPC configurations, security groups, NACLs, and network segmentation for lateral movement opportunities and data exfiltration paths.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> VPC peering risks</li>
+                        <li><i class="fas fa-check"></i> Security group analysis</li>
+                        <li><i class="fas fa-check"></i> Subnet isolation</li>
+                        <li><i class="fas fa-check"></i> VPN/ExpressRoute</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Container & Kubernetes</h3>
+                    <p>Deep security testing of Docker, Kubernetes, and managed container services for escape vulnerabilities, RBAC misconfigurations, and image security.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Container escape testing</li>
+                        <li><i class="fas fa-check"></i> K8s RBAC review</li>
+                        <li><i class="fas fa-check"></i> Image scanning</li>
+                        <li><i class="fas fa-check"></i> Secrets management</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Serverless Security</h3>
+                    <p>Assess Lambda, Azure Functions, and Cloud Functions for injection vulnerabilities, privilege escalation, and event-source manipulation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Function injection</li>
+                        <li><i class="fas fa-check"></i> Event source poisoning</li>
+                        <li><i class="fas fa-check"></i> IAM execution roles</li>
+                        <li><i class="fas fa-check"></i> Cold start exploits</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Secrets & Credential Exposure</h3>
+                    <p>Hunt for hardcoded credentials in repos, exposed environment variables, and insecure secrets management across your cloud infrastructure.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> GitHub/GitLab scanning</li>
+                        <li><i class="fas fa-check"></i> Environment variable leaks</li>
+                        <li><i class="fas fa-check"></i> Key Vault assessment</li>
+                        <li><i class="fas fa-check"></i> Rotation policy review</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud Providers Section -->
+    <section id="providers" class="providers">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-cloud"></i> Multi-Cloud Expertise
+                </span>
+                <h2 class="section-title">Platform-Specific <span class="gradient-text">Security Testing</span></h2>
+                <p class="section-subtitle">Deep expertise across AWS, Azure, and GCP with platform-specific attack techniques and compliance frameworks.</p>
+            </div>
+            
+            <div class="provider-tabs reveal">
+                <button class="provider-tab active" onclick="switchTab('aws')">
+                    <i class="fab fa-aws"></i> AWS Security
+                </button>
+                <button class="provider-tab" onclick="switchTab('azure')">
+                    <i class="fab fa-microsoft"></i> Azure Security
+                </button>
+                <button class="provider-tab" onclick="switchTab('gcp')">
+                    <i class="fab fa-google"></i> GCP Security
+                </button>
+            </div>
+            
+            <div id="aws" class="provider-content active">
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h3><i class="fas fa-shield-alt"></i> IAM & Access Control</h3>
+                        <ul>
+                            <li>IAM policy evaluation and privilege escalation</li>
+                            <li>Cross-account role assumption paths</li>
+                            <li>STS token manipulation</li>
+                            <li>Service-linked role abuse</li>
+                            <li>IAM Access Analyzer bypasses</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="provider-card">
+                        <h3><i class="fas fa-database"></i> S3 & Storage</h3>
+                        <ul>
+                            <li>Bucket policy misconfigurations</li>
+                            <li>Object ACL exploitation</li>
+                            <li>S3 Block Public Access bypass</li>
+                            <li>Versioning and MFA-Delete gaps</li>
+                            <li>Cross-region replication risks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="provider-card">
+                        <h3><i class="fas fa-server"></i> Compute Services</h3>
+                        <ul>
+                            <li>EC2 instance metadata service (IMDSv1)</li>
+                            <li>Lambda privilege escalation</li>
+                            <li>ECS/EKS container escapes</li>
+                            <li>EBS snapshot exposure</li>
+                            <li>AMI sharing misconfigurations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="azure" class="provider-content">
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h3><i class="fas fa-users-cog"></i> Azure AD & IAM</h3>
+                        <ul>
+                            <li>Conditional Access bypass techniques</li>
+                            <li>Service Principal abuse</li>
+                            <li>Managed Identity escalation</li>
+                            <li>Azure AD Connect exploitation</li>
+                            <li>PIM (Privileged Identity Management) bypass</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="provider-card">
+                        <h3><i class="fas fa-hdd"></i> Storage & Databases</h3>
+                        <ul>
+                            <li>Storage Account SAS token abuse</li>
+                            <li>Blob container public access</li>
+                            <li>Azure SQL firewall rules</li>
+                            <li>Cosmos DB key exposure</li>
+                            <li>Key Vault access policies</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="provider-card">
+                        <h3><i class="fas fa-network-wired"></i> Network Security</h3>
+                        <ul>
+                            <li>Network Security Group (NSG) bypass</li>
+                            <li>Azure Firewall rule analysis</li>
+                            <li>VNet peering exploitation</li>
+                            <li>Private Endpoint misconfigurations</li>
+                            <li>Application Gateway WAF evasion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="gcp" class="provider-content">
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h3><i class="fas fa-user-lock"></i> Cloud IAM</h3>
+                        <ul>
+                            <li>Organization policy constraints</li>
+                            <li>Service account key exploitation</li>
+                            <li>Impersonation chain attacks</li>
+                            <li>Cloud Identity-Aware Proxy bypass</li>
+                            <li>Resource hierarchy escalation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="provider-card">
+                        <h3><i class="fas fa-cloud-upload-alt"></i> Cloud Storage</h3>
+                        <ul>
+                            <li>Bucket IAM policy misconfig</li>
+                            <li>Signed URL abuse</li>
+                            <li>Uniform bucket-level access gaps</li>
+                            <li>Object versioning exploits</li>
+                            <li>Retention policy bypass</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="provider-card">
+                        <h3><i class="fas fa-dharmachakra"></i> GKE & Containers</h3>
+                        <ul>
+                            <li>Pod Security Policy bypass</li>
+                            <li>Workload Identity exploitation</li>
+                            <li>GKE Sandbox escape</li>
+                            <li>Binary Authorization bypass</li>
+                            <li>Container Registry exposure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-project-diagram"></i> Our Process
+                </span>
+                <h2 class="section-title">Cloud Pentest <span class="gradient-text">Methodology</span></h2>
+                <p class="section-subtitle">A systematic approach based on industry frameworks (PTES, OWASP, CIS) combined with real-world cloud attack techniques.</p>
+            </div>
+            
+            <div class="method-timeline">
+                <div class="method-step reveal">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Discovery & Reconnaissance</h3>
+                        <p>We map your entire cloud footprint using OSINT and authenticated enumeration: account IDs, exposed services, IAM permissions, network topology, and data flows. We identify shadow resources and forgotten assets that expand your attack surface.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Configuration Review</h3>
+                        <p>Deep analysis against CIS benchmarks and cloud security baselines. We examine 200+ configuration points across IAM, networking, storage, logging, and encryption to identify deviations from security best practices.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Privilege Escalation Testing</h3>
+                        <p>Using tools like Pacu, ScoutSuite, and custom scripts, we attempt to escalate from low-privilege credentials to administrative access. We map attack paths and demonstrate the blast radius of compromised credentials.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Lateral Movement & Exploitation</h3>
+                        <p>We simulate advanced persistent threat (APT) tactics: moving between VPCs, accessing cross-account resources, compromising containers, and exfiltrating sensitive data to demonstrate real business impact.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Reporting & Remediation</h3>
+                        <p>Executive summary with business risk ratings, technical findings with proof-of-concept, prioritized remediation roadmap, and follow-up validation testing to ensure fixes are effective.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-tools"></i> Our Arsenal
+                </span>
+                <h2 class="section-title">Cloud Security <span class="gradient-text">Toolkit</span></h2>
+                <p class="section-subtitle">Proprietary tools combined with industry-standard platforms for comprehensive cloud assessment.</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Pacu</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>ScoutSuite</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Prowler</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>CloudSploit</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>Steampipe</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>CloudMapper</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Checkov</h3>
+                </div>
+                
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Custom Exploits</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="why-us">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-trophy"></i> Why SARSOLUTIONZ
+                </span>
+                <h2 class="section-title">The Cloud Security <span class="gradient-text">Advantage</span></h2>
+                <p class="section-subtitle">What separates our cloud pentesting from automated scanners and generic security firms.</p>
+            </div>
+            
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Real Attack Simulation</h3>
+                    <p>We don't just run scanners—we simulate real APT tactics, privilege escalation chains, and data exfiltration paths that automated tools miss. You get proof-of-concept demonstrations, not just theoretical vulnerabilities.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud-Native Expertise</h3>
+                    <p>Our team holds AWS Security Specialty, Azure Security Engineer, and GCP Professional Cloud Architect certifications. We understand cloud-native architectures, serverless, and container orchestration at a deep technical level.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Continuous Validation</h3>
+                    <p>Unlike point-in-time assessments, we offer continuous cloud security monitoring with automated misconfiguration detection and quarterly manual penetration testing to catch drift and new attack vectors.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Compliance Aligned</h3>
+                    <p>Our testing maps to SOC 2, ISO 27001, PCI-DSS, HIPAA, and GDPR requirements. We provide compliance gap analysis and remediation guidance that satisfies auditor scrutiny.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3>DevSecOps Integration</h3>
+                    <p>We integrate with your CI/CD pipelines, Terraform/CloudFormation workflows, and ticketing systems. Get security feedback where developers work, not PDFs that sit unread.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Remediation Support</h3>
+                    <p>We don't just find problems—we help fix them. Our reports include Infrastructure-as-Code (IaC) snippets, console walkthroughs, and dedicated remediation calls with your engineering team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-container reveal">
+            <h2>Ready to Secure Your Cloud Infrastructure?</h2>
+            <p>Join organizations that trust SARSOLUTIONZ to identify and remediate cloud vulnerabilities before attackers exploit them. Get a customized quote based on your cloud footprint and compliance requirements.</p>
+            <div class="cta-buttons">
+                <a href="/getqouta.html" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Schedule Cloud Assessment
+                </a>
+                <a href="mailto:sarsolutionz7@gmail.com" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Talk to Cloud Expert
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </a>
+                <p>Enterprise-grade cloud penetration testing for AWS, Azure, and GCP. We find the vulnerabilities that automated scanners miss.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/sar_solutionz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.youtube.com/@sarsolutionz" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Cloud Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">AWS Penetration Testing</a></li>
+                    <li><a href="#services">Azure Security Assessment</a></li>
+                    <li><a href="#services">GCP Pentesting</a></li>
+                    <li><a href="#services">Kubernetes Security</a></li>
+                    <li><a href="#services">Container Testing</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                     <li><a href="/">Home</a></li>
+                    <li><a href="/About.html">About Us</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="/Samplereports.html">Sample Reports</a></li>
+                    <li><a href="https://sarsolutionz.blogspot.com/">Blog</a></li>
+                    <!-- <li><a href="/Careers.html">Careers</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+                <p><i class="fas fa-headset"></i> 24/7 Emergency Support</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 SARSOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <!-- <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>AWS Partner</span>
+                </div> -->
+                <!-- <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>ISO 27001 Aligned</span>
+                </div> -->
+                <div class="footer-badge">
+                    <i class="fas fa-user-secret"></i>
+                    <span>NDA Protected</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot-launcher">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> Cloud Security Assistant</h3>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-body">
+            <div class="message bot-message">
+                👋 Welcome! I'm your cloud security advisor. Ask about AWS, Azure, or GCP penetration testing.
+            </div>
+        </div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Ask about cloud pentesting...">
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const mobileToggles = document.querySelectorAll('.mobile-menu-toggle');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        mobileToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                const submenu = toggle.nextElementSibling;
+                submenu.classList.toggle('active');
+            });
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.provider-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.provider-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Chatbot Toggle
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const closeBtn = document.getElementById('close-chat');
+        const input = document.getElementById('chatbot-input');
+        const body = document.getElementById('chatbot-body');
+
+        launcher.addEventListener('click', () => {
+            container.style.display = 'flex';
+            setTimeout(() => container.classList.add('active'), 10);
+            input.focus();
+        });
+
+        closeBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            setTimeout(() => container.style.display = 'none', 300);
+        });
+
+        // Chatbot Responses
+        const responses = {
+            'price': 'Cloud penetration testing starts at $8,000 for single-cloud environments. Multi-cloud and enterprise assessments are customized. Contact us for a detailed quote based on your infrastructure size.',
+            'cost': 'Cloud penetration testing starts at $8,000 for single-cloud environments. Multi-cloud and enterprise assessments are customized. Contact us for a detailed quote based on your infrastructure size.',
+            'aws': 'We offer comprehensive AWS security testing including IAM privilege escalation, S3 bucket exposure, Lambda injection, EC2 metadata exploitation, and RDS security assessment.',
+            'azure': 'Our Azure testing covers Azure AD attacks, Storage Account SAS abuse, Key Vault access, Virtual Network peering, and AKS container escapes.',
+            'gcp': 'GCP assessments include Cloud IAM escalation, Storage bucket misconfigurations, GKE security, Cloud Functions testing, and Organization policy bypasses.',
+            'kubernetes': 'We test for container escapes, privilege escalation, RBAC misconfigurations, secrets exposure, and network policy bypasses in EKS, AKS, and GKE.',
+            'container': 'Container security testing includes image scanning, runtime analysis, Docker escape, Kubernetes RBAC, and registry exposure assessment.',
+            'timeline': 'Standard cloud pentests take 2-4 weeks depending on scope: 3-5 days for reconnaissance, 5-10 days for testing, and 3-5 days for reporting.',
+            'report': 'You receive an executive summary, technical findings with PoC, risk ratings, remediation steps with IaC examples, and a remediation validation call.',
+            'hello': 'Hello! How can I help with your cloud security testing needs today?',
+            'hi': 'Hi there! Ready to secure your cloud infrastructure?'
+        };
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const userMsg = input.value.trim();
+                
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.textContent = userMsg;
+                body.appendChild(userDiv);
+                
+                input.value = '';
+                body.scrollTop = body.scrollHeight;
+                
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message bot-message';
+                    
+                    const lowerMsg = userMsg.toLowerCase();
+                    let response = 'I can help with cloud pentesting pricing, AWS/Azure/GCP testing scope, Kubernetes security, or connect you with our team. What would you like to know?';
+                    
+                    for (const [key, value] of Object.entries(responses)) {
+                        if (lowerMsg.includes(key)) {
+                            response = value;
+                            break;
+                        }
+                    }
+                    
+                    botDiv.textContent = response;
+                    body.appendChild(botDiv);
+                    body.scrollTop = body.scrollHeight;
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

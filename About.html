@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>◭ ANOMALY.DETECTED ◭</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=VT323&family=Zen+Dots&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --void: #000000;
+            --bone: #f0f0f0;
+            --rust: #8b4513;
+            --moss: #2d4a3e;
+            --ember: #ff4500;
+            --toxic: #39ff14;
+            --deep: #1a0033;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--void);
+            color: var(--bone);
+            font-family: 'VT323', monospace;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* NO SCROLLBAR - Hidden navigation */
+        ::-webkit-scrollbar { width: 0; }
+
+        /* GLITCH CANVAS BACKGROUND */
+        #glitch-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* DISTORTED TEXT */
+        .warp-text {
+            font-family: 'Major Mono Display', monospace;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            line-height: 0.8;
+            transform: scaleY(1.4);
+            filter: blur(0.5px);
+            transition: all 0.3s;
+        }
+
+        .warp-text:hover {
+            filter: blur(0);
+            letter-spacing: 0.1em;
+        }
+
+        /* ORGANIC BLOBS */
+        .organism {
+            position: absolute;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            animation: morph 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            25% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 60% 30% 60% / 50% 40% 60% 40%; }
+            75% { border-radius: 60% 40% 60% 40% / 60% 50% 40% 60%; }
+        }
+
+        /* BROKEN GRID CARDS */
+        .fracture-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .fracture-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.02) 10px,
+                rgba(255,255,255,0.02) 20px
+            );
+            animation: scan 20s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(50px,50px); }
+        }
+
+        .fracture-card:hover {
+            clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%);
+            border-color: var(--ember);
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        /* DATA CORRUPTION EFFECT */
+        .corrupt {
+            position: relative;
+            display: inline-block;
+        }
+
+        .corrupt::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: var(--ember);
+            opacity: 0;
+            animation: corrupt-anim 3s infinite;
+        }
+
+        @keyframes corrupt-anim {
+            0%, 90%, 100% { opacity: 0; transform: translate(0); }
+            92% { opacity: 0.8; transform: translate(-2px, 2px); }
+            94% { opacity: 0; transform: translate(0); }
+            96% { opacity: 0.8; transform: translate(2px, -2px); }
+        }
+
+        /* TERMINAL CURSOR TRAIL */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--toxic);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+            mix-blend-mode: difference;
+        }
+
+        /* INVERTED SECTIONS */
+        .inverted {
+            background: var(--bone);
+            color: var(--void);
+            transform: rotate(-2deg) scale(1.05);
+            margin: -5vh 0;
+            padding: 10vh 0;
+        }
+
+        .inverted > * {
+            transform: rotate(2deg);
+        }
+
+        /* RUNNING TEXT MARQUEE */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ASCII ART DECORATION */
+        .ascii-border {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to bottom, var(--rust), transparent) 1;
+            position: relative;
+        }
+
+        .ascii-border::before {
+            content: '╔══════════════════════╗';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 12px;
+            color: var(--rust);
+            white-space: pre;
+        }
+
+        /* HIDDEN REVEAL */
+        .reveal-text {
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+            transition: all 0.5s;
+        }
+
+        .reveal-text:hover {
+            color: var(--bone);
+            text-shadow: none;
+        }
+
+        /* DISTORTED TIMELINE */
+        .time-warp {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .time-node {
+            position: relative;
+            width: 80%;
+            padding: 2rem;
+            background: rgba(255,69,0,0.05);
+            border-left: 3px solid var(--ember);
+            transform: skewX(-10deg);
+            transition: all 0.5s;
+        }
+
+        .time-node:hover {
+            transform: skewX(0deg) scale(1.05);
+            background: rgba(255,69,0,0.1);
+            z-index: 10;
+        }
+
+        .time-node:nth-child(even) {
+            border-left: none;
+            border-right: 3px solid var(--ember);
+            text-align: right;
+            transform: skewX(10deg);
+        }
+
+        .time-node:nth-child(even):hover {
+            transform: skewX(0deg) scale(1.05);
+        }
+
+        /* NOISE OVERLAY */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.05;
+            z-index: 9998;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* FLOATING DEBRIS */
+        .debris {
+            position: fixed;
+            font-size: 10px;
+            color: rgba(255,255,255,0.1);
+            pointer-events: none;
+            animation: float-debris 20s linear infinite;
+        }
+
+        @keyframes float-debris {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* INTEREST GLYPHS */
+        .glyph-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .glyph {
+            aspect-ratio: 1;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+
+        .glyph::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(255,69,0,0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .glyph:hover::before {
+            opacity: 1;
+        }
+
+        .glyph:hover {
+            border-color: var(--ember);
+            z-index: 10;
+            transform: scale(1.1);
+        }
+
+        .glyph-symbol {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+
+        .glyph:hover .glyph-symbol {
+            filter: grayscale(0%);
+            transform: scale(1.2);
+        }
+
+        .glyph-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .glyph:hover .glyph-label {
+            opacity: 1;
+            color: var(--ember);
+        }
+
+        /* HIDDEN MESSAGE */
+        .hidden-layer {
+            position: absolute;
+            inset: 0;
+            background: var(--void);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .glyph:hover .hidden-layer {
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Noise & Effects -->
+    <div class="noise"></div>
+    <canvas id="glitch-canvas"></canvas>
+    
+    <!-- Floating Debris -->
+    <div class="debris" style="left: 10%; animation-delay: 0s;">01001000 01001001</div>
+    <div class="debris" style="left: 30%; animation-delay: 5s;">{void}</div>
+    <div class="debris" style="left: 60%; animation-delay: 10s;">◭◮◭◮</div>
+    <div class="debris" style="left: 85%; animation-delay: 15s;">//NULL//</div>
+
+    <!-- CURSOR TRAIL -->
+    <div id="cursor-trail" class="cursor-trail"></div>
+
+    <!-- HERO: DISTORTED REALITY -->
+    <section class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-8">
+        
+        <!-- Organic Blobs -->
+        <div class="organism w-96 h-96 bg-amber-600 top-0 left-0"></div>
+        <div class="organism w-64 h-64 bg-purple-900 bottom-0 right-0" style="animation-delay: -4s;"></div>
+        
+        <div class="relative z-10 text-center max-w-5xl">
+            <div class="mb-8 font-mono text-xs tracking-[0.5em] text-gray-500 animate-pulse">
+                [ SIGNAL DETECTED FROM UNKNOWN ORIGIN ]
+            </div>
+
+            <h1 class="warp-text text-6xl md:text-9xl mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 corrupt" data-text="ANOMALY">
+                ANOMALY
+            </h1>
+            
+            <div class="text-2xl md:text-4xl text-amber-600 font-bold tracking-widest mb-8" style="font-family: 'Zen Dots', cursive;">
+                CODEX ARCHITECT
+            </div>
+
+            <p class="max-w-2xl mx-auto text-lg md:text-xl leading-relaxed text-gray-400 mb-12 reveal-text" style="font-family: 'Major Mono Display', monospace;">
+                I do not build portfolios. I construct digital artifacts that bridge the archaeosphere and the technosphere. My code is excavated from future ruins.
+            </p>
+
+            <div class="inline-block border border-amber-600/30 px-6 py-3 text-amber-600 text-sm tracking-[0.3em]">
+                SCROLL TO DECRYPT →
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE: RUNNING DATA -->
+    <div class="marquee-container py-4 border-y border-white/10 bg-black">
+        <div class="marquee-content text-4xl md:text-6xl font-bold text-white/5 whitespace-nowrap">
+            CODING THE FUTURE FROM THE SECRETS OF THE PAST // I DO NOT JUST WRITE CODE I DECODE THE UNIVERSE // ANCIENT WISDOM MODERN TECHNOLOGY // 
+            CODING THE FUTURE FROM THE SECRETS OF THE PAST // I DO NOT JUST WRITE CODE I DECODE THE UNIVERSE // ANCIENT WISDOM MODERN TECHNOLOGY //
+        </div>
+    </div>
+
+    <!-- INVERTED: MANIFESTO -->
+    <section class="inverted">
+        <div class="max-w-4xl mx-auto px-8 py-20">
+            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-center" style="font-family: 'Zen Dots', cursive;">
+                MANIFESTO
+            </h2>
+            <div class="text-xl md:text-2xl leading-relaxed text-center space-y-6">
+                <p>I am the <span class="bg-black text-white px-2">glitch</span> in the system.</p>
+                <p>Where others see <span class="border-b-4 border-black">separation</span> between ancient and modern,</p>
+                <p>I see <span class="font-bold text-3xl">continuity</span>.</p>
+                <p class="mt-8 text-sm tracking-widest">THE ANTIKYTHERA MECHANISM WAS THE FIRST COMPUTER. I AM THE LATEST.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERESTS: GLYPH GRID -->
+    <section class="py-32 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-6xl mb-16 text-center warp-text">
+                DIMENSIONS<span class="text-amber-600">.</span>OF<span class="text-amber-600">.</span>CURIOSITY
+            </h2>
+
+            <div class="glyph-container">
+                <!-- Art -->
+                <div class="glyph">
+                    <div class="glyph-symbol">◬</div>
+                    <div class="glyph-label">ART</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">Visual languages older than words. I paint with pixels and light.</p>
+                    </div>
+                </div>
+
+                <!-- Hacking -->
+                <div class="glyph">
+                    <div class="glyph-symbol">⚡</div>
+                    <div class="glyph-label">HACK</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">Ethical infiltration. Understanding systems by breaking their assumptions.</p>
+                    </div>
+                </div>
+
+                <!-- Gaming -->
+                <div class="glyph">
+                    <div class="glyph-symbol">◈</div>
+                    <div class="glyph-label">GAME</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">Reality is a simulation. I play to understand the rules.</p>
+                    </div>
+                </div>
+
+                <!-- Cosmos -->
+                <div class="glyph">
+                    <div class="glyph-symbol">✦</div>
+                    <div class="glyph-label">COSMOS</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">The universe is the ultimate codebase. Infinite and expanding.</p>
+                    </div>
+                </div>
+
+                <!-- Future Tech -->
+                <div class="glyph">
+                    <div class="glyph-symbol">▣</div>
+                    <div class="glyph-label">FUTURE</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">AI, cybernetics, post-humanism. Building what comes next.</p>
+                    </div>
+                </div>
+
+                <!-- Ancient History -->
+                <div class="glyph">
+                    <div class="glyph-symbol">◍</div>
+                    <div class="glyph-label">ANCIENT</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">Lost civilizations hold encrypted messages for the future.</p>
+                    </div>
+                </div>
+
+                <!-- Indian Tech -->
+                <div class="glyph">
+                    <div class="glyph-symbol">🕉</div>
+                    <div class="glyph-label">VEDIC</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">Sanskrit algorithms. Ancient Indian mathematics and astronomy.</p>
+                    </div>
+                </div>
+
+                <!-- Story -->
+                <div class="glyph">
+                    <div class="glyph-symbol">✎</div>
+                    <div class="glyph-label">NARRATIVE</div>
+                    <div class="hidden-layer">
+                        <p class="text-sm">World-building. Every program is a story. Every story is a program.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE: DISTORTED -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-amber-900/10 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto px-8">
+            <h2 class="text-4xl md:text-6xl mb-20 text-center warp-text text-amber-600">
+                TEMPORAL<span class="text-white">_</span>FRACTURES
+            </h2>
+
+            <div class="time-warp">
+                <div class="time-node">
+                    <div class="text-6xl font-bold text-white/10 absolute -top-4 -left-4">01</div>
+                    <h3 class="text-2xl font-bold text-amber-600 mb-2">THE CURIOUS CHILD</h3>
+                    <p class="text-gray-400">Disassembling reality. First contact with the digital. Questions without answers.</p>
+                </div>
+
+                <div class="time-node">
+                    <div class="text-6xl font-bold text-white/10 absolute -top-4 -right-4">02</div>
+                    <h3 class="text-2xl font-bold text-amber-600 mb-2">THE EXPLORER MIND</h3>
+                    <p class="text-gray-400">Discovering ancient texts and cosmic scales. Building worlds in imagination.</p>
+                </div>
+
+                <div class="time-node">
+                    <div class="text-6xl font-bold text-white/10 absolute -top-4 -left-4">03</div>
+                    <h3 class="text-2xl font-bold text-amber-600 mb-2">THE TECH LEARNER</h3>
+                    <p class="text-gray-400">Writing first spells in code. Bridging millennia of knowledge.</p>
+                </div>
+
+                <div class="time-node">
+                    <div class="text-6xl font-bold text-white/10 absolute -top-4 -right-4">04</div>
+                    <h3 class="text-2xl font-bold text-amber-600 mb-2">THE FUTURE BUILDER</h3>
+                    <p class="text-gray-400">Architecting tomorrow. Decoding the universe. The anomaly persists.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE: MASSIVE TYPOGRAPHY -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <div class="text-[20vw] font-bold whitespace-nowrap animate-pulse">UNIVERSE</div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-8 text-center relative z-10">
+            <div class="text-amber-600 text-8xl mb-8">"</div>
+            <h2 class="text-3xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8" style="font-family: 'Zen Dots', cursive;">
+                I DON'T JUST<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-purple-600">WRITE CODE</span><br>
+                I <span class="corrupt inline-block" data-text="DECODE">DECODE</span><br>
+                THE <span class="warp-text inline-block">UNIVERSE</span>
+            </h2>
+            <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER: MINIMAL SIGNAL -->
+    <footer class="py-20 border-t border-white/10 text-center">
+        <div class="font-mono text-xs tracking-[0.5em] text-gray-600 mb-4">
+            [ TRANSMISSION COMPLETE ]
+        </div>
+        <div class="text-4xl font-bold text-white/20 mb-4">◭</div>
+        <p class="text-gray-600 text-sm">ANOMALY DETECTED // ALL RIGHTS DISSOLVED</p>
+    </footer>
+
+    <script>
+        // CURSOR TRAIL
+        const trail = document.getElementById('cursor-trail');
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateTrail() {
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+            trail.style.left = trailX - 10 + 'px';
+            trail.style.top = trailY - 10 + 'px';
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
+
+        // THREE.JS GLITCH BACKGROUND
+        const canvas = document.getElementById('glitch-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function drawGlitch() {
+            ctx.fillStyle = 'rgba(0,0,0,0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const w = Math.random() * 100;
+                const h = Math.random() * 2;
+                ctx.fillStyle = Math.random() > 0.5 ? '#ff4500' : '#1a0033';
+                ctx.fillRect(x, y, w, h);
+            }
+            
+            requestAnimationFrame(drawGlitch);
+        }
+        drawGlitch();
+
+        // SCROLL DISTORTION
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.warp-text');
+            parallax.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px) scaleY(1.4)`;
+            });
+        });
+
+        // RANDOM GLITCH TEXT
+        setInterval(() => {
+            const corrupts = document.querySelectorAll('.corrupt');
+            const random = corrupts[Math.floor(Math.random() * corrupts.length)];
+            random.style.animation = 'none';
+            setTimeout(() => {
+                random.style.animation = '';
+            }, 10);
+        }, 3000);
+    </script>
+</body>
+</html>

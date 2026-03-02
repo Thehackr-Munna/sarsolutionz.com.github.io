@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design & Development Services | Request Project Quote | SARSolutionz</title>
+    <meta name="description" content="Request custom web development, mobile app development, UI/UX design, and digital transformation services. Get a quote for your project today.">
+    <meta name="keywords" content="web development, mobile app development, UI/UX design, custom software development, digital transformation, request quote">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #ff3366;
+            --accent-secondary: #ff6b6b;
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 51, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 102, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -200px; right: -100px; animation: float 15s infinite ease-in-out; }
+        .orb-2 { width: 300px; height: 300px; background: var(--accent-secondary); bottom: -100px; left: -100px; animation: float 20s infinite ease-in-out reverse; }
+        .orb-3 { width: 200px; height: 200px; background: var(--info); top: 50%; right: 20%; animation: float 18s infinite ease-in-out; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(255, 107, 107, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--secondary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 20px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem 0;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(ellipse at top, rgba(255, 51, 102, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1.5rem;
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 51, 102, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.6); }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Selection Section */
+        .services-section {
+            padding: 4rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card.selected {
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .service-card.selected::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .service-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .service-checkbox {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .service-card.selected .service-checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .service-checkbox i {
+            color: var(--primary);
+            font-size: 0.875rem;
+            opacity: 0;
+        }
+
+        .service-card.selected .service-checkbox i {
+            opacity: 1;
+        }
+
+        /* Project Form Section */
+        .project-form-section {
+            padding: 4rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-label span {
+            color: var(--accent);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.1);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .selected-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .selected-service-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .selected-service-tag i {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .selected-service-tag i:hover {
+            color: var(--danger);
+        }
+
+        .budget-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .budget-option {
+            padding: 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .budget-option:hover {
+            border-color: var(--accent);
+        }
+
+        .budget-option.selected {
+            background: rgba(255, 51, 102, 0.1);
+            border-color: var(--accent);
+        }
+
+        .budget-option .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .budget-option .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .timeline-option {
+            padding: 1rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .timeline-option:hover {
+            border-color: var(--accent);
+        }
+
+        .timeline-option.selected {
+            background: rgba(255, 51, 102, 0.1);
+            border-color: var(--accent);
+        }
+
+        .timeline-option i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-option .time {
+            font-weight: 600;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-option .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .file-upload {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover {
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .file-upload p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload span {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Trust Indicators */
+        .trust-section {
+            padding: 3rem 5%;
+            position: relative;
+            z-index: 2;
+            background: var(--secondary);
+        }
+
+        .trust-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .trust-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--accent);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .trust-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Success Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        .modal-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .budget-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .budget-options {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .timeline-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Design&Dev.html" style="color: var(--accent);">Design & Dev</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html" class="cta-nav">Get Quote</a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <div class="mobile-menu-toggle">
+                    <span>Services</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li><a href="/Design&Dev.html">Design & Development</a></li>
+                    <li><a href="/hacking-services.html">Security Testing</a></li>
+                    <li><a href="/WebPentest.html">Web Pentesting</a></li>
+                    <li><a href="/MobilePentest.html">Mobile Security</a></li>
+                </ul>
+            </li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-code"></i>
+                Custom Development Services
+            </div>
+            <h1>
+                Build Your <span class="gradient-text">Digital Product</span><br>
+                With Expert Developers
+            </h1>
+            <p class="hero-description">
+                From concept to deployment, we deliver cutting-edge web applications, mobile apps, and digital experiences. Request a quote for your project today.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Selection Section -->
+    <section class="services-section" id="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-layer-group"></i> Our Services
+                </span>
+                <h2 class="section-title">Select Services for Your <span class="gradient-text">Project</span></h2>
+                <p class="section-subtitle">Click on the services you need. We'll customize a solution based on your requirements.</p>
+            </div>
+
+            <div class="services-grid" id="servicesGrid">
+                <!-- Service cards will be generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Request Form -->
+    <section class="project-form-section" id="request">
+        <div class="section-container">
+            <div class="form-container reveal">
+                <div class="form-header">
+                    <h2>Request Project Quote</h2>
+                    <p>Tell us about your project and we'll get back to you within 24 hours.</p>
+                </div>
+
+                <form id="projectRequestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span>*</span></label>
+                            <input type="text" class="form-input" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Work Email <span>*</span></label>
+                            <input type="email" class="form-input" name="email" placeholder="john@company.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Company Name <span>*</span></label>
+                            <input type="text" class="form-input" name="company" placeholder="Acme Corporation" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" name="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Selected Services <span>*</span></label>
+                        <div class="selected-services" id="selectedServices">
+                            <span style="color: var(--text-muted); font-size: 0.875rem;">Click on service cards above to select...</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Project Budget Range</label>
+                        <div class="budget-options">
+                            <div class="budget-option" data-budget="5k-10k">
+                                <span class="amount">$5K - $10K</span>
+                                <span class="label">Starter</span>
+                            </div>
+                            <div class="budget-option" data-budget="10k-25k">
+                                <span class="amount">$10K - $25K</span>
+                                <span class="label">Professional</span>
+                            </div>
+                            <div class="budget-option" data-budget="25k-50k">
+                                <span class="amount">$25K - $50K</span>
+                                <span class="label">Enterprise</span>
+                            </div>
+                            <div class="budget-option" data-budget="50k+">
+                                <span class="amount">$50K+</span>
+                                <span class="label">Custom</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="budget" id="selectedBudget" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Preferred Timeline</label>
+                        <div class="timeline-options">
+                            <div class="timeline-option" data-timeline="asap">
+                                <i class="fas fa-rocket"></i>
+                                <span class="time">ASAP</span>
+                                <span class="label">Rush project</span>
+                            </div>
+                            <div class="timeline-option" data-timeline="1-3months">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span class="time">1-3 Months</span>
+                                <span class="label">Standard delivery</span>
+                            </div>
+                            <div class="timeline-option" data-timeline="3-6months">
+                                <i class="fas fa-calendar-check"></i>
+                                <span class="time">3-6 Months</span>
+                                <span class="label">Complex project</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="timeline" id="selectedTimeline" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Project Description <span>*</span></label>
+                        <textarea class="form-textarea" name="description" placeholder="Describe your project requirements, goals, target audience, and any specific features you need..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Attach Files (Optional)</label>
+                        <div class="file-upload" id="fileUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop files here or click to browse</p>
+                            <span>Supports: PDF, DOC, PNG, JPG (Max 10MB)</span>
+                            <input type="file" id="fileInput" name="attachments" multiple style="display: none;" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+                        </div>
+                        <div id="fileList" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">How did you hear about us?</label>
+                        <select class="form-select" name="referral">
+                            <option value="">Select...</option>
+                            <option value="google">Google Search</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="referral">Referral</option>
+                            <option value="social">Social Media</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Project Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="trust-grid reveal">
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h4>24h Response</h4>
+                <p>Get a detailed quote within one business day</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h4>Free Consultation</h4>
+                <p>Discuss your project with our experts at no cost</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>NDA Protection</h4>
+                <p>Your ideas and data are protected by default</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <h4>Flexible Engagement</h4>
+                <p>Fixed price, hourly, or retainer models available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </a>
+                <p>Building secure, scalable digital products for forward-thinking companies. From design to deployment, we've got you covered.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://in.linkedin.com/in/rahul-thakur7" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Development</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Apps</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> API Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Security</h4>
+                <ul class="footer-links">
+                    <li><a href="/WebPentest.html"><i class="fas fa-chevron-right"></i> Web Pentesting</a></li>
+                    <li><a href="/MobilePentest.html"><i class="fas fa-chevron-right"></i> Mobile Security</a></li>
+                    <li><a href="/NetworkPentest.html"><i class="fas fa-chevron-right"></i> Network Testing</a></li>
+                    <li><a href="/Redteam.html"><i class="fas fa-chevron-right"></i> Red Teaming</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-phone"></i> +91 XXX XXX XXXX</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2024 SARSOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <div class="footer-badge">
+                    <i class="fas fa-code"></i>
+                    <span>Clean Code</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure by Design</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3>Request Received!</h3>
+            <p>Thank you for your project inquiry. Our team will review your requirements and send you a detailed proposal within 24 hours.</p>
+            <button class="modal-btn" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
+    <script>
+        // Services Data
+        const servicesData = [
+            {
+                id: 'web-dev',
+                title: 'Web Development',
+                description: 'Custom web applications built with modern frameworks like React, Angular, or Vue.js.',
+                icon: 'fa-laptop-code',
+                tags: ['React', 'Angular', 'Vue', 'Node.js']
+            },
+            {
+                id: 'mobile-dev',
+                title: 'Mobile App Development',
+                description: 'Native iOS/Android apps or cross-platform solutions with React Native or Flutter.',
+                icon: 'fa-mobile-alt',
+                tags: ['iOS', 'Android', 'React Native', 'Flutter']
+            },
+            {
+                id: 'ui-ux',
+                title: 'UI/UX Design',
+                description: 'User-centered design with wireframes, prototypes, and high-fidelity mockups.',
+                icon: 'fa-pencil-ruler',
+                tags: ['Figma', 'Adobe XD', 'Prototyping', 'Research']
+            },
+            {
+                id: 'api-dev',
+                title: 'API Development',
+                description: 'RESTful and GraphQL APIs with comprehensive documentation and security.',
+                icon: 'fa-plug',
+                tags: ['REST', 'GraphQL', 'Documentation', 'Security']
+            },
+            {
+                id: 'cloud',
+                title: 'Cloud Solutions',
+                description: 'AWS, Azure, or GCP infrastructure setup with DevOps and CI/CD pipelines.',
+                icon: 'fa-cloud',
+                tags: ['AWS', 'Azure', 'GCP', 'DevOps']
+            },
+            {
+                id: 'ecommerce',
+                title: 'E-Commerce',
+                description: 'Custom online stores with payment integration, inventory, and analytics.',
+                icon: 'fa-shopping-cart',
+                tags: ['Shopify', 'WooCommerce', 'Custom', 'Payments']
+            },
+            {
+                id: 'database',
+                title: 'Database Design',
+                description: 'Scalable database architecture with optimization and migration services.',
+                icon: 'fa-database',
+                tags: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis']
+            },
+            {
+                id: 'security',
+                title: 'Security Audit',
+                description: 'Code review and security assessment for your existing applications.',
+                icon: 'fa-shield-alt',
+                tags: ['Code Review', 'Pentest', 'Compliance', 'Audit']
+            }
+        ];
+
+        // Generate Service Cards
+        const servicesGrid = document.getElementById('servicesGrid');
+        const selectedServices = new Set();
+
+        servicesData.forEach(service => {
+            const card = document.createElement('div');
+            card.className = 'service-card reveal';
+            card.dataset.id = service.id;
+            card.innerHTML = `
+                <div class="service-checkbox">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="service-icon">
+                    <i class="fas ${service.icon}"></i>
+                </div>
+                <h3>${service.title}</h3>
+                <p>${service.description}</p>
+                <div class="service-tags">
+                    ${service.tags.map(tag => `<span class="service-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+            
+            card.addEventListener('click', () => toggleService(service.id, service.title, card));
+            servicesGrid.appendChild(card);
+        });
+
+        // Toggle Service Selection
+        function toggleService(id, title, card) {
+            if (selectedServices.has(id)) {
+                selectedServices.delete(id);
+                card.classList.remove('selected');
+            } else {
+                selectedServices.add(id);
+                card.classList.add('selected');
+            }
+            updateSelectedDisplay();
+        }
+
+        // Update Selected Services Display
+        function updateSelectedDisplay() {
+            const container = document.getElementById('selectedServices');
+            if (selectedServices.size === 0) {
+                container.innerHTML = '<span style="color: var(--text-muted); font-size: 0.875rem;">Click on service cards above to select...</span>';
+            } else {
+                container.innerHTML = Array.from(selectedServices).map(id => {
+                    const service = servicesData.find(s => s.id === id);
+                    return `
+                        <span class="selected-service-tag">
+                            ${service.title}
+                            <i class="fas fa-times" onclick="removeService('${id}')"></i>
+                        </span>
+                    `;
+                }).join('');
+            }
+        }
+
+        // Remove Service from Selection
+        function removeService(id) {
+            selectedServices.delete(id);
+            const card = document.querySelector(`[data-id="${id}"]`);
+            if (card) card.classList.remove('selected');
+            updateSelectedDisplay();
+        }
+
+        // Budget Selection
+        document.querySelectorAll('.budget-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selectedBudget').value = this.dataset.budget;
+            });
+        });
+
+        // Timeline Selection
+        document.querySelectorAll('.timeline-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.timeline-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selectedTimeline').value = this.dataset.timeline;
+            });
+        });
+
+        // File Upload
+        const fileUpload = document.getElementById('fileUpload');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        fileUpload.addEventListener('click', () => fileInput.click());
+        
+        fileUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUpload.style.borderColor = 'var(--accent)';
+            fileUpload.style.background = 'rgba(255, 51, 102, 0.05)';
+        });
+
+        fileUpload.addEventListener('dragleave', () => {
+            fileUpload.style.borderColor = 'var(--border)';
+            fileUpload.style.background = 'transparent';
+        });
+
+        fileUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUpload.style.borderColor = 'var(--border)';
+            fileUpload.style.background = 'transparent';
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            fileList.innerHTML = '';
+            Array.from(files).forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.style.cssText = 'display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: var(--primary); border-radius: 6px; margin-bottom: 0.5rem;';
+                fileItem.innerHTML = `
+                    <i class="fas fa-file" style="color: var(--accent);"></i>
+                    <span style="flex: 1; font-size: 0.875rem;">${file.name}</span>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">${(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        // Mobile Submenu Toggle
+        document.querySelectorAll('.mobile-menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                const submenu = toggle.nextElementSibling;
+                submenu.classList.toggle('active');
+            });
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Form Submission
+        document.getElementById('projectRequestForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (selectedServices.size === 0) {
+                alert('Please select at least one service.');
+                return;
+            }
+            
+            if (!document.getElementById('selectedBudget').value) {
+                alert('Please select a budget range.');
+                return;
+            }
+            
+            if (!document.getElementById('selectedTimeline').value) {
+                alert('Please select a preferred timeline.');
+                return;
+            }
+            
+            // Show success modal
+            document.getElementById('successModal').classList.add('active');
+            
+            // Reset form
+            e.target.reset();
+            selectedServices.clear();
+            document.querySelectorAll('.service-card').forEach(card => card.classList.remove('selected'));
+            document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.timeline-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById('selectedBudget').value = '';
+            document.getElementById('selectedTimeline').value = '';
+            fileList.innerHTML = '';
+            updateSelectedDisplay();
+        });
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

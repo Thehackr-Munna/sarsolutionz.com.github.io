@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLInjector Pro - Advanced SQL Injection Scanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a2530;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --info: #3498db;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--secondary), var(--info));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 16px;
+        }
+        
+        textarea {
+            min-height: 120px;
+            font-family: monospace;
+        }
+        
+        button {
+            background: linear-gradient(90deg, var(--secondary), var(--info));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        button.danger {
+            background: linear-gradient(90deg, var(--danger), var(--warning));
+        }
+        
+        button.success {
+            background: linear-gradient(90deg, var(--success), var(--info));
+        }
+        
+        button i {
+            margin-right: 8px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .results {
+            display: none;
+        }
+        
+        .result-content {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .success {
+            color: var(--success);
+        }
+        
+        .warning {
+            color: var(--warning);
+        }
+        
+        .error {
+            color: var(--danger);
+        }
+        
+        .info {
+            color: var(--info);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--info));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .tab.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .payload-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .payload-item {
+            padding: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: monospace;
+            font-size: 13px;
+        }
+        
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .vulnerability-indicator {
+            height: 10px;
+            border-radius: 5px;
+            background: var(--dark);
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .vulnerability-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--warning), var(--danger));
+        }
+        
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-database"></i> SQLInjector Pro</h1>
+            <p class="subtitle">Advanced SQL Injection Scanner with AI-Powered Detection</p>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('scan')">Scan Target</div>
+            <div class="tab" onclick="switchTab('payloads')">Payload Management</div>
+            <div class="tab" onclick="switchTab('config')">Configuration</div>
+            <div class="tab" onclick="switchTab('results')">Results</div>
+        </div>
+        
+        <div id="scan-tab" class="tab-content active">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-bullseye"></i> Target Information</h2>
+                <div class="input-group">
+                    <label for="target-url">Target URL</label>
+                    <input type="url" id="target-url" placeholder="https://example.com/login.php" value="https://testphp.vulnweb.com">
+                </div>
+                
+                <div class="input-group">
+                    <label for="http-method">HTTP Method</label>
+                    <select id="http-method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="HEAD">HEAD</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="parameters">Parameters (comma separated)</label>
+                    <input type="text" id="parameters" placeholder="id, user, category" value="id, user, category">
+                </div>
+                
+                <div class="input-group">
+                    <label for="custom-cookies">Custom Cookies</label>
+                    <input type="text" id="custom-cookies" placeholder="PHPSESSID=abc123; security=low">
+                </div>
+                
+                <div class="input-group">
+                    <label for="user-agents">User Agent</label>
+                    <select id="user-agents">
+                        <option value="random">Random</option>
+                        <option value="chrome">Chrome</option>
+                        <option value="firefox">Firefox</option>
+                        <option value="safari">Safari</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                
+                <button onclick="startScan()" class="success"><i class="fas fa-play"></i> Start Scan</button>
+                <button onclick="stopScan()" class="danger"><i class="fas fa-stop"></i> Stop Scan</button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="scan-progress"></div>
+            </div>
+            
+            <h2 class="card-title"><i class="fas fa-star"></i> Key Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-bug"></i>
+                    <h3>Multiple Detection Methods</h3>
+                    <p>Error-based, Time-based, Boolean-based, and Blind SQLi</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Intelligent vulnerability analysis with contextual recommendations</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>WAF Evasion</h3>
+                    <p>Automatic selection of tampering techniques to bypass security</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-database"></i>
+                    <h3>Database Extraction</h3>
+                    <p>Automatic data enumeration and database dumping</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="payloads-tab" class="tab-content">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-code"></i> Payload Management</h2>
+                
+                <div class="input-group">
+                    <label for="payload-type">Payload Type</label>
+                    <select id="payload-type">
+                        <option value="error-based">Error-Based</option>
+                        <option value="time-based">Time-Based</option>
+                        <option value="boolean">Boolean-Based</option>
+                        <option value="union">Union-Based</option>
+                        <option value="blind">Blind SQLi</option>
+                        <option value="all">All Types</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="custom-payload">Add Custom Payload</label>
+                    <textarea id="custom-payload" placeholder="Enter your custom SQL injection payload"></textarea>
+                </div>
+                
+                <button onclick="addPayload()"><i class="fas fa-plus"></i> Add Payload</button>
+                
+                <h3 class="card-title">Available Payloads</h3>
+                <div class="payload-list" id="payload-list">
+                    <div class="payload-item">' OR 1=1-- -</div>
+                    <div class="payload-item">" OR 1=1-- -</div>
+                    <div class="payload-item">' UNION SELECT NULL-- -</div>
+                    <div class="payload-item">' AND SLEEP(5)-- -</div>
+                    <div class="payload-item">' OR IF(1=1,SLEEP(5),0)-- -</div>
+                    <div class="payload-item">' AND EXTRACTVALUE(1,CONCAT(0x7e,(SELECT @@version),0x7e))-- -</div>
+                    <div class="payload-item">' OR (SELECT * FROM (SELECT(SLEEP(5)))a)-- -</div>
+                    <div class="payload-item">' OR 1=1 ORDER BY 1-- -</div>
+                    <div class="payload-item">' OR 1=1 LIMIT 1-- -</div>
+                    <div class="payload-item">' OR BENCHMARK(5000000,MD5('test'))-- -</div>
+                </div>
+                
+                <button onclick="clearPayloads()" class="danger"><i class="fas fa-trash"></i> Clear Payloads</button>
+                <button onclick="loadDefaultPayloads()"><i class="fas fa-sync"></i> Load Default Payloads</button>
+            </div>
+        </div>
+        
+        <div id="config-tab" class="tab-content">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-cog"></i> Scanner Configuration</h2>
+                
+                <div class="config-grid">
+                    <div class="input-group">
+                        <label for="threads">Threads</label>
+                        <input type="number" id="threads" value="10" min="1" max="50">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="timeout">Request Timeout (ms)</label>
+                        <input type="number" id="timeout" value="10000" min="1000" max="60000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="delay">Delay Between Requests (ms)</label>
+                        <input type="number" id="delay" value="100" min="0" max="5000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="retries">Retry Attempts</label>
+                        <input type="number" id="retries" value="3" min="0" max="10">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="risk-level">Risk Level</label>
+                    <select id="risk-level">
+                        <option value="1">Level 1 - Low (Fastest)</option>
+                        <option value="2">Level 2 - Medium</option>
+                        <option value="3" selected>Level 3 - High (Thorough)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>Vulnerability Sensitivity</label>
+                    <div class="vulnerability-indicator">
+                        <div class="vulnerability-level" style="width: 80%;"></div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="auto-exploit" checked>
+                        Automatically attempt exploitation
+                    </label>
+                </div>
+                
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="evasion-techniques" checked>
+                        Use WAF evasion techniques
+                    </label>
+                </div>
+                
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="deep-scan">
+                        Enable deep scanning (slower but more thorough)
+                    </label>
+                </div>
+                
+                <button onclick="saveConfig()" class="success"><i class="fas fa-save"></i> Save Configuration</button>
+            </div>
+        </div>
+        
+        <div id="results-tab" class="tab-content">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-file-alt"></i> Scan Results</h2>
+                
+                <div class="input-group">
+                    <label for="result-filter">Filter Results</label>
+                    <select id="result-filter">
+                        <option value="all">All</option>
+                        <option value="vulnerable">Vulnerable Only</option>
+                        <option value="info">Information</option>
+                        <option value="error">Errors</option>
+                    </select>
+                </div>
+                
+                <div class="result-content" id="result-content">
+                    <!-- Results will be displayed here -->
+                </div>
+                
+                <button onclick="exportResults()"><i class="fas fa-download"></i> Export Results</button>
+                <button onclick="clearResults()" class="danger"><i class="fas fa-trash"></i> Clear Results</button>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-chart-bar"></i> Vulnerability Report</h2>
+                
+                <div class="input-group">
+                    <label>SQL Injection Confidence: 96%</label>
+                    <div class="vulnerability-indicator">
+                        <div class="vulnerability-level" style="width: 96%;"></div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Risk Assessment: High</label>
+                </div>
+                
+                <div class="input-group">
+                    <label>Affected Parameters: id, user</label>
+                </div>
+                
+                <div class="input-group">
+                    <label>Database Type: MySQL 5.7+</label>
+                </div>
+                
+                <div class="input-group">
+                    <label>Recommended Fix: Use parameterized queries</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>SQLInjector Pro &copy; 2023 | Advanced SQL Injection Scanner with AI Integration</p>
+            <p>Disclaimer: This tool is for educational and authorized testing purposes only.</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelector(`.tab:nth-child(${getTabIndex(tabName)})`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+        
+        function getTabIndex(tabName) {
+            const tabs = ['scan', 'payloads', 'config', 'results'];
+            return tabs.indexOf(tabName) + 1;
+        }
+        
+        // Payload management
+        function addPayload() {
+            const payload = document.getElementById('custom-payload').value;
+            if (payload.trim() === '') return;
+            
+            const payloadList = document.getElementById('payload-list');
+            const newPayload = document.createElement('div');
+            newPayload.className = 'payload-item';
+            newPayload.textContent = payload;
+            payloadList.appendChild(newPayload);
+            
+            document.getElementById('custom-payload').value = '';
+        }
+        
+        function clearPayloads() {
+            if (confirm('Are you sure you want to clear all payloads?')) {
+                document.getElementById('payload-list').innerHTML = '';
+            }
+        }
+        
+        function loadDefaultPayloads() {
+            const defaultPayloads = [
+                "' OR 1=1-- -",
+                "\" OR 1=1-- -",
+                "' UNION SELECT NULL-- -",
+                "' AND SLEEP(5)-- -",
+                "' OR IF(1=1,SLEEP(5),0)-- -",
+                "' AND EXTRACTVALUE(1,CONCAT(0x7e,(SELECT @@version),0x7e))-- -",
+                "' OR (SELECT * FROM (SELECT(SLEEP(5)))a)-- -",
+                "' OR 1=1 ORDER BY 1-- -",
+                "' OR 1=1 LIMIT 1-- -",
+                "' OR BENCHMARK(5000000,MD5('test'))-- -"
+            ];
+            
+            const payloadList = document.getElementById('payload-list');
+            payloadList.innerHTML = '';
+            
+            defaultPayloads.forEach(payload => {
+                const payloadItem = document.createElement('div');
+                payloadItem.className = 'payload-item';
+                payloadItem.textContent = payload;
+                payloadList.appendChild(payloadItem);
+            });
+        }
+        
+        // Configuration management
+        function saveConfig() {
+            const config = {
+                threads: document.getElementById('threads').value,
+                timeout: document.getElementById('timeout').value,
+                delay: document.getElementById('delay').value,
+                retries: document.getElementById('retries').value,
+                riskLevel: document.getElementById('risk-level').value,
+                autoExploit: document.getElementById('auto-exploit').checked,
+                evasion: document.getElementById('evasion-techniques').checked,
+                deepScan: document.getElementById('deep-scan').checked
+            };
+            
+            localStorage.setItem('sqli_config', JSON.stringify(config));
+            addLog('Configuration saved successfully!', 'success');
+        }
+        
+        function loadConfig() {
+            const savedConfig = localStorage.getItem('sqli_config');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                document.getElementById('threads').value = config.threads;
+                document.getElementById('timeout').value = config.timeout;
+                document.getElementById('delay').value = config.delay;
+                document.getElementById('retries').value = config.retries;
+                document.getElementById('risk-level').value = config.riskLevel;
+                document.getElementById('auto-exploit').checked = config.autoExploit;
+                document.getElementById('evasion-techniques').checked = config.evasion;
+                document.getElementById('deep-scan').checked = config.deepScan;
+            }
+        }
+        
+        // Scan functionality
+        let scanInProgress = false;
+        
+        function startScan() {
+            if (scanInProgress) {
+                addLog('Scan is already in progress', 'warning');
+                return;
+            }
+            
+            const targetUrl = document.getElementById('target-url').value;
+            if (!targetUrl) {
+                addLog('Please enter a target URL', 'error');
+                return;
+            }
+            
+            scanInProgress = true;
+            switchTab('results');
+            
+            // Reset progress bar
+            const progressBar = document.getElementById('scan-progress');
+            progressBar.style.width = '0%';
+            
+            // Clear previous results
+            document.getElementById('result-content').innerHTML = '';
+            
+            // Simulate scan progress
+            simulateScanProgress(targetUrl);
+        }
+        
+        function stopScan() {
+            if (!scanInProgress) {
+                addLog('No scan in progress', 'warning');
+                return;
+            }
+            
+            scanInProgress = false;
+            addLog('Scan stopped by user', 'info');
+        }
+        
+        function simulateScanProgress(url) {
+            const progressBar = document.getElementById('scan-progress');
+            const resultContent = document.getElementById('result-content');
+            
+            const steps = [
+                {width: 5, message: 'Initializing SQLInjector Pro v2.3.5...', type: 'info'},
+                {width: 10, message: 'Loading payloads: 187 primary, 342 evasive', type: 'info'},
+                {width: 15, message: 'Target acquired: ' + url, type: 'info'},
+                {width: 20, message: 'Testing HTTP GET method', type: 'info'},
+                {width: 25, message: 'Analyzing parameters: id, user, category', type: 'info'},
+                {width: 30, message: 'Testing for error-based SQL injection', type: 'info'},
+                {width: 35, message: 'WARNING: Potential SQLi vulnerability found in parameter: id', type: 'warning'},
+                {width: 40, message: 'Testing for boolean-based blind SQL injection', type: 'info'},
+                {width: 45, message: 'Testing for time-based blind SQL injection', type: 'info'},
+                {width: 50, message: 'Confirming vulnerability with AI analysis...', type: 'info'},
+                {width: 60, message: 'AI analysis: High confidence SQLi vulnerability detected', type: 'success'},
+                {width: 65, message: 'Bypassing WAF protection using Unicode encoding', type: 'info'},
+                {width: 70, message: 'Attempting to extract database information', type: 'info'},
+                {width: 75, message: 'Database: testdb (MySQL 5.7.30)', type: 'success'},
+                {width: 80, message: 'Enumerating tables: users, products, categories, orders', type: 'info'},
+                {width: 85, message: 'Extracting column names from users table', type: 'info'},
+                {width: 90, message: 'SUCCESS: Retrieved 12 user records', type: 'success'},
+                {width: 95, message: 'Attempting privilege escalation', type: 'info'},
+                {width: 97, message: 'WARNING: Limited privileges - cannot escalate', type: 'warning'},
+                {width: 100, message: 'Scan completed. 1 vulnerability found!', type: 'success'}
+            ];
+            
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    if (!scanInProgress) return;
+                    
+                    progressBar.style.width = step.width + '%';
+                    addLog(step.message, step.type);
+                    
+                    if (index === steps.length - 1) {
+                        scanInProgress = false;
+                        setTimeout(() => {
+                            addFinalReport();
+                        }, 500);
+                    }
+                }, index * 800);
+            });
+        }
+        
+        function addLog(message, type) {
+            const resultContent = document.getElementById('result-content');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${type}`;
+            logEntry.innerHTML = `<span class="${type}">[${type.toUpperCase()}]</span> ${message}`;
+            resultContent.appendChild(logEntry);
+            
+            // Scroll to bottom
+            resultContent.scrollTop = resultContent.scrollHeight;
+        }
+        
+        function addFinalReport() {
+            addLog('============================================', 'info');
+            addLog('SCAN REPORT SUMMARY', 'info');
+            addLog('============================================', 'info');
+            addLog('Status: VULNERABLE', 'success');
+            addLog('Vulnerability Type: SQL Injection (Time-based blind)', 'success');
+            addLog('Affected Parameters: id', 'success');
+            addLog('Database Type: MySQL 5.7.30', 'info');
+            addLog('Current Database: testdb', 'info');
+            addLog('Current User: webapp@localhost', 'info');
+            addLog('Tables Found: users, products, categories, orders', 'info');
+            addLog('Extracted Data: 12 user records', 'info');
+            addLog('AI Confidence: 96%', 'info');
+            addLog('Risk Level: HIGH', 'error');
+            addLog('Recommended Fix: Use parameterized queries', 'info');
+            addLog('============================================', 'info');
+        }
+        
+        function exportResults() {
+            addLog('Exporting results to SQLI_Report_2023.html', 'info');
+        }
+        
+        function clearResults() {
+            if (confirm('Are you sure you want to clear all results?')) {
+                document.getElementById('result-content').innerHTML = '';
+            }
+        }
+        
+        // Initialize on load
+        window.onload = function() {
+            loadConfig();
+            loadDefaultPayloads();
+        };
+    </script>
+</body>
+</html>

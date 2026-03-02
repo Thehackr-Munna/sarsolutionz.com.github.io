@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarsolutionz Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --card: #1a1a2e;
+            --accent: #64ffda;
+            --accent-dark: #05d9a5;
+            --text: #e0e0ff;
+            --muted: #8a8a9a;
+            --success: #05d9a5;
+            --warning: #ff9a56;
+            --danger: #ff2a6d;
+            --terminal: #0aff0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        /* Chatbot Launcher */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(100, 255, 218, 0.5);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(100, 255, 218, 0.7);
+        }
+
+        #chatbot-launcher i {
+            font-size: 28px;
+            color: var(--bg);
+        }
+
+        /* Chatbot Container */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 380px;
+            max-height: 70vh;
+            background: var(--bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Chatbot Header */
+        #chatbot-header {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        #chatbot-header h3 i {
+            font-size: 18px;
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+
+        #close-chat:hover {
+            color: var(--accent);
+        }
+
+        /* Chatbot Body */
+        #chatbot-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--bg);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Messages */
+        .message {
+            max-width: 85%;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease;
+            transform-origin: bottom;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .bot-message {
+            background: var(--card);
+            color: var(--text);
+            border-radius: 8px 8px 8px 2px;
+            margin-right: auto;
+            border-left: 3px solid var(--accent);
+        }
+
+        .user-message {
+            background: rgba(100, 255, 218, 0.15);
+            color: var(--text);
+            border-radius: 8px 8px 2px 8px;
+            margin-left: auto;
+            border-right: 3px solid var(--accent);
+        }
+
+        .system-message {
+            background: rgba(5, 217, 165, 0.1);
+            color: var(--success);
+            border-radius: 8px;
+            margin: 15px auto;
+            text-align: center;
+            font-size: 13px;
+            padding: 10px;
+            border: 1px dashed var(--success);
+            max-width: 90%;
+        }
+
+        /* Chatbot Footer */
+        #chatbot-footer {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--muted);
+        }
+
+        /* Typing Indicator */
+        .typing {
+            display: inline-flex;
+            gap: 6px;
+            padding: 12px 16px;
+            background: var(--card);
+            border-radius: 8px 8px 8px 2px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--muted);
+            border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Buttons & Quick Replies */
+        .quick-reply {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-reply:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 42, 109, 0.3);
+        }
+
+        /* Service Options */
+        .service-option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            text-align: left;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .service-option:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-left-color: var(--accent);
+        }
+
+        .service-option i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .service-option.selected {
+            background: rgba(100, 255, 218, 0.1);
+            border-left-color: var(--accent);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .file-upload input {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: rgba(100, 255, 218, 0.2);
+            color: var(--accent);
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px dashed var(--accent);
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .upload-btn:hover {
+            background: rgba(100, 255, 218, 0.3);
+        }
+
+        .file-name {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Timeline Selector */
+        .timeline-selector {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .timeline-option {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-option:hover,
+        .timeline-option.selected {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--muted);
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .back-button:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                max-height: 65vh;
+            }
+            
+            #chatbot-launcher {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #chatbot-container {
+                width: 95%;
+                right: 2.5%;
+                max-height: 60vh;
+                bottom: 10px;
+            }
+            
+            #chatbot-launcher {
+                width: 45px;
+                height: 45px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            #chatbot-launcher i {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chatbot Launcher -->
+    <div id="chatbot-launcher">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> Sarsolutionz Assistant</h3>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-body"></div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Type your message...">
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const body = document.getElementById('chatbot-body');
+        const input = document.getElementById('chatbot-input');
+        const closeBtn = document.getElementById('close-chat');
+
+        // State management
+        let currentState = 'welcome';
+        let selectedService = null;
+        let formData = {
+            name: '',
+            email: '',
+            company: '',
+            serviceType: '',
+            serviceCategory: '',
+            testType: '',
+            timeline: '',
+            scope: '',
+            demoCall: '',
+            file: null
+        };
+
+        // Initialize chatbot
+        document.addEventListener('DOMContentLoaded', () => {
+            showWelcome();
+        });
+
+        // Toggle Chat
+        launcher.addEventListener('click', () => {
+            container.style.display = 'flex';
+            setTimeout(() => container.classList.add('active'), 10);
+            launcher.style.display = 'none';
+            input.focus();
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            setTimeout(() => {
+                container.style.display = 'none';
+                launcher.style.display = 'flex';
+            }, 300);
+        });
+
+        // Handle input submission
+        input.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' && input.value.trim()) {
+                const userText = input.value;
+                addMessage(userText, true);
+                input.value = '';
+
+                const typing = showTyping();
+                setTimeout(() => {
+                    typing.remove();
+                    handleResponse(userText.toLowerCase());
+                }, 1000 + (Math.random() * 1000));
+            }
+        });
+
+        // Event delegation for dynamically created elements
+        body.addEventListener('click', (e) => {
+            // Service options
+            if (e.target.classList.contains('service-option') || e.target.closest('.service-option')) {
+                const option = e.target.classList.contains('service-option') ? e.target : e.target.closest('.service-option');
+                const service = option.dataset.service;
+                const category = option.dataset.category;
+                
+                // Remove selected class from all options
+                document.querySelectorAll('.service-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                
+                // Store service selection
+                selectedService = service;
+                if (category) formData.serviceCategory = category;
+                
+                setTimeout(() => {
+                    showServiceDetails(service, category);
+                }, 500);
+            }
+            
+            // Quick replies
+            if (e.target.classList.contains('quick-reply') || e.target.closest('.quick-reply')) {
+                const reply = e.target.classList.contains('quick-reply') ? e.target : e.target.closest('.quick-reply');
+                const text = reply.textContent;
+                
+                // Hide all quick replies in this group
+                if (reply.parentNode) {
+                    reply.parentNode.querySelectorAll('.quick-reply').forEach(r => {
+                        r.style.display = 'none';
+                    });
+                }
+                
+                addMessage(text, true);
+                handleResponse(text.toLowerCase());
+            }
+            
+            // Form buttons
+            if (e.target.id === 'request-service' || e.target.closest('#request-service')) {
+                e.preventDefault();
+                showRequestForm();
+            }
+            
+            if (e.target.id === 'back-to-services' || e.target.closest('#back-to-services')) {
+                e.preventDefault();
+                showServices(formData.serviceCategory);
+            }
+            
+            if (e.target.id === 'back-from-faq' || e.target.closest('#back-from-faq')) {
+                e.preventDefault();
+                showWelcome();
+            }
+            
+            if (e.target.id === 'new-request' || e.target.closest('#new-request')) {
+                e.preventDefault();
+                resetFormData();
+                showWelcome();
+            }
+            
+            if (e.target.id === 'back-to-menu' || e.target.closest('#back-to-menu')) {
+                e.preventDefault();
+                showWelcome();
+            }
+            
+            // Timeline options
+            if (e.target.classList.contains('timeline-option') || e.target.closest('.timeline-option')) {
+                const option = e.target.classList.contains('timeline-option') ? e.target : e.target.closest('.timeline-option');
+                
+                document.querySelectorAll('.timeline-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                option.classList.add('selected');
+                formData.timeline = option.textContent;
+                
+                const hiddenInput = document.getElementById('timeline');
+                if (hiddenInput) hiddenInput.value = option.textContent;
+            }
+            
+            // Back buttons
+            if (e.target.classList.contains('back-button') || e.target.closest('.back-button')) {
+                e.preventDefault();
+                
+                if (currentState === 'service_details') {
+                    showServices(formData.serviceCategory);
+                } else if (currentState === 'services') {
+                    showMainMenu();
+                } else {
+                    showWelcome();
+                }
+            }
+        });
+
+        // File upload handling
+        body.addEventListener('change', (e) => {
+            if (e.target.id === 'appFile') {
+                const fileInput = e.target;
+                const fileNameDisplay = document.getElementById('fileName');
+                
+                if (fileInput.files.length > 0) {
+                    fileNameDisplay.textContent = fileInput.files[0].name;
+                    fileNameDisplay.style.display = 'block';
+                    formData.file = fileInput.files[0];
+                }
+            }
+        });
+
+        // Form submission
+        body.addEventListener('submit', (e) => {
+            if (e.target.id === 'pentest-form' || e.target.id === 'dev-form') {
+                e.preventDefault();
+                const form = e.target;
+                
+                // Validate form
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        field.style.borderColor = 'var(--accent)';
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    addMessage("Please fill all required fields.", false, true);
+                    return;
+                }
+
+                // Collect form data
+                formData = {
+                    ...formData,
+                    name: form.name?.value || '',
+                    email: form.email?.value || '',
+                    company: form.company?.value || '',
+                    testType: form.testType?.value || '',
+                    timeline: form.timeline?.value || '',
+                    scope: form.scope?.value || '',
+                    demoCall: form.demoCall?.value || '',
+                    file: formData.file
+                };
+
+                // Show confirmation
+                showConfirmation();
+
+                // Submit form data
+                const formDataObj = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formDataObj
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+
+        // ======================
+        // CHATBOT FUNCTIONALITY
+        // ======================
+
+        // Reset form data
+        function resetFormData() {
+            formData = {
+                name: '',
+                email: '',
+                company: '',
+                serviceType: '',
+                serviceCategory: '',
+                testType: '',
+                timeline: '',
+                scope: '',
+                demoCall: '',
+                file: null
+            };
+        }
+
+        // Add message to chat
+        function addMessage(text, isUser = false, isSystem = false) {
+            const msg = document.createElement('div');
+            
+            if (isSystem) {
+                msg.className = 'system-message';
+            } else {
+                msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            }
+
+            if (typeof text === 'string') {
+                msg.textContent = text;
+            } else {
+                msg.appendChild(text);
+            }
+
+            body.appendChild(msg);
+            scrollToBottom();
+            return msg;
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'message bot-message typing';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            body.appendChild(typing);
+            scrollToBottom();
+            return typing;
+        }
+
+        // Scroll to bottom of chat
+        function scrollToBottom() {
+            setTimeout(() => {
+                body.scrollTop = body.scrollHeight;
+            }, 50);
+        }
+
+        // Show quick reply buttons
+        function showQuickReplies(replies) {
+            const container = document.createElement('div');
+            container.style.marginTop = '10px';
+            
+            replies.forEach(reply => {
+                const btn = document.createElement('span');
+                btn.className = 'quick-reply';
+                btn.textContent = reply;
+                container.appendChild(btn);
+            });
+
+            addMessage(container, false);
+        }
+
+        // Welcome message
+        function showWelcome() {
+            currentState = 'welcome';
+            body.innerHTML = '';
+            
+            addMessage("Initializing Sarsolutionz Assistant...", false);
+            
+            setTimeout(() => {
+                addMessage("Secure connection established 🔒", false);
+                
+                setTimeout(() => {
+                    const welcomeMsg = document.createElement('div');
+                    welcomeMsg.innerHTML = `
+                    <div style="margin-bottom:10px;">Welcome to <span style="color:var(--accent);font-weight:bold;">Sarsolutionz</span> Assistant</div>
+                    <div style="font-size:13px;color:var(--muted);margin-bottom:15px;">How can we assist you today?</div>
+                    `;
+                    addMessage(welcomeMsg, false);
+                    
+                    setTimeout(() => {
+                        showMainMenu();
+                    }, 300);
+                }, 800);
+            }, 1000);
+        }
+
+        // Main menu options
+        function showMainMenu() {
+            currentState = 'main_menu';
+            
+            const menu = document.createElement('div');
+            menu.innerHTML = `
+            <div style="margin-bottom:15px;color:var(--text);">Select an option:</div>
+            <button class="btn btn-block" data-category="security">
+                <i class="fas fa-shield-alt"></i> Security Services
+            </button>
+            <button class="btn btn-block" data-category="development">
+                <i class="fas fa-code"></i> Development Services
+            </button>
+            <button class="btn btn-block">
+                <i class="fas fa-question-circle"></i> FAQ
+            </button>
+            <button class="btn btn-block">
+                <i class="fas fa-envelope"></i> Contact Us
+            </button>
+            `;
+            
+            const msg = addMessage(menu, false);
+            
+            // Add event listeners to menu options
+            setTimeout(() => {
+                msg.querySelectorAll('.btn').forEach(btn => {
+                    const category = btn.dataset.category;
+                    
+                    btn.addEventListener('click', () => {
+                        if (category) {
+                            showServices(category);
+                        } else if (btn.textContent.includes('FAQ')) {
+                            showFAQ();
+                        } else if (btn.textContent.includes('Contact')) {
+                            showContactOptions();
+                        }
+                    });
+                });
+            }, 100);
+        }
+
+        // Show services based on category
+        function showServices(category = 'security') {
+            currentState = 'services';
+            formData.serviceCategory = category;
+            
+            const services = document.createElement('div');
+            
+            if (category === 'security') {
+                services.innerHTML = `
+                <div style="margin-bottom:15px;color:var(--text);">Select a security service:</div>
+                <button class="service-option" data-service="web">
+                    <i class="fas fa-globe"></i> Web Application Pentest
+                </button>
+                <button class="service-option" data-service="api">
+                    <i class="fas fa-code"></i> API Security Testing
+                </button>
+                <button class="service-option" data-service="mobile">
+                    <i class="fas fa-mobile-alt"></i> Mobile App Pentest
+                </button>
+                <button class="service-option" data-service="network">
+                    <i class="fas fa-network-wired"></i> Network Pentest
+                </button>
+                <button class="service-option" data-service="cloud">
+                    <i class="fas fa-cloud"></i> Cloud Security Assessment
+                </button>
+                <button class="service-option" data-service="redteam">
+                    <i class="fas fa-user-secret"></i> Red Team Exercise
+                </button>
+                <button class="service-option" data-service="osint">
+                    <i class="fas fa-search"></i> OSINT Investigation
+                </button>
+                <button class="service-option" data-service="social">
+                    <i class="fas fa-mask"></i> Social Engineering
+                </button>
+                <button class="service-option" data-service="darkweb">
+                    <i class="fas fa-eye"></i> Dark Web Analysis
+                </button>
+                <div class="back-button" style="margin-top:15px;">
+                    <i class="fas fa-arrow-left"></i> Back to Main Menu
+                </div>
+                `;
+            } else {
+                // Development services
+                services.innerHTML = `
+                <div style="margin-bottom:15px;color:var(--text);">Select a development service:</div>
+                <button class="service-option" data-service="web-dev" data-category="development">
+                    <i class="fas fa-globe"></i> Web Development
+                </button>
+                <button class="service-option" data-service="mobile-dev" data-category="development">
+                    <i class="fas fa-mobile-alt"></i> Mobile Development
+                </button>
+                <button class="service-option" data-service="api-dev" data-category="development">
+                    <i class="fas fa-plug"></i> API Development
+                </button>
+                <button class="service-option" data-service="desktop-dev" data-category="development">
+                    <i class="fas fa-desktop"></i> Desktop Applications
+                </button>
+                <button class="service-option" data-service="ai-dev" data-category="development">
+                    <i class="fas fa-brain"></i> AI Applications
+                </button>
+                <button class="service-option" data-service="tools-dev" data-category="development">
+                    <i class="fas fa-tools"></i> Custom Tools
+                </button>
+                <button class="service-option" data-service="consulting" data-category="development">
+                    <i class="fas fa-chalkboard-teacher"></i> Technical Consulting
+                </button>
+                <div class="back-button" style="margin-top:15px;">
+                    <i class="fas fa-arrow-left"></i> Back to Main Menu
+                </div>
+                `;
+            }
+            
+            addMessage(services, false);
+        }
+
+        // Show service details
+        function showServiceDetails(service, category = 'security') {
+            currentState = 'service_details';
+            
+            const serviceInfo = {
+                // Security services
+                web: {
+                    title: "Web Application Pentest",
+                    desc: "Comprehensive security assessment of your web applications including OWASP Top 10 vulnerabilities, business logic flaws, and authentication bypass testing.",
+                    icon: "fa-globe"
+                },
+                api: {
+                    title: "API Security Testing",
+                    desc: "In-depth analysis of your API endpoints for security vulnerabilities including improper auth, injection flaws, and data exposure risks.",
+                    icon: "fa-code"
+                },
+                mobile: {
+                    title: "Mobile App Pentest",
+                    desc: "Security assessment for iOS and Android applications including reverse engineering, insecure storage, and communication testing.",
+                    icon: "fa-mobile-alt"
+                },
+                network: {
+                    title: "Network Pentest",
+                    desc: "Internal and external network penetration testing including firewall bypass, VLAN hopping, and privilege escalation.",
+                    icon: "fa-network-wired"
+                },
+                cloud: {
+                    title: "Cloud Security Assessment",
+                    desc: "Comprehensive review of your cloud infrastructure (AWS/Azure/GCP) for misconfigurations and security weaknesses.",
+                    icon: "fa-cloud"
+                },
+                redteam: {
+                    title: "Red Team Exercise",
+                    desc: "Simulated real-world attack scenarios to test your organization's detection and response capabilities.",
+                    icon: "fa-user-secret"
+                },
+                osint: {
+                    title: "OSINT Investigation",
+                    desc: "Open-source intelligence gathering to identify exposed sensitive information and potential attack vectors.",
+                    icon: "fa-search"
+                },
+                social: {
+                    title: "Social Engineering",
+                    desc: "Phishing, vishing, and physical security tests to evaluate employee security awareness.",
+                    icon: "fa-mask"
+                },
+                darkweb: {
+                    title: "Dark Web Analysis",
+                    desc: "Monitoring dark web channels for leaked credentials, company data, and threat intelligence.",
+                    icon: "fa-eye"
+                },
+                
+                // Development services
+                "web-dev": {
+                    title: "Web Development",
+                    desc: "Custom web applications built with modern frameworks (React, Angular, Vue) and secure backend architectures.",
+                    icon: "fa-globe"
+                },
+                "mobile-dev": {
+                    title: "Mobile Development",
+                    desc: "Native and cross-platform mobile apps (iOS/Android) with performance optimization and data security.",
+                    icon: "fa-mobile-alt"
+                },
+                "api-dev": {
+                    title: "API Development",
+                    desc: "Robust RESTful and GraphQL APIs with proper authentication, rate limiting, and encryption.",
+                    icon: "fa-plug"
+                },
+                "desktop-dev": {
+                    title: "Desktop Applications",
+                    desc: "Cross-platform desktop apps with native performance and enterprise-grade security features.",
+                    icon: "fa-desktop"
+                },
+                "ai-dev": {
+                    title: "AI Applications",
+                    desc: "Intelligent solutions leveraging machine learning, computer vision, and NLP technologies.",
+                    icon: "fa-brain"
+                },
+                "tools-dev": {
+                    title: "Custom Tools",
+                    desc: "Specialized software solutions and automation tools tailored to your business processes.",
+                    icon: "fa-tools"
+                },
+                "consulting": {
+                    title: "Technical Consulting",
+                    desc: "Expert guidance on architecture, security, and technology stack selection.",
+                    icon: "fa-chalkboard-teacher"
+                }
+            };
+
+            const details = document.createElement('div');
+            details.innerHTML = `
+            <div style="margin-bottom:15px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <i class="fas ${serviceInfo[service].icon} service-icon" style="color:var(--accent);"></i>
+                    <span style="font-weight:bold;color:var(--accent);">${serviceInfo[service].title}</span>
+                </div>
+                <div style="font-size:13px;color:var(--muted);">${serviceInfo[service].desc}</div>
+            </div>
+            `;
+
+            addMessage(details, false);
+            
+            // Store service type
+            formData.serviceType = serviceInfo[service].title;
+            
+            setTimeout(() => {
+                const options = document.createElement('div');
+                options.innerHTML = `
+                <button class="btn btn-block" style="margin-bottom:10px;" id="request-service">Request This Service</button>
+                <button class="btn btn-secondary btn-block" id="back-to-services">Back to ${category === 'security' ? 'Security' : 'Development'} Services</button>
+                `;
+
+                addMessage(options, false);
+            }, 500);
+        }
+
+        // Show request form
+        function showRequestForm() {
+            currentState = 'request_form';
+            
+            const isSecurity = formData.serviceCategory === 'security';
+            const formTitle = isSecurity ? 
+                `${formData.serviceType} Request` : 
+                `${formData.serviceType} Inquiry`;
+
+            const formContainer = document.createElement('div');
+            formContainer.innerHTML = `
+            <div style="margin-bottom:15px;color:var(--text);font-size:14px;">
+                Please provide details for your <span style="color:var(--accent);">${formData.serviceType}</span> request:
+            </div>
+
+            <form id="${isSecurity ? 'pentest' : 'dev'}-form" action="https://formsubmit.co/3a707128c82fdfe9add4b7fa321b479e" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="New ${formData.serviceType} Request">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="#">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                ${isSecurity ? `
+                <div class="form-group">
+                    <label for="testType">Type of Test</label>
+                    <select id="testType" name="testType" required>
+                        <option value="">Select...</option>
+                        <option value="Black Box">Black Box</option>
+                        <option value="White Box">White Box</option>
+                        <option value="Gray Box">Gray Box</option>
+                    </select>
+                </div>
+                ` : ''}
+
+                ${(isSecurity && selectedService === 'mobile') ? `
+                <div class="form-group">
+                    <label>Upload Application File</label>
+                    <div class="file-upload">
+                        <label class="upload-btn">
+                            <i class="fas fa-upload"></i> Choose APK/IPA File
+                            <input type="file" id="appFile" name="appFile" accept=".apk,.ipa">
+                        </label>
+                        <div class="file-name" id="fileName">No file selected</div>
+                    </div>
+                </div>
+                ` : ''}
+
+                <div class="form-group">
+                    <label>Preferred Timeline</label>
+                    <div class="timeline-selector">
+                        <div class="timeline-option" data-days="7">1 Week</div>
+                        <div class="timeline-option" data-days="14">2 Weeks</div>
+                        <div class="timeline-option" data-days="30">1 Month</div>
+                    </div>
+                    <input type="hidden" id="timeline" name="timeline" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="scope">${isSecurity ? 'Scope Details' : 'Project Details'}</label>
+                    <textarea id="scope" name="scope" placeholder="Describe what you need..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="demoCall">Schedule Call</label>
+                    <select id="demoCall" name="demoCall" required>
+                        <option value="">Select...</option>
+                        <option value="ASAP">ASAP</option>
+                        <option value="Within 3 days">Within 3 days</option>
+                        <option value="Next week">Next week</option>
+                        <option value="No call needed">No call needed</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-block" style="margin-top:20px;">Submit Request</button>
+                <button type="button" class="btn btn-secondary btn-block" id="back-to-menu">Cancel</button>
+            </form>
+            `;
+
+            addMessage(formContainer, false);
+        }
+
+        // Show confirmation
+        function showConfirmation() {
+            currentState = 'confirmation';
+            
+            const isSecurity = formData.serviceCategory === 'security';
+            const serviceType = isSecurity ? 'Security' : 'Development';
+
+            const confirmation = document.createElement('div');
+            confirmation.innerHTML = `
+            <div style="text-align:center;margin-bottom:20px;">
+                <i class="fas fa-check-circle" style="font-size:40px;color:var(--success);margin-bottom:15px;"></i>
+                <div style="font-weight:bold;margin-bottom:10px;">Request Submitted!</div>
+                <div style="font-size:13px;color:var(--muted);">
+                    Our ${serviceType} team will contact you within 24 hours about your ${formData.serviceType}.
+                </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:15px;margin-bottom:20px;">
+                <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">REQUEST SUMMARY</div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                    <span style="color:var(--muted);">Service:</span>
+                    <span>${formData.serviceType}</span>
+                </div>
+                ${isSecurity ? `
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                    <span style="color:var(--muted);">Test Type:</span>
+                    <span>${formData.testType}</span>
+                </div>
+                ` : ''}
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;">
+                    <span style="color:var(--muted);">Timeline:</span>
+                    <span>${formData.timeline}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;">
+                    <span style="color:var(--muted);">Contact:</span>
+                    <span>${formData.demoCall}</span>
+                </div>
+            </div>
+
+            <button class="btn btn-secondary btn-block" id="new-request">Start New Request</button>
+            `;
+
+            addMessage(confirmation, false);
+        }
+
+        // Show FAQ
+        function showFAQ() {
+            currentState = 'faq';
+            
+            const faqContainer = document.createElement('div');
+            faqContainer.innerHTML = `
+            <div style="margin-bottom:15px;color:var(--text);">Frequently Asked Questions:</div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">What's your response time?</div>
+                <div style="font-size:13px;color:var(--muted);">
+                    We typically respond within 24 hours for service inquiries. Emergency requests are handled immediately.
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Do you offer ongoing support?</div>
+                <div style="font-size:13px;color:var(--muted);">
+                    Yes, we offer retainer agreements for both security and development services with priority support.
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">What's your pricing model?</div>
+                <div style="font-size:13px;color:var(--muted);">
+                    Security services are typically project-based. Development services can be project-based or hourly, depending on needs.
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Do you sign NDAs?</div>
+                <div style="font-size:13px;color:var(--muted);">
+                    Absolutely. We're happy to sign NDAs before discussing any sensitive project details.
+                </div>
+            </div>
+
+            <button class="btn btn-secondary btn-block" style="margin-top:20px;" id="back-from-faq">Back to Main Menu</button>
+            `;
+
+            addMessage(faqContainer, false);
+        }
+
+        // Show contact options
+        function showContactOptions() {
+            currentState = 'contact';
+            
+            const contactContainer = document.createElement('div');
+            contactContainer.innerHTML = `
+            <div style="margin-bottom:15px;color:var(--text);">Contact Options:</div>
+
+            <div style="margin-bottom:20px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <i class="fas fa-envelope" style="color:var(--accent);"></i>
+                    <span style="font-weight:bold;">Email:</span>
+                    <span>sarsolutionz7@gmail.com</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <i class="fas fa-phone" style="color:var(--accent);"></i>
+                    <span style="font-weight:bold;">Phone:</span>
+                    <span>+91 XXXXXXXXXX</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <div style="color:var(--accent);margin-bottom:5px;font-size:14px;">Emergency Support</div>
+                <div style="font-size:13px;color:var(--muted);">
+                    For critical security incidents, contact our 24/7 response team at security@sarsolutionz.com
+                </div>
+            </div>
+
+            <button class="btn btn-block" style="margin-bottom:10px;">
+                <i class="fas fa-calendar-alt"></i> Schedule Call
+            </button>
+            <button class="btn btn-secondary btn-block" id="back-to-menu">
+                <i class="fas fa-arrow-left"></i> Back to Main Menu
+            </button>
+            `;
+
+            addMessage(contactContainer, false);
+        }
+
+        // Handle user responses
+        function handleResponse(msg) {
+            if(msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+                showWelcome();
+            }
+            else if(msg.includes('service') || msg.includes('offer') || msg.includes('explore')) {
+                showMainMenu();
+            }
+            else if(msg.includes('request') || msg.includes('need') || msg.includes('assess') || msg.includes('pentest') || msg.includes('develop')) {
+                showMainMenu();
+            }
+            else if(msg.includes('price') || msg.includes('cost')) {
+                addMessage("Our pricing depends on the service and scope:\n\n• Security assessments: $5,000-$50,000\n• Development projects: $10,000-$200,000+\n• Consulting: $150-$300/hour\n\nWould you like detailed pricing for a specific service?", false);
+                showQuickReplies(["Security pricing", "Development pricing", "No thanks"]);
+            }
+            else if(msg.includes('faq') || msg.includes('question') || msg.includes('help')) {
+                showFAQ();
+            }
+            else if(msg.includes('contact') || msg.includes('expert') || msg.includes('talk') || msg.includes('call')) {
+                showContactOptions();
+            }
+            else if(msg.includes('security') && msg.includes('pricing')) {
+                addMessage("Security service pricing:\n\n• Web/API pentest: $5,000-$15,000\n• Mobile pentest: $7,500-$20,000\n• Network pentest: $10,000-$25,000\n• Red team exercise: $15,000-$50,000\n\nWould you like to request a specific security service?", false);
+                showQuickReplies(["Request security service", "Main menu"]);
+            }
+            else if(msg.includes('development') && msg.includes('pricing')) {
+                addMessage("Development service pricing:\n\n• Web apps: $15,000-$100,000+\n• Mobile apps: $25,000-$150,000+\n• Custom APIs: $10,000-$50,000\n• AI solutions: $50,000-$200,000+\n\nWould you like to discuss a development project?", false);
+                showQuickReplies(["Request development service", "Main menu"]);
+            }
+            else if(msg.includes('no') || msg.includes('not now') || msg.includes('later')) {
+                addMessage("No problem. Feel free to reach out anytime. How else can I assist you today?", false);
+                showQuickReplies(["Services", "FAQ", "Contact"]);
+            }
+            else if(msg.includes('main') && msg.includes('menu')) {
+                showMainMenu();
+            }
+            else {
+                const responses = [
+                    "I'm not sure I understand. Could you rephrase that?",
+                    "I can help with service requests, FAQs, or connecting you with our team.",
+                    "Let me connect you with a human expert if this is beyond my capabilities.",
+                    "Would you like to browse our services or see FAQs?"
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, false);
+                showQuickReplies(["Services", "FAQ", "Contact"]);
+            }
+        }
+    </script>
+</body>
+</html>

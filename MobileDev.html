@@ -1,0 +1,3447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Premium mobile app development with transparent pricing, AI integration, and 60-day post-launch support. Native iOS/Android and cross-platform Flutter/React Native.">
+    <meta name="theme-color" content="#0a0e17">
+    
+    <title>Mobile App Development | SAR SOLUTIONZ - iOS, Android & Cross-Platform</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #00d4ff;
+            --accent-secondary: #7c3aed;
+            --accent-glow: rgba(0, 212, 255, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Fluid typography scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+            --text-4xl: clamp(2.25rem, 1.8rem + 2.25vw, 4rem);
+            
+            /* Spacing scale */
+            --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+            --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+            --space-xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+            --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Scrollbar - Webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* Firefox scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--secondary);
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .orb-1 { 
+            width: clamp(200px, 30vw, 400px); 
+            height: clamp(200px, 30vw, 400px); 
+            background: var(--accent); 
+            top: -10%; 
+            right: -5%; 
+            animation: float 15s infinite ease-in-out; 
+        }
+        .orb-2 { 
+            width: clamp(150px, 25vw, 300px); 
+            height: clamp(150px, 25vw, 300px); 
+            background: var(--accent-secondary); 
+            bottom: -5%; 
+            left: -5%; 
+            animation: float 20s infinite ease-in-out reverse; 
+        }
+        .orb-3 { 
+            width: clamp(100px, 20vw, 200px); 
+            height: clamp(100px, 20vw, 200px); 
+            background: var(--accent); 
+            top: 50%; 
+            left: 30%; 
+            animation: float 18s infinite ease-in-out; 
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-sm) 5%;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: calc(var(--space-xs) * 0.8) 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.5rem, 1vw, 0.75rem);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: clamp(35px, 5vw, 45px);
+            height: clamp(35px, 5vw, 45px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: clamp(8px, 1vw, 12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(124, 58, 237, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            list-style: none;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .desktop-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--text-sm);
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--accent);
+        }
+
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: var(--text-sm);
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+            position: relative;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .menu-toggle.active span:first-child {
+            transform: rotate(45deg) translate(5px, -5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .menu-toggle.active span:last-child {
+            transform: rotate(-45deg) translate(5px, 5px);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Navigation Panel */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85%, 400px);
+            height: 100vh;
+            background: var(--secondary);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: calc(var(--space-xl) + 60px) var(--space-lg) var(--space-lg);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .mobile-nav li {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            display: block;
+            padding: var(--space-sm) 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--accent);
+            padding-left: var(--space-sm);
+        }
+
+        .mobile-nav .cta-nav {
+            display: inline-block;
+            margin-top: var(--space-md);
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            padding: calc(80px + var(--space-lg)) 5% var(--space-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: var(--space-md);
+            animation: glow 3s infinite;
+            flex-wrap: wrap;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+            word-break: break-word;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: var(--text-sm);
+            font-family: inherit;
+            line-height: 1.5;
+            text-align: center;
+            flex: 1;
+            min-width: fit-content;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Phone Mockup with App Screens */
+        .hero-visual {
+            position: relative;
+            height: clamp(350px, 50vw, 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .phone-mockup {
+            width: clamp(260px, 35vw, 300px);
+            height: clamp(520px, 70vw, 600px);
+            background: var(--secondary);
+            border-radius: 40px;
+            border: 8px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(0deg); }
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 25px;
+            background: var(--primary);
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px);
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .feature-card:nth-child(2) { animation-delay: 0.5s; }
+        .feature-card:nth-child(3) { animation-delay: 1s; }
+        .feature-card:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .feature-title {
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating Cards */
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatCard 5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .float-card-1 {
+            top: 10%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 20%;
+            left: -10%;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-card-icon {
+            width: clamp(30px, 4vw, 40px);
+            height: clamp(30px, 4vw, 40px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        .float-card-text {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Trust Badges Section */
+        .trust-section {
+            padding: var(--space-lg) 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .trust-text {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        /* Section Base Styles */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
+            padding: 0 var(--space-sm);
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Pain Points Section - NEW */
+        .pain-points {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+            background: var(--secondary);
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .pain-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--danger), var(--warning));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .pain-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pain-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(239, 68, 68, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .pain-icon {
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            color: var(--danger);
+            margin-bottom: var(--space-md);
+            transition: var(--transition);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            flex-shrink: 0;
+        }
+
+        .pain-card:hover .pain-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+        }
+
+        .pain-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .pain-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .pain-solution {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            color: var(--success);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            padding: 0 var(--space-sm);
+        }
+
+        .service-tab {
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            white-space: nowrap;
+        }
+
+        .service-tab.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .service-tab:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .service-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .service-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .service-card-icon {
+            width: clamp(40px, 6vw, 50px);
+            height: clamp(40px, 6vw, 50px);
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-lg);
+        }
+
+        .service-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .service-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+
+        .service-card li i {
+            color: var(--accent);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        /* AI Features Section - NEW */
+        .ai-section {
+            padding: var(--space-2xl) 0;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .ai-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b, #ec4899);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .ai-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ai-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .ai-icon {
+            width: clamp(50px, 8vw, 60px);
+            height: clamp(50px, 8vw, 60px);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: #f59e0b;
+            margin-bottom: var(--space-md);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .ai-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .ai-card p {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: var(--space-lg);
+            position: relative;
+        }
+
+        .process-step {
+            position: relative;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: var(--transition);
+            z-index: 1;
+            height: 100%;
+            text-align: center;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .step-number {
+            width: clamp(50px, 8vw, 60px);
+            height: clamp(50px, 8vw, 60px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            margin: 0 auto var(--space-md);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .process-step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+        }
+
+        .step-duration {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Device Lab Section - NEW */
+        .device-lab {
+            padding: var(--space-2xl) 0;
+            background: var(--primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 100px), 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+
+        .device-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: var(--space-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .device-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .device-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .device-name {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+
+        /* Differentiators Section */
+        .diff-section {
+            padding: var(--space-2xl) 0;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .diff-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .diff-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .diff-icon {
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .diff-card:hover .diff-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .diff-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .diff-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .diff-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .diff-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .diff-features li i {
+            color: var(--success);
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            border-bottom-left-radius: 12px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .pricing-features li i {
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        .pricing-features li.not-included {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .pricing-features li.not-included i {
+            color: var(--danger);
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: var(--space-2xl) 0;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr));
+            gap: var(--space-md);
+        }
+
+        .tech-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .tech-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .tech-icon {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .tech-card:hover .tech-icon {
+            transform: scale(1.2);
+        }
+
+        .tech-card h4 {
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: var(--space-2xl) 0;
+            background: var(--primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .testimonial-stars {
+            color: var(--warning);
+            margin-bottom: var(--space-sm);
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-size: var(--text-base);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-sm);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .cta-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+            font-size: var(--text-base);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: var(--space-xl) 5% var(--space-lg);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: var(--space-xl);
+        }
+
+        .footer-brand {
+            max-width: 100%;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: var(--space-sm) 0;
+            line-height: 1.7;
+            font-size: var(--text-sm);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            word-break: break-word;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: var(--space-xl) auto 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            text-align: center;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            font-size: var(--text-lg);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Chatbot */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: calc(var(--space-lg) + 60px);
+            width: clamp(50px, 12vw, 60px);
+            height: clamp(50px, 12vw, 60px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px var(--accent-glow);
+            z-index: 1001;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: calc(var(--space-lg) + 70px);
+            right: var(--space-lg);
+            width: min(90vw, 380px);
+            max-height: 70vh;
+            background: var(--secondary);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        #chatbot-header {
+            padding: var(--space-md);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-sm);
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: var(--text-lg);
+            transition: var(--transition);
+            padding: 0.25rem;
+        }
+
+        #close-chat:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        #chatbot-body {
+            flex: 1;
+            padding: var(--space-md);
+            overflow-y: auto;
+            background: var(--primary);
+            max-height: 300px;
+        }
+
+        #chatbot-body .message {
+            max-width: 85%;
+            margin-bottom: var(--space-sm);
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: var(--text-sm);
+            animation: fadeIn 0.3s ease;
+            word-break: break-word;
+        }
+
+        #chatbot-body .bot-message {
+            background: var(--glass);
+            color: var(--text-primary);
+            border-radius: 12px 12px 12px 4px;
+            margin-right: auto;
+            border: 1px solid var(--border);
+        }
+
+        #chatbot-body .user-message {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+            color: var(--text-primary);
+            border-radius: 12px 12px 4px 12px;
+            margin-left: auto;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        #chatbot-footer {
+            padding: var(--space-sm);
+            border-top: 1px solid var(--border);
+            background: var(--secondary);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: var(--text-sm);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-xl);
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .hero-visual {
+                order: 1;
+                height: auto;
+                min-height: 350px;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .float-card {
+                display: none;
+            }
+            
+            .phone-mockup {
+                transform: scale(0.9);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                padding-top: calc(70px + var(--space-lg));
+            }
+            
+            .hero h1 {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+            }
+            
+            .phone-mockup {
+                transform: scale(0.85);
+            }
+            
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .service-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .service-tab {
+                justify-content: center;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-lg);
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+            
+            .footer-contact p {
+                justify-content: center;
+            }
+            
+            #chatbot-launcher {
+                right: var(--space-md);
+                bottom: calc(var(--space-md) + 60px);
+            }
+            
+            #chatbot-container {
+                right: var(--space-sm);
+                left: var(--space-sm);
+                width: auto;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 0.375rem 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+            
+            .phone-mockup {
+                transform: scale(0.75);
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">📱</div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul class="desktop-nav">
+                     <li><a href="/">Home</a></li>
+                    <li><a href="#pain-points">Why Clients Choose Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#ai">AI Integration</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <!-- <li><a href="#pricing">Pricing</a></li> -->
+                    <li><a href="/getqouta.html" class="cta-nav">Get Quote</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul>
+            <li><a href="#pain-points">Why Clients Choose Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#ai">AI Integration</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/getquote.html" class="cta-nav">Get Quote</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🚀 4.9/5 Client Rating • 100+ Apps Delivered</span>
+                </div>
+                <h1>
+                    Mobile Apps That <span class="gradient-text">Actually Launch</span><br>
+                    On Time, On Budget, On Every Device
+                </h1>
+                <p class="hero-description">
+                    We fix what other agencies get wrong: disappearing after launch, surprise invoices, and apps that crash on real devices. Native iOS/Android and cross-platform Flutter/React Native with AI integration and 60-day post-launch support included.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">6w</span>
+                        <span class="hero-stat-label">MVP to App Store</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">0%</span>
+                        <span class="hero-stat-label">Scope Creep</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">50+</span>
+                        <span class="hero-stat-label">Real Devices Tested</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="/getquote.html" class="btn-primary">
+                        <i class="fas fa-rocket"></i> Build Your App
+                    </a>
+                    <a href="#process" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> See Our Process
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="app-header">
+                            <div class="app-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div style="color: var(--success); font-size: 0.75rem;">
+                                <i class="fas fa-wifi"></i> 5G
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="feature-title">AI-Powered</div>
+                            <div class="feature-desc">Smart recommendations</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-title">Bank-Grade Security</div>
+                            <div class="feature-desc">Biometric auth enabled</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="feature-title">Cross-Platform</div>
+                            <div class="feature-desc">iOS + Android native</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="float-card float-card-1">
+                    <div class="float-card-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <div class="float-card-text">App Store</div>
+                    <div class="float-card-value">Ready</div>
+                </div>
+                
+                <div class="float-card float-card-2">
+                    <div class="float-card-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="float-card-text">Play Store</div>
+                    <div class="float-card-value">Ready</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-text">Trusted by Startups & Enterprises</div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Fixed-Price Guarantee</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-headset"></i>
+                    <span>60-Day Post-Launch Support</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Real Device Testing</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-brain"></i>
+                    <span>AI Integration Ready</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section id="pain-points" class="pain-points">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-exclamation-triangle"></i> The Problem
+                </span>
+                <h2 class="section-title">Why Most App Projects <span class="gradient-text">Fail Clients</span></h2>
+                <p class="section-subtitle">We've fixed the three biggest pain points in mobile development: budget surprises, post-launch abandonment, and device-specific bugs discovered too late.</p>
+            </div>
+            
+            <div class="pain-grid">
+                <div class="pain-card reveal">
+                    <div class="pain-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>The "Surprise Invoice" Problem</h3>
+                    <p>Projects quoted at $30k balloon to $50k+ by delivery. "Essential" features added mid-project without budget discussion. Maintenance costs hidden until after launch.</p>
+                    <div class="pain-solution">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Fixed-price contracts with 0% variance guarantee</span>
+                    </div>
+                </div>
+                
+                <div class="pain-card reveal">
+                    <div class="pain-icon">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h3>The Disappearing Agency</h3>
+                    <p>Agencies go silent after launch. Critical bugs languish for weeks. Updates require renegotiation. You're left with an app that crashes and no support.</p>
+                    <div class="pain-solution">
+                        <i class="fas fa-check-circle"></i>
+                        <span>60-day free support + dedicated maintenance plans</span>
+                    </div>
+                </div>
+                
+                <div class="pain-card reveal">
+                    <div class="pain-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>The "Works on My iPhone" Lie</h3>
+                    <p>Beautiful demos that crash on Android. Performance issues on older devices. Accessibility lawsuits because testing was emulator-only.</p>
+                    <div class="pain-solution">
+                        <i class="fas fa-check-circle"></i>
+                        <span>50+ physical devices tested before launch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-mobile-alt"></i> Our Services
+                </span>
+                <h2 class="section-title">Development That <span class="gradient-text">Drives Downloads</span></h2>
+                <p class="section-subtitle">From MVPs to enterprise apps, we build with App Store optimization, performance, and user retention as core requirements—not afterthoughts.</p>
+            </div>
+            
+            <div class="service-tabs reveal">
+                <button class="service-tab active" data-service="native" aria-selected="true">
+                    <i class="fas fa-mobile"></i> Native iOS/Android
+                </button>
+                <button class="service-tab" data-service="cross" aria-selected="false">
+                    <i class="fas fa-layer-group"></i> Cross-Platform
+                </button>
+                <button class="service-tab" data-service="ai" aria-selected="false">
+                    <i class="fas fa-brain"></i> AI-Powered Apps
+                </button>
+                <button class="service-tab" data-service="enterprise" aria-selected="false">
+                    <i class="fas fa-building"></i> Enterprise
+                </button>
+            </div>
+            
+            <div class="service-content active" id="native-content" role="tabpanel">
+                <div class="service-grid">
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <h3>Native iOS (Swift/SwiftUI)</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> App Store optimization (ASO)</li>
+                            <li><i class="fas fa-check"></i> Core ML & ARKit integration</li>
+                            <li><i class="fas fa-check"></i> Widget & Live Activities</li>
+                            <li><i class="fas fa-check"></i> iPad multitasking support</li>
+                            <li><i class="fas fa-check"></i> TestFlight beta distribution</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <h3>Native Android (Kotlin/Jetpack)</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Material You dynamic theming</li>
+                            <li><i class="fas fa-check"></i> Google Play Store optimization</li>
+                            <li><i class="fas fa-check"></i> Foldable & tablet support</li>
+                            <li><i class="fas fa-check"></i> Background processing optimization</li>
+                            <li><i class="fas fa-check"></i> Instant Apps for discovery</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Security & Compliance</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> OWASP MASVS compliance</li>
+                            <li><i class="fas fa-check"></i> Biometric authentication</li>
+                            <li><i class="fas fa-check"></i> Certificate pinning</li>
+                            <li><i class="fas fa-check"></i> GDPR/CCPA data handling</li>
+                            <li><i class="fas fa-check"></i> Penetration testing included</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-content" id="cross-content" role="tabpanel" hidden>
+                <div class="service-grid">
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-feather"></i>
+                            </div>
+                            <h3>Flutter Development</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Single codebase, native performance</li>
+                            <li><i class="fas fa-check"></i> Custom animations & transitions</li>
+                            <li><i class="fas fa-check"></i> Platform-specific UI adaptation</li>
+                            <li><i class="fas fa-check"></i> Firebase integration</li>
+                            <li><i class="fas fa-check"></i> 60fps guaranteed performance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <h3>React Native</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Native module integration</li>
+                            <li><i class="fas fa-check"></i> Expo & bare workflow</li>
+                            <li><i class="fas fa-check"></i> Over-the-air updates</li>
+                            <li><i class="fas fa-check"></i> Native bridge optimization</li>
+                            <li><i class="fas fa-check"></i> Hermes engine tuning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-sync"></i>
+                            </div>
+                            <h3>Migration & Modernization</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Legacy app assessment</li>
+                            <li><i class="fas fa-check"></i> Native to cross-platform migration</li>
+                            <li><i class="fas fa-check"></i> Swift/Objective-C interoperability</li>
+                            <li><i class="fas fa-check"></i> Performance benchmarking</li>
+                            <li><i class="fas fa-check"></i> Zero-downtime updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-content" id="ai-content" role="tabpanel" hidden>
+                <div class="service-grid">
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>AI Chatbots & Assistants</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> GPT-4/Claude integration</li>
+                            <li><i class="fas fa-check"></i> Voice recognition (Siri/Assistant)</li>
+                            <li><i class="fas fa-check"></i> Context-aware conversations</li>
+                            <li><i class="fas fa-check"></i> On-device ML for privacy</li>
+                            <li><i class="fas fa-check"></i> Custom training pipelines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h3>Computer Vision</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Real-time object detection</li>
+                            <li><i class="fas fa-check"></i> OCR & document scanning</li>
+                            <li><i class="fas fa-check"></i> Facial recognition & analysis</li>
+                            <li><i class="fas fa-check"></i> AR overlay integration</li>
+                            <li><i class="fas fa-check"></i> Edge AI optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Predictive Analytics</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> User behavior prediction</li>
+                            <li><i class="fas fa-check"></i> Churn prevention models</li>
+                            <li><i class="fas fa-check"></i> Personalized recommendations</li>
+                            <li><i class="fas fa-check"></i> A/B testing frameworks</li>
+                            <li><i class="fas fa-check"></i> Real-time analytics dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-content" id="enterprise-content" role="tabpanel" hidden>
+                <div class="service-grid">
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>B2B & Internal Apps</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Enterprise SSO integration</li>
+                            <li><i class="fas fa-check"></i> MDM compatibility</li>
+                            <li><i class="fas fa-check"></i> Offline-first architecture</li>
+                            <li><i class="fas fa-check"></i> Legacy system integration</li>
+                            <li><i class="fas fa-check"></i> Compliance auditing (SOC 2)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <h3>mCommerce Solutions</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Apple Pay & Google Pay</li>
+                            <li><i class="fas fa-check"></i> AR product visualization</li>
+                            <li><i class="fas fa-check"></i> Inventory management</li>
+                            <li><i class="fas fa-check"></i> Push notification campaigns</li>
+                            <li><i class="fas fa-check"></i> Conversion rate optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card reveal">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3>Healthcare & FinTech</h3>
+                        </div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> HIPAA/GDPR compliance</li>
+                            <li><i class="fas fa-check"></i> End-to-end encryption</li>
+                            <li><i class="fas fa-check"></i> Biometric authentication</li>
+                            <li><i class="fas fa-check"></i> Audit trails & logging</li>
+                            <li><i class="fas fa-check"></i> Regulatory documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Section - NEW -->
+    <section id="ai" class="ai-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-brain"></i> AI Integration
+                </span>
+                <h2 class="section-title">Apps That Get <span class="gradient-text">Smarter Over Time</span></h2>
+                <p class="section-subtitle">We integrate cutting-edge AI to create personalized, predictive, and intelligent mobile experiences that keep users engaged.</p>
+            </div>
+            
+            <div class="ai-grid">
+                <div class="ai-card reveal">
+                    <div class="ai-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Conversational AI</h3>
+                    <p>Natural language interfaces that understand context, sentiment, and user intent. From customer support bots to voice-controlled navigation.</p>
+                </div>
+                
+                <div class="ai-card reveal">
+                    <div class="ai-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Computer Vision</h3>
+                    <p>Real-time image recognition, OCR, and AR overlays. Enable users to scan, identify, and interact with the physical world through their camera.</p>
+                </div>
+                
+                <div class="ai-card reveal">
+                    <div class="ai-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Personalization Engine</h3>
+                    <p>ML models that learn user preferences and behavior to deliver tailored content, recommendations, and experiences that boost retention.</p>
+                </div>
+                
+                <div class="ai-card reveal">
+                    <div class="ai-icon">
+                        <i class="fas fa-chart-predict"></i>
+                    </div>
+                    <h3>Predictive Analytics</h3>
+                    <p>Anticipate user needs before they do. Churn prediction, next-best-action recommendations, and demand forecasting built into your app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-project-diagram"></i> How We Work
+                </span>
+                <h2 class="section-title">Transparent Process, <span class="gradient-text">Predictable Delivery</span></h2>
+                <p class="section-subtitle">No black boxes. You'll see exactly what we're building, when it's happening, and why decisions are made. Real-time updates via Slack or your preferred channel.</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step reveal">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>We map your business goals to technical requirements. User research, competitive analysis, and feature prioritization based on ROI.</p>
+                    <span class="step-duration">Week 1</span>
+                </div>
+                
+                <div class="process-step reveal">
+                    <div class="step-number">2</div>
+                    <h3>Design & Prototype</h3>
+                    <p>Interactive Figma prototypes you can test on your phone. User flow validation before we write code.</p>
+                    <span class="step-duration">Week 2</span>
+                </div>
+                
+                <div class="process-step reveal">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Bi-weekly builds you can install and test. Continuous integration with automated testing on every commit.</p>
+                    <span class="step-duration">Weeks 3-6</span>
+                </div>
+                
+                <div class="process-step reveal">
+                    <div class="step-number">4</div>
+                    <h3>Device Testing</h3>
+                    <p>Testing on 50+ physical devices across iOS and Android. Performance profiling and accessibility audits.</p>
+                    <span class="step-duration">Week 7</span>
+                </div>
+                
+                <div class="process-step reveal">
+                    <div class="step-number">5</div>
+                    <h3>Launch & Support</h3>
+                    <p>App Store submission assistance, launch monitoring, and 60 days of free bug fixes and optimizations.</p>
+                    <span class="step-duration">Week 8+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Device Lab Section - NEW -->
+    <section class="device-lab">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-mobile-alt"></i> Device Lab
+                </span>
+                <h2 class="section-title">Tested on <span class="gradient-text">Real Devices</span></h2>
+                <p class="section-subtitle">Not emulators. Not simulators. We maintain a lab of 50+ physical devices to ensure your app works perfectly for every user, on every screen size, on every OS version.</p>
+            </div>
+            
+            <div class="device-grid reveal">
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <div class="device-name">iPhone 15 Pro</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <div class="device-name">iPhone 14</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <div class="device-name">iPhone SE</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                    <div class="device-name">iPad Pro</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="device-name">Pixel 8 Pro</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="device-name">Galaxy S24</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="device-name">OnePlus 12</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                    <div class="device-name">Xiaomi 14</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-tablet-android"></i>
+                    </div>
+                    <div class="device-name">Galaxy Tab</div>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="device-name">Foldables</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="diff" class="diff-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-star"></i> Why SAR SOLUTIONZ
+                </span>
+                <h2 class="section-title">The Agency <span class="gradient-text">That Doesn't Disappear</span></h2>
+                <p class="section-subtitle">We combine technical excellence with business acumen. You get a partner who understands that an app is a means to an end—your business growth.</p>
+            </div>
+            
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Fixed-Price Guarantee</h3>
+                    <p>The price we quote is the price you pay. Period. We absorb scope risks, not you. Detailed SOWs prevent surprises.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> 0% budget variance track record</li>
+                        <li><i class="fas fa-check"></i> Change order process (rarely needed)</li>
+                        <li><i class="fas fa-check"></i> Payment tied to milestones</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>60-Day Post-Launch Support</h3>
+                    <p>Most agencies ghost you after launch. We stick around fixing bugs, optimizing performance, and helping with App Store issues—free.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Bug fixes included</li>
+                        <li><i class="fas fa-check"></i> Performance monitoring</li>
+                        <li><i class="fas fa-check"></i> App Store rejection support</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Real Device Testing</h3>
+                    <p>50+ physical devices in our lab. We find the bugs emulators miss—like the Samsung-specific crash or the iOS 15 permission issue.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> 50+ iOS & Android devices</li>
+                        <li><i class="fas fa-check"></i> OS version compatibility matrix</li>
+                        <li><i class="fas fa-check"></i> Accessibility testing (VoiceOver/TalkBack)</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Ready Architecture</h3>
+                    <p>We build with AI integration in mind from day one. Whether it's GPT-4, Core ML, or TensorFlow Lite, your app is ready to get smarter.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> ML model integration</li>
+                        <li><i class="fas fa-check"></i> Edge AI optimization</li>
+                        <li><i class="fas fa-check"></i> Privacy-preserving on-device AI</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Performance Obsessed</h3>
+                    <p>Sub-3 second cold starts. 60fps animations. Battery optimization. We profile on real devices, not just simulators.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Startup time optimization</li>
+                        <li><i class="fas fa-check"></i> Memory leak prevention</li>
+                        <li><i class="fas fa-check"></i> Network efficiency tuning</li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Business Translators</h3>
+                    <p>We explain technical trade-offs in business impact. You'll understand why we recommend React Native over Flutter for your use case.</p>
+                    <ul class="diff-features">
+                        <li><i class="fas fa-check"></i> Plain-English weekly reports</li>
+                        <li><i class="fas fa-check"></i> Strategic technology consulting</li>
+                        <li><i class="fas fa-check"></i> ROI-focused feature prioritization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <!-- <section id="pricing" class="pricing-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-tag"></i> Investment
+                </span>
+                <h2 class="section-title">Transparent <span class="gradient-text">Pricing</span></h2>
+                <p class="section-subtitle">No hidden fees, no surprises. Choose the engagement model that fits your needs. All prices include design, development, testing, and 60-day support.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">MVP Sprint</h3>
+                        <div class="pricing-price">$15,000</div>
+                        <div class="pricing-period">One-time • 6 weeks</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> iOS OR Android app</li>
+                        <li><i class="fas fa-check"></i> Up to 10 screens</li>
+                        <li><i class="fas fa-check"></i> User authentication</li>
+                        <li><i class="fas fa-check"></i> Basic API integration</li>
+                        <li><i class="fas fa-check"></i> App Store submission</li>
+                        <li><i class="fas fa-check"></i> 60-day support</li>
+                        <li class="not-included"><i class="fas fa-times"></i> AI integration</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Admin dashboard</li>
+                    </ul>
+                    <a href="/getquote.html" class="btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured reveal">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Growth Package</h3>
+                        <div class="pricing-price">$35,000</div>
+                        <div class="pricing-period">One-time • 10-12 weeks</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> iOS AND Android (cross-platform)</li>
+                        <li><i class="fas fa-check"></i> Up to 25 screens</li>
+                        <li><i class="fas fa-check"></i> Advanced animations</li>
+                        <li><i class="fas fa-check"></i> Payment integration</li>
+                        <li><i class="fas fa-check"></i> Push notifications</li>
+                        <li><i class="fas fa-check"></i> Basic AI features (chatbot)</li>
+                        <li><i class="fas fa-check"></i> Admin dashboard</li>
+                        <li><i class="fas fa-check"></i> 60-day priority support</li>
+                    </ul>
+                    <a href="/getquote.html" class="btn-primary" style="width: 100%;">Most Popular</a>
+                </div>
+                
+                <div class="pricing-card reveal">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Enterprise</h3>
+                        <div class="pricing-price">Custom</div>
+                        <div class="pricing-period">Monthly retainer</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Dedicated development team</li>
+                        <li><i class="fas fa-check"></i> Native iOS + Android</li>
+                        <li><i class="fas fa-check"></i> Advanced AI/ML integration</li>
+                        <li><i class="fas fa-check"></i> Enterprise SSO & security</li>
+                        <li><i class="fas fa-check"></i> Custom backend infrastructure</li>
+                        <li><i class="fas fa-check"></i> 24/7 support SLA</li>
+                        <li><i class="fas fa-check"></i> Quarterly strategy reviews</li>
+                        <li><i class="fas fa-check"></i> Training & documentation</li>
+                    </ul>
+                    <a href="/contact.html" class="btn-secondary" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="tech-stack">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-tools"></i> Our Stack
+                </span>
+                <h2 class="section-title">Modern <span class="gradient-text">Technologies</span></h2>
+                <p class="section-subtitle">We use battle-tested technologies that scale. No "resume-driven development"—just the right tool for your specific needs.</p>
+            </div>
+            
+            <div class="tech-grid reveal">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-swift"></i>
+                    </div>
+                    <h4>Swift</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-kotlin"></i>
+                    </div>
+                    <h4>Kotlin</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-feather"></i>
+                    </div>
+                    <h4>Flutter</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h4>React Native</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h4>Firebase</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>TensorFlow</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>AWS</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>PostgreSQL</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- <section id="testimonials" class="testimonials">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-quote-left"></i> Testimonials
+                </span>
+                <h2 class="section-title">Clients Who <span class="gradient-text">Love Working With Us</span></h2>
+                <p class="section-subtitle">Don't just take our word for it. Here's what founders and product managers say about working with SAR SOLUTIONZ.</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"They delivered exactly what was quoted—no surprises, no scope creep. The app launched on time and actually worked on my old Android phone, which our previous agency couldn't figure out."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>James Davidson</h4>
+                            <p>Founder, FitTrack App</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The 60-day support period saved us. We discovered a weird iOS 16 permission issue after launch and they fixed it same-day. Most agencies would've charged extra or ignored us."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Maria Rodriguez</h4>
+                            <p>Product Manager, HealthFirst</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"They explained why Flutter was better than React Native for our use case in business terms—development speed and maintenance costs. The app hit #1 in our category within a month."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AP</div>
+                        <div class="author-info">
+                            <h4>Alex Patel</h4>
+                            <p>CEO, ShopLocal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container reveal">
+            <h2>Ready to Build an App That Actually Works?</h2>
+            <p>Join 100+ companies who've ditched the agency runaround for transparent, reliable mobile development. Get a detailed quote within 24 hours.</p>
+            <div class="cta-buttons">
+                <a href="/getqouta.html" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Get Free Quote
+                </a>
+                <a href="mailto:sarsolutionz7@gmail.com" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">📱</div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </div>
+                <p>Transparent mobile app development for startups and enterprises. No BS, just apps that work. Based in Mumbai, serving clients globally.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/sar_solutionz" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sarsolutionz" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="/ios-development.html">iOS Development</a></li>
+                    <li><a href="/android-development.html">Android Development</a></li>
+                    <li><a href="/flutter-development.html">Flutter Apps</a></li>
+                    <li><a href="/react-native-development.html">React Native</a></li>
+                    <li><a href="/ai-integration.html">AI Integration</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/process.html">Our Process</a></li>
+                    <li><a href="/case-studies.html">Case Studies</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
+                    <li><a href="/careers.html">Careers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+                <p><i class="fas fa-headset"></i> 24/7 Emergency Support</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 SAR SOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>SOC 2 Aligned</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>NDA Protected</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Fixed-Price Guarantee</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chatbot -->
+    <button id="chatbot-launcher" aria-label="Open chat assistant">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <div id="chatbot-container" role="dialog" aria-labelledby="chatbot-header" aria-hidden="true">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-robot"></i> App Dev Assistant</h3>
+            <button id="close-chat" aria-label="Close chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbot-body">
+            <div class="message bot-message">
+                👋 Hi! I can help with mobile app development questions. Ask about pricing, timelines, Flutter vs React Native, or AI integration!
+            </div>
+        </div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Ask about app development..." aria-label="Type your message">
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+        function toggleMobileNav() {
+            const isOpen = mobileNav.classList.contains('active');
+            
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            
+            menuToggle.setAttribute('aria-expanded', !isOpen);
+            mobileNav.setAttribute('aria-hidden', isOpen);
+            
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
+
+        menuToggle.addEventListener('click', toggleMobileNav);
+        mobileNavOverlay.addEventListener('click', toggleMobileNav);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileNav();
+            });
+        });
+
+        // Service Tabs
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        const serviceContents = document.querySelectorAll('.service-content');
+
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const service = tab.dataset.service;
+                
+                serviceTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                
+                serviceContents.forEach(c => {
+                    c.classList.remove('active');
+                    c.hidden = true;
+                });
+                const activeContent = document.getElementById(`${service}-content`);
+                activeContent.classList.add('active');
+                activeContent.hidden = false;
+            });
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Chatbot Toggle
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const closeBtn = document.getElementById('close-chat');
+        const input = document.getElementById('chatbot-input');
+        const body = document.getElementById('chatbot-body');
+
+        function openChatbot() {
+            container.style.display = 'flex';
+            container.setAttribute('aria-hidden', 'false');
+            container.offsetHeight;
+            container.classList.add('active');
+            input.focus();
+        }
+
+        function closeChatbot() {
+            container.classList.remove('active');
+            container.setAttribute('aria-hidden', 'true');
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 300);
+        }
+
+        launcher.addEventListener('click', openChatbot);
+        closeBtn.addEventListener('click', closeChatbot);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && container.classList.contains('active')) {
+                closeChatbot();
+            }
+        });
+
+        // Chatbot Responses
+        const responses = {
+            'price': 'Our MVP Sprint starts at $15,000, Growth Package at $35,000, and Enterprise is custom. All include 60-day support. Want a detailed quote?',
+            'cost': 'Our MVP Sprint starts at $15,000, Growth Package at $35,000, and Enterprise is custom. All include 60-day support. Want a detailed quote?',
+            'time': 'MVPs take 6 weeks, full apps 10-12 weeks. We start within 48 hours of contract signing.',
+            'duration': 'MVPs take 6 weeks, full apps 10-12 weeks. We start within 48 hours of contract signing.',
+            'flutter': 'Flutter is great for beautiful UIs and single codebase. We recommend it for MVPs and consumer apps needing custom animations.',
+            'react native': 'React Native is ideal if you have a React web team or need specific native modules. Great for rapid development.',
+            'native': 'Native iOS/Android gives best performance and access to latest features. Recommended for complex apps or hardware integration.',
+            'ai': 'We integrate GPT-4, Core ML, and TensorFlow Lite. AI features add $5-15k depending on complexity. Want to discuss your use case?',
+            'support': '60 days of free bug fixes and optimization after launch. Most agencies charge extra or disappear—we don\'t.',
+            'device': 'We test on 50+ real devices—iPhones, Androids, tablets, foldables. No emulator-only testing here.',
+            'hello': 'Hello! Ready to build an amazing app? Ask about pricing, tech stack, or timelines!',
+            'hi': 'Hi there! How can we help with your mobile app project today?'
+        };
+
+        function addMessage(text, isUser = false) {
+            const div = document.createElement('div');
+            div.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            div.textContent = text;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const userMsg = input.value.trim();
+                addMessage(userMsg, true);
+                input.value = '';
+                
+                setTimeout(() => {
+                    const lowerMsg = userMsg.toLowerCase();
+                    let response = 'I can help with pricing, Flutter vs React Native, AI integration, or our process. What would you like to know?';
+                    
+                    for (const [key, value] of Object.entries(responses)) {
+                        if (lowerMsg.includes(key)) {
+                            response = value;
+                            break;
+                        }
+                    }
+                    
+                    addMessage(response);
+                }, 500);
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Handle resize events
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 767 && mobileNav.classList.contains('active')) {
+                    toggleMobileNav();
+                }
+            }, 250);
+        });
+    </script>
+</body>
+</html>

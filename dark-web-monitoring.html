@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Expert OSINT and Dark Web research services. Advanced threat intelligence, digital footprint analysis, and underground monitoring for enterprise security.">
+    <meta name="theme-color" content="#0a0e17">
+    
+    <title>OSINT & Dark Web Research | SAR SOLUTIONZ - Threat Intelligence</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #00d4ff;
+            --accent-secondary: #7c3aed;
+            --accent-glow: rgba(0, 212, 255, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Fluid typography scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+            --text-4xl: clamp(2.25rem, 1.8rem + 2.25vw, 4rem);
+            
+            /* Spacing scale */
+            --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+            --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+            --space-xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+            --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Scrollbar - Webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* Firefox scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--secondary);
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs - Responsive sizing */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .orb-1 { 
+            width: clamp(200px, 30vw, 400px); 
+            height: clamp(200px, 30vw, 400px); 
+            background: var(--accent); 
+            top: -10%; 
+            right: -5%; 
+            animation: float 15s infinite ease-in-out; 
+        }
+        .orb-2 { 
+            width: clamp(150px, 25vw, 300px); 
+            height: clamp(150px, 25vw, 300px); 
+            background: var(--accent-secondary); 
+            bottom: -5%; 
+            left: -5%; 
+            animation: float 20s infinite ease-in-out reverse; 
+        }
+        .orb-3 { 
+            width: clamp(100px, 20vw, 200px); 
+            height: clamp(100px, 20vw, 200px); 
+            background: var(--accent); 
+            top: 50%; 
+            left: 30%; 
+            animation: float 18s infinite ease-in-out; 
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header - Responsive */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-sm) 5%;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: calc(var(--space-xs) * 0.8) 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.5rem, 1vw, 0.75rem);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: clamp(35px, 5vw, 45px);
+            height: clamp(35px, 5vw, 45px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: clamp(8px, 1vw, 12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(124, 58, 237, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            list-style: none;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            align-items: center;
+        }
+
+        .desktop-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--text-sm);
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--accent);
+        }
+
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: var(--text-sm);
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+            position: relative;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .menu-toggle.active span:first-child {
+            transform: rotate(45deg) translate(5px, -5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .menu-toggle.active span:last-child {
+            transform: rotate(-45deg) translate(5px, 5px);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Navigation Panel */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85%, 400px);
+            height: 100vh;
+            background: var(--secondary);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: calc(var(--space-xl) + 60px) var(--space-lg) var(--space-lg);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .mobile-nav li {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            display: block;
+            padding: var(--space-sm) 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--accent);
+            padding-left: var(--space-sm);
+        }
+
+        .mobile-nav .cta-nav {
+            display: inline-block;
+            margin-top: var(--space-md);
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Hero Section - Responsive */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            padding: calc(80px + var(--space-lg)) 5% var(--space-xl);
+            position: relative;
+            z-index: 2;
+            background-image: linear-gradient(rgba(10, 14, 23, 0.9), rgba(10, 14, 23, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: var(--space-md);
+            animation: glow 3s infinite;
+            flex-wrap: wrap;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+            word-break: break-word;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: var(--text-sm);
+            font-family: inherit;
+            line-height: 1.5;
+            text-align: center;
+            flex: 1;
+            min-width: fit-content;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Intelligence Network */
+        .hero-visual {
+            position: relative;
+            height: clamp(350px, 50vw, 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .intel-viz {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intel-node {
+            position: absolute;
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
+            background: var(--glass);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            animation: nodePulse 3s infinite;
+            z-index: 10;
+        }
+
+        .intel-node.center {
+            width: clamp(80px, 12vw, 100px);
+            height: clamp(80px, 12vw, 100px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            animation: centerPulse 3s infinite;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px var(--accent-glow); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px var(--accent-glow); }
+        }
+
+        @keyframes centerPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--accent-glow); }
+            50% { transform: scale(1.1); box-shadow: 0 0 60px var(--accent-glow); }
+        }
+
+        .intel-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.3;
+            animation: dataFlow 2s infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.2; }
+        }
+
+        .threat-indicator {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--danger);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--danger);
+            animation: threatPulse 2s infinite;
+        }
+
+        @keyframes threatPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        /* Floating Cards */
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatCard 5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .float-card-1 {
+            top: 10%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 20%;
+            left: -10%;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-card-icon {
+            width: clamp(30px, 4vw, 40px);
+            height: clamp(30px, 4vw, 40px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        .float-card-text {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Trust Badges Section */
+        .trust-section {
+            padding: var(--space-lg) 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .trust-text {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        /* Section Base Styles */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
+            padding: 0 var(--space-sm);
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-xs);
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* OSINT Services Section */
+        .osint-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+            background: var(--secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .service-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .service-card > p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .service-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .service-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .service-list li i {
+            color: var(--accent);
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        /* Dark Web Section */
+        .darkweb-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .darkweb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: var(--space-lg);
+        }
+
+        .darkweb-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-top: 3px solid var(--accent);
+        }
+
+        .darkweb-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .darkweb-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .darkweb-card > p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            font-size: var(--text-sm);
+            flex-grow: 1;
+        }
+
+        .darkweb-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .darkweb-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+
+        .darkweb-card li i {
+            color: var(--accent);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: var(--space-2xl) 0;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .method-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+            position: relative;
+        }
+
+        .method-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .method-step {
+            position: relative;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: var(--transition);
+            z-index: 1;
+            height: 100%;
+        }
+
+        .method-step:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .step-number {
+            width: clamp(40px, 6vw, 50px);
+            height: clamp(40px, 6vw, 50px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            margin-bottom: var(--space-md);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            flex-shrink: 0;
+        }
+
+        .method-step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .method-step p {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+        }
+
+        /* Tools Section */
+        .tools {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr));
+            gap: var(--space-md);
+        }
+
+        .tech-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .tech-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .tech-icon {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .tech-card:hover .tech-icon {
+            transform: scale(1.2);
+        }
+
+        .tech-card h4 {
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            padding: var(--space-2xl) 0;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: clamp(50px, 8vw, 60px);
+            height: clamp(50px, 8vw, 60px);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: var(--text-sm);
+            flex-grow: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--space-2xl) 0;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(10, 14, 23, 0.9), rgba(10, 14, 23, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .cta-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+            font-size: var(--text-base);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: var(--space-xl) 5% var(--space-lg);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: var(--space-xl);
+        }
+
+        .footer-brand {
+            max-width: 100%;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: var(--space-sm) 0;
+            line-height: 1.7;
+            font-size: var(--text-sm);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            word-break: break-word;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: var(--space-xl) auto 0;
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            text-align: center;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            font-size: var(--text-lg);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Chatbot */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: calc(var(--space-lg) + 60px);
+            width: clamp(50px, 12vw, 60px);
+            height: clamp(50px, 12vw, 60px);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px var(--accent-glow);
+            z-index: 1001;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: calc(var(--space-lg) + 70px);
+            right: var(--space-lg);
+            width: min(90vw, 380px);
+            max-height: 70vh;
+            background: var(--secondary);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        #chatbot-header {
+            padding: var(--space-md);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--text-sm);
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: var(--text-lg);
+            transition: var(--transition);
+            padding: 0.25rem;
+        }
+
+        #close-chat:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        #chatbot-body {
+            flex: 1;
+            padding: var(--space-md);
+            overflow-y: auto;
+            background: var(--primary);
+            max-height: 300px;
+        }
+
+        #chatbot-body .message {
+            max-width: 85%;
+            margin-bottom: var(--space-sm);
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: var(--text-sm);
+            animation: fadeIn 0.3s ease;
+            word-break: break-word;
+        }
+
+        #chatbot-body .bot-message {
+            background: var(--glass);
+            color: var(--text-primary);
+            border-radius: 12px 12px 12px 4px;
+            margin-right: auto;
+            border: 1px solid var(--border);
+        }
+
+        #chatbot-body .user-message {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+            color: var(--text-primary);
+            border-radius: 12px 12px 4px 12px;
+            margin-left: auto;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        #chatbot-footer {
+            padding: var(--space-sm);
+            border-top: 1px solid var(--border);
+            background: var(--secondary);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: var(--text-sm);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ==================== */
+        /* RESPONSIVE BREAKPOINTS */
+        /* ==================== */
+
+        /* Tablet (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-xl);
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .hero-visual {
+                order: 1;
+                height: auto;
+                min-height: 350px;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .float-card {
+                display: none;
+            }
+            
+            .method-timeline::before {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Large (480px - 767px) */
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                padding-top: calc(70px + var(--space-lg));
+                background-attachment: scroll;
+            }
+            
+            .hero h1 {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+            }
+            
+            .hero-stats {
+                gap: var(--space-md);
+            }
+            
+            .hero-stat-number {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+            
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .trust-badges {
+                gap: var(--space-md);
+            }
+            
+            .services-grid,
+            .darkweb-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-lg);
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+            
+            .footer-links a:hover {
+                padding-left: 0;
+            }
+            
+            .footer-contact p {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #chatbot-launcher {
+                right: var(--space-md);
+                bottom: calc(var(--space-md) + 60px);
+            }
+            
+            #chatbot-container {
+                right: var(--space-sm);
+                left: var(--space-sm);
+                width: auto;
+                bottom: calc(var(--space-md) + 70px);
+            }
+            
+            .scroll-top {
+                right: var(--space-md);
+                bottom: var(--space-md);
+            }
+        }
+
+        /* Mobile Small (320px - 479px) */
+        @media (max-width: 479px) {
+            :root {
+                --space-xs: 0.375rem;
+                --space-sm: 0.75rem;
+                --space-md: 1rem;
+                --space-lg: 1.5rem;
+                --space-xl: 2rem;
+                --space-2xl: 3rem;
+            }
+            
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 0.375rem 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-description {
+                font-size: 0.9rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                padding: 0.875rem 1rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Large Desktop (1440px+) */
+        @media (min-width: 1440px) {
+            .header-container,
+            .section-container,
+            .footer-container {
+                max-width: 1600px;
+            }
+            
+            .hero-container {
+                gap: 6rem;
+            }
+        }
+
+        /* Landscape Mode Optimization */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: calc(60px + var(--space-md)) 5% var(--space-lg);
+            }
+            
+            .hero-visual {
+                height: 250px;
+            }
+            
+            .mobile-nav {
+                padding-top: 60px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .bg-grid, .orb, .chatbot, .scroll-top, .mobile-nav, .menu-toggle {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul class="desktop-nav">
+                      <li><a href="/">Home</a></li>
+                    <li><a href="#osint">OSINT Services</a></li>
+                    <li><a href="#darkweb">Dark Web</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="/getqouta.html" class="cta-nav">Get Quote</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul>
+            <li><a href="#osint">OSINT Services</a></li>
+            <li><a href="#darkweb">Dark Web</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="/Contact.html" class="cta-nav">Get Quote</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>Advanced Threat Intelligence</span>
+                </div>
+                <h1>
+                    OSINT & <span class="gradient-text">Dark Web</span><br>
+                    Research Services
+                </h1>
+                <p class="hero-description">
+                    We uncover hidden digital footprints, monitor dark web threats, and provide actionable intelligence to protect your organization from emerging cyber threats.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">30+</span>
+                        <span class="hero-stat-label">Languages</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24/7</span>
+                        <span class="hero-stat-label">Monitoring</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">Actionable Intel</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="/getqouta.html" class="btn-primary">
+                        <i class="fas fa-search"></i> Request Intelligence Report
+                    </a>
+                    <a href="#methodology" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> See Methodology
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="intel-viz">
+                    <div class="intel-node center">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="intel-node" style="top: 15%; left: 15%;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="intel-node" style="top: 15%; right: 15%;">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="intel-node" style="bottom: 25%; left: 10%;">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="intel-node" style="bottom: 25%; right: 10%;">
+                        <i class="fas fa-mask"></i>
+                    </div>
+                    
+                    <div class="threat-indicator" style="top: 30%; right: 30%;"></div>
+                    <div class="threat-indicator" style="bottom: 40%; left: 25%; animation-delay: 0.5s;"></div>
+                    
+                    <div class="float-card float-card-1">
+                        <div class="float-card-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="float-card-text">Threats Found</div>
+                        <div class="float-card-value">156</div>
+                    </div>
+                    
+                    <div class="float-card float-card-2">
+                        <div class="float-card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="float-card-text">Sources</div>
+                        <div class="float-card-value">10k+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-text">Trusted by Intelligence Communities</div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-globe"></i>
+                    <span>Global Coverage</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Former Intelligence Officers</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-language"></i>
+                    <span>30+ Languages</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-infinity"></i>
+                    <span>Continuous Monitoring</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OSINT Services Section -->
+    <section id="osint" class="osint-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-search"></i> Open Source Intelligence
+                </span>
+                <h2 class="section-title">OSINT <span class="gradient-text">Intelligence Services</span></h2>
+                <p class="section-subtitle">Comprehensive open-source intelligence gathering and analysis to map your digital footprint and identify exposed vulnerabilities.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Digital Footprint Analysis</h3>
+                    <p>Mapping your organization's exposed digital assets across the surface web to identify potential attack vectors before adversaries do.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Domain and subdomain discovery</li>
+                        <li><i class="fas fa-check"></i> Exposed credentials monitoring</li>
+                        <li><i class="fas fa-check"></i> Cloud storage scanning</li>
+                        <li><i class="fas fa-check"></i> Code repository analysis</li>
+                        <li><i class="fas fa-check"></i> Technology fingerprinting</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <h3>Threat Actor Monitoring</h3>
+                    <p>Tracking adversaries and their activities across platforms to provide early warning of potential attacks against your organization.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> APT group activity tracking</li>
+                        <li><i class="fas fa-check"></i> Cybercriminal forum monitoring</li>
+                        <li><i class="fas fa-check"></i> Emerging TTP analysis</li>
+                        <li><i class="fas fa-check"></i> Malware campaign tracking</li>
+                        <li><i class="fas fa-check"></i> Underground community infiltration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Executive Protection</h3>
+                    <p>Safeguarding high-profile individuals by monitoring their digital presence and identifying potential physical and cyber threats.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Personal information exposure assessment</li>
+                        <li><i class="fas fa-check"></i> Family member digital footprint analysis</li>
+                        <li><i class="fas fa-check"></i> Doxing prevention strategies</li>
+                        <li><i class="fas fa-check"></i> Travel security monitoring</li>
+                        <li><i class="fas fa-check"></i> Disinformation campaign detection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark Web Section -->
+    <section id="darkweb" class="darkweb-section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-mask"></i> Underground Intelligence
+                </span>
+                <h2 class="section-title">Dark Web <span class="gradient-text">Intelligence Services</span></h2>
+                <p class="section-subtitle">Monitoring underground markets, forums, and criminal ecosystems to identify threats before they impact your business.</p>
+            </div>
+            
+            <div class="darkweb-grid">
+                <div class="darkweb-card reveal">
+                    <h3>Dark Web Monitoring</h3>
+                    <p>Continuous surveillance of underground platforms where cybercriminals operate, buy, and sell stolen data and attack tools.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Tor network marketplaces</li>
+                        <li><i class="fas fa-check"></i> Private cybercrime forums</li>
+                        <li><i class="fas fa-check"></i> Carding and fraud communities</li>
+                        <li><i class="fas fa-check"></i> Ransomware-as-a-service tracking</li>
+                        <li><i class="fas fa-check"></i> Initial access broker monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="darkweb-card reveal">
+                    <h3>Data Leak Monitoring</h3>
+                    <p>Identifying compromised organizational data before it's weaponized by threat actors or exposed to the public.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Credential leak detection</li>
+                        <li><i class="fas fa-check"></i> Database breach monitoring</li>
+                        <li><i class="fas fa-check"></i> Pastebin and dump site scanning</li>
+                        <li><i class="fas fa-check"></i> Source code leak detection</li>
+                        <li><i class="fas fa-check"></i> Sensitive document monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="darkweb-card reveal">
+                    <h3>Brand Protection</h3>
+                    <p>Detecting threats to your organization's reputation and intellectual property across the dark web and criminal ecosystems.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Counterfeit product monitoring</li>
+                        <li><i class="fas fa-check"></i> Phishing kit detection</li>
+                        <li><i class="fas fa-check"></i> Brand impersonation tracking</li>
+                        <li><i class="fas fa-check"></i> Fraudulent domain detection</li>
+                        <li><i class="fas fa-check"></i> Reputation attack early warning</li>
+                    </ul>
+                </div>
+                
+                <div class="darkweb-card reveal">
+                    <h3>Threat Intelligence Feeds</h3>
+                    <p>Actionable intelligence delivered directly to your security team for proactive defense and incident response.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Custom IOCs (Indicators of Compromise)</li>
+                        <li><i class="fas fa-check"></i> Threat actor profiling</li>
+                        <li><i class="fas fa-check"></i> Emerging campaign alerts</li>
+                        <li><i class="fas fa-check"></i> Vulnerability exploit monitoring</li>
+                        <li><i class="fas fa-check"></i> SIEM/SOAR integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-project-diagram"></i> Our Process
+                </span>
+                <h2 class="section-title">Intelligence <span class="gradient-text">Methodology</span></h2>
+                <p class="section-subtitle">A structured approach to gathering and analyzing threat intelligence based on national intelligence standards.</p>
+            </div>
+            
+            <div class="method-timeline">
+                <div class="method-step reveal">
+                    <div class="step-number">1</div>
+                    <h3>Requirements Definition</h3>
+                    <p>We work with you to define intelligence requirements (IRs) based on your specific security concerns, industry threats, and organizational risk profile.</p>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">2</div>
+                    <h3>Collection</h3>
+                    <p>Using automated and manual techniques, we gather data from thousands of sources including surface web, deep web, dark web, and proprietary datasets.</p>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">3</div>
+                    <h3>Processing</h3>
+                    <p>Raw data is normalized, enriched with context, and analyzed using natural language processing and machine learning to filter noise.</p>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">4</div>
+                    <h3>Analysis</h3>
+                    <p>Our analysts apply structured analytical techniques to identify patterns, assess credibility, and predict future threat developments.</p>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">5</div>
+                    <h3>Dissemination</h3>
+                    <p>Intelligence is delivered in formats tailored to different stakeholders - from technical feeds for SOC teams to executive briefings.</p>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">6</div>
+                    <h3>Feedback & Iteration</h3>
+                    <p>We continuously refine our collection and analysis based on your feedback and the changing threat landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-tools"></i> Our Arsenal
+                </span>
+                <h2 class="section-title">Professional <span class="gradient-text">Tooling</span></h2>
+                <p class="section-subtitle">Advanced tools and proprietary systems for comprehensive intelligence gathering and analysis.</p>
+            </div>
+            
+            <div class="tech-grid reveal">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4>Maltego</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-spider"></i>
+                    </div>
+                    <h4>SpiderFoot</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4>Custom Bots</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>Elastic Stack</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>AI Analysis</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-torii-gate"></i>
+                    </div>
+                    <h4>Tor Crawlers</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h4>NLP Systems</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <h4>Archive Systems</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h4>Link Analysis</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h4>Undercover Ops</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>Cloud Scrapers</h4>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h4>Footprint AI</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="why-us">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-star"></i> Why Choose Us
+                </span>
+                <h2 class="section-title">Intelligence <span class="gradient-text">Specialists</span></h2>
+                <p class="section-subtitle">What sets our OSINT and Dark Web research capabilities apart from standard threat intelligence providers.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Coverage</h3>
+                    <p>We monitor sources in over 30 languages across surface, deep, and dark web with regional specialists for each major geographic area.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Former Intelligence Officers</h3>
+                    <p>Our team includes former government intelligence analysts with deep experience in HUMINT, SIGINT, and cyber intelligence operations.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Deep Network Access</h3>
+                    <p>Years of underground presence gives us access to closed criminal forums and private channels not visible to typical researchers.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>Adversary Perspective</h3>
+                    <p>We think like attackers to anticipate threats before they emerge, identifying vulnerabilities they would exploit.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Operational Security</h3>
+                    <p>All research is conducted with strict OPSEC protocols to prevent tipping off threat actors about your defenses.</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Actionable Intelligence</h3>
+                    <p>We deliver findings with clear recommendations tailored to your specific security controls and risk tolerance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container reveal">
+            <h2>Need Advanced Threat Intelligence?</h2>
+            <p>Contact us to discuss how our OSINT and Dark Web research services can enhance your security posture and provide early warning of emerging threats.</p>
+            <div class="cta-buttons">
+                <a href="/getqouta.html" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Request Consultation
+                </a>
+                <a href="mailto:sarsolutionz7@gmail.com" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Contact Sales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </div>
+                <p>Enterprise-grade OSINT and Dark Web intelligence services. Uncovering threats before they find you.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/sar_solutionz" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sarsolutionz" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="/DarkWeb&OSINT.html">OSINT & Dark Web</a></li>
+                    <li><a href="/WebPentest.html">Web Pentesting</a></li>
+                    <li><a href="/MobilePentest.html">Mobile Security</a></li>
+                    <li><a href="/NetworkPentest.html">Network Pentest</a></li>
+                    <li><a href="/APIPentest.html">API Security</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="/About.html">About Us</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="/Samplereports.html">Sample Reports</a></li>
+                    <li><a href="https://sarsolutionz.blogspot.com/">Blog</a></li>
+                    <!-- <li><a href="/Careers.html">Careers</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+                <p><i class="fas fa-headset"></i> 24/7 Emergency Support</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 SAR SOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>OWASP Aligned</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>NDA Protected</span>
+                </div>
+                <div class="footer-badge">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Certified Analysts</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chatbot -->
+    <button id="chatbot-launcher" aria-label="Open chat assistant">
+        <i class="fas fa-shield-alt"></i>
+    </button>
+
+    <div id="chatbot-container" role="dialog" aria-labelledby="chatbot-header" aria-hidden="true">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> OSINT Assistant</h3>
+            <button id="close-chat" aria-label="Close chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbot-body">
+            <div class="message bot-message">
+                👋 Welcome! I'm your OSINT and Dark Web research assistant. Ask about digital footprint analysis, threat monitoring, or get a quote!
+            </div>
+        </div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Ask about intelligence services..." aria-label="Type your message">
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+        function toggleMobileNav() {
+            const isOpen = mobileNav.classList.contains('active');
+            
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            
+            menuToggle.setAttribute('aria-expanded', !isOpen);
+            mobileNav.setAttribute('aria-hidden', isOpen);
+            
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
+
+        menuToggle.addEventListener('click', toggleMobileNav);
+        mobileNavOverlay.addEventListener('click', toggleMobileNav);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileNav();
+            });
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Chatbot Toggle
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const closeBtn = document.getElementById('close-chat');
+        const input = document.getElementById('chatbot-input');
+        const body = document.getElementById('chatbot-body');
+
+        function openChatbot() {
+            container.style.display = 'flex';
+            container.setAttribute('aria-hidden', 'false');
+            container.offsetHeight;
+            container.classList.add('active');
+            input.focus();
+        }
+
+        function closeChatbot() {
+            container.classList.remove('active');
+            container.setAttribute('aria-hidden', 'true');
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 300);
+        }
+
+        launcher.addEventListener('click', openChatbot);
+        closeBtn.addEventListener('click', closeChatbot);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && container.classList.contains('active')) {
+                closeChatbot();
+            }
+        });
+
+        // Chatbot Responses
+        const responses = {
+            'price': 'Our OSINT and Dark Web research services start at $3,500 for basic digital footprint analysis. Comprehensive monitoring programs start at $8,500/month.',
+            'cost': 'Our OSINT and Dark Web research services start at $3,500 for basic digital footprint analysis. Comprehensive monitoring programs start at $8,500/month.',
+            'time': 'Standard OSINT reports are delivered within 5-7 business days. Dark web monitoring is continuous with real-time alerts for critical findings.',
+            'duration': 'Standard OSINT reports are delivered within 5-7 business days. Dark web monitoring is continuous with real-time alerts for critical findings.',
+            'osint': 'Our OSINT services include digital footprint analysis, threat actor monitoring, and executive protection. We map your exposed attack surface across the surface web.',
+            'darkweb': 'Our Dark Web services include marketplace monitoring, data leak detection, brand protection, and threat intelligence feeds from underground sources.',
+            'footprint': 'Digital footprint analysis identifies all publicly available information about your organization that could be used by attackers for reconnaissance.',
+            'monitoring': 'We provide 24/7 continuous monitoring of dark web markets, forums, and criminal communities with real-time alerts for threats targeting your organization.',
+            'report': 'You\'ll receive detailed intelligence reports with findings, risk assessments, attack path analysis, and actionable remediation recommendations.',
+            'hello': 'Hello! How can I help with your OSINT and Dark Web intelligence needs today?',
+            'hi': 'Hi there! Ready to uncover hidden threats?'
+        };
+
+        function addMessage(text, isUser = false) {
+            const div = document.createElement('div');
+            div.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            div.textContent = text;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const userMsg = input.value.trim();
+                addMessage(userMsg, true);
+                input.value = '';
+                
+                setTimeout(() => {
+                    const lowerMsg = userMsg.toLowerCase();
+                    let response = 'I can help with pricing, OSINT services, Dark Web monitoring, or connect you with our intelligence team. What would you like to know?';
+                    
+                    for (const [key, value] of Object.entries(responses)) {
+                        if (lowerMsg.includes(key)) {
+                            response = value;
+                            break;
+                        }
+                    }
+                    
+                    addMessage(response);
+                }, 500);
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Handle resize events
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 767 && mobileNav.classList.contains('active')) {
+                    toggleMobileNav();
+                }
+            }, 250);
+        });
+    </script>
+</body>
+</html>

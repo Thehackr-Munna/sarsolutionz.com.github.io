@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cobalt Strike - Command & Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            background: linear-gradient(to bottom, #3c3c3c, #2b2b2b);
+            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            padding: 2px 5px;
+            font-size: 12px;
+            user-select: none;
+        }
+
+        .menu-item {
+            padding: 4px 10px;
+            cursor: pointer;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        .menu-item:hover {
+            background-color: #4a4a4a;
+            border-radius: 2px;
+        }
+
+        .menu-item.active {
+            background-color: #4a4a4a;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2b2b2b;
+            border: 1px solid #1a1a1a;
+            min-width: 200px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .dropdown.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 6px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #3a3a3a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-item:hover {
+            background-color: #4a4a4a;
+        }
+
+        .dropdown-item .shortcut {
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            background: linear-gradient(to bottom, #3c3c3c, #2b2b2b);
+            border-bottom: 1px solid #1a1a1a;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .toolbar-btn {
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+            border: 1px solid #1a1a1a;
+            color: #e0e0e0;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 11px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .toolbar-btn:hover {
+            background: linear-gradient(to bottom, #5a5a5a, #4a4a4a);
+        }
+
+        .toolbar-btn:active {
+            background: #2a2a2a;
+        }
+
+        .toolbar-separator {
+            width: 1px;
+            height: 20px;
+            background-color: #1a1a1a;
+            margin: 0 5px;
+        }
+
+        /* Main Container */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Split Pane Top (Visualization) */
+        .top-pane {
+            flex: 1;
+            background-color: #1e1e1e;
+            border-bottom: 2px solid #2b2b2b;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .pane-header {
+            background: linear-gradient(to right, #2b2b2b, #3c3c3c);
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 5px;
+        }
+
+        .view-btn {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #888;
+            padding: 2px 8px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .view-btn.active {
+            background: #4a4a4a;
+            color: #fff;
+        }
+
+        /* Graph Visualization */
+        .graph-view {
+            width: 100%;
+            height: calc(100% - 30px);
+            position: relative;
+            background: radial-gradient(circle at center, #252525 0%, #1a1a1a 100%);
+        }
+
+        .beacon-node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ff6b35 0%, #d84315 100%);
+            border-radius: 50%;
+            border: 3px solid #ff8a65;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+            transition: transform 0.2s;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .beacon-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+        }
+
+        .beacon-node.selected {
+            border-color: #00ff88;
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+        }
+
+        .beacon-node.smb {
+            background: radial-gradient(circle, #42a5f5 0%, #1976d2 100%);
+            border-color: #64b5f6;
+            box-shadow: 0 0 20px rgba(66, 165, 245, 0.4);
+        }
+
+        .beacon-node.tcp {
+            background: radial-gradient(circle, #ab47bc 0%, #7b1fa2 100%);
+            border-color: #ba68c8;
+            box-shadow: 0 0 20px rgba(171, 71, 188, 0.4);
+        }
+
+        .beacon-node.dns {
+            background: radial-gradient(circle, #66bb6a 0%, #388e3c 100%);
+            border-color: #81c784;
+            box-shadow: 0 0 20px rgba(102, 187, 106, 0.4);
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(to right, #ff6b35, #ff8a65);
+            transform-origin: left center;
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Table View */
+        .table-view {
+            display: none;
+            width: 100%;
+            height: calc(100% - 30px);
+            overflow: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .data-table th {
+            background: linear-gradient(to bottom, #3c3c3c, #2b2b2b);
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #1a1a1a;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .data-table tr:hover {
+            background-color: #2a2a2a;
+            cursor: pointer;
+        }
+
+        .data-table tr.selected {
+            background-color: #3a3a3a;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-online { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
+        .status-offline { background-color: #f44336; }
+        .status-sleep { background-color: #ff9800; }
+
+        /* Bottom Pane (Tabs) */
+        .bottom-pane {
+            height: 40%;
+            min-height: 200px;
+            background-color: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-bar {
+            background: linear-gradient(to bottom, #2b2b2b, #1f1f1f);
+            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 6px 15px;
+            background: linear-gradient(to bottom, #3c3c3c, #2b2b2b);
+            border-right: 1px solid #1a1a1a;
+            cursor: pointer;
+            font-size: 11px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .tab:hover {
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+        }
+
+        .tab.active {
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+            border-bottom: 2px solid #ff6b35;
+        }
+
+        .tab-close {
+            font-size: 14px;
+            color: #888;
+            cursor: pointer;
+            padding: 0 2px;
+        }
+
+        .tab-close:hover {
+            color: #ff6b35;
+        }
+
+        .tab-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tab-panel {
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            padding: 10px;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* Console Styling */
+        .console {
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #d4d4d4;
+            background-color: #0d0d0d;
+            height: 100%;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .console-line {
+            margin-bottom: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .console-timestamp {
+            color: #6a9955;
+        }
+
+        .console-prompt {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .console-input-line {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .console-input {
+            background: transparent;
+            border: none;
+            color: #d4d4d4;
+            font-family: inherit;
+            font-size: inherit;
+            flex: 1;
+            outline: none;
+            margin-left: 5px;
+        }
+
+        .console-output-cmd {
+            color: #569cd6;
+        }
+
+        .console-output-error {
+            color: #f48771;
+        }
+
+        .console-output-success {
+            color: #4ec9b0;
+        }
+
+        .console-output-info {
+            color: #9cdcfe;
+        }
+
+        /* Event Viewer */
+        .event-log {
+            font-family: "Consolas", monospace;
+            font-size: 11px;
+        }
+
+        .event-item {
+            padding: 4px;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            gap: 10px;
+        }
+
+        .event-time {
+            color: #6a9955;
+            min-width: 80px;
+        }
+
+        .event-type {
+            color: #ff6b35;
+            min-width: 100px;
+            font-weight: bold;
+        }
+
+        .event-msg {
+            color: #d4d4d4;
+        }
+
+        /* Listeners Table */
+        .listeners-container {
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to bottom, #ff6b35, #d84315);
+            border: 1px solid #bf360c;
+            color: white;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 11px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #ff8a65, #e64a19);
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: linear-gradient(to bottom, #3c3c3c, #2b2b2b);
+            border-top: 1px solid #1a1a1a;
+            padding: 3px 10px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+        }
+
+        .status-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        .status-label {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(to bottom, #3c3c3c, #2b2b2b);
+            border: 1px solid #1a1a1a;
+            min-width: 400px;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            background: linear-gradient(to right, #ff6b35, #d84315);
+            padding: 10px 15px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 11px;
+            color: #ccc;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 6px;
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            font-size: 12px;
+        }
+
+        .modal-footer {
+            padding: 10px 20px;
+            border-top: 1px solid #444;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 5px 15px;
+            cursor: pointer;
+            border: 1px solid #444;
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+            color: #e0e0e0;
+            font-size: 11px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to bottom, #5a5a5a, #4a4a4a);
+        }
+
+        /* Context Menu */
+        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: #2b2b2b;
+            border: 1px solid #1a1a1a;
+            min-width: 200px;
+            z-index: 1500;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .context-menu.show {
+            display: block;
+        }
+
+        .context-item {
+            padding: 6px 15px;
+            cursor: pointer;
+            font-size: 11px;
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .context-item:hover {
+            background-color: #4a4a4a;
+        }
+
+        .context-separator {
+            height: 1px;
+            background-color: #444;
+            margin: 5px 0;
+        }
+
+        .context-header {
+            padding: 5px 15px;
+            font-size: 10px;
+            color: #ff6b35;
+            font-weight: bold;
+            background-color: #1f1f1f;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a5a5a;
+        }
+
+        /* Resizer */
+        .resizer {
+            height: 4px;
+            background: #2b2b2b;
+            cursor: row-resize;
+            position: relative;
+        }
+
+        .resizer:hover {
+            background: #ff6b35;
+        }
+
+        /* Beacon specific console styling */
+        .beacon-status-bar {
+            background: #2b2b2b;
+            padding: 5px 10px;
+            font-size: 11px;
+            border-top: 1px solid #444;
+            display: flex;
+            gap: 20px;
+            font-family: "Consolas", monospace;
+        }
+
+        .beacon-status-item {
+            color: #888;
+        }
+
+        .beacon-status-value {
+            color: #4ec9b0;
+            font-weight: bold;
+        }
+
+        .teamserver-chat {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            font-family: "Consolas", monospace;
+            font-size: 12px;
+        }
+
+        .chat-input-container {
+            padding: 10px;
+            border-top: 1px solid #444;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            padding: 5px;
+            font-family: inherit;
+        }
+
+        .loot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .loot-item {
+            background: #2b2b2b;
+            border: 1px solid #444;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .loot-item:hover {
+            border-color: #ff6b35;
+        }
+
+        .loot-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .loot-name {
+            font-size: 11px;
+            color: #ccc;
+        }
+
+        .loot-meta {
+            font-size: 10px;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <div class="menu-item" onclick="toggleMenu('cobalt-menu')">
+            Cobalt Strike
+            <div class="dropdown" id="cobalt-menu">
+                <div class="dropdown-item">New Connection <span class="shortcut">Ctrl+N</span></div>
+                <div class="dropdown-item">Disconnect <span class="shortcut">Ctrl+D</span></div>
+                <div class="dropdown-item">Preferences <span class="shortcut">Ctrl+P</span></div>
+                <div class="dropdown-item">Exit</div>
+            </div>
+        </div>
+        <div class="menu-item" onclick="toggleMenu('view-menu')">
+            View
+            <div class="dropdown" id="view-menu">
+                <div class="dropdown-item" onclick="switchView('graph')">Session Graph</div>
+                <div class="dropdown-item" onclick="switchView('table')">Session Table</div>
+                <div class="dropdown-item">Targets</div>
+                <div class="dropdown-item">Listeners</div>
+                <div class="dropdown-item">Event Log</div>
+                <div class="dropdown-item">Team Server Chat</div>
+            </div>
+        </div>
+        <div class="menu-item" onclick="toggleMenu('attack-menu')">
+            Attack
+            <div class="dropdown" id="attack-menu">
+                <div class="dropdown-item">Web Drive-by</div>
+                <div class="dropdown-item">Spear Phish</div>
+                <div class="dropdown-item">Packages</div>
+                <div class="dropdown-item">Web Log</div>
+            </div>
+        </div>
+        <div class="menu-item" onclick="toggleMenu('report-menu')">
+            Reporting
+            <div class="dropdown" id="report-menu">
+                <div class="dropdown-item">Activity Report</div>
+                <div class="dropdown-item">Hosts Report</div>
+                <div class="dropdown-item">Indicators of Compromise</div>
+                <div class="dropdown-item">Sessions</div>
+            </div>
+        </div>
+        <div class="menu-item" onclick="toggleMenu('help-menu')">
+            Help
+            <div class="dropdown" id="help-menu">
+                <div class="dropdown-item">Documentation</div>
+                <div class="dropdown-item">About</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <button class="toolbar-btn" onclick="openListenerModal()">📡 Listeners</button>
+        <button class="toolbar-btn" onclick="showPayloads()">📦 Payloads</button>
+        <div class="toolbar-separator"></div>
+        <button class="toolbar-btn" onclick="switchView('graph')">🕸️ Graph</button>
+        <button class="toolbar-btn" onclick="switchView('table')">📋 Table</button>
+        <div class="toolbar-separator"></div>
+        <button class="toolbar-btn" onclick="openScriptManager()">📜 Scripts</button>
+        <button class="toolbar-btn" onclick="openLoot()">💰 Loot</button>
+        <div class="toolbar-separator"></div>
+        <button class="toolbar-btn" onclick="openEventLog()">📋 Event Log</button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Top Pane - Visualization -->
+        <div class="top-pane" id="topPane">
+            <div class="pane-header">
+                <span>Session Visualization</span>
+                <div class="view-toggle">
+                    <button class="view-btn active" onclick="switchView('graph')" id="graphBtn">Graph</button>
+                    <button class="view-btn" onclick="switchView('table')" id="tableBtn">Table</button>
+                </div>
+            </div>
+            
+            <!-- Graph View -->
+            <div class="graph-view" id="graphView">
+                <svg style="position: absolute; width: 100%; height: 100%; pointer-events: none;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b35" />
+                        </marker>
+                    </defs>
+                </svg>
+                <!-- Nodes will be generated by JS -->
+            </div>
+
+            <!-- Table View -->
+            <div class="table-view" id="tableView">
+                <table class="data-table" id="beaconTable">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>External</th>
+                            <th>Internal</th>
+                            <th>User</th>
+                            <th>Computer</th>
+                            <th>PID</th>
+                            <th>Last</th>
+                            <th>Listener</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="resizer" id="resizer"></div>
+
+        <!-- Bottom Pane - Tabs -->
+        <div class="bottom-pane" id="bottomPane">
+            <div class="tab-bar" id="tabBar">
+                <div class="tab active" onclick="switchTab('event-log')">
+                    <span>Event Log</span>
+                    <span class="tab-close" onclick="closeTab(event, 'event-log')">×</span>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tabContent">
+                <!-- Event Log Panel -->
+                <div class="tab-panel active" id="event-log">
+                    <div class="event-log" id="eventLogContent">
+                        <!-- Events populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-section">
+            <span><span class="status-label">Team Server:</span> 192.168.1.100:50050</span>
+            <span><span class="status-label">User:</span> operator1</span>
+            <span><span class="status-label">Beacons:</span> <span id="beaconCount">0</span> active</span>
+        </div>
+        <div class="status-section">
+            <span>Ready</span>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-header" id="contextHeader">Beacon</div>
+        <div class="context-item" onclick="interactBeacon()">Interact</div>
+        <div class="context-item" onclick="sleepBeacon()">Sleep</div>
+        <div class="context-item" onclick="killBeacon()">Exit</div>
+        <div class="context-separator"></div>
+        <div class="context-item" onclick="spawnSession()">Spawn</div>
+        <div class="context-item" onclick="injectSession()">Inject</div>
+        <div class="context-separator"></div>
+        <div class="context-item">Access >></div>
+        <div class="context-item">Explore >></div>
+        <div class="context-item">Pivoting >></div>
+        <div class="context-item">Session >></div>
+    </div>
+
+    <!-- New Listener Modal -->
+    <div class="modal" id="listenerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>New Listener</span>
+                <span style="cursor: pointer;" onclick="closeModal('listenerModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Name:</label>
+                    <input type="text" class="form-input" id="listenerName" placeholder="http_listener">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Payload:</label>
+                    <select class="form-select" id="payloadType">
+                        <option value="http">windows/beacon_http/reverse_http</option>
+                        <option value="https">windows/beacon_https/reverse_https</option>
+                        <option value="smb">windows/beacon_smb/bind_pipe</option>
+                        <option value="tcp">windows/beacon_tcp/bind_tcp</option>
+                        <option value="dns">windows/beacon_dns/reverse_dns</option>
+                        <option value="ext">windows/beacon_ext/reverse_ext</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Host:</label>
+                    <input type="text" class="form-input" id="listenerHost" value="192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Port:</label>
+                    <input type="text" class="form-input" id="listenerPort" value="80">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Sleep (ms):</label>
+                    <input type="text" class="form-input" value="60000">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Jitter (%):</label>
+                    <input type="text" class="form-input" value="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('listenerModal')">Cancel</button>
+                <button class="btn" style="background: linear-gradient(to bottom, #ff6b35, #d84315); border-color: #bf360c; color: white;" onclick="saveListener()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State Management
+        let beacons = [];
+        let listeners = [];
+        let tabs = ['event-log'];
+        let activeTab = 'event-log';
+        let selectedBeacon = null;
+        let beaconCounter = 0;
+
+        // Initialize
+        window.onload = function() {
+            addEvent('teamserver', 'Connected to team server at 192.168.1.100:50050');
+            addEvent('info', 'Cobalt Strike 4.9 [Licensed]');
+            setupResizer();
+            generateDemoData();
+            setInterval(simulateBeaconCheckin, 3000);
+        };
+
+        // Menu Functions
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const allMenus = document.querySelectorAll('.dropdown');
+            allMenus.forEach(m => {
+                if (m.id !== menuId) m.classList.remove('show');
+            });
+            menu.classList.toggle('show');
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.menu-item')) {
+                document.querySelectorAll('.dropdown').forEach(m => m.classList.remove('show'));
+            }
+            if (!e.target.closest('.context-menu')) {
+                document.getElementById('contextMenu').classList.remove('show');
+            }
+        });
+
+        // View Switching
+        function switchView(view) {
+            const graphView = document.getElementById('graphView');
+            const tableView = document.getElementById('tableView');
+            const graphBtn = document.getElementById('graphBtn');
+            const tableBtn = document.getElementById('tableBtn');
+
+            if (view === 'graph') {
+                graphView.style.display = 'block';
+                tableView.style.display = 'none';
+                graphBtn.classList.add('active');
+                tableBtn.classList.remove('active');
+            } else {
+                graphView.style.display = 'none';
+                tableView.style.display = 'block';
+                graphBtn.classList.remove('active');
+                tableBtn.classList.add('active');
+                updateTable();
+            }
+        }
+
+        // Beacon Management
+        function generateDemoData() {
+            // Create some demo beacons
+            createBeacon('192.168.1.105', 'DESKTOP-ABC123', 'john.admin', 4528, 'http');
+            setTimeout(() => createBeacon('10.0.0.15', 'SERVER-DC01', 'SYSTEM', 884, 'smb'), 1000);
+            setTimeout(() => createBeacon('192.168.1.110', 'LAPTOP-XYZ', 'jane.doe', 3156, 'https'), 2000);
+        }
+
+        function createBeacon(external, computer, user, pid, type) {
+            beaconCounter++;
+            const beacon = {
+                id: beaconCounter,
+                external: external,
+                internal: '10.0.0.' + (Math.floor(Math.random() * 255)),
+                computer: computer,
+                user: user,
+                pid: pid,
+                type: type,
+                lastCheckin: new Date(),
+                status: 'online'
+            };
+            beacons.push(beacon);
+            renderBeaconNode(beacon);
+            updateTable();
+            updateBeaconCount();
+            addEvent('beacon', `New beacon check-in: ${computer} (${external})`);
+            
+            // Auto open console for first beacon
+            if (beacons.length === 1) {
+                openBeaconConsole(beacon);
+            }
+        }
+
+        function renderBeaconNode(beacon) {
+            const graphView = document.getElementById('graphView');
+            const node = document.createElement('div');
+            node.className = `beacon-node ${beacon.type}`;
+            node.id = `beacon-${beacon.id}`;
+            node.style.left = (100 + Math.random() * (graphView.offsetWidth - 200)) + 'px';
+            node.style.top = (50 + Math.random() * (graphView.offsetHeight - 150)) + 'px';
+            node.innerHTML = `${beacon.computer}<br><small>${beacon.user}</small>`;
+            
+            node.onclick = function(e) {
+                e.stopPropagation();
+                selectBeacon(beacon);
+            };
+            
+            node.oncontextmenu = function(e) {
+                e.preventDefault();
+                showContextMenu(e, beacon);
+            };
+            
+            graphView.appendChild(node);
+            
+            // Draw connection line to center (teamserver)
+            drawConnection(node);
+        }
+
+        function drawConnection(node) {
+            const graphView = document.getElementById('graphView');
+            const centerX = graphView.offsetWidth / 2;
+            const centerY = graphView.offsetHeight / 2;
+            const nodeRect = node.getBoundingClientRect();
+            const graphRect = graphView.getBoundingClientRect();
+            
+            const x1 = centerX;
+            const y1 = centerY;
+            const x2 = parseInt(node.style.left) + 30;
+            const y2 = parseInt(node.style.top) + 30;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const line = document.createElement('div');
+            line.className = 'connection-line';
+            line.style.width = (length - 60) + 'px';
+            line.style.left = (x1 + 30 * Math.cos(Math.atan2(y2 - y1, x2 - x1))) + 'px';
+            line.style.top = (y1 + 30 * Math.sin(Math.atan2(y2 - y1, x2 - x1))) + 'px';
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            graphView.insertBefore(line, graphView.firstChild);
+        }
+
+        function selectBeacon(beacon) {
+            // Remove previous selection
+            document.querySelectorAll('.beacon-node').forEach(n => n.classList.remove('selected'));
+            document.querySelectorAll('.data-table tr').forEach(r => r.classList.remove('selected'));
+            
+            selectedBeacon = beacon;
+            const node = document.getElementById(`beacon-${beacon.id}`);
+            if (node) node.classList.add('selected');
+            
+            // Also select in table if visible
+            const row = document.getElementById(`row-${beacon.id}`);
+            if (row) row.classList.add('selected');
+        }
+
+        function updateTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            beacons.forEach(beacon => {
+                const row = document.createElement('tr');
+                row.id = `row-${beacon.id}`;
+                row.onclick = () => selectBeacon(beacon);
+                row.oncontextmenu = (e) => {
+                    e.preventDefault();
+                    selectBeacon(beacon);
+                    showContextMenu(e, beacon);
+                };
+                row.ondblclick = () => openBeaconConsole(beacon);
+                
+                const timeDiff = Math.floor((new Date() - beacon.lastCheckin) / 1000);
+                const timeStr = timeDiff < 60 ? `${timeDiff}s ago` : `${Math.floor(timeDiff/60)}m ago`;
+                
+                row.innerHTML = `
+                    <td><span class="status-dot status-${beacon.status}"></span>${beacon.status}</td>
+                    <td>${beacon.external}</td>
+                    <td>${beacon.internal}</td>
+                    <td>${beacon.user}</td>
+                    <td>${beacon.computer}</td>
+                    <td>${beacon.pid}</td>
+                    <td>${timeStr}</td>
+                    <td>${beacon.type}_listener</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateBeaconCount() {
+            document.getElementById('beaconCount').textContent = beacons.length;
+        }
+
+        // Context Menu
+        function showContextMenu(e, beacon) {
+            const menu = document.getElementById('contextMenu');
+            const header = document.getElementById('contextHeader');
+            header.textContent = `Beacon ${beacon.id} - ${beacon.computer}`;
+            menu.style.left = e.pageX + 'px';
+            menu.style.top = e.pageY + 'px';
+            menu.classList.add('show');
+            selectedBeacon = beacon;
+        }
+
+        function interactBeacon() {
+            if (selectedBeacon) openBeaconConsole(selectedBeacon);
+            document.getElementById('contextMenu').classList.remove('show');
+        }
+
+        function sleepBeacon() {
+            if (selectedBeacon) {
+                addEvent('command', `Set sleep for beacon ${selectedBeacon.id} to 60s`);
+                logToConsole(selectedBeacon.id, 'Set sleep to 60s');
+            }
+            document.getElementById('contextMenu').classList.remove('show');
+        }
+
+        function killBeacon() {
+            if (selectedBeacon) {
+                addEvent('command', `Killed beacon ${selectedBeacon.id}`);
+                removeBeacon(selectedBeacon);
+            }
+            document.getElementById('contextMenu').classList.remove('show');
+        }
+
+        function removeBeacon(beacon) {
+            const node = document.getElementById(`beacon-${beacon.id}`);
+            if (node) node.remove();
+            beacons = beacons.filter(b => b.id !== beacon.id);
+            updateTable();
+            updateBeaconCount();
+            
+            // Close console if open
+            const tabId = `beacon-${beacon.id}`;
+            if (tabs.includes(tabId)) {
+                closeTab(null, tabId);
+            }
+        }
+
+        function spawnSession() {
+            if (selectedBeacon) {
+                addEvent('command', `Spawned new session from beacon ${selectedBeacon.id}`);
+                setTimeout(() => {
+                    createBeacon(selectedBeacon.external, selectedBeacon.computer, selectedBeacon.user, 
+                        Math.floor(Math.random() * 9000) + 1000, 'smb');
+                }, 2000);
+            }
+            document.getElementById('contextMenu').classList.remove('show');
+        }
+
+        function injectSession() {
+            addEvent('info', 'Inject dialog would open here');
+            document.getElementById('contextMenu').classList.remove('show');
+        }
+
+        // Tab Management
+        function openBeaconConsole(beacon) {
+            const tabId = `beacon-${beacon.id}`;
+            if (!tabs.includes(tabId)) {
+                tabs.push(tabId);
+                createTab(tabId, `Beacon ${beacon.id}`, beacon);
+            }
+            switchTab(tabId);
+        }
+
+        function createTab(id, title, beacon) {
+            const tabBar = document.getElementById('tabBar');
+            const tabContent = document.getElementById('tabContent');
+            
+            // Create tab
+            const tab = document.createElement('div');
+            tab.className = 'tab';
+            tab.onclick = () => switchTab(id);
+            tab.innerHTML = `
+                <span>${title}</span>
+                <span class="tab-close" onclick="closeTab(event, '${id}')">×</span>
+            `;
+            tabBar.appendChild(tab);
+            
+            // Create panel
+            const panel = document.createElement('div');
+            panel.className = 'tab-panel';
+            panel.id = id;
+            panel.innerHTML = `
+                <div class="console" id="console-${id}">
+                    <div class="console-line">
+                        <span class="console-timestamp">[*] Session ${beacon.id} opened:</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-output-info">External: ${beacon.external}</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-output-info">Internal: ${beacon.internal}</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-output-info">User: ${beacon.user}</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-output-info">PID: ${beacon.pid}</span>
+                    </div>
+                    <div class="console-line console-input-line">
+                        <span class="console-prompt">beacon> </span>
+                        <input type="text" class="console-input" onkeydown="handleCommand(event, ${beacon.id})" autofocus>
+                    </div>
+                </div>
+                <div class="beacon-status-bar">
+                    <span class="beacon-status-item">Target: <span class="beacon-status-value">${beacon.computer}</span></span>
+                    <span class="beacon-status-item">User: <span class="beacon-status-value">${beacon.user}</span></span>
+                    <span class="beacon-status-item">PID: <span class="beacon-status-value">${beacon.pid}</span></span>
+                    <span class="beacon-status-item">Last: <span class="beacon-status-value" id="last-${beacon.id}">0s ago</span></span>
+                </div>
+            `;
+            tabContent.appendChild(panel);
+        }
+
+        function switchTab(tabId) {
+            // Update tabs
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            
+            // Find and activate
+            const tabs = document.querySelectorAll('.tab');
+            const panels = document.querySelectorAll('.tab-panel');
+            
+            tabs.forEach((t, i) => {
+                if (t.innerHTML.includes(tabId.split('-')[1] || tabId)) {
+                    t.classList.add('active');
+                    panels[i].classList.add('active');
+                }
+            });
+            
+            activeTab = tabId;
+        }
+
+        function closeTab(e, tabId) {
+            if (e) e.stopPropagation();
+            
+            const index = tabs.indexOf(tabId);
+            if (index > -1) {
+                tabs.splice(index, 1);
+                
+                // Remove elements
+                const tabBar = document.getElementById('tabBar');
+                const tabContent = document.getElementById('tabContent');
+                
+                // Simple removal by index matching
+                if (tabId === 'event-log') {
+                    // Don't remove event log, just hide
+                    return;
+                }
+                
+                // Remove tab and panel
+                const tab = document.querySelector(`.tab:nth-child(${index + 1})`);
+                const panel = document.getElementById(tabId);
+                if (tab) tab.remove();
+                if (panel) panel.remove();
+                
+                // Switch to event log if active
+                if (activeTab === tabId) {
+                    switchTab('event-log');
+                }
+            }
+        }
+
+        // Command Handling
+        function handleCommand(e, beaconId) {
+            if (e.key === 'Enter') {
+                const input = e.target;
+                const cmd = input.value.trim();
+                const console = document.getElementById(`console-beacon-${beaconId}`);
+                
+                // Add command to console
+                const cmdLine = document.createElement('div');
+                cmdLine.className = 'console-line';
+                cmdLine.innerHTML = `<span class="console-prompt">beacon> </span><span class="console-output-cmd">${cmd}</span>`;
+                console.insertBefore(cmdLine, console.lastElementChild);
+                
+                // Process command
+                processCommand(cmd, beaconId, console);
+                
+                // Clear input
+                input.value = '';
+                
+                // Scroll to bottom
+                console.scrollTop = console.scrollHeight;
+            }
+        }
+
+        function processCommand(cmd, beaconId, console) {
+            const beacon = beacons.find(b => b.id === beaconId);
+            if (!beacon) return;
+            
+            const response = document.createElement('div');
+            response.className = 'console-line';
+            
+            const parts = cmd.split(' ');
+            const command = parts[0].toLowerCase();
+            
+            switch(command) {
+                case 'help':
+                    response.innerHTML = `<span class="console-output-info">
+Beacon Commands
+===============
+    Command                   Description
+    -------                   -----------
+    help                      Show this help menu
+    sleep [time]              Set sleep time
+    shell [cmd]               Execute shell command
+    pwd                       Print working directory
+    ls                        List files
+    ps                        List processes
+    kill [pid]                Kill process
+    inject [pid] [listener]   Inject into process
+    shinject [pid] [arch]     Inject shellcode
+    upload [file]             Upload file
+    download [file]           Download file
+    screenshot                Take screenshot
+    keylogger [pid]           Start keylogger
+    portscan [targets]        Scan ports
+    net                       Network info
+    whoami                    Get current user
+    getsystem                 Attempt privilege escalation
+    runas [user] [pass] [cmd] Run as user
+    spawn [listener]          Spawn new session
+    exit                      Kill beacon</span>`;
+                    break;
+                    
+                case 'whoami':
+                    response.innerHTML = `<span class="console-output-success">${beacon.user}</span>`;
+                    break;
+                    
+                case 'pwd':
+                    response.innerHTML = `<span class="console-output-success">C:\\Users\\${beacon.user}\\Documents</span>`;
+                    break;
+                    
+                case 'ls':
+                    response.innerHTML = `<span class="console-output-success">
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        2/23/2026   9:30 AM                Desktop
+d-----        2/23/2026   9:30 AM                Documents
+d-----        2/23/2026   9:30 AM                Downloads
+-a----        2/23/2026   9:30 AM           1523 notes.txt
+-a----        2/23/2026   9:30 AM         458192 data.zip</span>`;
+                    break;
+                    
+                case 'ps':
+                    response.innerHTML = `<span class="console-output-success">
+PID   PPID  Name                         Arch  Session
+---   ----  ----                         ----  -------
+0     0     System Idle Process          x64   0
+4     0     System                       x64   0
+${beacon.pid}   4500  svchost.exe                  x64   1
+4500  800   explorer.exe                 x64   1
+800   600   services.exe                 x64   0</span>`;
+                    break;
+                    
+                case 'sleep':
+                    const time = parts[1] || '60';
+                    response.innerHTML = `<span class="console-output-info">[*] Set sleep to ${time} seconds</span>`;
+                    addEvent('command', `Beacon ${beaconId} sleep set to ${time}s`);
+                    break;
+                    
+                case 'shell':
+                    const shellCmd = parts.slice(1).join(' ') || 'whoami';
+                    response.innerHTML = `<span class="console-output-info">[*] Tasked beacon to run: ${shellCmd}</span>`;
+                    setTimeout(() => {
+                        const result = document.createElement('div');
+                        result.className = 'console-line';
+                        if (shellCmd === 'whoami') {
+                            result.innerHTML = `<span class="console-output-success">desktop-${beacon.computer.slice(-3)}\\${beacon.user}</span>`;
+                        } else if (shellCmd === 'ipconfig') {
+                            result.innerHTML = `<span class="console-output-success">Ethernet adapter Ethernet0:
+   IPv4 Address. . . . . . . . . . . : ${beacon.internal}
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 10.0.0.1</span>`;
+                        } else {
+                            result.innerHTML = `<span class="console-output-success">Command executed successfully</span>`;
+                        }
+                        console.insertBefore(result, console.lastElementChild);
+                        console.scrollTop = console.scrollHeight;
+                    }, 500);
+                    break;
+                    
+                case 'exit':
+                    response.innerHTML = `<span class="console-output-error">[*] Beacon ${beaconId} instructed to exit</span>`;
+                    setTimeout(() => removeBeacon(beacon), 1000);
+                    break;
+                    
+                case 'getsystem':
+                    response.innerHTML = `<span class="console-output-info">[*] Attempting privilege escalation...</span>`;
+                    setTimeout(() => {
+                        const result = document.createElement('div');
+                        result.className = 'console-line';
+                        result.innerHTML = `<span class="console-output-success">[+] Got SYSTEM!</span>`;
+                        console.insertBefore(result, console.lastElementChild);
+                        beacon.user = 'SYSTEM';
+                        updateTable();
+                    }, 2000);
+                    break;
+                    
+                case 'spawn':
+                    response.innerHTML = `<span class="console-output-info">[*] Spawning new session...</span>`;
+                    setTimeout(() => spawnSession(), 1500);
+                    break;
+                    
+                case '':
+                    break;
+                    
+                default:
+                    response.innerHTML = `<span class="console-output-error">[-] Unknown command: ${command}. Type 'help' for available commands.</span>`;
+            }
+            
+            if (cmd !== '') {
+                console.insertBefore(response, console.lastElementChild);
+            }
+        }
+
+        function logToConsole(beaconId, message) {
+            const console = document.getElementById(`console-beacon-${beaconId}`);
+            if (console) {
+                const line = document.createElement('div');
+                line.className = 'console-line';
+                line.innerHTML = `<span class="console-timestamp">[*] ${message}</span>`;
+                console.insertBefore(line, console.lastElementChild);
+            }
+        }
+
+        // Event Log
+        function addEvent(type, message) {
+            const eventLog = document.getElementById('eventLogContent');
+            const time = new Date().toLocaleTimeString();
+            
+            const event = document.createElement('div');
+            event.className = 'event-item';
+            
+            let typeColor = 'info';
+            if (type === 'beacon') typeColor = '#ff6b35';
+            else if (type === 'command') typeColor = '#569cd6';
+            else if (type === 'error') typeColor = '#f48771';
+            else if (type === 'success') typeColor = '#4ec9b0';
+            
+            event.innerHTML = `
+                <span class="event-time">${time}</span>
+                <span class="event-type" style="color: ${typeColor}">[${type.toUpperCase()}]</span>
+                <span class="event-msg">${message}</span>
+            `;
+            
+            eventLog.appendChild(event);
+            eventLog.scrollTop = eventLog.scrollHeight;
+        }
+
+        // Simulation
+        function simulateBeaconCheckin() {
+            beacons.forEach(beacon => {
+                beacon.lastCheckin = new Date();
+                const lastEl = document.getElementById(`last-${beacon.id}`);
+                if (lastEl) lastEl.textContent = '0s ago';
+            });
+            updateTable();
+        }
+
+        // Modal Functions
+        function openListenerModal() {
+            document.getElementById('listenerModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        function saveListener() {
+            const name = document.getElementById('listenerName').value || 'listener_' + listeners.length;
+            const type = document.getElementById('payloadType').value;
+            const host = document.getElementById('listenerHost').value;
+            const port = document.getElementById('listenerPort').value;
+            
+            listeners.push({ name, type, host, port });
+            addEvent('info', `Created ${type} listener: ${name} (${host}:${port})`);
+            closeModal('listenerModal');
+            
+            // Simulate beacon connection after delay
+            setTimeout(() => {
+                createBeacon(host, 'NEW-HOST-' + Math.floor(Math.random()*100), 'user' + Math.floor(Math.random()*100), 
+                    Math.floor(Math.random() * 9000) + 1000, type);
+            }, 3000);
+        }
+
+        // Other Functions
+        function showPayloads() {
+            addEvent('info', 'Payload generator would open here');
+        }
+
+        function openScriptManager() {
+            addEvent('info', 'Script manager would open here');
+        }
+
+        function openLoot() {
+            addEvent('info', 'Loot vault would open here');
+        }
+
+        function openEventLog() {
+            switchTab('event-log');
+        }
+
+        // Resizer
+        function setupResizer() {
+            const resizer = document.getElementById('resizer');
+            const topPane = document.getElementById('topPane');
+            const bottomPane = document.getElementById('bottomPane');
+            let isResizing = false;
+
+            resizer.addEventListener('mousedown', (e) => {
+                isResizing = true;
+                document.body.style.cursor = 'row-resize';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isResizing) return;
+                const containerHeight = document.querySelector('.main-container').offsetHeight;
+                const newTopHeight = e.clientY - 80; // Adjust for menu/toolbar
+                const newBottomHeight = containerHeight - newTopHeight - 4;
+                
+                if (newTopHeight > 100 && newBottomHeight > 100) {
+                    topPane.style.flex = 'none';
+                    topPane.style.height = newTopHeight + 'px';
+                    bottomPane.style.height = newBottomHeight + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isResizing = false;
+                document.body.style.cursor = 'default';
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'w') {
+                e.preventDefault();
+                if (activeTab !== 'event-log') {
+                    closeTab(null, activeTab);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

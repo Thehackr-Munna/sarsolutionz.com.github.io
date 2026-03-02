@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Engineering & Phishing Defense | Human Firewall Testing | SARSOLUTIONZ</title>
+    <meta name="description" content="Professional social engineering testing including phishing, vishing, smishing, and physical security assessments. AI-powered simulations, behavioral analytics, and human risk scoring.">
+    <meta name="keywords" content="social engineering testing, phishing simulation, vishing, smishing, security awareness training, human firewall testing">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0a0e17;
+            --secondary: #111827;
+            --accent: #ff3366;
+            --accent-secondary: #ff6b6b;
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(17, 24, 39, 0.7);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 51, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 102, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -200px; right: -100px; animation: float 15s infinite ease-in-out; }
+        .orb-2 { width: 300px; height: 300px; background: var(--accent-secondary); bottom: -100px; left: -100px; animation: float 20s infinite ease-in-out reverse; }
+        .orb-3 { width: 200px; height: 200px; background: var(--accent); top: 50%; left: 30%; animation: float 18s infinite ease-in-out; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 5%;
+            background: rgba(10, 14, 23, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(255, 107, 107, 0.3); }
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-nav:hover::before {
+            left: 100%;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--secondary);
+            padding: 80px 30px 30px;
+            transition: right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 20px;
+        }
+
+        .mobile-submenu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu-toggle i {
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(ellipse at top, rgba(255, 51, 102, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1.5rem;
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 51, 102, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.6); }
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Email Simulation */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-window {
+            width: 100%;
+            max-width: 500px;
+            background: var(--secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: emailFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes emailFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .email-header {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .email-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .email-dot.red { background: #ef4444; }
+        .email-dot.yellow { background: #f59e0b; }
+        .email-dot.green { background: #10b981; }
+
+        .email-body {
+            padding: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .email-field {
+            margin-bottom: 0.75rem;
+            opacity: 0;
+            animation: typeLine 0.5s forwards;
+        }
+
+        .email-field:nth-child(1) { animation-delay: 0.5s; }
+        .email-field:nth-child(2) { animation-delay: 1s; }
+        .email-field:nth-child(3) { animation-delay: 1.5s; }
+        .email-field:nth-child(4) { animation-delay: 2s; }
+        .email-field:nth-child(5) { animation-delay: 2.5s; }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .email-label {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .email-value {
+            color: var(--text-primary);
+        }
+
+        .email-value.danger {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .email-content {
+            background: rgba(255, 51, 102, 0.05);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+            opacity: 0;
+            animation: typeLine 0.5s forwards;
+            animation-delay: 3s;
+        }
+
+        .phish-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        /* Floating Cards */
+        .float-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatCard 5s ease-in-out infinite;
+        }
+
+        .float-card-1 {
+            top: 10%;
+            right: -20px;
+            animation-delay: 0s;
+        }
+
+        .float-card-2 {
+            bottom: 20%;
+            left: -30px;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .float-card-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+        }
+
+        /* Why Social Engineering Section */
+        .why-se {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .threat-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .threat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .threat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .threat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .threat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .threat-desc {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .service-features li i {
+            color: var(--accent);
+            font-size: 0.875rem;
+        }
+
+        /* Simulation Types Section */
+        .sim-types {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sim-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .sim-tab {
+            padding: 0.875rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sim-tab:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .sim-tab.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .sim-content {
+            display: none;
+        }
+
+        .sim-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .sim-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .sim-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .sim-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sim-card h3 i {
+            color: var(--accent);
+        }
+
+        .sim-card ul {
+            list-style: none;
+        }
+
+        .sim-card li {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .sim-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Psychology Section */
+        .psychology {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .psych-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .psych-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border-left: 3px solid var(--accent);
+        }
+
+        .psych-card:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .psych-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .psych-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .method-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .method-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .method-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .step-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 6rem 5%;
+            background: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .diff-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .diff-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .diff-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .diff-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .diff-card:hover .diff-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--primary);
+        }
+
+        .diff-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .diff-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .cta-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-badges {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-badge i {
+            color: var(--accent);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* Chatbot */
+        #chatbot-launcher {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px var(--accent-glow);
+            z-index: 1001;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        #chatbot-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        #chatbot-launcher i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 380px;
+            max-height: 60vh;
+            background: var(--secondary);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        #chatbot-container.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        #chatbot-header {
+            padding: 1.25rem;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            color: var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #chatbot-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        #close-chat:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        #chatbot-body {
+            flex: 1;
+            padding: 1.25rem;
+            overflow-y: auto;
+            background: var(--primary);
+        }
+
+        #chatbot-body .message {
+            max-width: 85%;
+            margin-bottom: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 0.875rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #chatbot-body .bot-message {
+            background: var(--glass);
+            color: var(--text-primary);
+            border-radius: 12px 12px 12px 4px;
+            margin-right: auto;
+            border: 1px solid var(--border);
+        }
+
+        #chatbot-body .user-message {
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.2) 0%, rgba(255, 107, 107, 0.2) 100%);
+            color: var(--text-primary);
+            border-radius: 12px 12px 4px 12px;
+            margin-left: auto;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+
+        #chatbot-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            background: var(--secondary);
+        }
+
+        #chatbot-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #chatbot-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.1);
+        }
+
+        #chatbot-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                order: -1;
+                height: 400px;
+            }
+            
+            .float-card {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .method-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                bottom: 90px;
+            }
+            
+            .sim-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .sim-tab {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+            </a>
+            
+            <nav>
+                <ul>
+                     <li><a href="/">Home</a></li>
+                    <li><a href="#why-se">Why Test Humans</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#contact" class="cta-nav">Get Assessment</a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <div class="mobile-menu-toggle">
+                    <span>Services</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-submenu">
+                    <li><a href="/WebPentest.html">Web Penetration Testing</a></li>
+                    <li><a href="/NetworkPentest.html">Network Pentesting</a></li>
+                    <li><a href="/MobilePentest.html">Mobile Security</a></li>
+                    <li><a href="/Redteam.html">Red Teaming</a></li>
+                    <li><a href="/APIPentest.html">API Security</a></li>
+                    <li><a href="/Phishing.html">Social Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="/About.html">About</a></li>
+            <!-- <li><a href="/blog.html">Blog</a></li> -->
+            <!-- <li><a href="/contact.html">Contact</a></li> -->
+            <li><a href="/getqouta.html" style="color: var(--accent);">Get Quote</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🎯 95% of Breaches Involve Human Error</span>
+                </div>
+                <h1>
+                    Social Engineering <span class="gradient-text">Defense</span><br>
+                    Human Firewall Testing
+                </h1>
+                <p class="hero-description">
+                    We test your organization's human attack surface through realistic phishing, vishing, smishing, and physical security simulations. Unlike automated tools, we use psychological principles and AI-driven personalization to identify vulnerable individuals and departments.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24h</span>
+                        <span class="hero-stat-label">Campaign Launch</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">40+</span>
+                        <span class="hero-stat-label">Languages</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">AI</span>
+                        <span class="hero-stat-label">Personalized</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="/getqouta.html" class="btn-primary">
+                        <i class="fas fa-rocket"></i> Start Simulation
+                    </a>
+                    <a href="#methodology" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> See Process
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="email-window">
+                    <div class="email-header">
+                        <div class="email-dot red"></div>
+                        <div class="email-dot yellow"></div>
+                        <div class="email-dot green"></div>
+                        <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.875rem;">suspicious-email.eml</span>
+                    </div>
+                    <div class="email-body">
+                        <div class="email-field">
+                            <div class="email-label">From</div>
+                            <div class="email-value danger">security@amaz0n-security.com</div>
+                        </div>
+                        <div class="email-field">
+                            <div class="email-label">To</div>
+                            <div class="email-value">finance@company.com</div>
+                        </div>
+                        <div class="email-field">
+                            <div class="email-label">Subject</div>
+                            <div class="email-value danger">URGENT: Invoice Payment Required - Account Suspension Pending</div>
+                        </div>
+                        <div class="email-field">
+                            <div class="email-label">Date</div>
+                            <div class="email-value">Fri, 20 Feb 2026 09:45:23 GMT</div>
+                        </div>
+                        <div class="email-content">
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">⚠️ SOCIAL ENGINEERING INDICATORS DETECTED:</div>
+                            <div class="phish-indicator">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Domain spoofing: "amaz0n" vs "amazon"</span>
+                            </div>
+                            <div class="phish-indicator">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Urgency tactic: "Account Suspension"</span>
+                            </div>
+                            <div class="phish-indicator">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Authority impersonation: Security team</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="float-card float-card-1">
+                    <div class="float-card-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="float-card-text">Click Rate</div>
+                    <div class="float-card-value">12%</div>
+                </div>
+                
+                <div class="float-card float-card-2">
+                    <div class="float-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="float-card-text">Avg. Time to Click</div>
+                    <div class="float-card-value">4m 32s</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-text">Trusted by Security-Conscious Organizations</div>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-brain"></i>
+                    <span>Behavioral Science Based</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-globe"></i>
+                    <span>40+ Languages</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>GDPR Compliant</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-infinity"></i>
+                    <span>Unlimited Retesting</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Social Engineering Section -->
+    <section id="why-se" class="why-se">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-exclamation-circle"></i> The Human Risk
+                </span>
+                <h2 class="section-title">Why Test Your <span class="gradient-text">Human Firewall</span></h2>
+                <p class="section-subtitle">Humans are the primary attack vector. Our testing reveals behavioral vulnerabilities before attackers exploit them.</p>
+            </div>
+            
+            <div class="threat-stats">
+                <div class="threat-card reveal">
+                    <div class="threat-number">95%</div>
+                    <div class="threat-label">of Breaches</div>
+                    <div class="threat-desc">Involve human error, social engineering, or credential theft</div>
+                </div>
+                
+                <div class="threat-card reveal">
+                    <div class="threat-number">3.4B</div>
+                    <div class="threat-label">Phishing Emails</div>
+                    <div class="threat-desc">Sent daily worldwide - the #1 attack vector</div>
+                </div>
+                
+                <div class="threat-card reveal">
+                    <div class="threat-number">$4.9M</div>
+                    <div class="threat-label">Avg. BEC Cost</div>
+                    <div class="threat-desc">Business Email Compromise average loss per incident</div>
+                </div>
+                
+                <div class="threat-card reveal">
+                    <div class="threat-number">74%</div>
+                    <div class="threat-label">of Breaches</div>
+                    <div class="threat-desc">Include human element - error, privilege misuse, or stolen credentials</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-crosshairs"></i> Our Services
+                </span>
+                <h2 class="section-title">Multi-Vector <span class="gradient-text">Social Engineering</span></h2>
+                <p class="section-subtitle">Comprehensive testing across all human attack vectors - email, voice, SMS, and physical.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Phishing Simulations</h3>
+                    <p>AI-personalized email campaigns that mirror real-world attack techniques including spear phishing, business email compromise (BEC), and callback phishing.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 25,000+ templates</li>
+                        <li><i class="fas fa-check"></i> AI-generated content</li>
+                        <li><i class="fas fa-check"></i> QR code (quishing) tests</li>
+                        <li><i class="fas fa-check"></i> Attachment-based attacks</li>
+                        <li><i class="fas fa-check"></i> Real-time click tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Vishing (Voice Phishing)</h3>
+                    <p>Professional voice actors conduct telephone-based social engineering to test employee verification protocols and susceptibility to impersonation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Help desk impersonation</li>
+                        <li><i class="fas fa-check"></i> Executive impersonation</li>
+                        <li><i class="fas fa-check"></i> IT support callbacks</li>
+                        <li><i class="fas fa-check"></i> Credential harvesting calls</li>
+                        <li><i class="fas fa-check"></i> Call recording & analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <h3>Smishing (SMS Phishing)</h3>
+                    <p>Mobile messaging attacks testing employee susceptibility to text-based lures, fake delivery notifications, and MFA bypass attempts.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Fake delivery alerts</li>
+                        <li><i class="fas fa-check"></i> Banking fraud SMS</li>
+                        <li><i class="fas fa-check"></i> MFA fatigue attacks</li>
+                        <li><i class="fas fa-check"></i> Malicious link testing</li>
+                        <li><i class="fas fa-check"></i> WhatsApp/Telegram tests</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Physical Security Testing</h3>
+                    <p>On-site social engineering to test facility access controls, tailgating resistance, and employee verification protocols.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Tailgating attempts</li>
+                        <li><i class="fas fa-check"></i> Badge cloning & use</li>
+                        <li><i class="fas fa-check"></i> USB drop attacks</li>
+                        <li><i class="fas fa-check"></i> Impersonation entry</li>
+                        <li><i class="fas fa-check"></i> Secure area access</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Executive Protection</h3>
+                    <p>Whaling attacks targeting C-suite and high-value employees with sophisticated, personalized scenarios including business email compromise and family impersonation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> CEO fraud simulation</li>
+                        <li><i class="fas fa-check"></i> Board member targeting</li>
+                        <li><i class="fas fa-check"></i> Family pretexting</li>
+                        <li><i class="fas fa-check"></i> Legal/regulatory threats</li>
+                        <li><i class="fas fa-check"></i> Deepfake voice testing</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Security Awareness Training</h3>
+                    <p>Gamified, bite-sized training modules delivered at teachable moments - immediately after failed tests to maximize retention and behavioral change.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Micro-learning (3-5 min)</li>
+                        <li><i class="fas fa-check"></i> Gamification & rewards</li>
+                        <li><i class="fas fa-check"></i> Point-of-failure training</li>
+                        <li><i class="fas fa-check"></i> Role-based content</li>
+                        <li><i class="fas fa-check"></i> 35+ languages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Types Section -->
+    <section class="sim-types">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-layer-group"></i> Attack Scenarios
+                </span>
+                <h2 class="section-title">Phishing Simulation <span class="gradient-text">Types</span></h2>
+                <p class="section-subtitle">Industry-specific scenarios tailored to your threat profile and employee roles.</p>
+            </div>
+            
+            <div class="sim-tabs reveal">
+                <button class="sim-tab active" onclick="switchTab('standard')">Standard Phishing</button>
+                <button class="sim-tab" onclick="switchTab('spear')">Spear Phishing</button>
+                <button class="sim-tab" onclick="switchTab('whaling')">Whaling / BEC</button>
+            </div>
+            
+            <div id="standard" class="sim-content active">
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <h3><i class="fas fa-key"></i> Credential Harvesting</h3>
+                        <ul>
+                            <li>Office 365 / G Suite login pages</li>
+                            <li>VPN access portals</li>
+                            <li>Payroll system logins</li>
+                            <li>Cloud storage (Dropbox, Box)</li>
+                            <li>Social media fake logins</li>
+                            <li>Banking portal spoofs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sim-card">
+                        <h3><i class="fas fa-paperclip"></i> Malware Delivery</h3>
+                        <ul>
+                            <li>Malicious Word/Excel macros</li>
+                            <li>PDF with embedded scripts</li>
+                            <li>ZIP/RAR with "invoice" files</li>
+                            <li>ISO file containers</li>
+                            <li>OneNote document attacks</li>
+                            <li>HTML smuggling techniques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sim-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Current Events</h3>
+                        <ul>
+                            <li>Tax season scams (W-2 theft)</li>
+                            <li>Holiday shipping notifications</li>
+                            <li>Healthcare enrollment</li>
+                            <li>COVID-19 / health updates</li>
+                            <li>Emergency alert spoofs</li>
+                            <li>Software update lures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="spear" class="sim-content">
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <h3><i class="fas fa-briefcase"></i> Department-Specific</h3>
+                        <ul>
+                            <li>HR: Policy updates, benefits</li>
+                            <li>Finance: Invoices, wire transfers</li>
+                            <li>IT: System upgrades, password resets</li>
+                            <li>Legal: Document reviews, subpoenas</li>
+                            <li>Sales: CRM notifications</li>
+                            <li>Dev: GitHub, Jira alerts</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sim-card">
+                        <h3><i class="fas fa-handshake"></i> Vendor Impersonation</h3>
+                        <ul>
+                            <li>Payment request changes</li>
+                            <li>Contract renewal notices</li>
+                            <li>Service interruption alerts</li>
+                            <li>Account verification requests</li>
+                            <li>Security breach notifications</li>
+                            <li>Software license renewals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sim-card">
+                        <h3><i class="fas fa-users"></i> Internal Comms</h3>
+                        <ul>
+                            <li>Fake meeting invites (Zoom/Teams)</li>
+                            <li>Document collaboration (SharePoint)</li>
+                            <li>Policy acknowledgment</li>
+                            <li>Training reminders</li>
+                            <li>Bonus/benefit notifications</li>
+                            <li>CEO video messages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="whaling" class="sim-content">
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <h3><i class="fas fa-crown"></i> Executive Fraud</h3>
+                        <ul>
+                            <li>Urgent wire transfer requests</li>
+                            <li>Confidential acquisition deals</li>
+                            <li>Legal matter urgency</li>
+                            <li>Board meeting materials</li>
+                            <li>Press release reviews</li>
+                            <li>Strategic partnership deals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sim-card">
+                        <h3><i class="fas fa-money-bill-wave"></i> Business Email Compromise</h3>
+                        <ul>
+                            <li>Invoice redirect fraud</li>
+                            <li>Vendor bank account changes</li>
+                            <li>Payroll diversion</li>
+                            <li>Real estate wire fraud</li>
+                            <li>Attorney impersonation</li>
+                            <li>Domain spoofing attacks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sim-card">
+                        <h3><i class="fas fa-gavel"></i> Regulatory Threats</h3>
+                        <ul>
+                            <li>SEC compliance issues</li>
+                            <li>Tax authority notices</li>
+                            <li>Legal subpoenas</li>
+                            <li>Audit findings</li>
+                            <li>Data breach notifications</li>
+                            <li>Government inquiry spoofs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Psychology Section -->
+    <section class="psychology">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-brain"></i> Behavioral Science
+                </span>
+                <h2 class="section-title">Psychological <span class="gradient-text">Principles</span> We Test</h2>
+                <p class="section-subtitle">Understanding the cognitive biases attackers exploit to manipulate your employees.</p>
+            </div>
+            
+            <div class="psych-grid">
+                <div class="psych-card reveal">
+                    <h4>Authority Bias</h4>
+                    <p>People obey authority figures. We test susceptibility to executives, law enforcement, and regulatory body impersonation.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Urgency & Scarcity</h4>
+                    <p>Time pressure reduces critical thinking. We create fake deadlines, account suspensions, and limited-time offers.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Social Proof</h4>
+                    <p>People follow group behavior. We reference fake colleagues who have already complied with requests.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Reciprocity</h4>
+                    <p>Giving creates obligation. We test responses to gifts, favors, or helpful information that precedes requests.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Familiarity & Liking</h4>
+                    <p>People trust those they know. We build rapport through shared interests, alma maters, or mutual connections.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Commitment & Consistency</h4>
+                    <p>People want to appear consistent. We start with small requests that escalate to sensitive actions.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Fear & Intimidation</h4>
+                    <p>Threats bypass rational thought. We simulate legal threats, job security issues, and security breaches.</p>
+                </div>
+                
+                <div class="psych-card reveal">
+                    <h4>Curiosity Gap</h4>
+                    <p>People need to complete information. We use cliffhangers, "you won't believe," and incomplete stories.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-project-diagram"></i> Our Process
+                </span>
+                <h2 class="section-title">Social Engineering <span class="gradient-text">Methodology</span></h2>
+                <p class="section-subtitle">A systematic approach to testing and improving your human security posture.</p>
+            </div>
+            
+            <div class="method-timeline">
+                <div class="method-step reveal">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Intelligence Gathering (OSINT)</h3>
+                        <p>We collect publicly available information about your organization, employees, technology stack, and business relationships. This includes social media analysis, website reconnaissance, and dark web credential monitoring to create highly personalized attack scenarios.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Threat Modeling & Pretext Development</h3>
+                        <p>Based on your industry and threat profile, we develop believable attack scenarios. This includes creating fake personas, spoofed domains, cloned websites, and crafting compelling narratives that bypass suspicion.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Baseline Assessment</h3>
+                        <p>Initial phishing simulation to establish your organization's current susceptibility rate, click patterns, and department-specific vulnerabilities. This creates a benchmark for measuring improvement.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Multi-Vector Attack Execution</h3>
+                        <p>Coordinated campaigns across email (phishing), voice (vishing), SMS (smishing), and physical channels. We test different times, urgency levels, and psychological triggers to map your complete attack surface.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Point-of-Failure Training</h3>
+                        <p>Immediate, contextual micro-training delivered the moment an employee fails a test. This "teachable moment" approach has 3x higher retention than annual training sessions.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step reveal">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Behavioral Analytics & Reporting</h3>
+                        <p>Comprehensive reporting including individual risk scores, department comparisons, vulnerability trends, and actionable recommendations for security policy improvements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="why-us">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">
+                    <i class="fas fa-trophy"></i> Why SARSOLUTIONZ
+                </span>
+                <h2 class="section-title">The Social Engineering <span class="gradient-text">Advantage</span></h2>
+                <p class="section-subtitle">What separates our human-centric security testing from automated tools.</p>
+            </div>
+            
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Personalization</h3>
+                    <p>We use machine learning to analyze social media and create hyper-personalized phishing emails that reference real colleagues, projects, and interests - just like real attackers do.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3>Professional Actors</h3>
+                    <p>Our vishing and physical tests use trained social engineers and actors, not scripts. Real human interaction creates more convincing and realistic test scenarios.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Behavioral Risk Scoring</h3>
+                    <p>We don't just track clicks. We measure dwell time, data entry patterns, reporting behavior, and susceptibility to specific psychological triggers for true risk quantification.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global & Local Expertise</h3>
+                    <p>Tests available in 40+ languages with cultural customization. We understand local business etiquette, holidays, and regulatory environments for authentic scenarios.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe Testing Environment</h3>
+                    <p>All data collected is encrypted and anonymized. We never use real credentials or cause actual harm. Full GDPR and privacy law compliance guaranteed.</p>
+                </div>
+                
+                <div class="diff-card reveal">
+                    <div class="diff-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Continuous Improvement</h3>
+                    <p>Quarterly testing with evolving scenarios based on current threat intelligence. We track your organization's security culture maturity over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-container reveal">
+            <h2>Ready to Test Your Human Firewall?</h2>
+            <p>Join organizations that trust SARSOLUTIONZ to identify and remediate human security vulnerabilities before attackers exploit them.</p>
+            <div class="cta-buttons">
+                <a href="/getqouta.html" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Schedule Assessment
+                </a>
+                <a href="mailto:sarsolutionz7@gmail.com" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Contact Sales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">SAR<span>SOLUTIONZ</span></div>
+                </a>
+                <p>Enterprise-grade social engineering testing and security awareness training. We test your human firewall before attackers break through.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/sarsolutionz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/sar_solutionz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/Rahul-Thakur7" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.youtube.com/@sarsolutionz" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Social Engineering</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Phishing Simulation</a></li>
+                    <li><a href="#services">Vishing Testing</a></li>
+                    <li><a href="#services">Smishing Campaigns</a></li>
+                    <li><a href="#services">Physical Security</a></li>
+                    <li><a href="#services">Awareness Training</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="/About.html">About Us</a></li>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="/Samplereports.html">Sample Reports</a></li>
+                    <li><a href="https://sarsolutionz.blogspot.com/">Blog</a></li>
+                    <!-- <li><a href="/Careers.html">Careers</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> sarsolutionz7@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM IST</p>
+                <p><i class="fas fa-headset"></i> 24/7 Emergency Support</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2025 SARSOLUTIONZ. All rights reserved.
+            </div>
+            <div class="footer-badges">
+                <!-- <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>GDPR Compliant</span>
+                </div> -->
+                <!-- <div class="footer-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>ISO 27001 Aligned</span>
+                </div> -->
+                <div class="footer-badge">
+                    <i class="fas fa-user-secret"></i>
+                    <span>NDA Protected</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot-launcher">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3><i class="fas fa-terminal"></i> SE Testing Assistant</h3>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-body">
+            <div class="message bot-message">
+                👋 Welcome! I'm your social engineering advisor. How can I help you today?
+            </div>
+        </div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Ask about phishing testing...">
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const mobileToggles = document.querySelectorAll('.mobile-menu-toggle');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        mobileToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                const submenu = toggle.nextElementSibling;
+                submenu.classList.toggle('active');
+            });
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.sim-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.sim-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Chatbot Toggle
+        const launcher = document.getElementById('chatbot-launcher');
+        const container = document.getElementById('chatbot-container');
+        const closeBtn = document.getElementById('close-chat');
+        const input = document.getElementById('chatbot-input');
+        const body = document.getElementById('chatbot-body');
+
+        launcher.addEventListener('click', () => {
+            container.style.display = 'flex';
+            setTimeout(() => container.classList.add('active'), 10);
+            input.focus();
+        });
+
+        closeBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            setTimeout(() => container.style.display = 'none', 300);
+        });
+
+        // Simple Chatbot Responses
+        const responses = {
+            'price': 'Phishing simulations start at $2,500 for up to 500 employees. Vishing and physical testing are priced separately. Contact us for a custom quote based on your organization size.',
+            'cost': 'Phishing simulations start at $2,500 for up to 500 employees. Vishing and physical testing are priced separately. Contact us for a custom quote based on your organization size.',
+            'phishing': 'We offer email-based phishing, spear phishing, whaling (executive targeting), smishing (SMS), and vishing (voice). All include real-time tracking and point-of-failure training.',
+            'vishing': 'Our vishing service uses professional voice actors to test phone-based social engineering. Common scenarios include help desk impersonation, executive fraud, and callback phishing.',
+            'training': 'We provide micro-learning modules (3-5 minutes) delivered immediately after failed tests. This "teachable moment" approach has 3x better retention than annual training.',
+            'physical': 'Yes, we conduct physical security testing including tailgating, badge cloning, USB drops, and facility access attempts as part of comprehensive engagements.',
+            'languages': 'We support 40+ languages with cultural customization including local holidays, business etiquette, and region-specific threat scenarios.',
+            'report': 'You receive executive dashboards, individual risk scores, department comparisons, click timelines, and actionable recommendations for security improvements.',
+            'hello': 'Hello! How can I help with your social engineering testing needs today?',
+            'hi': 'Hi there! Ready to test your human firewall?'
+        };
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const userMsg = input.value.trim();
+                
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.textContent = userMsg;
+                body.appendChild(userDiv);
+                
+                input.value = '';
+                body.scrollTop = body.scrollHeight;
+                
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message bot-message';
+                    
+                    const lowerMsg = userMsg.toLowerCase();
+                    let response = 'I can help with pricing, phishing types (email/voice/SMS), training options, or connect you with our team. What would you like to know?';
+                    
+                    for (const [key, value] of Object.entries(responses)) {
+                        if (lowerMsg.includes(key)) {
+                            response = value;
+                            break;
+                        }
+                    }
+                    
+                    botDiv.textContent = response;
+                    body.appendChild(botDiv);
+                    body.scrollTop = body.scrollHeight;
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
