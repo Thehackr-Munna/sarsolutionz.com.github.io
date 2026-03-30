@@ -2294,237 +2294,20 @@
 .form-error {
     animation: shake 0.5s ease;
 }
-
-    /* 
-     * ADVANCED LOADING SCREEN STYLES 
-     * Isolated to prevent conflicts with existing CSS
-     */
-    
-    :root {
-        --loader-bg: #05080f;
-        --loader-accent-1: #00d4ff;
-        --loader-accent-2: #7c3aed;
-        --loader-text: #e2e8f0;
-        --loader-muted: #64748b;
-    }
-
-    /* The Overlay Container */
-    #advanced-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--loader-bg);
-        z-index: 99999; /* Ensure it's on top of everything */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: 'JetBrains Mono', monospace;
-        transition: opacity 0.8s cubic-bezier(0.7, 0, 0.3, 1), visibility 0.8s;
-    }
-
-    #advanced-loader.hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-
-    /* Background Grid Effect (Canvas) */
-    #loader-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.4;
-        pointer-events: none;
-    }
-
-    /* Central Content Wrapper */
-    .loader-content-wrapper {
-        position: relative;
-        z-index: 10;
-        width: 100%;
-        max-width: 600px;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* Logo Area with Glitch Effect */
-    .loader-brand {
-        margin-bottom: 3rem;
-        text-align: center;
-        position: relative;
-    }
-
-    .loader-logo-text {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 3rem;
-        font-weight: 700;
-        color: white;
-        letter-spacing: 0.1em;
-        position: relative;
-        display: inline-block;
-    }
-
-    /* The Glitch Effect Layers */
-    .loader-logo-text::before,
-    .loader-logo-text::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--loader-bg);
-    }
-
-    .loader-logo-text::before {
-        left: 2px;
-        text-shadow: -1px 0 var(--loader-accent-2);
-        clip: rect(44px, 450px, 56px, 0);
-        animation: glitch-anim 5s infinite linear alternate-reverse;
-    }
-
-    .loader-logo-text::after {
-        left: -2px;
-        text-shadow: -1px 0 var(--loader-accent-1);
-        clip: rect(44px, 450px, 56px, 0);
-        animation: glitch-anim2 5s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitch-anim {
-        0% { clip: rect(14px, 9999px, 127px, 0); }
-        20% { clip: rect(80px, 9999px, 20px, 0); }
-        40% { clip: rect(30px, 9999px, 90px, 0); }
-        60% { clip: rect(60px, 9999px, 10px, 0); }
-        80% { clip: rect(10px, 9999px, 100px, 0); }
-        100% { clip: rect(90px, 9999px, 30px, 0); }
-    }
-
-    @keyframes glitch-anim2 {
-        0% { clip: rect(60px, 9999px, 10px, 0); }
-        20% { clip: rect(10px, 9999px, 100px, 0); }
-        40% { clip: rect(90px, 9999px, 30px, 0); }
-        60% { clip: rect(14px, 9999px, 127px, 0); }
-        80% { clip: rect(80px, 9999px, 20px, 0); }
-        100% { clip: rect(30px, 9999px, 90px, 0); }
-    }
-
-    /* Status Text (The "Decoding" Effect) */
-    .loader-status {
-        font-size: 0.9rem;
-        color: var(--loader-accent-1);
-        margin-bottom: 2rem;
-        height: 1.5em;
-        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-    }
-
-    /* Progress Bar Container */
-    .loader-progress-container {
-        width: 100%;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
-        overflow: hidden;
-        position: relative;
-        margin-bottom: 1rem;
-    }
-
-    /* The Moving Bar */
-    .loader-progress-bar {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, var(--loader-accent-1), var(--loader-accent-2));
-        box-shadow: 0 0 20px var(--loader-accent-1);
-        transition: width 0.2s ease-out;
-        position: relative;
-    }
-
-    /* Shimmer effect on the bar */
-    .loader-progress-bar::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: linear-gradient(
-            90deg,
-            rgba(255,255,255,0) 0%,
-            rgba(255,255,255,0.5) 50%,
-            rgba(255,255,255,0) 100%
-        );
-        transform: translateX(-100%);
-        animation: shimmer 1.5s infinite;
-    }
-
-    @keyframes shimmer {
-        100% { transform: translateX(100%); }
-    }
-
-    /* Percentage Counter */
-    .loader-percentage {
-        position: absolute;
-        right: 0;
-        top: -25px;
-        font-size: 0.8rem;
-        color: var(--loader-muted);
-    }
-
-    /* Footer Details (Simulated System Info) */
-    .loader-details {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.7rem;
-        color: var(--loader-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: 0.5rem;
-        border-top: 1px solid rgba(255,255,255,0.05);
-        padding-top: 1rem;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-        .loader-logo-text { font-size: 2rem; }
-        .loader-status { font-size: 0.8rem; }
-    }
     </style>
 </head>
 <body>
-    <!-- Advanced Loading Screen -->
-<div id="advanced-loader">
-    <!-- Background Animation Canvas -->
-    <canvas id="loader-canvas"></canvas>
-
-    <div class="loader-content-wrapper">
-        <!-- Brand / Logo -->
-        <div class="loader-brand">
-            <div class="loader-logo-text" data-text="SAR SOLUTIONZ">SAR SOLUTIONZ</div>
-        </div>
-
-        <!-- Scrambling Status Text -->
-        <div class="loader-status" id="loader-status-text">Initializing kernel...</div>
-
-        <!-- Progress Bar -->
-        <div class="loader-progress-container">
-            <div class="loader-progress-bar" id="loader-bar"></div>
-            <div class="loader-percentage" id="loader-percent">0%</div>
-        </div>
-
-        <!-- System Details Footer -->
-        <div class="loader-details">
-            <span id="loader-module">SECURE_BOOT_V2.4</span>
-            <span id="loader-encryption">AES-256-GCM ENABLED</span>
+    <!-- Professional Loading Screen -->
+    <div class="loader-container" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">SAR SOLUTIONZ</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Is Under Construction</div>
         </div>
     </div>
-</div>
+    
     <!-- Background Effects -->
     <div class="bg-grid"></div>
     <div class="floating-orbs">
@@ -2971,7 +2754,7 @@
     </section>
     
     <!-- Team Section -->
-    <section id="team" class="team">
+    <!-- <section id="team" class="team">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">
@@ -3037,7 +2820,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     
  <!-- Contact Section -->
 <section id="contact" class="contact">
@@ -3203,7 +2986,7 @@
                     <h4>Company</h4>
                     <ul class="footer-links">
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#team">Our Team</a></li>
+                        <!-- <li><a href="#team">Our Team</a></li> -->
                         <li><a href="#certifications">Certifications</a></li>
                         <li><a href="https://sarsolutionz.blogspot.com/">Blog</a></li>
                         <li><a href="/Samplereports.html">Sample Reports</a></li>
@@ -3270,202 +3053,12 @@
     <script>
 
         
-       document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. MATRIX RAIN BACKGROUND EFFECT (Canvas) ---
-    const canvas = document.getElementById('loader-canvas');
-    const ctx = canvas.getContext('2d');
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    // Characters for the digital rain
-    const chars = "0123456789ABCDEF<>/;{}[]|\\";
-    const charArray = chars.split('');
-    const fontSize = 14;
-    const columns = width / fontSize;
-    const drops = [];
-
-    // Initialize drops
-    for(let i = 0; i < columns; i++) {
-        drops[i] = 1;
-    }
-
-    function drawMatrix() {
-        // Black with opacity for trail effect
-        ctx.fillStyle = 'rgba(5, 8, 15, 0.05)';
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.fillStyle = '#00d4ff'; // Text color
-        ctx.font = fontSize + 'px monospace';
-
-        for(let i = 0; i < drops.length; i++) {
-            const text = charArray[Math.floor(Math.random() * charArray.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if(drops[i] * fontSize > height && Math.random() > 0.975)
-                drops[i] = 0;
-            
-            drops[i]++;
-        }
-    }
-
-    // Handle resize
-    window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    });
-
-    // Start Matrix Animation
-    const matrixInterval = setInterval(drawMatrix, 33);
-
-
-    // --- 2. TEXT SCRAMBLE EFFECT ---
-    class TextScramble {
-        constructor(el) {
-            this.el = el;
-            this.chars = '!<>-_\\/[]{}—=+*^?#________';
-            this.update = this.update.bind(this);
-        }
-        
-        setText(newText) {
-            const oldText = this.el.innerText;
-            const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => this.resolve = resolve);
-            this.queue = [];
-            
-            for (let i = 0; i < length; i++) {
-                const from = oldText[i] || '';
-                const to = newText[i] || '';
-                const start = Math.floor(Math.random() * 40);
-                const end = start + Math.floor(Math.random() * 40);
-                this.queue.push({ from, to, start, end });
-            }
-            
-            cancelAnimationFrame(this.frameRequest);
-            this.frame = 0;
-            this.update();
-            return promise;
-        }
-        
-        update() {
-            let output = '';
-            let complete = 0;
-            
-            for (let i = 0, n = this.queue.length; i < n; i++) {
-                let { from, to, start, end, char } = this.queue[i];
-                
-                if (this.frame >= end) {
-                    complete++;
-                    output += to;
-                } else if (this.frame >= start) {
-                    if (!char || Math.random() < 0.28) {
-                        char = this.randomChar();
-                        this.queue[i].char = char;
-                    }
-                    output += `<span style="color: #7c3aed">${char}</span>`;
-                } else {
-                    output += from;
-                }
-            }
-            
-            this.el.innerHTML = output;
-            
-            if (complete === this.queue.length) {
-                this.resolve();
-            } else {
-                this.frameRequest = requestAnimationFrame(this.update);
-                this.frame++;
-            }
-        }
-        
-        randomChar() {
-            return this.chars[Math.floor(Math.random() * this.chars.length)];
-        }
-    }
-
-    // Initialize Scrambler
-    const statusEl = document.getElementById('loader-status-text');
-    const scrambler = new TextScramble(statusEl);
-    
-    const loadingPhrases = [
-        "Initializing secure protocols...",
-        "Loading encryption modules...",
-        "Verifying certificates...",
-        "Establishing secure handshake...",
-        "Accessing mainframe...",
-        "Rendering interface..."
-    ];
-
-
-    // --- 3. PROGRESS BAR LOGIC ---
-    const bar = document.getElementById('loader-bar');
-    const percentText = document.getElementById('loader-percent');
-    const loader = document.getElementById('advanced-loader');
-    
-    let progress = 0;
-    let phraseIndex = 0;
-
-    // Function to update progress with "stuttering" realism
-    function updateProgress() {
-        // Random increment between 0.5 and 3
-        const increment = Math.random() * 2.5 + 0.5;
-        progress += increment;
-
-        // Cap at 100
-        if (progress > 100) progress = 100;
-
-        // Update visual width
-        bar.style.width = `${progress}%`;
-        percentText.innerText = `${Math.floor(progress)}%`;
-
-        // Change text phrase based on progress milestones
-        const milestone = Math.floor((progress / 100) * loadingPhrases.length);
-        if (milestone !== phraseIndex && milestone < loadingPhrases.length) {
-            phraseIndex = milestone;
-            scrambler.setText(loadingPhrases[phraseIndex]);
-        }
-
-        if (progress < 100) {
-            // Random delay for next update (simulates network lag)
-            const delay = Math.random() * 100 + 50; 
-            requestAnimationFrame(() => setTimeout(updateProgress, delay));
-        } else {
-            // Loading Complete Sequence
-            finishLoading();
-        }
-    }
-
-    function finishLoading() {
-        // Wait a moment at 100% before fading out
-        setTimeout(() => {
-            // Stop Matrix rain
-            clearInterval(matrixInterval);
-            
-            // Fade out loader
-            loader.classList.add('hidden');
-            
-            // Enable scrolling on body (if you disabled it)
-            document.body.style.overflow = 'auto';
-            
-            // Cleanup DOM after fade out
+        // Loading Screen
+        window.addEventListener('load', () => {
             setTimeout(() => {
-                loader.remove();
-                canvas.remove();
-            }, 1000);
-
-        }, 800);
-    }
-
-    // Start the sequence
-    // Slight delay to ensure fonts are loaded
-    setTimeout(() => {
-        updateProgress();
-    }, 500);
-    
-    // Disable scroll while loading
-    document.body.style.overflow = 'hidden';
-});
+                document.getElementById('loader').classList.add('hidden');
+            }, 2500);
+        });
         
         // Initialize AOS
         AOS.init({
